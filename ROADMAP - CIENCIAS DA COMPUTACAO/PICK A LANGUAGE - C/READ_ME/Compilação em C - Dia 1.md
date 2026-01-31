@@ -153,5 +153,33 @@ printf("O numero %d e %s\n", x, resultado);
 > **Dica do Professor:** Use o ternário para escolhas simples. Se a lógica começar a ficar muito complexa, prefira o `if/else` tradicional para não deixar seu código difícil de ler (o famoso "código espaguete").
 ---
 
+### Incremento e Decremento (Seção 3.2.3)
+
+### 🆙 Operadores de Passo:
+- `i++` (Pós): Usa o valor atual na expressão e **depois** incrementa.
+- `++i` (Pré): Incrementa primeiro e **depois** usa o novo valor na expressão.
+- O mesmo vale para o decremento (`i--` e `--i`).
+
+### 🧪 Exemplo Comparativo:
+```c
+int i = 10;
+printf("%d", i++); // Vai imprimir 10 (e i vira 11 depois)
+printf("%d", ++i); // Vai imprimir 12 (i já era 11, vira 12 e imprime)
+```
+
+-----
+
+### 🛠️ Desafio Prático no CLion:
+
+Tente prever o que este código vai imprimir antes de rodar:
+
+```c
+int a = 5;
+int b = 5;
+printf("A: %d\n", a++ + a++);
+printf("B: %d\n", ++b + ++b);
+```
+---
+
 
 </details>
