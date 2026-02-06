@@ -1,0 +1,10 @@
+# Ignorar arquivos gerados pelo CLion/CMake
+.idea/
+cmake-build-debug/
+cmake-build-release/
+CMakeLists.txt.user
+
+# Ignorar executáveis e lixo de compilação
+*.exe
+*.o
+*.out
