@@ -206,4 +206,31 @@ printf("i: %d | j: %d\n", i, j);
 ```
 ---
 
+### ⚖️ Operadores Condicionais (Seção 3.2.5)
+
+Estes operadores comparam dois valores e retornam um resultado booleano (verdadeiro ou falso).
+
+#### 🔍 Lista de Operadores:
+* `a == b`: Verdadeiro se **a** for igual a **b**.
+* `a != b`: Verdadeiro se **a** for diferente de **b**.
+* `a < b`: Verdadeiro se **a** for menor que **b**.
+* `a > b`: Verdadeiro se **a** for maior que **b**.
+* `a <= b`: Verdadeiro se **a** for menor ou igual a **b**.
+* `a >= b`: Verdadeiro se **a** for maior ou igual a **b**.
+
+
+
+#### ⚠️ O Erro mais Comum no C:
+Nunca confunda **Atribuição** (`=`) com **Comparação** (`==`):
+- `x = 10`: Você está **guardando** o número 10 dentro de x.
+- `x == 10`: Você está **perguntando** se x vale 10.
+
+#### 🛠️ Exemplo de Uso:
+```c
+if (a <= 10) {
+    printf("Sucesso! O valor esta dentro do limite.\n");
+}
+```
+
+---
 </details>
