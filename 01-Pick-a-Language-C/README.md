@@ -181,5 +181,29 @@ printf("B: %d\n", ++b + ++b);
 ```
 ---
 
+### Operador Vírgula (Seção 3.2.4)
+
+### ➡️ Sequência da Esquerda para a Direita:
+- Permite agrupar múltiplas expressões em uma única linha.
+- O valor resultante da expressão é sempre o valor da **última** (mais à direita).
+
+```c
+int x;
+x = (10, 20, 30); 
+// O C processa o 10, depois o 20, e por fim o 30.
+// O resultado final que vai para 'x' é 30.
+```
+#### 2. Uso Prático: Loops (for) 🚀
+- Este operador é muito utilizado em loops for para inicializar ou incrementar múltiplas variáveis simultaneamente no mesmo bloco da instrução.
+
+Exemplo de Contagem Dupla:
+
+```c
+// 'i' sobe de 0 a 10 e 'j' desce de 10 a 0 ao mesmo tempo
+for (int i = 0, j = 10; i <= 10; i++, j--) {
+printf("i: %d | j: %d\n", i, j);
+}
+```
+---
 
 </details>
