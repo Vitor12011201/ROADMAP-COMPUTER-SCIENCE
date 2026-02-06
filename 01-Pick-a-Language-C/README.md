@@ -231,6 +231,79 @@ if (a <= 10) {
     printf("Sucesso! O valor esta dentro do limite.\n");
 }
 ```
-
 ---
+### 🧠 Operadores Lógicos (Seção 3.2.6)
+
+Estes operadores servem para combinar ou inverter expressões condicionais.
+
+|  Operador  | Significado | Descrição |
+|:----------:| :---: | :--- |
+|    `&&`    | **AND** (E) | Verdadeiro se **todas** as condições forem verdadeiras. |
+| `\|    \|` | **OR** (OU) | Verdadeiro se **pelo menos uma** condição for verdadeira. |
+|    `!`     | **NOT** (NÃO) | Inverte o valor: transforma verdadeiro em falso e vice-versa. |
+
+
+
+#### 🛠️ Exemplos de Uso:
+
+**1. Usando o "E" (&&):**
+```c
+// Só entra no if se AMBAS as condições forem reais
+if (x < 10 && y > 20) {
+    printf("Condicao aceita!\n");
+}
+```
+**2. Usando o "OU" (||):**
+Basta que **uma** das condições seja verdadeira para o código entrar no `if`.
+
+```c
+// Entra no if se x for menor que 10 OU se y for maior que 20
+if (x < 10 || y > 20) {
+    printf("Pelo menos uma das condicoes e verdadeira!\n");
+}
+```
+**3. Usando o "NÃO" (!): O operador ! tem alta precedência, por isso geralmente usamos parênteses.**
+
+```c
+if (!(x < 12)) {
+    // É o mesmo que dizer: "Se x NÃO for menor que 12" (ou seja, x >= 12)
+    printf("x e maior ou igual a 12\n");
+}
+```
+
+#### 💡 Teste Mental:
+Se você tiver o código: `if (5 > 2 || 2 > 10)`, o programa entrará no `if`?
+
+**Resposta:** **Sim!** No operador `||` (OU), o resultado é verdadeiro se **pelo menos uma** das partes for verdade (e como 5 é maior que 2, a condição é satisfeita).
+
+> **Dica de Ouro:** No C, os operadores && e || são "curto-circuito". Se no && a primeira condição já for falsa, o C nem olha para a segunda, pois sabe que o resultado final será falso de qualquer jeito. ⚡
+---
+### 📏 O Operador `sizeof`: Medindo a Memória (Seção 3.2.7)
+
+O `sizeof` é a ferramenta que usamos para não precisar adivinhar o tamanho das coisas. Como o C roda em tudo (desde relógios até supercomputadores), o tamanho de um `int` pode mudar. O `sizeof` garante que seu código se adapte.
+
+#### 🗝️ O que você precisa saber:
+* **Unidade de Medida:** Ele sempre responde em **Bytes**.
+* **O "RG" do Resultado:** O valor que ele devolve não é um `int` comum, é um `size_t`.
+* **No `printf`:** Para exibir esse valor, usamos o código `%zu`.
+* **Momento da Descoberta:** O C resolve o `sizeof` durante a **compilação**. Ou seja, o programa já nasce sabendo esses tamanhos.
+
+#### 🧪 Exemplos Práticos:
+
+```c
+float nota = 9.5;
+char letra = 'V';
+
+// 1. Medindo uma variável diretamente
+printf("A variavel 'nota' ocupa %zu bytes\n", sizeof nota);
+
+// 2. Medindo um tipo (obrigatorio usar parenteses aqui!)
+printf("Um 'int' ocupa %zu bytes nesta maquina\n", sizeof(int));
+
+// 3. Medindo expressoes
+// O C olha o resultado da conta (1 + 1.0 = 2.0) que e um 'double'
+printf("O resultado da conta ocupa %zu bytes\n", sizeof(1 + 1.0));
+```
+---
+
 </details>
