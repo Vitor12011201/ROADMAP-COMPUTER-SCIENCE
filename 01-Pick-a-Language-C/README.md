@@ -7,6 +7,11 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 - **IDE:** CLion
 - **Compilador:** GCC
 
+## 🧠 Filosofia do C (Segundo o Guia do Beej)
+- **Baixo Nível:** C é uma linguagem sem "cinto de segurança". Ela permite interfacear diretamente com a memória e o hardware.
+- **Conectividade:** Aprender C é a base para entender Sistemas Operacionais e linguagens modernas (C++, Rust, Go).
+- **O Desafio:** O conceito de **Ponteiros** é identificado como o principal obstáculo (endereços de memória).
+
 <details>
   <summary><b>🔹 Dia 1: Como compilar com o GCC</b></summary>
 
@@ -19,20 +24,13 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-## 🧠 Filosofia do C (Segundo o Guia do Beej)
-- **Baixo Nível:** C é uma linguagem sem "cinto de segurança". Ela permite interfacear diretamente com a memória e o hardware.
-- **Conectividade:** Aprender C é a base para entender Sistemas Operacionais e linguagens modernas (C++, Rust, Go).
-- **O Desafio:** O conceito de **Ponteiros** é identificado como o principal obstáculo (endereços de memória).
-
----
-
 <details>
   <summary><b>🔹 Dia 2: Hello World</b></summary>
 
 ## 📖 O Hello World
 
 ### 🧠 O que aprendi:
-- **Pré-processador (#):** Age antes do compilador. O `#include` copia bibliotecas para o código.
+- **Pré-processador (#):** Age antes do compilador. O `#include` copia bibliotecas para o código. (Tudo que começa com # roda antes do compilador.)
 - **Header Files (.h):** Arquivos como `stdio.h` fornecem ferramentas básicas (como o `printf`).
 - **Comentários:** Essenciais para documentar a lógica (`//` ou `/* */`).
 - **Fluxo de Execução:** O programa sempre começa na função `main()` e termina na sua última chave `}`.
