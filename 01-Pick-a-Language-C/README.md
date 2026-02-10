@@ -125,7 +125,7 @@ O C é **Case Sensitive**, ou seja, `vitor`, `Vitor` e `VITOR` seriam três vari
 ---
 
 <details>
-<summary><b>🧬 Tipos de variáveis (3.1.2)</b></summary>
+<summary><b>🧬 Tipos de variáveis (Seção 3.1.2)</b></summary>
 <br>
 
 ### 📦 Tipos Básicos:
@@ -191,8 +191,14 @@ if (rico) {
 - **Potência:** Não use `^`. Use `pow(base, expoente)` da biblioteca `<math.h>`.
 
 > **Pulo do Gato:** Cuidado com a divisão de inteiros! Se você fizer `int x = 5 / 2;`, o resultado será `2` (o C trunca o .5 porque a variável é int).
+</details>
+
 ---
-### Operador Ternário (Seção 3.2.2)
+
+<details>
+<summary><b>↔️ Operador Ternário (Seção 3.2.2)</b></summary>
+<br>
+
 ### 💡 O "if" de uma linha:
 - **Sintaxe:** `condição ? verdadeiro : falso;`
 - **Exemplo:** `y += (x > 10) ? 17 : 37;`
@@ -431,7 +437,7 @@ Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para 
 ---
 
 <details>
-<summary><b> 🔄 A Estrutura `if-else` (Seção 3.3.1)</b></summary>
+<summary><b> 🔀 A Estrutura `if-else` (Seção 3.3.1)</b></summary>
 <br>
 
 O `if` testa uma condição. Se ela for verdadeira, o bloco do `if` roda. Se for falsa, o C pula para o próximo comando — a menos que você forneça um `else`.
@@ -483,6 +489,32 @@ if (i == 10) {
     printf("i é um número que eu nunca ouvi falar.\n");
 }
 ```
+</details>
+
+---
+
+<details>
+<summary><b>🔄 O Laço `while`: Repetição com Condição (Seção 3.3.2)</b></summary>
+
+O `while` (enquanto) executa um bloco de código repetidamente **enquanto** uma condição específica for verdadeira.
+
+#### ⚙️ Como funciona o Ciclo:
+1.  **Teste:** O C verifica a condição no parênteses.
+2.  **Execução:** Se for verdadeira, ele roda o bloco `{ }`.
+3.  **Retorno:** Ele volta para o passo 1 e testa novamente.
+
+#### 🛠️ Exemplo Prático (Contador):
+```c
+int i = 0;
+
+while (i < 10) {
+    printf("i agora é %d!\n", i);
+    i++; // Importante: Incrementa para que a condição um dia seja falsa!
+}
+
+printf("Acabou o loop!\n");
+```
+
 </details>
 
 ---
