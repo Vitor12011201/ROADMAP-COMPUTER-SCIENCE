@@ -302,6 +302,99 @@ printf("Um 'int' ocupa %zu bytes nesta maquina\n", sizeof(int));
 // O C olha o resultado da conta (1 + 1.0 = 2.0) que e um 'double'
 printf("O resultado da conta ocupa %zu bytes\n", sizeof(1 + 1.0));
 ```
+## 🎓 Por que aprender isso agora?
+Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa saber o tamanho da laranja para a caixa não ficar pequena demais, certo? No C, quando formos criar listas (arrays) ou reservar memória manualmente (alocação dinâmica), o `sizeof` é quem vai dizer o tamanho exato da "caixa" que o computador precisa preparar.
+
 ---
+
+## 🚦 Controle de Fluxo (Seção 3.3.0)
+
+O controle de fluxo permite que o programa decida quais partes do código executar com base em condições.
+
+### 🧱 Blocos vs. Declarações Únicas
+No C, após um comando de controle (como `if`, `while` ou `for`), você pode executar **uma única linha** ou um **bloco inteiro**.
+
+#### 1. Declaração Única (Single Statement)
+Se você não usar chaves, apenas a **primeira linha** após o comando será controlada por ele.
+
+```c
+if (x == 10) 
+    printf("x é 10\n"); // Só esta linha depende do if
+```
+#### 2. Blocos de Código (Chaves { })
+Para executar várias coisas baseadas em uma única condição, **usamos as "squirrelly braces" (chaves)** para criar um bloco.
+
+```c
+if (x == 10) {
+    printf("x é 10\n");
+    printf("Isso também só acontece se x for 10\n");
+}
+```
+### ⚠️ O Perigo do "Falso Visual"
+Cuidado! Diferente do Python, o C ignora espaços e identação. O que define o que pertence ao if são as chaves, não o espaço que você deixa.
+
+Exemplo de Erro Comum:
+```c
+if (x == 10)
+    printf("Isso depende do x\n");
+    printf("Isso SEMPRE acontece!\n"); // Cuidado: Esta linha NÃO está no if!
+```
+💡Dica: 
+Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para uma única linha. Isso evita erros bobos no futuro e deixa seu código muito mais fácil de ler.
+---
+
+### 🔄 A Estrutura `if-else` (Seção 3.3.1)
+
+O `if` testa uma condição. Se ela for verdadeira, o bloco do `if` roda. Se for falsa, o C pula para o próximo comando — a menos que você forneça um `else`.
+
+#### 1. O Plano B: `else`
+O `else` serve para executar um código especificamente quando a condição do `if` **falha**.
+
+```c
+int i = 99;
+
+if (i == 10) {
+    printf("i é 10!\n");
+} else {
+    printf("i não é 10. Isso me irrita um pouco...\n");
+}
+```
+
+### 2. O if-else (A Bifurcação)
+Aqui você garante que um dos dois caminhos será tomado. É impossível o C executar o if e o else ao mesmo tempo, ou não executar nenhum dos dois.
+```c
+#include <stdio.h>
+
+int main() {
+    int i = 99;
+
+    if (i == 10) {
+        printf("i e 10!\n");
+    } else {
+        printf("i decididamente NAO e 10.\n");
+        printf("Isso me irrita um pouco, francamente.\n");
+    }
+
+    return 0;
+}
+```
+
+### 3. O Cascateamento: else if
+Quando você tem várias opções e quer testar uma por uma até achar a verdadeira, você "empilha" os else if.
+```c
+int i = 99;
+
+if (i == 10) {
+    printf("i é 10!\n");
+} else if (i == 20) {
+    printf("i é 20!\n");
+} else if (i == 99) {
+    printf("i é 99! Meu favorito!\n");
+} else {
+    printf("i é um número que eu nunca ouvi falar.\n");
+}
+```
+---
+
 
 </details>
