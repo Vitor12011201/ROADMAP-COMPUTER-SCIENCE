@@ -5,11 +5,11 @@ int main() {
 
     // 2. A pergunta: "i ainda é menor que 10?"
     while (i < 10) {
-        printf("i is now %d!\n", i);
+        printf("i agora e %d!\n", i);
 
         i++; // 3. IMPORTANTE: Aumenta o i para que o loop um dia termine!
     }
 
-    printf("All done!\n");
+    printf("Fim\n");
     return 0;
 }

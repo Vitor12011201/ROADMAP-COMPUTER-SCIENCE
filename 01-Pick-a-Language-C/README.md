@@ -519,4 +519,204 @@ printf("Acabou o loop!\n");
 
 ---
 
+<details>
+
+<summary><b>🔃 Controle de Fluxo: O Laço `do-while` (Seção 3.3.3)</b></summary>
+<br>
+
+O `do-while` é uma estrutura de repetição com **teste no final** (post-test loop). Ele é fundamental quando a lógica do programa exige que o corpo do laço seja processado antes que a primeira validação ocorra.
+
+#### 🏗️ Arquitetura e Fluxo de Execução
+Diferente do `while` comum, que pode ser executado **zero** vezes, o `do-while` garante **pelo menos uma execução** (garantia de passagem única).
+
+1.  **Entrada:** O fluxo entra diretamente no bloco `{ }` sem checar condições.
+2.  **Processamento:** Todas as instruções dentro das chaves são executadas.
+3.  **Avaliação:** Só então o compilador avalia a expressão booleana no `while(condicao);`.
+4.  **Bifurcação:** Se `true`, o fluxo volta para o `do`. Se `false`, o laço é encerrado.
+
+#### 💻 Comparativo Técnico: `while` vs `do-while`
+
+```c
+int i = 10;
+
+// Cenário A: O 'while' checa antes. Como 10 não é < 10, nada acontece.
+while (i < 10) {
+    printf("Isso nunca será impresso.\n");
+    i++;
+}
+
+// Cenário B: O 'do-while' executa primeiro. Ele imprime "10", incrementa para 11 e só aí para.
+do {
+    printf("do-while executou com i = %d\n", i);
+    i++;
+} while (i < 10); // <--- ATENÇÃO: O ponto e vírgula aqui é obrigatório!
+```
+
+### 🎲 Aplicação Avançada: Números Pseudoaleatórios:
+Um uso clássico é repetir uma tarefa até que um valor aleatório específico seja gerado.
+
+```c
+#include <stdio.h>
+#include <stdlib.h> // Necessário para rand() e srand()
+#include <time.h>   // Necessário para usar o tempo como semente
+
+int main(void) {
+    int r;
+    do {
+        r = rand() % 100; // Gera número entre 0 e 99
+        printf("Tentativa: %d\n", r);
+    } while (r != 37);    // Repete o sorteio até que o número seja exatamente 37
+    
+    return 0;
+}
+
+```
+
+
+🔍 O Problema do Determinismo (rand vs srand)
+rand(): Gera números "pseudoaleatórios". Sem uma semente diferente, ele produzirá a mesma sequência toda vez que o programa iniciar.
+
+srand(): É usado para "semear" o gerador. Geralmente usamos srand(time(NULL)) para que cada execução use o horário atual como base, garantindo sequências diferentes.
+
+### 🎓 Nota:
+O do-while é ideal para validação de entrada de dados. Por exemplo: "Peça uma nota ao usuário -> Verifique se é válida -> Se não for, peça de novo". Você não pode verificar se a nota é válida antes de pedir que o usuário a digite!
+
 </details>
+
+---
+
+<details>
+<summary><b>⚙️O Laço `for`: O Rei das Repetições (Seção 3.3.4)</b></summary>
+<br>
+
+O `for` é a escolha ideal quando você sabe **antecipadamente** quantas vezes deseja repetir um bloco de código. Embora ele possa ser escrito como um `while`, o `for` organiza a inicialização, a condição e a atualização em um lugar só, facilitando a leitura e evitando erros de lógica.
+
+#### 🧬 Anatomia do Comando
+O `for` é dividido em três seções separadas por ponto e vírgula (`;`):
+
+`for (inicialização; condição; atualização)`
+
+1.  **Inicialização:** Executada apenas **uma vez**, antes de o loop começar. Geralmente usada para definir o valor inicial do contador.
+2.  **Condição:** Verificada **antes** de cada repetição. Se for falsa logo de início, o loop nem chega a rodar.
+3.  **Atualização:** Executada ao **final** de cada bloco, logo antes de testar a condição novamente. Geralmente usada para incrementar (`i++`) ou decrementar (`i--`) o contador.
+
+
+
+#### 🛠️ Comparativo Técnico: `while` vs `for`
+Ambos os códigos abaixo produzem o mesmo resultado exato (imprimir de 0 a 9), mas o `for` é muito mais compacto:
+
+```c
+// Versão com while
+i = 0;
+while (i < 10) {
+    printf("i is %d\n", i);
+    i++;
+}
+
+// Versão com for (Muito mais limpa!)
+for (i = 0; i < 10; i++) {
+    printf("i is %d\n", i);
+}
+```
+🚀 Recursos Avançados
+O Operador Vírgula (Múltiplas Ações):
+Você pode inicializar e atualizar várias variáveis simultaneamente no mesmo for.
+
+```c
+for (i = 0, j = 999; i < 10; i++, j--) {
+    printf("i: %d, j: %d\n", i, j);
+}
+```
+
+O Loop Infinito "Eterno":
+Diferente do while(1), no for você pode simplesmente omitir as três partes. Se não houver condição, o C assume que ela é sempre verdadeira.
+
+```c
+for (;;) {
+    printf("Executando até o fim dos tempos...\n");
+}
+```
+
+Seções Opcionais:
+Qualquer uma das três partes pode ficar vazia, desde que os pontos e vírgulas sejam mantidos.
+
+## 🎓 Nota:
+A grande vantagem do for sobre o while é o escopo. No for, a variável de controle (como o i) fica vinculada à lógica do loop. Se você esquecer o i++ no final de um while, você cria um bug infinito. No for, como a atualização está na assinatura do comando, é muito mais difícil esquecer de atualizar o contador.
+
+</details>
+
+---
+
+<details>
+<summary><b>🚥 O Comando `switch`: Seleção Direta (Seção 3.3.5)</b></summary>
+<br>
+
+O `switch` permite executar diferentes partes do código com base no valor de uma **expressão inteira**. É como um painel de controle onde você pula diretamente para o botão (caso) que foi acionado.
+
+#### 🏗️ Anatomia do `switch`
+O funcionamento se baseia em três palavras-chave:
+1.  **`case`:** Define os valores que você quer testar.
+2.  **`break`:** É a "saída de emergência". Se você não colocar, o C continua executando os casos abaixo (o perigoso *fall-through*).
+3.  **`default`:** O Plano C. É executado se nenhum dos casos anteriores for atendido.
+
+
+
+#### 🛠️ Exemplo Prático (Contador de Cabras)
+```c
+int contador_cabras = 2;
+
+switch (contador_cabras) {
+    case 0:
+        printf("Você não tem cabras.\n");
+        break;
+    case 1:
+        printf("Você tem uma única cabra.\n");
+        break;
+    case 2:
+        printf("Você tem um par de cabras.\n");
+        break;
+    default:
+        printf("Você tem uma verdadeira multidão de cabras!\n");
+        break;
+}
+```
+
+⚠️ O Fenômeno do "Fall-through" (Cair Através)
+Se você esquecer o break, o C não para no final do case. Ele continua "escorregando" para o próximo código, mesmo que o valor do próximo case seja diferente!
+
+```c
+switch (x) {
+    case 1:
+        printf("1\n"); // Se x for 1, ele imprime "1"...
+        // Faltou o break!
+    case 2:
+        printf("2\n"); // ...e DEPOIS imprime "2" também!
+        break;
+```
+## Dica Profissinal:
+Se você realmente quiser que um caso "caia" no outro de propósito, sempre deixe um comentário avisando: // Fall through!(Cair-Atravessar) . Isso evita que outros programadores achem que foi um erro.
+
+
+🔍 O "Pulo do Gato": Usando char no switch
+O Beej mencionou que o switch só aceita inteiros. Mas, como no C o tipo char é guardado como um número (código ASCII), você pode usar letras nos seus casos!
+
+```c
+char escolha = 'b';
+switch (escolha) {
+case 'a':
+printf("Opção A\n"); break;
+case 'b':
+printf("Opção B\n"); break;
+}
+```
+## 🎓Nota:
+Nunca tente usar números decimais (float/double) ou frases (strings) dentro de um switch. O compilador vai dar erro na hora. O switch foi feito para valores discretos e exatos.
+
+</details>
+
+</details>
+
+---
+<details>
+  <summary><b>🔹 Dia 4: Funçoes </b></summary>
+
