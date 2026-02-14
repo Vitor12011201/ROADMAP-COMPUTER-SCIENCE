@@ -720,3 +720,75 @@ Nunca tente usar números decimais (float/double) ou frases (strings) dentro de 
 <details>
   <summary><b>🔹 Dia 4: Funçoes </b></summary>
 
+---
+
+<details>
+<summary><b>🚀 Introdução a Funçoes (Seção 4.1)</b></summary>
+<br>
+
+## 🛠️ Dia 4: Funções (Functions)
+
+As funções são as "receitas" ou subprogramas que compõem uma aplicação em C. Elas permitem que você quebre um problema grande em pedaços menores, organizados e reutilizáveis. No C, tudo gira em torno de funções, inclusive o ponto de entrada do programa: a `main`.
+
+---
+
+## 🏗️ 1. Anatomia de uma Função
+
+Diferente de linguagens dinâmicas, o C exige que você seja explícito sobre o que entra e o que sai da função (tipagem estática).
+
+```c
+int somar_1 (int n) {  // "int" é o tipo de retorno; "int n" é o parâmetro
+    return n + 1;      // "return" encerra a função e devolve o valor
+}
+```
+- Tipo de Retorno: Define o tipo de dado que a função entrega de volta para quem a chamou. Se a função não devolve nada, usamos o tipo void.
+- Parâmetros: São variáveis locais especiais que recebem os dados de entrada. Eles só existem enquanto a função está sendo executada.
+- Corpo: O bloco entre chaves { } onde a lógica é processada.
+
+## 🗝️ 2. Conceitos Fundamentais
+## A. Passagem por Valor (O Conceito de Cópia) 🛡️
+
+Este é o comportamento vital do C: Os argumentos são copiados para os parâmetros.
+Quando você passa uma variável para uma função, o C cria um "dublê" (cópia binária) dela em um novo endereço de memória.
+Qualquer alteração feita no parâmetro dentro da função não afeta a variável original que está na main ou em outra função.
+
+### B. O uso do void 🚫
+
+A palavra-chave void significa "vazio" ou "nada".
+Retorno void: A função executa uma ação (ex: imprimir um log ou mover um arquivo) mas não gera um resultado numérico ou de dados para ser guardado.
+Parâmetro void: Indica explicitamente que a função não aceita nenhuma entrada (ex: int main(void)).
+
+### C. Ordem e Declaração 📋
+
+O compilador do C processa o arquivo de forma linear (de cima para baixo).
+Se você chamar uma função na main() que está escrita fisicamente abaixo dela no arquivo, o compilador emitirá um erro de "unknown function".
+Regra: Defina suas funções acima da main() ou declare o protótipo da função no topo do arquivo.
+
+### 🎲 3. Exemplo Prático: Função de Execução Direta
+
+```c
+#include <stdio.h>
+
+// Definição antes do uso (main)
+void say_hello(void) {
+printf("Olá, Mundo! Esta é uma função void.\n");
+}
+
+int main(void) {
+say_hello(); // Chamada da função
+return 0;    // Sucesso
+}
+```
+
+## 🎓 Dicas:
+- Modularidade: Uma boa função deve seguir o princípio da responsabilidade única. Se ela faz muitas coisas, divida-a em funções menores.
+- A Função main: Ela é a "função mestre". O return 0; ao final dela comunica ao Sistema Operacional que o programa terminou sem erros.
+- Contrato de Tipos: Se a função foi declarada como int, o compilador espera um return com um valor inteiro. Ignorar isso pode causar comportamentos indefinidos no hardware.
+
+</details>
+
+---
+
+
+</details>
+
