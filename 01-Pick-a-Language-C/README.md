@@ -788,7 +788,51 @@ return 0;    // Sucesso
 </details>
 
 ---
+<details>
+<summary><b>🛡️  Passagem por Valor (Seção 4.1)</b></summary>
+<br>
 
+No C, a regra é absoluta: **Tudo o que você passa para uma função é COPIADO.** Sem exceções.
+
+#### 🧪 O Experimento do Incremento
+Observe este código e tente prever o resultado:
+
+```c
+void increment(int a) {
+    a++; // Incrementa a cópia
+}
+
+int main(void) {
+    int i = 10;
+    increment(i);
+    printf("i == %d\n", i); // O que será impresso?
+}
+```
+Resultado: i == 10
+
+### 🧠 O que aconteceu dentro da memoria?
+
+1. Na main: Existe uma gaveta na memória chamada i com o valor 10.
+
+2. A Chamada: Quando você chama increment(i), o C cria uma nova gaveta chamada a (o parâmetro) e copia o valor 10 para dentro dela. É como se ele fizesse a = i.
+
+3. Dentro da Função: A função faz a++, então a vira 11. Mas a gaveta i lá na main não foi tocada!
+
+4. O Fim: Quando a função termina, a gaveta a é destruída (descartada). Voltamos para a main e i continua sendo 10.
+
+### ⚖️ Resumo:
+- Independência: O parâmetro é uma variável local independente.
+
+- Isolamento: As funções em C são isoladas. Elas não têm permissão para mexer nas variáveis de outras funções diretamente.
+
+- Como contornar? Para "trazer um valor de volta", você deve usar o return (como fizemos no plus_one) ou usar Ponteiros (que o Beej chama de Passagem por Referência, mas que no fundo ainda é uma cópia do endereço!).
+
+### 🎓 Dica:
+Lembre-se da frase do pirata no texto: "Prepare-se para a decepção". Se você espera que uma função mude sua variável original apenas passando ela como argumento, você terá um bug. O C opera em cópias locais, NÃO IMPORTA O QUE ACONTEÇA.
+
+</details>
+
+---
 
 </details>
 
