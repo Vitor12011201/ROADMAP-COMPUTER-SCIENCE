@@ -834,5 +834,50 @@ Lembre-se da frase do pirata no texto: "Prepare-se para a decepção". Se você 
 
 ---
 
+<details>
+ <summary><b>📋 Protótipos de Função (Seçaõ 4.2)</b></summary>
+<br>
+
+O compilador do C lê o código de cima para baixo. Se você tentar chamar uma função antes de definí-la, o compilador não saberá qual o tipo de retorno ou quais parâmetros ela aceita.
+
+#### 🕵️ O que é um Protótipo?
+Um protótipo é apenas a "assinatura" da função (a primeira linha dela) seguida de um ponto e vírgula `;`. Ele serve para dizer ao compilador: *"Ei, em algum lugar deste código (ou em outro arquivo), existe uma função com este nome e este formato. Pode confiar!"*.
+
+```c
+#include <stdio.h>
+
+int foo(void);  // Protótipo: Aviso prévio ao compilador
+
+int main(void) {
+    int i = foo(); // Agora funciona! O compilador já conhece a assinatura.
+    printf("%d\n", i);
+    return 0;
+}
+
+int foo(void) { // Definição real da função
+    return 3490;
+}
+```
+
+### ⚖️ Por que usar Protótipos?
+- Organização: Permite que você coloque a main() no topo do arquivo (o que é uma boa prática) e as outras funções abaixo.
+- Arquivos Separados: Permite chamar funções que estão em outros arquivos .c.
+- Segurança: O compilador verifica se você está passando os argumentos corretos antes mesmo de chegar na definição da função.
+
+### 🚔 Por que o printf funciona sem protótipo?
+- Na verdade, ele tem um protótipo! Quando você escreve #include <stdio.h>, você está literalmente colando centenas de protótipos de funções de entrada e saída (como printf e scanf) no topo do seu código.
+
+### 🎓 Nota:
+Antigamente (no padrão C89), você podia chamar funções sem avisar, e o C tentava "adivinhar" o que elas faziam (chamado de declaração implícita). Hoje isso é proibido ou gera avisos graves. Sempre use protótipos para manter seu código legítimo e profissional!
+
+### 🎓 Orientação:
+Pense nos protótipos como o **Sumário** de um livro. Você lê o sumário para saber quais capítulos existem antes de começar a ler o conteúdo. No C, os protótipos no topo do arquivo dão uma visão geral de tudo o que o programa é capaz de fazer.
+
+**Dica técnica:** No protótipo, você nem precisa colocar o nome da variável, apenas o tipo.
+Exemplo: `int soma(int, int);` é um protótipo válido para `int soma(int a, int b)`. Mas colocar o nome ajuda a documentar o que cada número faz!
+
+</details>
+
+---
 </details>
 
