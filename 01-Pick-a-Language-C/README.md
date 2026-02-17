@@ -640,7 +640,7 @@ for (;;) {
 Seções Opcionais:
 Qualquer uma das três partes pode ficar vazia, desde que os pontos e vírgulas sejam mantidos.
 
-## 🎓 Nota:
+### 🎓 Nota:
 A grande vantagem do for sobre o while é o escopo. No for, a variável de controle (como o i) fica vinculada à lógica do loop. Se você esquecer o i++ no final de um while, você cria um bug infinito. No for, como a atualização está na assinatura do comando, é muito mais difícil esquecer de atualizar o contador.
 
 </details>
@@ -693,11 +693,11 @@ switch (x) {
         printf("2\n"); // ...e DEPOIS imprime "2" também!
         break;
 ```
-## Dica Profissinal:
+### Dica Profissinal:
 Se você realmente quiser que um caso "caia" no outro de propósito, sempre deixe um comentário avisando: // Fall through!(Cair-Atravessar) . Isso evita que outros programadores achem que foi um erro.
 
 
-🔍 O "Pulo do Gato": Usando char no switch
+### 🔍 O "Pulo do Gato": Usando char no switch
 O Beej mencionou que o switch só aceita inteiros. Mas, como no C o tipo char é guardado como um número (código ASCII), você pode usar letras nos seus casos!
 
 ```c
@@ -709,7 +709,7 @@ case 'b':
 printf("Opção B\n"); break;
 }
 ```
-## 🎓Nota:
+### 🎓Nota:
 Nunca tente usar números decimais (float/double) ou frases (strings) dentro de um switch. O compilador vai dar erro na hora. O switch foi feito para valores discretos e exatos.
 
 </details>
@@ -764,7 +764,7 @@ O compilador do C processa o arquivo de forma linear (de cima para baixo).
 Se você chamar uma função na main() que está escrita fisicamente abaixo dela no arquivo, o compilador emitirá um erro de "unknown function".
 Regra: Defina suas funções acima da main() ou declare o protótipo da função no topo do arquivo.
 
-### 🎲 3. Exemplo Prático: Função de Execução Direta
+## 🎲 3. Exemplo Prático: Função de Execução Direta
 
 ```c
 #include <stdio.h>
@@ -879,5 +879,43 @@ Exemplo: `int soma(int, int);` é um protótipo válido para `int soma(int a, in
 </details>
 
 ---
+
+<details>
+<summary><b>🚫 Listas de Parâmetros Vazias: O Perigo do `()` vs `(void)` (Seção 4.3)</b></summary>
+<br>
+
+Embora pareça apenas "preguiça" de digitar, existe uma diferença técnica crítica entre deixar os parênteses vazios e usar a palavra-chave `void`.
+
+#### 🧪 A Diferença no Protótipo
+Esta é a parte onde o erro acontece. No C, as duas declarações abaixo **NÃO** são iguais:
+
+```c
+void foo();       // ⚠️ "Não tenho informações sobre os parâmetros"
+void foo(void);   // ✅ "Eu garanto que esta função NÃO aceita parâmetros"
+```
+
+- 1 - void foo(); (O Jeito Antigo): Diz ao compilador para "desligar" a verificação de tipos. Ele não sabe se a função recebe 0, 1 ou 10 argumentos. Se você passar algo por erro, o compilador pode ficar quieto e o programa quebrar depois. 
+
+- 2 - void foo(void); (O Jeito Correto): Informa explicitamente que a função é vazia. Se você tentar passar qualquer argumento, o compilador te avisa na hora com um erro.
+
+### 🏗️ Na Definição da Função
+Quando você está escrevendo o corpo da função, o comportamento de void foo() é tratado pelo padrão moderno (C11) como se fosse void foo(void).
+
+No entanto, por uma questão de consistência e clareza, você deve sempre usar o void.
+
+### 🎓 Nota:
+A regra de ouro é simples: Sempre use void. Não há nenhuma razão legítima em C moderno para deixar os parênteses vazios. Isso ajuda o compilador a ser seu "guarda-costas", impedindo que você passe dados para onde não deveria.
+
 </details>
 
+---
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 5: Ponteiros </b></summary>
+
+---
+
+</details>
