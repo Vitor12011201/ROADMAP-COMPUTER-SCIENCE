@@ -526,7 +526,7 @@ Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para 
 
 ---
 
-[Codigos da Seção 3.3.1 podem ser encontrados aqui](./DIA_003/(SECAO%3-3-1)-ESTRUTURA-(if-else))
+[Codigos da Seção 3.3.1 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-1)-ESTRUTURA-(if-else))
 
 ---
 
