@@ -841,10 +841,8 @@ Nunca tente usar números decimais (float/double) ou frases (strings) dentro de 
 ---
 
 <details>
-<summary><b>🚀 Introdução a Funçoes (Seção 4.1)</b></summary>
+<summary><b>🚀 Introdução a Funçoes (Seção 4.0)</b></summary>
 <br>
-
-## 🛠️ Dia 4: Funções (Functions)
 
 ---
 
@@ -918,7 +916,7 @@ return 0;    // Sucesso
 
 ---
 
-[Codigos da Seção 4.1 podem ser encontrados aqui](./DIA_004/(SECAO 4-1)-PASSAGEM-DE-VALOR)
+[Codigos da Seção 4.1 podem ser encontrados aqui](./DIA_004/(SECAO-4-1)-PASSAGEM-DE-VALOR)
 
 ---
 
@@ -965,7 +963,7 @@ Lembre-se da frase do pirata no texto: "Prepare-se para a decepção". Se você 
 ---
 
 <details>
- <summary><b>📋 Protótipos de Função (Seçaõ 4.2)</b></summary>
+ <summary><b>📋 Protótipos de Função (Seção 4.2)</b></summary>
 <br>
 
 ---
