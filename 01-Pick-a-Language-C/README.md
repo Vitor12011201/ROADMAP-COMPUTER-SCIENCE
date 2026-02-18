@@ -73,7 +73,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-[Codigos do dia 3 podem ser encontrados aqui](./DIA_002)
+[Codigos do dia 3 podem ser encontrados aqui](./DIA_003)
 
 ---
 
@@ -129,7 +129,7 @@ Imagine a memória do computador como um grande hotel com milhares de quartos:
 
 ---
 
-[Codigos da Seção 3.1.1 podem ser encontrados aqui](./(SECAO 3-1-1)-NOMES DE VARIAVEIS)
+[Codigos da Seção 3.1.1 podem ser encontrados aqui](./(SECAO-3-1-1)-NOMES DE VARIAVEIS)
 
 ---
 
