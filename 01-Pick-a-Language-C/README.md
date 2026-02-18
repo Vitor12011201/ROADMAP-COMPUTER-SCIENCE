@@ -622,7 +622,7 @@ printf("Acabou o loop!\n");
 
 ---
 
-[Codigos da Seção 3.3.3 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-3-)-DO-WHILE-(CONTROLE-DE-FLUXO))
+[Codigos da Seção 3.3.3 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-3)-DO-WHILE-(CONTROLE-DE-FLUXO))
 
 ---
 
