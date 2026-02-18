@@ -479,7 +479,7 @@ Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa 
 
 ---
 
-[Codigos da Seção 3.3.0 podem ser encontrados aqui](./(SECAO 3-3-0)-CONTROLE-DE-FLUXO)
+[Codigos da Seção 3.3.0 podem ser encontrados aqui](./(SECAO-3-3-0)-CONTROLE-DE-FLUXO)
 
 ---
 
