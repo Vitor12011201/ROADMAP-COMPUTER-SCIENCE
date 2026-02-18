@@ -129,7 +129,7 @@ Imagine a memória do computador como um grande hotel com milhares de quartos:
 
 ---
 
-[Codigos da Seção 3.1.1 podem ser encontrados aqui](./(SECAO-3-1-1)-NOMES DE VARIAVEIS)
+[Codigos da Seção 3.1.1 podem ser encontrados aqui](./DIA_003/(SECAO-3-1-1)-NOMES-DE-VARIAVEIS)
 
 ---
 
@@ -154,7 +154,7 @@ O C é **Case Sensitive**, ou seja, `vitor`, `Vitor` e `VITOR` seriam três vari
 
 ---
 
-[Codigos da Seção 3.1.2 podem ser encontrados aqui](./(SECAO 3-1-2)-TIPOS-DE-VARIAVEIS)
+[Codigos da Seção 3.1.2 podem ser encontrados aqui](./DIA_003/(SECAO-3-1-2)-TIPOS-DE-VARIAVEIS)
 
 ---
 
@@ -187,7 +187,7 @@ Para imprimir variáveis, usamos o `printf` com marcadores:
 
 ---
 
-[Codigos da Seção 3.1.3 podem ser encontrados aqui](./(SECAO 3-1-3)-TIPOS-BOOLEANOS)
+[Codigos da Seção 3.1.3 podem ser encontrados aqui](./DIA_003/(SECAO-3-1-3)-TIPOS-BOOLEANOS)
 
 ---
 
@@ -218,7 +218,7 @@ if (rico) {
 
 ---
 
-[Codigos da Seção 3.2.1 podem ser encontrados aqui](./(SECAO 3-2-1)-OPERADORES-ARITMETICOS)
+[Codigos da Seção 3.2.1 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-1)-OPERADORES-ARITMETICOS)
 
 ---
 
@@ -243,7 +243,7 @@ if (rico) {
 
 ---
 
-[Codigos da Seção 3.2.2 podem ser encontrados aqui](./(SECAO 3-2-2)-OPERADOR-TERNARIO)
+[Codigos da Seção 3.2.2 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-2)-OPERADOR-TERNARIO)
 
 ---
 
@@ -271,7 +271,7 @@ printf("O numero %d e %s\n", x, resultado);
 
 ---
 
-[Codigos da Seção 3.2.3 podem ser encontrados aqui](./(SECAO 3-2-3)-INCREMENTO-E-DECREMENTO)
+[Codigos da Seção 3.2.3 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-3)-INCREMENTO-E-DECREMENTO)
 
 ---
 
@@ -309,7 +309,7 @@ printf("B: %d\n", ++b + ++b);
 
 ---
 
-[Codigos da Seção 3.2.4 podem ser encontrados aqui](./(SECAO 3-2-4)-OPERADOR-VIRGULA)
+[Codigos da Seção 3.2.4 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-4)-OPERADOR-VIRGULA)
 
 ---
 
@@ -344,7 +344,7 @@ printf("i: %d | j: %d\n", i, j);
 
 ---
 
-[Codigos da Seção 3.2.5 podem ser encontrados aqui](./(SECAO 3-2-5)-OPERADORES-CONDICIONAIS)
+[Codigos da Seção 3.2.5 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-5)-OPERADORES-CONDICIONAIS)
 
 ---
 
@@ -381,7 +381,7 @@ if (a <= 10) {
 
 ---
 
-[Codigos da Seção 3.2.6 podem ser encontrados aqui](./(SECAO 3-2-6)-OPERADORES-LOGICOS)
+[Codigos da Seção 3.2.6 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-6)-OPERADORES-LOGICOS)
 
 ---
 
@@ -439,7 +439,7 @@ Se você tiver o código: `if (5 > 2 || 2 > 10)`, o programa entrará no `if`?
 
 ---
 
-[Codigos da Seção 3.2.7 podem ser encontrados aqui](./(SECAO 3-2-7)-OPERADOR SIZEOF-(Medindo-a-Memoria))
+[Codigos da Seção 3.2.7 podem ser encontrados aqui](./DIA_003/(SECAO-3-2-7)-OPERADOR-SIZEOF-(Medindo-a-Memoria))
 
 ---
 
@@ -479,7 +479,7 @@ Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa 
 
 ---
 
-[Codigos da Seção 3.3.0 podem ser encontrados aqui](./(SECAO 3-3-0)-CONTROLE-DE-FLUXO)
+[Codigos da Seção 3.3.0 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-0)-CONTROLE-DE-FLUXO)
 
 ---
 
@@ -588,7 +588,7 @@ if (i == 10) {
 
 ---
 
-[Codigos da Seção 3.3.2 podem ser encontrados aqui](./(SECAO 3-3-2)-WHILE-(LACO DE REPETIÇAO))
+[Codigos da Seção 3.3.2 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-2)-WHILE-(LACO-DE-REPETICAO))
 
 ---
 
@@ -622,7 +622,7 @@ printf("Acabou o loop!\n");
 
 ---
 
-[Codigos da Seção 3.3.3 podem ser encontrados aqui](./(SECAO 3-3-3-)-DO-WHILE-(CONTROLE DE FLUXO))
+[Codigos da Seção 3.3.3 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-3-)-DO-WHILE-(CONTROLE-DE-FLUXO))
 
 ---
 
@@ -693,7 +693,7 @@ O do-while é ideal para validação de entrada de dados. Por exemplo: "Peça um
 
 ---
 
-[Codigos da Seção 3.3.4 podem ser encontrados aqui](./(SECAO 3-3-4)FOR-(LACO DE REPETIÇÃO))
+[Codigos da Seção 3.3.4 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-4)FOR-(LACO-DE-REPETICAO))
 
 ---
 
@@ -761,7 +761,7 @@ A grande vantagem do for sobre o while é o escopo. No for, a variável de contr
 
 ---
 
-[Codigos da Seção 3.3.5 podem ser encontrados aqui](./(SECAO 3-3-5)-SWITCH-CASE)
+[Codigos da Seção 3.3.5 podem ser encontrados aqui](./DIA_003/(SECAO-3-3-5)-SWITCH-CASE)
 
 ---
 
@@ -848,7 +848,7 @@ Nunca tente usar números decimais (float/double) ou frases (strings) dentro de 
 
 ---
 
-[Codigos da Seção 4.0 podem ser encontrados aqui](./(SEÇÃO 4-0)-INTRODUÇÃO-A-FUNCÕES)
+[Codigos da Seção 4.0 podem ser encontrados aqui](./DIA_004/(SECAO-4-0)-INTRODUCAO-A-FUNCOES)
 
 ---
 
@@ -918,7 +918,7 @@ return 0;    // Sucesso
 
 ---
 
-[Codigos da Seção 4.1 podem ser encontrados aqui](./(SEÇÃO 4-1)-PASSAGEM-DE-VALOR)
+[Codigos da Seção 4.1 podem ser encontrados aqui](./DIA_004/(SECAO 4-1)-PASSAGEM-DE-VALOR)
 
 ---
 
@@ -970,7 +970,7 @@ Lembre-se da frase do pirata no texto: "Prepare-se para a decepção". Se você 
 
 ---
 
-[Codigos da Seção 4.2 podem ser encontrados aqui](./(SEÇÃO 4-2)-PROTOTIPOS-DE-FUNÇÃO)
+[Codigos da Seção 4.2 podem ser encontrados aqui](./DIA_004/(SECAO-4-2)-PROTOTIPOS-DE-FUNCAO)
 
 ---
 
@@ -1022,7 +1022,7 @@ Exemplo: `int soma(int, int);` é um protótipo válido para `int soma(int a, in
 
 ---
 
-[Codigos da Seção 4.3 podem ser encontrados aqui](./(SEÇÃO 4-3)-LISTA-DE-PARAMETROS-VAZIAS)
+[Codigos da Seção 4.3 podem ser encontrados aqui](./DIA_004/(SECAO-4-3)-LISTA-DE-PARAMETROS-VAZIAS)
 
 ---
 
