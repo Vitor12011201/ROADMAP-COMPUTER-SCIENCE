@@ -15,6 +15,12 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 <details>
   <summary><b>🔹 Dia 1: Como compilar com o GCC</b></summary>
 
+---
+
+[Codigos do dia 1 podem ser encontrados aqui](./DIA_001)
+
+---
+
 - **Passo 1** - Ir até a Pasta (Diretório) do arquivo com o comando `cd`.
 - **Passo 2** - Compilar o arquivo com o comando `gcc (nome_do_arquivo.c) -o (nome_do_executavel)`.
 - **Passo 3** - Rodar o programa com o comando `./(nome_do_executavel)`.
@@ -26,6 +32,12 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 <details>
   <summary><b>🔹 Dia 2: Hello World</b></summary>
+
+---
+
+[Codigos do dia 2 podem ser encontrados aqui](./DIA_002)
+
+---
 
 ## 📖 O Hello World
 
@@ -58,6 +70,12 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 <details>
   <summary><b>🔹 Dia 3: Variáveis e Declarações</b></summary>
+
+---
+
+[Codigos do dia 3 podem ser encontrados aqui](./DIA_002)
+
+---
 
 ### 🧠 O que esperar:
 - Aprender a classificar os elementos de um programa.
@@ -109,6 +127,12 @@ Imagine a memória do computador como um grande hotel com milhares de quartos:
 <summary><b>📜 Regras para Nomes de Variáveis (Seção 3.1.1)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.1.1 podem ser encontrados aqui](./(SECAO 3-1-1)-NOMES DE VARIAVEIS)
+
+---
+
 ### Nomes de Variáveis
 
 ### ✅ O que é permitido:
@@ -127,6 +151,12 @@ O C é **Case Sensitive**, ou seja, `vitor`, `Vitor` e `VITOR` seriam três vari
 <details>
 <summary><b>🧬 Tipos de variáveis (Seção 3.1.2)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.1.2 podem ser encontrados aqui](./(SECAO 3-1-2)-TIPOS-DE-VARIAVEIS)
+
+---
 
 ### 📦 Tipos Básicos:
 - `int`: Números inteiros (ex: 2, -10).
@@ -155,6 +185,12 @@ Para imprimir variáveis, usamos o `printf` com marcadores:
 <summary><b>🔘 Tipos Booleanos (Seção 3.1.3)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.1.3 podem ser encontrados aqui](./(SECAO 3-1-3)-TIPOS-BOOLEANOS)
+
+---
+
 ### 🧠 O conceito de Verdade no C:
 - **Falso (False):** Representado pelo número `0`.
 - **Verdadeiro (True):** Qualquer número diferente de zero (`1`, `-5`, `100`).
@@ -180,6 +216,12 @@ if (rico) {
 <summary><b>🔢 Operadores Aritméticos (Seção 3.2.1)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.2.1 podem ser encontrados aqui](./(SECAO 3-2-1)-OPERADORES-ARITMETICOS)
+
+---
+
 ### 🔢 Operações Comuns:
 - `+`, `-`, `*`, `/`: Operações básicas.
 - `%`: Módulo (Resto da divisão).
@@ -198,6 +240,12 @@ if (rico) {
 <details>
 <summary><b>↔️ Operador Ternário (Seção 3.2.2)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.2.2 podem ser encontrados aqui](./(SECAO 3-2-2)-OPERADOR-TERNARIO)
+
+---
 
 ### 💡 O "if" de uma linha:
 - **Sintaxe:** `condição ? verdadeiro : falso;`
@@ -220,6 +268,12 @@ printf("O numero %d e %s\n", x, resultado);
 <details>
 <summary><b>🆙 Incremento e Decremento (Seção 3.2.3)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.2.3 podem ser encontrados aqui](./(SECAO 3-2-3)-INCREMENTO-E-DECREMENTO)
+
+---
 
 ### 🆙 Operadores de Passo:
 - `i++` (Pós): Usa o valor atual na expressão e **depois** incrementa.
@@ -253,6 +307,12 @@ printf("B: %d\n", ++b + ++b);
 <summary><b>➡️ Operador Vírgula (Seção 3.2.4)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.2.4 podem ser encontrados aqui](./(SECAO 3-2-4)-OPERADOR-VIRGULA)
+
+---
+
 ### ➡️ Sequência da Esquerda para a Direita:
 - Permite agrupar múltiplas expressões em uma única linha.
 - O valor resultante da expressão é sempre o valor da **última** (mais à direita).
@@ -281,6 +341,12 @@ printf("i: %d | j: %d\n", i, j);
 <details>
 <summary><b>⚖️ Operadores Condicionais (Seção 3.2.5)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.2.5 podem ser encontrados aqui](./(SECAO 3-2-5)-OPERADORES-CONDICIONAIS)
+
+---
 
 Estes operadores comparam dois valores e retornam um resultado booleano (verdadeiro ou falso).
 
@@ -312,6 +378,12 @@ if (a <= 10) {
 <details>
 <summary><b>🧠 Operadores Lógicos (Seção 3.2.6)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.2.6 podem ser encontrados aqui](./(SECAO 3-2-6)-OPERADORES-LOGICOS)
+
+---
 
 Estes operadores servem para combinar ou inverter expressões condicionais.
 
@@ -365,6 +437,12 @@ Se você tiver o código: `if (5 > 2 || 2 > 10)`, o programa entrará no `if`?
 <summary><b>📏 O Operador `sizeof`: Medindo a Memória (Seção 3.2.7)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.2.7 podem ser encontrados aqui](./(SECAO 3-2-7)-OPERADOR SIZEOF-(Medindo-a-Memoria))
+
+---
+
 O `sizeof` é a ferramenta que usamos para não precisar adivinhar o tamanho das coisas. Como o C roda em tudo (desde relógios até supercomputadores), o tamanho de um `int` pode mudar. O `sizeof` garante que seu código se adapte.
 
 #### 🗝️ O que você precisa saber:
@@ -398,6 +476,12 @@ Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa 
 <details>
  <summary><b>🚦 Controle de Fluxo (Seção 3.3.0) </b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.3.0 podem ser encontrados aqui](./(SECAO 3-3-0)-CONTROLE-DE-FLUXO)
+
+---
 
 O controle de fluxo permite que o programa decida quais partes do código executar com base em condições.
 
@@ -439,6 +523,12 @@ Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para 
 <details>
 <summary><b> 🔀 A Estrutura `if-else` (Seção 3.3.1)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.3.1 podem ser encontrados aqui](./(SECAO 3-3-1)-ESTRUTURA-(if-else))
+
+---
 
 O `if` testa uma condição. Se ela for verdadeira, o bloco do `if` roda. Se for falsa, o C pula para o próximo comando — a menos que você forneça um `else`.
 
@@ -496,6 +586,12 @@ if (i == 10) {
 <details>
 <summary><b>🔄 O Laço `while`: Repetição com Condição (Seção 3.3.2)</b></summary>
 
+---
+
+[Codigos da Seção 3.3.2 podem ser encontrados aqui](./(SECAO 3-3-2)-WHILE-(LACO DE REPETIÇAO))
+
+---
+
 O `while` (enquanto) executa um bloco de código repetidamente **enquanto** uma condição específica for verdadeira.
 
 #### ⚙️ Como funciona o Ciclo:
@@ -523,6 +619,12 @@ printf("Acabou o loop!\n");
 
 <summary><b>🔃 Controle de Fluxo: O Laço `do-while` (Seção 3.3.3)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.3.3 podem ser encontrados aqui](./(SECAO 3-3-3-)-DO-WHILE-(CONTROLE DE FLUXO))
+
+---
 
 O `do-while` é uma estrutura de repetição com **teste no final** (post-test loop). Ele é fundamental quando a lógica do programa exige que o corpo do laço seja processado antes que a primeira validação ocorra.
 
@@ -589,6 +691,12 @@ O do-while é ideal para validação de entrada de dados. Por exemplo: "Peça um
 <summary><b>⚙️O Laço `for`: O Rei das Repetições (Seção 3.3.4)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 3.3.4 podem ser encontrados aqui](./(SECAO 3-3-4)FOR-(LACO DE REPETIÇÃO))
+
+---
+
 O `for` é a escolha ideal quando você sabe **antecipadamente** quantas vezes deseja repetir um bloco de código. Embora ele possa ser escrito como um `while`, o `for` organiza a inicialização, a condição e a atualização em um lugar só, facilitando a leitura e evitando erros de lógica.
 
 #### 🧬 Anatomia do Comando
@@ -650,6 +758,12 @@ A grande vantagem do for sobre o while é o escopo. No for, a variável de contr
 <details>
 <summary><b>🚥 O Comando `switch`: Seleção Direta (Seção 3.3.5)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 3.3.5 podem ser encontrados aqui](./(SECAO 3-3-5)-SWITCH-CASE)
+
+---
 
 O `switch` permite executar diferentes partes do código com base no valor de uma **expressão inteira**. É como um painel de controle onde você pula diretamente para o botão (caso) que foi acionado.
 
@@ -722,17 +836,27 @@ Nunca tente usar números decimais (float/double) ou frases (strings) dentro de 
 
 ---
 
+[Codigos do dia 4 podem ser encontrados aqui](./DIA_004)
+
+---
+
 <details>
 <summary><b>🚀 Introdução a Funçoes (Seção 4.1)</b></summary>
 <br>
 
 ## 🛠️ Dia 4: Funções (Functions)
 
+---
+
+[Codigos da Seção 4.0 podem ser encontrados aqui](./(SEÇÃO 4-0)-INTRODUÇÃO-A-FUNCÕES)
+
+---
+
 As funções são as "receitas" ou subprogramas que compõem uma aplicação em C. Elas permitem que você quebre um problema grande em pedaços menores, organizados e reutilizáveis. No C, tudo gira em torno de funções, inclusive o ponto de entrada do programa: a `main`.
 
 ---
 
-## 🏗️ 1. Anatomia de uma Função
+### 🏗️ 1. Anatomia de uma Função
 
 Diferente de linguagens dinâmicas, o C exige que você seja explícito sobre o que entra e o que sai da função (tipagem estática).
 
@@ -745,8 +869,8 @@ int somar_1 (int n) {  // "int" é o tipo de retorno; "int n" é o parâmetro
 - Parâmetros: São variáveis locais especiais que recebem os dados de entrada. Eles só existem enquanto a função está sendo executada.
 - Corpo: O bloco entre chaves { } onde a lógica é processada.
 
-## 🗝️ 2. Conceitos Fundamentais
-## A. Passagem por Valor (O Conceito de Cópia) 🛡️
+### 🗝️ 2. Conceitos Fundamentais
+### A. Passagem por Valor (O Conceito de Cópia) 🛡️
 
 Este é o comportamento vital do C: Os argumentos são copiados para os parâmetros.
 Quando você passa uma variável para uma função, o C cria um "dublê" (cópia binária) dela em um novo endereço de memória.
@@ -764,7 +888,7 @@ O compilador do C processa o arquivo de forma linear (de cima para baixo).
 Se você chamar uma função na main() que está escrita fisicamente abaixo dela no arquivo, o compilador emitirá um erro de "unknown function".
 Regra: Defina suas funções acima da main() ou declare o protótipo da função no topo do arquivo.
 
-## 🎲 3. Exemplo Prático: Função de Execução Direta
+### 🎲 3. Exemplo Prático: Função de Execução Direta
 
 ```c
 #include <stdio.h>
@@ -780,7 +904,7 @@ return 0;    // Sucesso
 }
 ```
 
-## 🎓 Dicas:
+### 🎓 Dicas:
 - Modularidade: Uma boa função deve seguir o princípio da responsabilidade única. Se ela faz muitas coisas, divida-a em funções menores.
 - A Função main: Ela é a "função mestre". O return 0; ao final dela comunica ao Sistema Operacional que o programa terminou sem erros.
 - Contrato de Tipos: Se a função foi declarada como int, o compilador espera um return com um valor inteiro. Ignorar isso pode causar comportamentos indefinidos no hardware.
@@ -791,6 +915,12 @@ return 0;    // Sucesso
 <details>
 <summary><b>🛡️  Passagem por Valor (Seção 4.1)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 4.1 podem ser encontrados aqui](./(SEÇÃO 4-1)-PASSAGEM-DE-VALOR)
+
+---
 
 No C, a regra é absoluta: **Tudo o que você passa para uma função é COPIADO.** Sem exceções.
 
@@ -838,6 +968,12 @@ Lembre-se da frase do pirata no texto: "Prepare-se para a decepção". Se você 
  <summary><b>📋 Protótipos de Função (Seçaõ 4.2)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 4.2 podem ser encontrados aqui](./(SEÇÃO 4-2)-PROTOTIPOS-DE-FUNÇÃO)
+
+---
+
 O compilador do C lê o código de cima para baixo. Se você tentar chamar uma função antes de definí-la, o compilador não saberá qual o tipo de retorno ou quais parâmetros ela aceita.
 
 #### 🕵️ O que é um Protótipo?
@@ -884,6 +1020,12 @@ Exemplo: `int soma(int, int);` é um protótipo válido para `int soma(int a, in
 <summary><b>🚫 Listas de Parâmetros Vazias: O Perigo do `()` vs `(void)` (Seção 4.3)</b></summary>
 <br>
 
+---
+
+[Codigos da Seção 4.3 podem ser encontrados aqui](./(SEÇÃO 4-3)-LISTA-DE-PARAMETROS-VAZIAS)
+
+---
+
 Embora pareça apenas "preguiça" de digitar, existe uma diferença técnica crítica entre deixar os parênteses vazios e usar a palavra-chave `void`.
 
 #### 🧪 A Diferença no Protótipo
@@ -916,4 +1058,9 @@ A regra de ouro é simples: Sempre use void. Não há nenhuma razão legítima e
 
 ---
 
+[Codigos do dia 5 podem ser encontrados aqui](./DIA_005)
+
+---
+
+---
 </details>

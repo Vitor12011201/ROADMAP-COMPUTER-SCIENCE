@@ -120,4 +120,4 @@ Este repositório é o meu "diário de bordo" na jornada pelos fundamentos da Ci
 - [ ] **Problems:** Travelling Salesman, Knapsack, Longest Path
 
 ---
-*Roadmap extraído de [roadmap.sh/computer-science](https://roadmap.sh/computer-science)*
+*Roadmap extraído de [roadmap.sh/computer-science](./computer-science.pdf)*
