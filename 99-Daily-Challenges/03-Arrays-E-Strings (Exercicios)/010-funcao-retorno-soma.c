@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-//🎯 Objetivo
-//Ler 3 números
-//Calcular a soma usando uma função
-//Mostrar o resultado no main
-//📌 Regras
-//Função NÃO pode imprimir
-//Função TEM que retornar a soma
-//Só array + for
-//Nada de ponteiro explícito ainda
+/*🎯 Objetivo
+Ler 3 números
+Calcular a soma usando uma função
+Mostrar o resultado no main
+📌 Regras
+Função NÃO pode imprimir
+Função TEM que retornar a soma
+Só array + for
+Nada de ponteiro explícito ainda */
 
 int somaNumeros(int numero[]) {
 

@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-//🧠 Exercício: Analisador de números
-//Crie um programa em C que:
-//Peça para o usuário digitar 10 números inteiros
-//Guarde esses números em um array
-//Use funções separadas para:
-//Mostrar todos os números digitados
-//Encontrar o maior número
-//Encontrar o menor número
-//Calcular a média dos valores
-//No final, o main deve imprimir:
-//Lista de números
-//Maior
-//Menor
-//Média
+/*🧠 Exercício: Analisador de números
+Crie um programa em C que:
+Peça para o usuário digitar 10 números inteiros
+Guarde esses números em um array
+Use funções separadas para:
+Mostrar todos os números digitados
+Encontrar o maior número
+Encontrar o menor número
+Calcular a média dos valores
+No final, o main deve imprimir:
+Lista de números
+Maior
+Menor
+Média */
 
 void ler_Numeros(int numeros[], int tamanho) {
     for (int i= 0; i < tamanho; i++) {

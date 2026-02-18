@@ -907,8 +907,6 @@ No entanto, por uma questão de consistência e clareza, você deve sempre usar 
 A regra de ouro é simples: Sempre use void. Não há nenhuma razão legítima em C moderno para deixar os parênteses vazios. Isso ajuda o compilador a ser seu "guarda-costas", impedindo que você passe dados para onde não deveria.
 
 </details>
-
----
 </details>
 
 ---
