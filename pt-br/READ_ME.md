@@ -4,9 +4,9 @@ Olá! 👋 Meu nome é Vitor. Sou autodidata e um verdadeiro apaixonado por tecn
 
 Este repositório é o meu "diário de bordo" na jornada pelos fundamentos da Ciência da Computação. Aqui, documento meu progresso, desafios diários e a minha evolução em busca de dominar como os computadores funcionam de verdade, do bit ao sistema complexo.
 
-*Roadmap extraído de: [**Roadmap Computer Science**](<./00 - Resources/computer-science.pdf>)*
+*Roadmap extraído de: [**Roadmap Computer Science**](<./pt-br/00-Recursos/computer-science.pdf>)*
 
-"A única maneira de aprender uma nova linguagem de programação é escrevendo programas nela." — Dennis Ritchie
+> "A única maneira de aprender uma nova linguagem de programação é escrevendo programas nela." — Dennis Ritchie
 ---
 
 ## 🗺️ Meu Progresso

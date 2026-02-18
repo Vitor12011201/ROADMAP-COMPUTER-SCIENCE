@@ -17,7 +17,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-[Codigos do dia 1 podem ser encontrados aqui](./DIA_001)
+[Codigos do dia 1 podem ser encontrados aqui](DIA_001)
 
 ---
 
@@ -35,7 +35,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-[Codigos do dia 2 podem ser encontrados aqui](./DIA_002)
+[Codigos do dia 2 podem ser encontrados aqui](DIA_002)
 
 ---
 
@@ -73,7 +73,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-[Codigos do dia 3 podem ser encontrados aqui](./DIA_003)
+[Codigos do dia 3 podem ser encontrados aqui](DIA_003)
 
 ---
 
@@ -467,7 +467,7 @@ printf("Um 'int' ocupa %zu bytes nesta maquina\n", sizeof(int));
 // O C olha o resultado da conta (1 + 1.0 = 2.0) que e um 'double'
 printf("O resultado da conta ocupa %zu bytes\n", sizeof(1 + 1.0));
 ```
-## 🎓 Por que aprender isso agora?
+### 🎓 Por que aprender isso agora?
 Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa saber o tamanho da laranja para a caixa não ficar pequena demais, certo? No C, quando formos criar listas (arrays) ou reservar memória manualmente (alocação dinâmica), o `sizeof` é quem vai dizer o tamanho exato da "caixa" que o computador precisa preparar.
 
 </details>
@@ -513,7 +513,7 @@ if (x == 10)
     printf("Isso depende do x\n");
     printf("Isso SEMPRE acontece!\n"); // Cuidado: Esta linha NÃO está no if!
 ```
-💡Dica: 
+### 💡Dica: 
 Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para uma única linha. Isso evita erros bobos no futuro e deixa seu código muito mais fácil de ler.
 
 </details>
@@ -545,7 +545,7 @@ if (i == 10) {
 }
 ```
 
-### 2. O if-else (A Bifurcação)
+#### 2. O if-else (A Bifurcação)
 Aqui você garante que um dos dois caminhos será tomado. É impossível o C executar o if e o else ao mesmo tempo, ou não executar nenhum dos dois.
 ```c
 #include <stdio.h>
@@ -675,7 +675,7 @@ int main(void) {
 ```
 
 
-🔍 O Problema do Determinismo (rand vs srand)
+### 🔍 O Problema do Determinismo (rand vs srand)
 rand(): Gera números "pseudoaleatórios". Sem uma semente diferente, ele produzirá a mesma sequência toda vez que o programa iniciar.
 
 srand(): É usado para "semear" o gerador. Geralmente usamos srand(time(NULL)) para que cada execução use o horário atual como base, garantindo sequências diferentes.
@@ -854,7 +854,7 @@ As funções são as "receitas" ou subprogramas que compõem uma aplicação em 
 
 ---
 
-### 🏗️ 1. Anatomia de uma Função
+## 🏗️ 1. Anatomia de uma Função
 
 Diferente de linguagens dinâmicas, o C exige que você seja explícito sobre o que entra e o que sai da função (tipagem estática).
 
@@ -867,7 +867,7 @@ int somar_1 (int n) {  // "int" é o tipo de retorno; "int n" é o parâmetro
 - Parâmetros: São variáveis locais especiais que recebem os dados de entrada. Eles só existem enquanto a função está sendo executada.
 - Corpo: O bloco entre chaves { } onde a lógica é processada.
 
-### 🗝️ 2. Conceitos Fundamentais
+## 🗝️ 2. Conceitos Fundamentais
 ### A. Passagem por Valor (O Conceito de Cópia) 🛡️
 
 Este é o comportamento vital do C: Os argumentos são copiados para os parâmetros.
@@ -886,7 +886,7 @@ O compilador do C processa o arquivo de forma linear (de cima para baixo).
 Se você chamar uma função na main() que está escrita fisicamente abaixo dela no arquivo, o compilador emitirá um erro de "unknown function".
 Regra: Defina suas funções acima da main() ou declare o protótipo da função no topo do arquivo.
 
-### 🎲 3. Exemplo Prático: Função de Execução Direta
+## 🎲 3. Exemplo Prático: Função de Execução Direta
 
 ```c
 #include <stdio.h>
@@ -910,6 +910,7 @@ return 0;    // Sucesso
 </details>
 
 ---
+
 <details>
 <summary><b>🛡️  Passagem por Valor (Seção 4.1)</b></summary>
 <br>
