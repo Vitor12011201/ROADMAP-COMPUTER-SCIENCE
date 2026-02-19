@@ -3,7 +3,7 @@
 #include <time.h>
 
 int main() {
-    int chutesPenalti;
+    int chutesPenalti = 0;
     int golsCorinthians;
     int golsPalmeiras;
     printf("COMECA O JOGO: \n");
