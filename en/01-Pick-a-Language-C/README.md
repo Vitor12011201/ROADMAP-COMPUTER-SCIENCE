@@ -17,7 +17,7 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-[Day 1 codes can be found here](DAY_001)
+[Day 1 codes can be found here](./CODE_BY_DAY/DAY_001)
 
 ---
 
@@ -35,7 +35,7 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-[Day 2 codes can be found here](DAY_002)
+[Day 2 codes can be found here](./CODE_BY_DAY/DAY_002)
 
 ---
 
@@ -72,7 +72,7 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-[Day 3 codes can be found here](DAY_003)
+[Day 3 codes can be found here](./CODE_BY_DAY/DAY_003)
 
 ---
 
@@ -129,7 +129,7 @@ Imagine the computer's memory as a large hotel with thousands of rooms:
 
 ---
 
-[Section 3.1.1 codes can be found here](./DAY_003/(SECTION-3-1-1)-VARIABLE-NAMING)
+[Section 3.1.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-1)-VARIABLE-NAMES)
 
 ---
 
@@ -155,7 +155,7 @@ C is **Case Sensitive**, meaning `vitor`, `Vitor`, and `VITOR` would be three di
 
 ---
 
-[Section 3.1.2 codes can be found here](./DAY_003/(SECTION-3-1-2)-VARIABLE-TYPES)
+[Section 3.1.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-2)-VARIABLE-TYPES)
 
 ---
 
@@ -189,7 +189,7 @@ To print variables, we use `printf` with format specifiers:
 
 ---
 
-[Section 3.1.3 codes can be found here](./DAY_003/(SECTION-3-1-3)-BOOLEAN-TYPES)
+[Section 3.1.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-3)-BOOLEAN-TYPES)
 
 ---
 
@@ -221,7 +221,7 @@ if (rich) {
 
 ---
 
-[Section 3.2.1 codes can be found here](./DAY_003/(SECTION-3-2-1)-ARITHMETIC-OPERATORS)
+[Section 3.2.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-1)-ARITHMETIC-OPERATORS)
 
 ---
 
@@ -246,7 +246,7 @@ if (rich) {
 
 ---
 
-[Section 3.2.2 codes can be found here](./DAY_003/(SECTION-3-2-2)-TERNARY-OPERATOR)
+[Section 3.2.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-2)-TERNARY-OPERATOR)
 
 ---
 
@@ -274,7 +274,7 @@ printf("The number %d is %s\n", x, result);
 
 ---
 
-[Section 3.2.3 codes can be found here](./DAY_003/(SECTION-3-2-3)-INCREMENT-AND-DECREMENT)
+[Section 3.2.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-3)-INCREMENT-AND-DECREMENT)
 
 ---
 
@@ -311,7 +311,7 @@ printf("B: %d\n", ++b + ++b);
 
 ---
 
-[Section 3.2.4 codes can be found here](./DAY_003/(SECTION-3-2-4)-COMMA-OPERATOR)
+[Section 3.2.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-4)-COMMA-OPERATOR)
 
 ---
 
@@ -348,7 +348,7 @@ printf("i: %d | j: %d\n", i, j);
 
 ---
 
-[Section 3.2.5 codes can be found here](./DAY_003/(SECTION-3-2-5)-CONDITIONAL-OPERATORS)
+[Section 3.2.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-5)-CONDITIONAL-OPERATORS)
 
 ---
 
@@ -384,7 +384,7 @@ if (a <= 10) {
 
 ---
 
-[Section 3.2.6 codes can be found here](./DAY_003/(SECTION-3-2-6)-LOGICAL-OPERATORS)
+[Section 3.2.6 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-6)-LOGICAL-OPERATORS)
 
 ---
 
@@ -443,7 +443,7 @@ Given the code: `if (5 > 2 || 2 > 10)`, will the program enter the `if` block?
 
 ---
 
-[Section 3.2.7 codes can be found here](./DAY_003/(SECTION-3-2-7)-SIZEOF-OPERATOR-(Measuring-Memory))
+[Section 3.2.7 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-7)-SIZEOF-OPERATOR-(Measuring-Memory))
 
 ---
 
@@ -485,7 +485,7 @@ Imagine you are going to buy a box to store 10 oranges. You need to know the siz
 
 ---
 
-[Section 3.3.0 codes can be found here](./DAY_003/(SECTION-3-3-0)-FLOW-CONTROL)
+[Section 3.3.0 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-0)-CONTROL-FLOW)
 
 ---
 
@@ -535,7 +535,7 @@ Follow the "Veteran's Best Practice": Always use braces { }, even for a single l
 
 ---
 
-[Section 3.3.1 codes can be found here](./DAY_003/(SECTION-3-3-1)-STRUCTURE-(if-else))
+[Section 3.3.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-1)-STRUCTURE-(if-else))
 
 ---
 
@@ -600,7 +600,7 @@ if (i == 10) {
 
 ---
 
-[Section 3.3.2 codes can be found here](./DIA_003/(SECAO-3-3-2)-WHILE-(LACO-DE-REPETICAO))
+[Section 3.3.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-2)-WHILE-(LOOP))
 
 ---
 
@@ -633,7 +633,7 @@ printf("Loop finished!\n");
 
 ---
 
-[Section 3.3.3 codes can be found here](./DIA_003/(SECAO-3-3-3)-DO-WHILE-(CONTROLE-DE-FLUXO))
+[Section 3.3.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-3)-DO-WHILE-(CONTROL-FLOW))
 
 ---
 
@@ -702,7 +702,7 @@ The do-while loop is ideal for data input validation. For example: "Ask the user
 
 ---
 
-[Section 3.3.4 codes can be found here](./DIA_003/(SECAO-3-3-4)FOR-(LACO-DE-REPETICAO))
+[Section 3.3.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-4)-FOR-(LOOP))
 
 ---
 
@@ -769,7 +769,7 @@ The primary advantage of for over while is scope and safety. In a for loop, the 
 
 ---
 
-[Section 3.3.5 codes can be found here](./DIA_003/(SECAO-3-3-5)-SWITCH-CASE)
+[Section 3.3.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-5)-SWITCH-CASE)
 
 ---
 
@@ -847,7 +847,7 @@ Never try to use decimal numbers (float/double) or strings inside a switch. The 
 
 ---
 
-[Day 4 codes can be found here](./DIA_004)
+[Day 4 codes can be found here](./CODE_BY_DAY/DAY_004)
 
 ---
 
@@ -857,7 +857,7 @@ Never try to use decimal numbers (float/double) or strings inside a switch. The 
 
 ---
 
-[Section 4.0 codes can be found here](./DIA_004/(SECAO-4-0)-INTRODUCAO-A-FUNCOES)
+[Section 4.0 codes can be found here](./CODE_BY_DAY/DAY_004/(SECTION-4-0)-INTRODUCTION-TO-FUNCTIONS)
 
 ---
 
@@ -929,7 +929,7 @@ int main(void) {
 
 ---
 
-[Section 4.1 codes can be found here](./DIA_004/(SECAO-4-1)-PASSAGEM-DE-VALOR)
+[Section 4.1 codes can be found here](./CODE_BY_DAY/DAY_004/(SECTION-4-1)-PASS-BY-VALUE)
 
 ---
 
@@ -982,7 +982,7 @@ Remember the pirate's line from the text: "Prepare for disappointment." If you e
 
 ---
 
-[Section 4.2 codes can be found here](./DIA_004/(SECAO-4-2)-PROTOTIPOS-DE-FUNCAO)
+[Section 4.2 codes can be found here](./CODE_BY_DAY/DAY_004/(SECTION-4-2)-FUNCTION-PROTOTYPES)
 
 ---
 
@@ -1034,7 +1034,7 @@ Example: `int sum(int, int)`; is a valid prototype for `int sum(int a, int b)`. 
 
 ---
 
-[Section 4.3 codes can be found here](./DIA_004/(SECAO-4-3)-LISTA-DE-PARAMETROS-VAZIAS)
+[Section 4.3 codes can be found here](./CODE_BY_DAY/DAY_004/(SECTION-4-3)-EMPTY-PARAMETER-LISTS)
 
 ---
 
@@ -1070,7 +1070,7 @@ The golden rule is simple: Always use void. There is no legitimate reason in mod
 
 ---
 
-[Day 5 codes can be found here](./DIA_005)
+[Day 5 codes can be found here](./CODE_BY_DAY/DAY_005)
 
 ---
 

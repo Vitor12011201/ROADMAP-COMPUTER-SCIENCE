@@ -12,8 +12,8 @@
 
 | Idioma               | Language   | Link                                 |
 |----------------------|------------|--------------------------------------|
-| Português (PT-BR)    | Portuguese | [Acessar conteúdo em PT-BR](./PT-BR) |
-| English (EN)         | English    | [Access content in EN](./EN)         |
+| Português (PT-BR)    | Portuguese | [Acessar conteúdo em PT-BR](./pt-br) |
+| English (EN)         | English    | [Access content in EN](./en)         |
 ---
 
 ## 🎯 Purpose | Objetivo
