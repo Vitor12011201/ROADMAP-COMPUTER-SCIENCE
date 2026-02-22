@@ -33,6 +33,12 @@ Aplicações que utilizam recursos do sistema e lógica de não-determinismo.
 * **Competências:** Uso de bibliotecas de sistema (`time.h`, `stdlib.h`), geração de números pseudo-aleatórios (`rand`, `srand`) e simulação de eventos em tempo real.
 * **Destaque:** Testes de aleatoriedade e simuladores de placares.
 
+### [05-ponteiros](./05-Ponteiros(Exercicios))
+**O que encontrará aqui:**
+A exploração do "superpoder" da linguagem C: a manipulação direta de endereços de memória.
+* **Competências:** Entendimento de endereços (`&`), operadores de desreferenciação (`*`), aritmética de ponteiros, passagem de parâmetros por referência e a relação intrínseca entre ponteiros e arrays.
+* **Destaque:** Implementações de troca de valores (`swap`) e funções que modificam múltiplas variáveis simultaneamente através da memória.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

@@ -33,6 +33,12 @@ Applications utilizing system resources and non-deterministic logic.
 * **Skills:** System libraries (`time.h`, `stdlib.h`), pseudo-random number generation (`rand`, `srand`), and real-time event simulation.
 * **Highlight:** Randomness tests and scoreboard simulators.
 
+### [05-pointers](./05-Pointers(Exercises))
+**What you will find here:**
+Exploring C's "superpower": the direct manipulation of memory addresses.
+* **Skills:** Understanding addresses (`&`), dereference operators (`*`), pointer arithmetic, passing parameters by reference, and the intrinsic relationship between pointers and arrays.
+* **Highlight:** Implementations of value swapping (`swap`) and functions that modify multiple variables simultaneously via memory.
+
 ---
 
 ## 🛠️ Technologies and Tools
