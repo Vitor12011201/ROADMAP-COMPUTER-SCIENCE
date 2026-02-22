@@ -10,22 +10,18 @@ float soma(float a, float b)
 {
     return a + b;
 }
-
-float media(float c)
+float media(float total)
 {
-    int a_1;
-    int b_1;
-    c = soma(a_1,b_1) / 2;
-    return c;
+   return total / 2;
 }
-
 int main()
 {
-    float a;
-    float b;
+
+    float a, b;
     printf("Digite um numero: \n");
     scanf("%f", &a);
     printf("Digite outro numero: \n");
     scanf("%f", &b);
-    printf("A media de %.2f e %.2f e igual a %.2f", a , b , media(soma(a,b)));
+    float soma_1 = soma(a,b);
+    printf("A media de %.2f e %.2f e de %.2f", a, b, media(soma_1));
 }
