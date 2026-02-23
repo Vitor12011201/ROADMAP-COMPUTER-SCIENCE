@@ -39,20 +39,20 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-## 📖 The Hello World
+### 📖 The Hello World
 
-### 🧠 What I learned:
+#### 🧠 What I learned:
 - **Preprocessor (#):** Acts before the compiler. `#include` copies libraries into the code. (Everything starting with # runs before the compiler.)
 - **Header Files (.h):** Files like `stdio.h` provide basic tools (such as `printf`).
 - **Comments:** Essential for documenting logic (`//` or `/* */`).
 - **Execution Flow:** The program always starts at the `main()` function and ends at its last closing brace `}`.
 - **\n:** Command to skip to a new line (newline).
 
-### 🛠️ Revised Compilation Command:
+#### 🛠️ Revised Compilation Command:
 - `gcc -o hello hello.c` (Creates the executable 'hello').
 - `./hello` (Executes the file in the current directory).
 
-### 🧠 Core Concepts:
+#### 🧠 Core Concepts:
 - **Compilation:** The process of translating source code into an executable.
 - **Machine Code:** C produces binaries (1s and 0s) that the CPU executes directly, without intermediaries.
 - **C vs Other Languages:** While Python/Java use *bytecode*, C goes straight to the "bare metal" (hardware).
@@ -76,7 +76,7 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-### 🧠 What to expect:
+#### 🧠 What to expect:
 - Learn how to classify program elements.
 - Understand how C handles different data types and instructions.
 
@@ -86,11 +86,11 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 <summary><b> 📦 Variables (Section 3.1.0):</b></summary>
 <br>
 
-## 💾 What is a Variable? (Low-Level View)
+### 💾 What is a Variable? (Low-Level View)
 
 To the user, it is a name. To C, a variable is an **abstraction of a physical memory address**.
 
-### 🏗️ The Anatomy of a Variable
+#### 🏗️ The Anatomy of a Variable
 Every variable in your code has four fundamental characteristics that the computer needs to manage:
 
 1.  **Name (Identifier):** The nickname we use in the code (e.g., `age`).
@@ -98,21 +98,21 @@ Every variable in your code has four fundamental characteristics that the comput
 3.  **Address (Pointer):** The exact location of the first byte of the variable in RAM.
 4.  **Value:** The current state of the bits stored at that address.
 
-### 🗺️ Memory as an Array of Bytes
+#### 🗺️ Memory as an Array of Bytes
 Think of RAM as a **gigantic array of bytes**. Each byte has an index (the address).
 - If you declare an `int x`, C reserves a block (usually 4 bytes).
 - The name `x` becomes the label for the address of the **first byte** of that block.
 
 [Image showing a sequence of memory cells with addresses like 0x100, 0x101, etc., highlighting a block of 4 cells labeled as 'Variable X']
 
-### 🔄 The Leap to Pointers
+#### 🔄 The Leap to Pointers
 The reason we study this now is simple: in C, you can manipulate the **address** directly, not just the **value**.
 * **Common Variable:** `x = 10;` (Changes what is inside the room).
 * **Pointer:** `p = &x;` (Stores the room number where `x` lives).
 
 > **🎓 Note:** In C, you are very close to the hardware. When you declare a variable, you are literally reserving electricity and silicon to store your data. If you don't initialize a variable, it will contain "memory garbage" — the leftover data from some program that used that address before yours!
 
-### 🏨 The Hotel Analogy (RAM Memory)
+#### 🏨 The Hotel Analogy (RAM Memory)
 Imagine the computer's memory as a large hotel with thousands of rooms:
 
 1.  **The Room (Memory):** Each room holds a piece of data (bytes).
@@ -133,16 +133,16 @@ Imagine the computer's memory as a large hotel with thousands of rooms:
 
 ---
 
-### Variable Names
+#### Variable Names
 
-### ✅ What is allowed:
+#### ✅ What is allowed:
 - Letters (A-Z, a-z), Numbers (0-9), and Underscore (`_`).
 
-### ❌ What is forbidden or restricted:
+#### ❌ What is forbidden or restricted:
 - **Starting with a number:** E.g., `1vitor` (Error!).
 - **System Reserved:** Avoid starting with `__` or `_` followed by an uppercase letter (e.g., `_V`).
 
-### 💡 Tip:
+#### 💡 Tip:
 C is **Case Sensitive**, meaning `vitor`, `Vitor`, and `VITOR` would be three different variables at different memory addresses.
 
 </details>
@@ -159,17 +159,17 @@ C is **Case Sensitive**, meaning `vitor`, `Vitor`, and `VITOR` would be three di
 
 ---
 
-### 📦 Basic Types:
+#### 📦 Basic Types:
 - `int`: Integer numbers (e.g., 2, -10).
 - `float`: Real numbers with decimals (e.g., 3.14).
 - `char`: A single character (e.g., 'A').
 - `char *`: A string/text (e.g., "Hello").
 
-### ⚠️ The Danger of "Memory Garbage":
+#### ⚠️ The Danger of "Memory Garbage":
 - Variables declared but not initialized (e.g., `int i;`) hold **indeterminate** values.
 - **Always** initialize your variables to avoid undefined behavior.
 
-### 🖨️ Formatted Output:
+##### 🖨️ Formatted Output:
 To print variables, we use `printf` with format specifiers:
 - `%d` -> integers
 - `%f` -> floats
@@ -193,15 +193,15 @@ To print variables, we use `printf` with format specifiers:
 
 ---
 
-### 🧠 The Concept of Truth in C:
+#### 🧠 The Concept of Truth in C:
 - **False:** Represented by the number `0`.
 - **True:** Any number other than zero (`1`, `-5`, `100`).
 
-### 🆕 In C23:
+#### 🆕 In C23:
 - We now have the `bool` type and the keywords `true` and `false` natively.
 - The numerical value of `true` is `1`.
 
-### ⚠️ Comparison Caution:
+#### ⚠️ Comparison Caution:
 Even though `12` is considered "true" in a conditional, the expression `(12 == true)` will return **False (0)**, because C compares the numerical values (`12` vs `1`).
 
 ```c
@@ -225,14 +225,14 @@ if (rich) {
 
 ---
 
-### 🔢 Common Operations:
+#### 🔢 Common Operations:
 - `+`, `-`, `*`, `/`: Basic operations.
 - `%`: Modulo (Remainder of division).
 
-### ⚡ Shorthands:
+#### ⚡ Shorthands:
 - `i += 5` is the same as `i = i + 5`.
 
-### 🚫 What NOT to do:
+#### 🚫 What NOT to do:
 - **Power:** Do not use `^`. Use `pow(base, exponent)` from the `<math.h>` library.
 
 > **Pro Tip:** Watch out for integer division! If you do `int x = 5 / 2;`, the result will be `2` (C truncates the .5 because the variable is an int).
@@ -250,12 +250,12 @@ if (rich) {
 
 ---
 
-### 💡 The "one-line if":
+#### 💡 The "one-line if":
 - **Syntax:** `condition ? true : false;`
 - **Example:** `y += (x > 10) ? 17 : 37;`
     - If `x` is greater than 10, it adds 17. Otherwise, it adds 37.
 
-### 🚀 Advantage:
+#### 🚀 Advantage:
 - It can be used inside other functions (like `printf`) to decide which value to pass on the fly.
 
 ```c
@@ -278,12 +278,12 @@ printf("The number %d is %s\n", x, result);
 
 ---
 
-### 🆙 Step Operators:
+#### 🆙 Step Operators:
 - `i++` (Post): Uses the current value in the expression and **then** increments.
 - `++i` (Pre): Increments first and **then** uses the new value in the expression.
 - The same applies to decrement (`i--` and `--i`).
 
-### 🧪 Comparative Example:
+#### 🧪 Comparative Example:
 ```c
 int i = 10;
 printf("%d", i++); // Will print 10 (and i becomes 11 afterwards)
@@ -472,7 +472,7 @@ printf("An 'int' occupies %zu bytes on this machine\n", sizeof(int));
 printf("The calculation result occupies %zu bytes\n", sizeof(1 + 1.0));
 ```
 
-### 🎓 Why learn this now?
+#### 🎓 Why learn this now?
 Imagine you are going to buy a box to store 10 oranges. You need to know the size of an orange so the box isn't too small, right? In C, when we create lists (arrays) or reserve memory manually (dynamic allocation), `sizeof` is what tells us the exact size of the "box" the computer needs to prepare.
 
 </details>
@@ -512,7 +512,7 @@ printf("This also only happens if x is 10\n");
 }
 ```
 
-### ⚠️ The "Visual Trap" Danger
+#### ⚠️ The "Visual Trap" Danger
 Be careful! Unlike Python, C ignores indentation and whitespace. What defines what belongs to the if are the braces, not the spaces you leave.
 Common Error Example:
 
@@ -522,7 +522,7 @@ if (x == 10)
     printf("This ALWAYS happens!\n"); // Warning: This line is NOT inside the if!
 ```
 
-### 💡 Tip:
+#### 💡 Tip:
 Follow the "Veteran's Best Practice": Always use braces { }, even for a single line. This prevents silly mistakes in the future and makes your code much easier to read.
 
 </details>
@@ -665,7 +665,7 @@ do {
 } while (i < 10); // <--- ATTENTION: The semicolon here is mandatory!
 ```
 
-### 🎲 Advanced Application: Pseudo-random Numbers
+#### 🎲 Advanced Application: Pseudo-random Numbers
 A classic use case is repeating a task until a specific random value is generated.
 
 ```c
@@ -684,12 +684,12 @@ int main(void) {
 }
 ```
 
-### 🔍 The Determinism Problem (rand vs srand)
+#### 🔍 The Determinism Problem (rand vs srand)
 rand(): Generates "pseudo-random" numbers. Without a different seed, it will produce the same sequence every time the program starts.
 
 srand(): Used to "seed" the generator. We typically use srand(time(NULL)) so that each execution uses the current time as a base, ensuring different sequences.
 
-### 🎓 Note:
+#### 🎓 Note:
 The do-while loop is ideal for data input validation. For example: "Ask the user for a grade -> Check if it's valid -> If not, ask again." You cannot check if the grade is valid before asking the user to type it!
 
 </details>
@@ -734,7 +734,7 @@ for (i = 0; i < 10; i++) {
 }
 ```
 
-🚀 Advanced Features
+#### 🚀 Advanced Features
 The Comma Operator (Multiple Actions):
 You can initialize and update multiple variables simultaneously within the same for loop.
 
@@ -756,7 +756,7 @@ for (;;) {
 Optional Sections:
 Any of the three parts can be left empty, as long as the semicolons are kept.
 
-### 🎓 Note:
+#### 🎓 Note:
 The primary advantage of for over while is scope and safety. In a for loop, the control variable (like i) is bound to the loop logic. If you forget i++ at the end of a while loop, you create an infinite loop bug. In a for loop, since the update is part of the command signature, it is much harder to forget to update the counter.
 
 </details>
@@ -816,10 +816,10 @@ switch (x) {
 }
 ```
 
-### 💡 Pro Tip:
+#### 💡 Pro Tip:
 If you intentionally want a case to "fall through" into another, always leave a comment: // Fall through!. This prevents other programmers from thinking it was a mistake.
 
-### 🔍 The Clever Trick: Using char in switch
+#### 🔍 The Clever Trick: Using char in switch
 Beej mentioned that switch only accepts integers. However, since C stores char types as numbers (ASCII codes), you can use letters in your cases!
 
 ```c
@@ -834,7 +834,7 @@ switch (choice) {
 }
 ```
 
-### 🎓 Note:
+#### 🎓 Note:
 Never try to use decimal numbers (float/double) or strings inside a switch. The compiler will throw an error immediately. The switch statement was designed for discrete, exact values.
 
 </details>
@@ -878,26 +878,26 @@ int add_one (int n) {  // "int" is the return type; "int n" is the parameter
 - Parameters: These are special local variables that receive input data. They only exist while the function is being executed.
 - Body: The block within curly braces { } where the logic is processed.
 
-## 2. Fundamental Concepts
+### 2. Fundamental Concepts
 
-### Pass by Value (The Copy Concept) 🛡️
+#### Pass by Value (The Copy Concept) 🛡️
 
 This is a vital C behavior: Arguments are copied into parameters.
 When you pass a variable to a function, C creates a "stunt double" (binary copy) of it at a new memory address. Any changes made to the parameter inside the function will not affect the original variable in main or elsewhere.
 
-### B. Using void 🚫
+#### B. Using void 🚫
 
 The keyword void means "empty" or "nothing."
 Void Return: The function performs an action (e.g., printing a log or moving a file) but does not produce a numerical or data result to be stored.
 Void Parameter: Explicitly indicates that the function accepts no input (e.g., int main(void)).
 
-### C. Order and Declaration 📋
+#### C. Order and Declaration 📋
 
 The C compiler processes files linearly (from top to bottom).
 If you call a function in main() that is physically written below it in the file, the compiler will issue an "unknown function" error.
 Rule: Either define your functions above main() or declare a function prototype at the top of the file.
 
-## 🎲 3. Practical Example: Direct Execution Function
+### 🎲 3. Practical Example: Direct Execution Function
 
 ```c
 #include <stdio.h>
@@ -913,7 +913,7 @@ int main(void) {
 }
 ```
 
-### 🎓 Tips:
+#### 🎓 Tips:
 
 - Modularity: A good function should follow the Single Responsibility Principle. If it does too many things, break it down into smaller functions.
 - The main Function: This is the "master function." The return 0; at the end tells the Operating System that the program finished without errors.
@@ -951,7 +951,7 @@ int main(void) {
 ```
 Result: i == 10
 
-### 🧠 What happened inside the memory?
+#### 🧠 What happened inside the memory?
 
 1. In main: There is a "slot" in memory named i with the value 10.
 
@@ -961,14 +961,14 @@ Result: i == 10
 
 4. The End: When the function finishes, the slot a is destroyed (discarded). We return to main, and i is still 10.
 
-### Summary:
+#### Summary:
 - Independence: The parameter is an independent local variable.
 
 - Isolation: Functions in C are isolated. They do not have permission to modify variables from other functions directly.
 
 - Isolation: Functions in C are isolated. They do not have permission to modify variables from other functions directly.
 
-### 🎓 Tip:
+#### 🎓 Tip:
 
 Remember the pirate's line from the text: "Prepare for disappointment." If you expect a function to change your original variable just by passing it as an argument, you'll encounter a bug. C operates on local copies, NO MATTER WHAT.
 
@@ -1007,18 +1007,18 @@ int foo(void) { // Actual function definition
 }
 ```
 
-### ⚖️ Why use Prototypes?
+#### ⚖️ Why use Prototypes?
 - Organization: Allows you to place main() at the top of the file (which is a best practice) and other functions below it.
 - Separate Files: Enables calling functions that are located in other .c files.
 - Safety: The compiler verifies if you are passing the correct arguments even before reaching the function's definition.
 
-### 🚔 Why does printf work without a prototype?
+#### 🚔 Why does printf work without a prototype?
 - Actually, it does have a prototype! When you write #include <stdio.h>, you are literally pasting hundreds of function prototypes for input and output (like printf and scanf) at the very top of your code.
 
-### 🎓 Note:
+#### 🎓 Note:
 In the old days (C89 standard), you could call functions without warning, and C would try to "guess" what they did (known as implicit declaration). Today, this is either forbidden or triggers serious warnings. Always use prototypes to keep your code legitimate and professional!
 
-### 🎓 Guidance:
+#### 🎓 Guidance:
 Think of prototypes as **a book's Table of Contents**. You read the table of contents to know which chapters exist before reading the actual content. In C, prototypes at the top of the file provide an overview of everything the program is capable of doing.
 
 **Technical Tip: In a prototype**, you don't even need to include the variable names, only the types.
@@ -1052,12 +1052,12 @@ void foo(void);   // ✅ "I guarantee this function accepts NO parameters"
 
 - 2 - void foo(void); (The Correct Way): Explicitly informs the compiler that the function is empty. If you try to pass any argument, the compiler will alert you immediately with an error.
 
-### 🏗️ In the Function Definition
+#### 🏗️ In the Function Definition
 When you are writing the function body, the behavior of void foo() is treated by the modern standard (C11 and later) as if it were void foo(void).
 
 However, for the sake of consistency and clarity, you should always use void.
 
-### 🎓 Note:
+#### 🎓 Note:
 The golden rule is simple: Always use void. There is no legitimate reason in modern C to leave parentheses empty in a prototype. Doing this helps the compiler act as your "bodyguard," preventing you from passing data where it doesn't belong.
 
 </details>
@@ -1071,6 +1071,107 @@ The golden rule is simple: Always use void. There is no legitimate reason in mod
 ---
 
 [Day 5 codes can be found here](./CODE_BY_DAY/DAY_005)
+
+---
+
+<details>
+<summary><b>📍 Pointers in C - Introduction (Section 5.0)</b></summary>
+<br>
+
+---
+
+[Section 5.0 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-0)-POINTERS-IN-C-INTRODUCTION)
+
+---
+
+Pointers are possibly the most feared topic in the C language. However, they are simply a more **explicit** way of dealing with what other languages (such as Java, Python, or JavaScript) call **references**.
+
+#### 🧠 The Fundamental Concept
+Imagine you have a variable. It lives at a specific address in your computer's memory.
+* **The Variable:** It is the "house" and what is inside it.
+* **The Pointer:** It is a piece of paper with the "address" written on it. It points to where the house is located.
+
+#### ⚖️ Reference vs. Object
+In C, we need to be very clear about what we are manipulating:
+1.  **The Reference (Pointer):** The memory address where a piece of data resides.
+2.  **The Value:** The actual data stored at that address.
+
+Unlike high-level languages, C does not hide this from you. You have full control (and full responsibility) over these addresses.
+
+> **⚠️ Note:** The fear of pointers comes from the possibility of accessing memory addresses that do not belong to your program. It is like trying to open a stranger's door with your key: the Operating System will intervene and shut down your program (the famous *Segmentation Fault*).
+
+#### 🚀 Why use Pointers?
+Since C makes a copy of everything (Pass-by-Value), as we saw in the functions section, pointers are the only way to:
+* Modify original variables inside a function.
+* Handle large volumes of data without wasting memory on unnecessary copies.
+* Create complex data structures (linked lists, trees, etc.).
+
+#### 🎓 Tip:
+The golden rule for this chapter is: Visualize the memory. Whenever you get confused, draw a small box (the variable) and an arrow (the pointer) pointing to it.
+
+</details>
+
+---
+
+<details>
+<summary><b>🏡 Memory and Variables: Where things live (Section 5.1)</b></summary>
+<br>
+
+---
+
+[Section 5.1 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-1)-MEMORY-AND-VARIABLES)
+
+---
+
+Before understanding what a pointer is, you need to understand how the computer stores your data.
+
+#### 📦 Memory as a Giant Array
+Imagine your computer's RAM as a gigantic sequence of numbered "small boxes."
+* Each box stores **1 Byte** (8 bits).
+* The number of each box is its **Address**.
+* Addresses are sequential (0, 1, 2, 3...).
+
+#### 📏 Size Matters (`sizeof`)
+Not all data fits in a single box (1 byte). An `int` or a `float`, for example, usually occupies **4 bytes** (4 neighboring boxes).
+* You can use the `sizeof` operator to find out how many bytes a type occupies in your system:
+```c
+printf("An int uses %zu bytes\n", sizeof(int)); // Usually prints 4
+```
+
+#### 📍 What is a Pointer?
+- A Pointer is simply a variable that stores a Memory Address.
+- Common Variable: Stores a value (e.g., `int i = 10;`).
+Pointer: Stores the "box number" where that value is located (e.g., "the value 10 is in box no. 140,727...").
+
+#### 🏠 The House Analogy
+- The House: Is the variable (it has color, size, furniture).
+- The House Address: Is the pointer (it's just a piece of paper saying "X Street, no. 100").
+The address is not the house, but it tells you exactly where to find it.
+
+#### 🔍 The "Address-of" Operator (&)
+How do we find the address of a variable in C? We use the ampersand character: &.
+```c
+int i = 10;
+printf("The value of i is %d\n", i);
+printf("The address of i is %p\n", (void *)&i);
+```
+
+📝 Technical Details:
+- `%p`: This is the format specifier for printing pointers (addresses).
+- **Hexadecimal:** The address usually appears as something like `0x7ffddf7072a4`. It is just a base-16 number representing the memory index.
+- **Cast (`void *)`:** We use this in `printf` to avoid compiler warnings, ensuring the address is treated generically.
+
+#### 🎓 Note:
+Don't be intimidated by the size of the address numbers (e.g., trillions). Your computer uses **"Virtual Memory"**, making the program believe it has an immense memory space all to itself. The exact value of the number doesn't matter to us; what matters is that this number is the "key" to finding the original data.
+
+🔑 Key Point:
+The key point here is the following:
+
+1. i is the **content** of the box.
+
+2. &i is the **number** written on the lid of the box.
+
+</details>
 
 ---
 

@@ -1,3 +1,8 @@
+/* Demonstração básica de Ponteiros em C:
+- 1. Armazenamento de endereços de memória.
+- 2. Manipulação de valores via desreferenciação (*).
+*/
+
 #include <stdio.h>
 
 int main() {

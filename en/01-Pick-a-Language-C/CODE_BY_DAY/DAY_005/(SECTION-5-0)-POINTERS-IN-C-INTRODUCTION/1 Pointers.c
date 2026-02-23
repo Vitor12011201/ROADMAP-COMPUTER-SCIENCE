@@ -1,3 +1,8 @@
+/* Basic C Pointer Demonstration:
+- 1. Storing memory addresses.
+- 2. Value manipulation via dereferencing (*).
+*/
+
 #include <stdio.h>
 
 int main() {
