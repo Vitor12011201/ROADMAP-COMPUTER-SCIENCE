@@ -11,12 +11,12 @@ Este repositório é o meu "diário de bordo" na jornada pelos fundamentos da Ci
 
 ## 🗺️ Meu Progresso
 
-### [1. 🕹️ Pick a Language (C)](./pt-br/01-Escolha-uma-Linguagem-C)
+### [1. 🕹️ Escolha uma Linguagem (C) - Clique aqui](./01-Escolha-uma-Linguagem-C)
 - [ ] Python
 - [ ] Go
 - [ ] C#
 - [ ] C++
-- [x] [C](./pt-br/01-Escolha-uma-Linguagem-C)
+- [x] [C](./01-Escolha-uma-Linguagem-C)
 - [ ] Java
 - [ ] Rust
 

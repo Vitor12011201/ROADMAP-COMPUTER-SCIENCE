@@ -12,12 +12,12 @@ This repository is my "logbook" on the journey through the fundamentals of Compu
 
 ## 🗺️ My Progress
 
-### [1. 🕹️ Pick a Language (C)](./en/01-Pick-a-Language-C)
+### [1. 🕹️ Pick a Language (C) - Click here](./01-Pick-a-Language-C)
 - [ ] Python
 - [ ] Go
 - [ ] C#
 - [ ] C++
-- [x] [C](./en/01-Pick-a-Language-C)
+- [x] [C](./01-Pick-a-Language-C)
 - [ ] Java
 - [ ] Rust
 
