@@ -1217,6 +1217,58 @@ Pense no `int` *p como um "controle remoto". O controle não é a TV, mas ele sa
 
 ---
 
+<details>
+<summary><b>🔓 Desreferenciação (Seção 5.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 5.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-3)-DESREFERENCIACAO)
+
+---
+
+Se um ponteiro é um papel com um endereço, a **desreferenciação** é o ato de ir até esse endereço e interagir com o que está lá dentro.
+
+#### 🪄 O Operador de Indireção (`*`)
+Sim, o C usa o asterisco novamente. Mas o significado muda dependendo do contexto:
+1.  **Na Declaração (`int *p;`):** Diz que `p` é um ponteiro.
+2.  **No Uso (`*p = 20;`):** Diz "acesse o valor para onde `p` está apontando".
+
+#### 🛠️ Exemplo Prático: O "Alias"
+Quando você desreferencia um ponteiro, você cria uma espécie de "apelido" para a variável original. Tudo o que você fizer com `*p` acontecerá com `i`.
+
+```c
+int i = 10;
+int *p = &i;  // p aponta para i
+
+*p = 20;      // "Vá até o endereço em p e mude o valor para 20"
+
+printf("%d", i);  // Vai imprimir 20!
+```
+
+#### 🏠 Analogia da Casa (Revisitada)
+- `p`: É o papel com o endereço "Rua das Flores, 123".
+
+- `*p`: É você entrando na casa da "Rua das Flores, 123" e trocando os móveis.
+
+### ⚖️ Resumo dos Símbolos (Não confunda!)
+
+| Símbolo | Nome | O que faz? | Exemplo |
+| :--- | :--- | :--- | :--- |
+| **`&`** | **Endereço de** (*Address-of*) | Extrai o endereço de onde a variável mora. | `p = &i;` |
+| **`*`** | **Indireção** (*Dereference*) | Acessa/Modifica o valor dentro do endereço. | `*p = 20;` |
+
+
+#### 🎓 Nota:
+Pense na desreferenciação como "abrir a caixa". Se você tem `p`, você tem a caixa fechada com um endereço nela. Se você usa `*p`, você abriu a caixa e está mexendo no conteúdo.
+
+
+#### 📝 Orientação:
+* Você deve estar se perguntando: *"Mas por que eu mudaria o valor de `i` usando `*p = 20` se eu posso simplesmente fazer `i = 20`?"*.
+
+A resposta curta é: **Escopo**. Lembra que as funções só recebem cópias das variáveis e não conseguem mudar o original? Com ponteiros, você passa o **endereço** (`&i`) e a função usa a **desreferenciação** (`*p`) para mudar o valor original lá na sua `main`.
+
+</details>
 
 ---
 

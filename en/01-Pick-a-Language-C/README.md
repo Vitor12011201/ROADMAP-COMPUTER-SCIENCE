@@ -1229,7 +1229,58 @@ A very common beginner mistake is trying to do this: `p = i;` (without the `&`).
 
 ---
 
+<details>
+<summary><b>🔓 Dereferencing (Section 5.3)</b></summary>
+<br>
 
+---
+
+[Section 5.3 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-3)-DEREFERENCING)
+
+---
+
+If a pointer is a piece of paper with an address, **dereferencing** is the act of going to that address and interacting with what is inside.
+
+#### 🪄 The Indirection Operator (`*`)
+Yes, C uses the asterisk again. But the meaning changes depending on the context:
+1.  **In Declaration (`int *p;`):** It says that `p` is a pointer.
+2.  **In Usage (`*p = 20;`):** It says "access the value that `p` is pointing to."
+
+#### 🛠️ Practical Example: The "Alias"
+When you dereference a pointer, you create a sort of "alias" for the original variable. Anything you do with `*p` will happen to `i`.
+
+```c
+int i = 10;
+int *p = &i;  // p points to i
+
+*p = 20;      // "Go to the address in p and change the value to 20"
+
+printf("%d", i);  // It will print 20!
+```
+
+#### 🏠 The House Analogy (Revisited)
+- `p`: It's the paper with the address "123 Flower St."
+
+- `*p`: It's you entering the house at "123 Flower St." and changing the furniture.
+
+#### ⚖️ Symbol Summary (Don't mix them up!)
+
+| Symbol | Name | What does it do? | Example |
+| :---: | :--- | :--- | :--- |
+| **`&`** | **Address-of** | Extracts the address where the variable lives. | `p = &i;` |
+| **`*`** | **Dereference** | Accesses/Modifies the value inside the address. | `*p = 20;` |
+
+#### 🎓 Note:
+Think of dereferencing as "opening the box." If you have `p`, you have the closed box with an address on it. If you use `*p`, you have opened the box and are messing with the contents.
+
+#### 📝 Guidance:
+- You might be wondering: "But why would I change the value of `i` using `*p = 20` if I can just do `i = 20`?"
+
+The short answer is: **Scope**. Remember how functions only receive copies of variables and cannot change the original? With pointers, you pass the **address** (`&i`) and the function uses dereferencing (`*p`) to change the original value back in your `main`.
+
+</details>
+
+---
 
 ---
 
