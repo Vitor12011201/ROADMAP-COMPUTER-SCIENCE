@@ -1161,7 +1161,62 @@ Ponto chave aqui é o seguinte:
 
 </details>
 
+--- 
+
+<details>
+<summary><b>🧭 Tipos de Ponteiros (Seção 5.2)</b></summary>
+<br>
+
 ---
+
+[Codigos da Seção 5.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-2)-TIPOS-DE-PONTEIROS)
+
+---
+
+Até agora, vimos como "ver" o endereço de uma variável. Agora, vamos aprender a **armazenar** esse endereço em uma variável especial: o **Ponteiro**.
+
+#### ✍️ Como Declarar um Ponteiro
+Para dizer ao C que uma variável é um ponteiro, usamos o asterisco (`*`) entre o tipo e o nome da variável.
+
+```c
+int i;    // Uma variável comum que guarda um inteiro.
+int *p;   // Uma variável que guarda o ENDEREÇO de um inteiro.
+```
+
+- Leitura: Lemos int *p como "p é um ponteiro para int" ou "p é um int-pointer".
+
+#### 🤝 A Regra da Compatibilidade
+Um ponteiro é exigente: se você declarou um ponteiro para `int`, ele só **deve guardar** endereços de variáveis do `tipo int`. Se você tentar guardar o endereço de um float em um int *, o compilador vai reclamar (e com razão!).
+
+#### 🔗 Fazendo a Conexão (Apontando)
+Para fazer o ponteiro "apontar" para uma variável, usamos o operador de endereço (`&`) que aprendemos antes:
+
+```c
+int i = 10;
+int *p;    // No início, 'p' tem lixo de memória (aponta para lugar nenhum).
+
+p = &i;    // Agora 'p' recebe o endereço de 'i'. Dizemos que "p aponta para i".
+```
+🔄 O que está acontecendo na memória?
+1. `i` possui um valor (ex: 10).
+
+2. `i` possui um endereço (ex: `0x7FF...`).
+
+3. `p` possui seu próprio endereço, mas o seu conteúdo é o endereço de `i`.
+
+#### 🎓 Nota:
+Pense no `int` *p como um "controle remoto". O controle não é a TV, mas ele sabe exatamente onde a TV está e como interagir com ela. Nesta etapa, apenas guardamos o endereço no controle. No próximo passo, aprenderemos a apertar os botões!
+
+#### 📝 Orientação:
+É um erro muito comum de iniciante é tentar fazer isso: `p = i;` (sem o `&`).
+* `p = i;` tenta dizer que o endereço da memória é o número 10. O computador vai tentar ir até a "gaveta nº 10" da memória, que provavelmente pertence ao Sistema Operacional, e... **BUM!** Seu programa trava.
+
+**Sempre use o `&` para dar o endereço ao ponteiro.**
+
+</details>
+
+---
+
 
 ---
 
