@@ -1175,6 +1175,62 @@ The key point here is the following:
 
 ---
 
+<details>
+<summary><b>🧭 Pointer Types (Section 5.2)</b></summary>
+<br>
+
+---
+
+[Section 5.2 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-2)-POINTER-TYPES)
+
+---
+
+So far, we have seen how to "view" a variable's address. Now, we are going to learn how to **store** that address in a special variable: the **Pointer**.
+
+#### ✍️ How to Declare a Pointer
+To tell C that a variable is a pointer, we use the asterisk (`*`) between the type and the variable name.
+
+```c
+int i;    // A regular variable that stores an integer.
+int *p;   // A variable that stores the ADDRESS of an integer.
+```
+- Reading: We read `int *p` as "p is a pointer to int" or "p is an int-pointer."
+
+#### 🤝 The Compatibility Rule
+A pointer is picky: if you declared a pointer to `int`, it **must only store** addresses of `int` type variables. If you try to store a float's address in an `int *`, the compiler will complain (and rightly so!).
+
+#### 🔗 Making the Connection (Pointing)
+To make a pointer "point" to a variable, we use the address-of operator (`&`) that we learned earlier:
+```c
+int i = 10;
+int *p;    // Initially, 'p' contains memory junk (points to nowhere).
+
+p = &i;    // Now 'p' receives the address of 'i'. We say that "p points to i."
+```
+
+🔄 What is happening in memory?
+1. `i` has a **value** (e.g., 10).
+
+2. `i` has an **address** (e.g., `0x7FF...`).
+
+3. `p` has its own address, but its content is the address of `i`.
+
+##### 🎓 Note:
+Think of `int *p` as a "remote control." The remote is not the TV, but it knows exactly where the TV is and how to interact with it. In this step, we are just storing the address in the remote. In the next step, we will learn how to press the buttons!
+
+##### 📝 Guidance:
+A very common beginner mistake is trying to do this: `p = i;` (without the `&`).
+
+- `p = i;` attempts to say that the memory address is the number 10. The computer will try to access "drawer #10" in memory, which likely belongs to the Operating System, and... **BOOM**! Your program crashes.
+
+**Always use `&` to assign an address to a pointer.**
+
+</details>
+
+---
+
+
+
 ---
 
 </details>
