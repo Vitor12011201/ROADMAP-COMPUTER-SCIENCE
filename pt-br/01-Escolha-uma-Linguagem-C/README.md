@@ -1272,4 +1272,51 @@ A resposta curta é: **Escopo**. Lembra que as funções só recebem cópias das
 
 ---
 
+<details>
+<summary><b>🚀 Passando Ponteiros como Argumentos (Seção 5.4)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 5.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-4)-PASSANDO-PONTEIRO-COMO-ARGUMENTO)
+
+---
+
+Por que usar ponteiros se podemos usar a variável diretamente? A resposta é: **Escopo e Modificação**.
+
+#### 🔌 O Problema da Cópia
+Vimos no Dia 4 que funções recebem cópias e não conseguem alterar a variável original da `main`. Os ponteiros resolvem isso!
+
+1. Você passa o **endereço** da variável para a função.
+2. A função recebe uma **cópia do endereço** (um ponteiro).
+3. A função **desreferencia** esse ponteiro para chegar na variável original e alterá-la.
+
+#### 🛠️ Exemplo: O Incremento Real
+Desta vez, a função `increment` realmente funciona:
+
+```c
+#include <stdio.h>
+
+void increment(int *p) {  // Recebe um ponteiro para int
+    *p = *p + 1;         // Soma 1 ao que p aponta (a variável original!)
+}
+
+int main(void) {
+    int i = 10;
+    increment(&i);       // Passamos o ENDEREÇO de i
+    
+    printf("i == %d\n", i); // Agora imprime 11!
+    return 0;
+}
+```
+
+#### 💡 Pontos Chave:
+- **Múltiplos Retornos:** Como você pode passar vários ponteiros para uma função, ela pode "devolver" vários dados alterando as variáveis originais, superando a limitação do return único.
+
+- **Eficiência:** Em vez de copiar uma estrutura de dados gigante, você copia apenas o endereço dela (alguns bytes).
+
+- **Regra de Ouro:** Se você quer que uma função modifique algo de fora para que você veja o resultado depois, você deve passar um ponteiro para esse algo.
+
+---
+
 </details>
