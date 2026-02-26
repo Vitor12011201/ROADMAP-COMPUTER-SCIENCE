@@ -1282,6 +1282,61 @@ The short answer is: **Scope**. Remember how functions only receive copies of va
 
 ---
 
+<details>
+<summary><b>🚀 Passing Pointers as Arguments (Section 5.4)</b></summary>
+<br>
+
+---
+
+[Section 5.4 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-4)-PASSING-POINTERS-AS-ARGUMENTS)
+
+---
+
+Why use pointers if we can use the variable directly? The answer is: **Scope and Modification**.
+
+#### 🔌 The Copy Problem
+We saw on Day 4 that functions receive copies and cannot change the original variable from `main`. Pointers solve this!
+
+1. You pass the **address** of the variable to the function.
+2. The function receives a **copy of the address** (a pointer).
+3. The function **dereferences** that pointer to reach the original variable and modify it.
+
+#### 🛠️ Example: The Real Increment
+This time, the `increment` function actually works:
+
+```c
+#include <stdio.h>
+
+void increment(int *p) {  // Receives a pointer to int
+    *p = *p + 1;         // Adds 1 to what p points to (the original variable!)
+}
+
+int main(void) {
+    int i = 10;
+    increment(&i);       // We pass the ADDRESS of i
+    
+    printf("i == %d\n", i); // Now prints 11!
+    return 0;
+}
+```
+
+#### 💡 Key Points:
+- **Multiple Returns:** Since you can pass several pointers to a function, it can "return" multiple data points by modifying the original variables, overcoming the single-return limitation.
+
+- **Efficiency:** Instead of copying a massive data structure, you copy only its address (a few bytes).
+
+- **Golden Rule:** If you want a function to modify something from the outside so that you see the result later, you must pass a pointer to that something.
+
+#### 🎓 Note:
+Notice the call `increment(&i)`. The `&` is what transforms your `int` into an `int*` (pointer) so that the function accepts it. It's like giving the key to your house to the function so it can work on it while you wait.
+
+#### 📝 Guidance:
+- This is the foundation of how C "really" works. When you use the function `scanf("%d", &age)`, now you understand why that `&` is there! `scanf` needs the **address** of your `age` variable to be able to write the number you typed directly into it.
+
+</details>
+
+---
+
 ---
 
 </details>

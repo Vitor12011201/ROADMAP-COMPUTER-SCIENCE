@@ -1317,6 +1317,19 @@ int main(void) {
 
 - **Regra de Ouro:** Se você quer que uma função modifique algo de fora para que você veja o resultado depois, você deve passar um ponteiro para esse algo.
 
+
+#### 🎓 Nota:
+Observe a chamada increment(&i). O & é o que transforma o seu int em um int* (ponteiro) para que a função o aceite. É como se você estivesse dando a chave da sua casa para a função trabalhar nela enquanto você espera.
+
+#### 📝 Orientação:
+- essa é a base de como o C funciona "de verdade". Quando você usa a função `scanf("%d", &idade)`, agora você entende por que aquele `&` está lá! O `scanf` precisa do **endereço** da sua variável `idade` para conseguir escrever o número que você digitou diretamente nela.
+
+</details>
+
+---
+
+
+
 ---
 
 </details>
