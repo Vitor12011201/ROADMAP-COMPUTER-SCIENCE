@@ -1337,6 +1337,49 @@ Notice the call `increment(&i)`. The `&` is what transforms your `int` into an `
 
 ---
 
+<details>
+<summary><b>🚫 The `NULL` Pointer (Section 5.5)</b></summary>
+<br>
+
 ---
 
+[Section 5.5 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-5)-NULL-POINTER)
+
+---
+
+Any pointer variable, regardless of its type, can receive a special value called `NULL`. This explicitly indicates that the pointer **points to nowhere**.
+
+```c
+int *p = NULL; // p is now a null pointer
+```
+
+#### ⚠️ The Danger of Dereferencing:
+Since a `NULL` pointer does not point to a valid address, attempting to access its value (dereferencing) will result in an error.
+
+
+```c
+int *p = NULL;
+*p = 12;  // 💥 CRASH! Undefined behavior (Segmentation Fault)
+```
+
+#### 🛡️ Why use `NULL`?
+Although called "the billion-dollar mistake" by its creator, `NULL` is extremely useful as:
+
+- **Sentinel Value:** To indicate that a search failed or that there is no more data.
+
+- **Initialization Indicator:** To ensure a pointer doesn't point to "memory junk" (dangerous random addresses) before it is used.
+
+#### 🎓 Note:
+Whenever you declare a pointer and don't have an address for it right away, assign `NULL`. It is much easier for your program to handle a null pointer error than a pointer that points to a random location and silently corrupts your data!
+
+#### 📝 Guidance:
+Imagine NULL as the "Vacant" sign on a taxi. It tells you the taxi is available, but you can't get in if it's not actually there.
+
+**Technical tip:** In C, `NULL` is often defined as the value `0`. Because of this, you will see many programmers testing if a pointer is valid with a simple `if (p)`. If `p` is `NULL` (zero), the `if` fails!
+
+</details>
+
+---
+
+---
 </details>

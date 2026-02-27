@@ -1328,7 +1328,48 @@ Observe a chamada increment(&i). O & é o que transforma o seu int em um int* (p
 
 ---
 
+<details>
+<summary><b>🚫 O Ponteiro `NULL` (Seção 5.5)</b></summary>
+<br>
 
+---
+
+[Codigos da Seção 5.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-5)-PONTEIRO-NULL)
+
+---
+
+Qualquer variável de ponteiro, independentemente do tipo, pode receber um valor especial chamado `NULL`. Isso indica explicitamente que o ponteiro **não aponta para lugar nenhum**.
+
+```c
+int *p = NULL; // p agora é um ponteiro nulo
+```
+
+#### ⚠️ O Perigo da Desreferenciação:
+Como um ponteiro `NULL` não aponta para um endereço válido, tentar acessar o valor dele (desreferenciar) resultará em erro.
+
+```c
+int *p = NULL;
+*p = 12;  // 💥 CRASH! Comportamento indefinido (Segmentation Fault)
+```
+
+#### 🛡️ Por que usar o `NULL`?
+Embora tenha sido chamado de "o erro de um bilhão de dólares" por seu criador, o `NULL` é extremamente útil como:
+
+- **Valor Sentinela:** Para indicar que uma busca falhou ou que não há mais dados.
+
+- **Indicador de Inicialização:** Para garantir que um ponteiro não aponte para "lixo de memória" (endereços aleatórios perigosos) antes de ser usado.
+
+#### 🎓 Nota :
+Sempre que você declarar um ponteiro e não tiver um endereço para ele na hora, atribua `NULL`. É muito mais fácil para o seu programa lidar com um erro de ponteiro nulo do que com um ponteiro que aponta para um lugar aleatório e silenciosamente corrompe seus dados!
+
+#### 📝 Orientação:
+Imagine o `NULL` como o sinal de "Vago" em um táxi. Ele te diz que o táxi está disponível, mas você não pode entrar se ele não estiver lá.
+
+**Dica técnica:** No C, o `NULL` é frequentemente definido como o valor `0`. Por isso, você verá muitos programadores testando se um ponteiro é válido com um simples `if (p)`. Se `p` for `NULL` (zero), o `if` falha!
+
+</details>
+
+---
 
 ---
 
