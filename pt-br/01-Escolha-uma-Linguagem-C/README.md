@@ -1371,6 +1371,140 @@ Imagine o `NULL` como o sinal de "Vago" em um táxi. Ele te diz que o táxi est�
 
 ---
 
+<details>
+<summary><b>✍️ Nota sobre a Declaração de Ponteiros(Seção 5.6)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 5.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-6)-DECLARACAO-DE-PONTEIROS)
+
+---
+
+A sintaxe de declaração no C pode ser traiçoeira quando tentamos colocar várias variáveis em uma única linha.
+
+#### ⚠️ O Asterisco pertence à Variável, não ao Tipo
+Um erro comum é pensar que o `*` faz parte do tipo (como `int*`). No C, o asterisco "gruda" no nome da variável que segue.
+
+Observe os exemplos abaixo:
+
+* **Correto (Misturando tipos):**
+  ```c
+  int a, *p; // 'a' é um inteiro comum; 'p' é um ponteiro para int.
+  ```
+  
+* **O Perigo da Linha Única:**
+  ```c
+  int *p, q; // 'p' é um ponteiro; 'q' é APENAS um inteiro comum!
+  ```
+  - Mesmo que você escreva `int* p, q;` (com o asterisco junto ao tipo), para o compilador o resultado é o mesmo: **apenas p é ponteiro.**
+
+#### 🧩 O Grande Teste
+Consegue identificar quem é o quê nesta linha?
+
+```c
+int *a, b, c, *d, e, *f, g, h, *i;
+```
+
+**Resposta:**
+
+**Ponteiros:** `a`, `d`, `f`, `i`.
+
+**Inteiros comuns:** `b`, `c`, `e`, `g`, `h`.
+
+
+#### 💡 Dica de Ouro:
+Para evitar esse "bug visual", muitos programadores preferem escrever o asterisco colado no nome da variável (`int *p;`) em vez de colado no tipo (`int* p;`). Isso deixa claro que o ponteiro é a variável, e não o tipo inteiro em si naquela linha.
+
+**Exemplo Profissional:**
+```c
+int *p;  // Ponteiro para o contador
+int *q;  // Ponteiro para o resultado
+int i;   // Variável inteira auxiliar
+```
+- Este padrão evita que você esqueça um asterisco acidentalmente e torna o seu código muito mais fácil de revisar.
+
+</details>
+
+---
+
+<details>
+<summary><b>📏 sizeof e Ponteiros (Seção 5.7)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 5.7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_005/(SECAO-5-7)-SIZEOF-E-PONTEIROS)
+
+---
+
+O operador `sizeof` retorna o tamanho em bytes baseado no **tipo** da expressão. Quando lidamos com ponteiros, precisamos ter cuidado com o que estamos medindo:
+
+1.  **`sizeof(int *)`**: Retorna o tamanho do ponteiro (o endereço). Em sistemas 64-bit, isso geralmente é **8 bytes**.
+2.  **`sizeof(*p)`**: Retorna o tamanho do **valor para onde o ponteiro aponta**. Se for um ponteiro para `int`, retornará o tamanho de um `int` (geralmente **4 bytes**).
+
+#### 🔬 Exemplo Prático:
+```c
+int *p;
+
+printf("%zu\n", sizeof(int));  // Imprime o tamanho de um int (ex: 4)
+printf("%zu\n", sizeof p);     // Imprime o tamanho do PONTEIRO (ex: 8)
+printf("%zu\n", sizeof *p);    // Imprime o tamanho do que p APONTA (ex: 4)
+```
+
+#### ⚠️ Lembre-se:
+O `sizeof` é resolvido em tempo de compilação. Ele apenas olha para o tipo. Se `p` é um `int*`, então `*p` é um `int`, e é o tamanho do `int` que ele vai retornar.
+
+
+#### 📝 Orientação:
+- Essa distinção é vital para quando começarmos a alocar **memória dinamicamente**. Se você pedir espaço para `sizeof p` (8 bytes) achando que está pedindo espaço para um `int` (4 bytes), você vai desperdiçar memória. Se fizer o contrário, seu programa vai travar!
+
+</details>
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 6: Arrays </b></summary>
+
+---
+
+[Codigos do dia 6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006)
+
+---
+
+<details>
+<summary><b>📊 Dia 6: Arrays - Listas de Dados (Seção 6.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-0)ARRAYS-LISTA-DE-DADOS)
+
+---
+
+Arrays no C são coleções de elementos do mesmo tipo guardados de forma sequencial na memória. Se você já usou `[` e `]` em outras linguagens, a sintaxe vai te parecer muito familiar.
+
+### 🏗️ A Estrutura Básica
+Um array permite que você agrupe vários valores (como 10 inteiros) sob um único nome, acessando cada um através de um índice.
+
+* **Índice Zero:** No C, o primeiro elemento está sempre no índice `0`.
+* **Tipo Único:** Todos os elementos de um array devem ser do mesmo tipo (todos `int`, todos `float`, etc).
+
+
+
+### 🕵️ O Segredo do C
+Embora pareçam uma estrutura própria, Arrays são apenas **ponteiros disfarçados**.
+Quando você escreve `meu_array[3]`, o C está, na verdade, fazendo aritmética de ponteiros para chegar no endereço certo. Mas, por enquanto, vamos tratá-los como arrays normais para facilitar a vida.
+
+> **💡 Curiosidade:** A discussão sobre começar do 0 ou do 1 é antiga, mas no C, o 0 venceu porque ele representa o "deslocamento" (offset) a partir do início do array. O primeiro elemento está a 0 posições de distância do começo.
+
+
+</details>
+
+---
+
+
 ---
 
 </details>

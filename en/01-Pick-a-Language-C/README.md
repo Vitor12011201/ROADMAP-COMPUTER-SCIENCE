@@ -1381,5 +1381,137 @@ Imagine NULL as the "Vacant" sign on a taxi. It tells you the taxi is available,
 
 ---
 
+<details>
+<summary><b>✍️ Note on Pointer Declaration (Section 5.6)</b></summary>
+<br>
+
 ---
+
+[Section 5.6 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-6)-POINTER-DECLARATION)
+
+---
+
+Declaration syntax in C can be tricky when trying to place multiple variables on a single line.
+
+#### ⚠️ The Asterisk belongs to the Variable, not the Type
+A common mistake is thinking that the `*` is part of the type (like `int*`). In C, the asterisk "sticks" to the variable name that follows.
+
+Observe the examples below:
+
+* **Correct (Mixing types):**
+  ```c
+  int a, *p; // 'a' is a regular integer; 'p' is a pointer to int.
+  ```
+  
+* **The Single-Line Danger:**
+  ```c
+  int *p, q; // 'p' is a pointer; 'q' is JUST a regular integer!
+  ```  
+  - Even if you write `int* p, q;` (with the asterisk next to the type), for the compiler the result is the same: **only p is a pointer.**
+
+#### 🧩 The Big Test
+Can you identify which is which in this line?
+
+```c
+int *a, b, c, *d, e, *f, g, h, *i;
+```
+
+**Answer:**
+
+**Pointers:** `a`, `d`, `f`, `i`.
+
+**Regular Integers:** `b`, `c`, `e`, `g`, `h`.
+
+
+#### 💡 Golden Tip:
+To avoid this "visual bug," many programmers prefer to write the asterisk attached to the variable name (`int *p;`) instead of attached to the type (`int* p;`). This makes it clear that the pointer is the variable, and not the integer type itself on that line.
+
+**Professional Example:**
+```c
+int *p;  // Pointer to the counter
+int *q;  // Pointer to the result
+int i;   // Auxiliary integer variable
+```
+- This pattern prevents you from accidentally forgetting an asterisk and makes your code much easier to review.
+
+</details>
+
+---
+
+<details>
+<summary><b>📏 sizeof and Pointers (Section 5.7)</b></summary>
+<br>
+
+---
+
+[Section 5.7 codes can be found here](./CODE_BY_DAY/DAY_005/(SECTION-5-7)-SIZEOF-AND-POINTERS)
+
+---
+
+The `sizeof` operator returns the size in bytes based on the **type** of the expression. When dealing with pointers, we must be careful about what we are measuring:
+
+1.  **`sizeof(int *)`**: Returns the size of the pointer (the address). In 64-bit systems, this is usually **8 bytes**.
+2.  **`sizeof(*p)`**: Returns the size of the **value the pointer points to**. If it is a pointer to `int`, it will return the size of an `int` (usually **4 bytes**).
+
+#### 🔬 Practical Example:
+```c
+int *p;
+
+printf("%zu\n", sizeof(int));  // Prints the size of an int (e.g., 4)
+printf("%zu\n", sizeof p);     // Prints the size of the POINTER (e.g., 8)
+printf("%zu\n", sizeof *p);    // Prints the size of what p POINTS TO (e.g., 4)
+```
+
+#### ⚠️ Remember:
+`sizeof` is resolved at compile time. It only looks at the type. If `p` is an `int*`, then `*p` is an `int`, and it is the size of the `int` that it will return.
+
+#### 📝 Guidance:
+- This distinction is vital for when we start allocating memory dynamically. If you request space for `sizeof p` (8 bytes) thinking you are requesting space for an `int` (4 bytes), you will waste memory. If you do the opposite, your program will crash!
+
+</details>
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 6: Arrays </b></summary>
+
+---
+
+[Day 6 codes can be found here](./CODE_BY_DAY/DAY_006)
+
+---
+
+<details>
+<summary><b>📊 Day 6: Arrays - Data Lists (Section 6.0)</b></summary>
+<br>
+
+---
+
+[Section 6.0 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-0)ARRAYS-DATA-LISTS)
+
+---
+
+Arrays in C are collections of elements of the same type stored sequentially in memory. If you have already used `[` and `]` in other languages, the syntax will feel very familiar.
+
+### 🏗️ The Basic Structure
+An array allows you to group multiple values (like 10 integers) under a single name, accessing each one through an index.
+
+
+
+* **Zero Index:** In C, the first element is always at index `0`.
+* **Single Type:** All elements of an array must be of the same type (all `int`, all `float`, etc.).
+
+### 🕵️ The Secret of C
+Although they seem like their own structure, Arrays are just **pointers in disguise**.
+When you write `my_array[3]`, C is actually performing pointer arithmetic to reach the correct address. But for now, let's treat them as regular arrays to make things easier.
+
+> **💡 Fun Fact:** The debate about starting from 0 or 1 is an old one, but in C, 0 won because it represents the **offset** from the beginning of the array. The first element is 0 positions away from the start.
+
+</details>
+
+---
+
+---
+
 </details>
