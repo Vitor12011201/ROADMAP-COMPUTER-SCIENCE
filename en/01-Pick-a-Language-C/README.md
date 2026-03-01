@@ -1512,6 +1512,61 @@ When you write `my_array[3]`, C is actually performing pointer arithmetic to rea
 
 ---
 
+<details>
+<summary><b>📝 Practical Example: Arrays and Loops (Section 6.1)</b></summary>
+<br>
+
+---
+
+[Section 6.1 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-1)-PRACTICAL-ARRAY-EXAMPLE)
+
+---
+
+When declaring an array, you need to define a fixed size between the brackets. This size tells C how much memory it should reserve at once.
+
+#### 🛠️ Example Code (Floats and Iteration)
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    float f[4];  // Declares an array of 4 decimal numbers (floats)
+
+    // Assigning values one by one
+    f[0] = 3.14159;  // The index starts at 0
+    f[1] = 1.41421;
+    f[2] = 1.61803;
+    f[3] = 2.71828;  // The last index is always (size - 1)
+
+    // Using a loop to print all values
+    for (i = 0; i < 4; i++) {
+        printf("%f\n", f[i]); // f[i] accesses the element at the current position of i
+    }
+
+    return 0;
+}
+```
+
+#### 🗝️ Key Points:
+- **Fixed Size:** Once you have declared `f[4]`, you cannot "expand" it to `f[5]` later. The size is set in stone during compilation.
+
+- **Symmetrical Access:** We use `[]` both to declare the size and to access or modify values later.
+
+- **Standardization:** If you come from languages like Java or JavaScript, this syntax should be almost identical to what you already know.
+
+#### 🎓 Note:
+Notice that the loop goes from `0` while `i < 4`. This ensures we visit indices `0, 1, 2, 3`. If we tried to reach index `4`, we would be knocking on the door of memory that doesn't belong to us!
+
+#### 📝 Guidance:
+Instead of hardcoding the number `4` directly in the `for` loop, many programmers use a constant or calculate the size to avoid errors if the array size changes in the future.
+
+</details>
+
+---
+
+
+
 ---
 
 </details>

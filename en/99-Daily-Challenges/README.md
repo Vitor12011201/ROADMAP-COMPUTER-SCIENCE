@@ -21,23 +21,23 @@ The transition from sequential code to modular programming.
 * **Skills:** Creating custom functions, parameter passing, return values, and the Single Responsibility Principle.
 * **Highlight:** Functions encapsulating comparison logic and sign verification.
 
-### [03-arrays-and-strings](./03-Arrays-And-Strings(Exercises))
-**What you will find here:**
-Data collection management and memory handling.
-* **Skills:** One-dimensional arrays (numeric arrays), matrices (string arrays), loops (`for`), extreme value searching (min/max), and statistical calculations applied to lists.
-* **Highlight:** Full number analyzer and the name registration system using character matrices.
-
-### [04-simulations](./04-Simulations(Exercises))
+### [03-simulations](./03-Simulations(Exercises))
 **What you will find here:**
 Applications utilizing system resources and non-deterministic logic.
 * **Skills:** System libraries (`time.h`, `stdlib.h`), pseudo-random number generation (`rand`, `srand`), and real-time event simulation.
 * **Highlight:** Randomness tests and scoreboard simulators.
 
-### [05-pointers](./05-Pointers(Exercises))
+### [04-pointers](./04-Pointers(Exercises))
 **What you will find here:**
 Exploring C's "superpower": the direct manipulation of memory addresses.
 * **Skills:** Understanding addresses (`&`), dereference operators (`*`), pointer arithmetic, passing parameters by reference, and the intrinsic relationship between pointers and arrays.
 * **Highlight:** Implementations of value swapping (`swap`) and functions that modify multiple variables simultaneously via memory.
+
+### [05-arrays-and-strings](./05-Arrays-And-Strings(Exercises))
+**What you will find here:**
+Data collection management and memory handling.
+* **Skills:** One-dimensional arrays (numeric arrays), matrices (string arrays), loops (`for`), extreme value searching (min/max), and statistical calculations applied to lists.
+* **Highlight:** Full number analyzer and the name registration system using character matrices.
 
 ---
 

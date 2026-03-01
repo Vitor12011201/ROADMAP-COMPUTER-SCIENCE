@@ -1474,7 +1474,7 @@ O `sizeof` é resolvido em tempo de compilação. Ele apenas olha para o tipo. S
 ---
 
 <details>
-<summary><b>📊 Dia 6: Arrays - Listas de Dados (Seção 6.0)</b></summary>
+<summary><b>📊 Arrays - Listas de Dados (Seção 6.0)</b></summary>
 <br>
 
 ---
@@ -1503,6 +1503,60 @@ Quando você escreve `meu_array[3]`, o C está, na verdade, fazendo aritmética 
 </details>
 
 ---
+
+<details>
+<summary><b>📝 Exemplo Prático: Arrays e Loops (Seção 6.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-1)-EXEMPLO-PRATICO-ARRAYS)
+
+---
+
+Ao declarar um array, você precisa definir um tamanho fixo entre os colchetes. Esse tamanho diz ao C quanta memória ele deve reservar de uma vez só.
+
+#### 🛠️ Código de Exemplo (Floats e Iteração)
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    float f[4];  // Declara um array de 4 números decimais (floats)
+
+    // Atribuindo valores um por um
+    f[0] = 3.14159;  // O índice começa em 0
+    f[1] = 1.41421;
+    f[2] = 1.61803;
+    f[3] = 2.71828;  // O último índice é sempre (tamanho - 1)
+
+    // Usando um loop para imprimir todos os valores
+    for (i = 0; i < 4; i++) {
+        printf("%f\n", f[i]); // f[i] acessa o elemento na posição atual de i
+    }
+
+    return 0;
+}
+```
+
+#### 🗝️ Pontos Importantes:
+- **Tamanho Fixo:** Uma vez que você declarou `f[4]`, você não pode "aumentar" para `f[5]` depois. O tamanho é gravado na pedra durante a compilação.
+
+- **Acesso Simétrico:** Usamos `[]` tanto para declarar o tamanho quanto para acessar ou modificar os valores mais tarde.
+
+- **Padronização:** Se você vem de linguagens como Java ou JavaScript, essa sintaxe deve ser quase idêntica ao que você já conhece.
+
+#### 🎓 Nota:
+Observe que o loop vai de `0` enquanto `i < 4`. Isso garante que visitaremos os índices `0, 1, 2, 3`. Se tentássemos chegar ao `4`, estaríamos batendo na porta de uma memória que não nos pertence!
+
+#### 📝 Orientação:
+Em vez de escrever o número `4` direto no `for`, muitos programadores usam uma constante ou calculam o tamanho para evitar erros se o array mudar de tamanho no futuro
+
+</details>
+
+---
+
 
 
 ---
