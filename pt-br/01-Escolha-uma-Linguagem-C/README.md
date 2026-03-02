@@ -1557,6 +1557,51 @@ Em vez de escrever o número `4` direto no `for`, muitos programadores usam uma 
 
 ---
 
+<details>
+<summary><b>📏 6.2 Obtendo o Tamanho de um Array (Seção 6.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-2)-OBTENDO-TAMANHO-ARRAY)
+
+---
+
+No C, o array não guarda uma variável interna com seu tamanho. Para descobrir quantos elementos existem, usamos um cálculo baseado no espaço total que o array ocupa na memória.
+
+#### 🧮 A Fórmula Mágica
+A ideia é pegar o tamanho total do array (em bytes) e dividir pelo tamanho de um único elemento.
+
+```c
+int x[12]; 
+
+size_t tamanho = sizeof x / sizeof(int); 
+// Exemplo: 48 bytes total / 4 bytes por int = 12 elementos!
+```
+
+#### **⚠️ A Grande Armadilha: Escopo**
+Este truque **SÓ FUNCIONA** no mesmo lugar (escopo) onde o array foi declarado.
+
+Se você passar o array para uma função, o C o transforma em um simples ponteiro para o primeiro elemento.
+
+- O `sizeof` dentro da função retornará o tamanho do ponteiro (geralmente 8 bytes em sistemas 64-bit), não o do array original!
+
+#### 🚀 Dica Profissional: sizeof sem declarar
+Você pode descobrir quanto espaço um array ocuparia mesmo antes de criá-lo:
+```c
+sizeof(double [48]); // Retorna os bytes necessários para 48 doubles
+```
+
+#### 🎓 Nota:
+Como o C não gerencia o tamanho para você, a prática comum é sempre passar o tamanho do array como um argumento separado nas suas funções. Ex: minha_funcao(int *array, int tamanho).
+
+#### 📝 Orientação:
+Grave isso: **"Arrays decaem para ponteiros em funções"**. É por isso que o `sizeof` falha lá dentro. Se você tentar usar a fórmula dentro de uma função, o resultado será algo maluco (como `2`), e seu loop vai parar antes da hora ou dar erro
+
+</details>
+
+---
+
 
 
 ---
