@@ -1593,7 +1593,7 @@ sizeof(double [48]); // Retorna os bytes necessários para 48 doubles
 ```
 
 #### 🎓 Nota:
-Como o C não gerencia o tamanho para você, a prática comum é sempre passar o tamanho do array como um argumento separado nas suas funções. Ex: minha_funcao(int *array, int tamanho).
+Como o C não gerencia o tamanho para você, a prática comum é sempre passar o tamanho do array como um argumento separado nas suas funções. Ex: `minha_funcao(int *array, int tamanho)`.
 
 #### 📝 Orientação:
 Grave isso: **"Arrays decaem para ponteiros em funções"**. É por isso que o `sizeof` falha lá dentro. Se você tentar usar a fórmula dentro de uma função, o resultado será algo maluco (como `2`), e seu loop vai parar antes da hora ou dar erro

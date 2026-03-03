@@ -1565,6 +1565,52 @@ Instead of hardcoding the number `4` directly in the `for` loop, many programmer
 
 ---
 
+<details>
+<summary><b>📏 6.2 Getting the Array Size (Section 6.2)</b></summary>
+<br>
+
+---
+
+[Section 6.2 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-2)-GETTING-ARRAY-SIZE)
+
+---
+
+In C, an array does not store an internal variable with its size. To find out how many elements exist, we use a calculation based on the total space the array occupies in memory.
+
+#### 🧮 The Magic Formula
+The idea is to take the total size of the array (in bytes) and divide it by the size of a single element.
+
+```c
+int x[12]; 
+
+size_t size = sizeof x / sizeof(int); 
+// Example: 48 bytes total / 4 bytes per int = 12 elements!
+```
+
+#### ⚠️ The Big Trap: Scope
+This trick **ONLY WORKS** in the same place (scope) where the array was declared.
+
+If you pass the array to a function, C transforms it into a simple pointer to the first element.
+
+- The `sizeof` inside the function will return the size of the pointer (usually 8 bytes on 64-bit systems), not the size of the original array!
+
+#### 🚀 Pro Tip: sizeof without declaring
+You can find out how much space an array would occupy even before creating it:
+
+```c
+sizeof(double [48]); // Returns the bytes needed for 48 doubles
+```
+
+#### 🎓 Note:
+Since C does not manage the size for you, the common practice is to always pass the array size as a separate argument in your functions. Ex: `my_function(int *array, int size).`
+
+#### 📝 Guidance:
+Remember this: **"Arrays decay to pointers in functions"**. This is why `sizeof` fails inside them. If you try to use the formula inside a function, the result will be something crazy (like `2`), and your loop will stop early or cause an error.
+
+</details>
+
+---
+
 
 
 ---
