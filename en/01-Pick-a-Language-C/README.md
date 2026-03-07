@@ -1504,7 +1504,31 @@ An array allows you to group multiple values (like 10 integers) under a single n
 
 ### 🕵️ The Secret of C
 Although they seem like their own structure, Arrays are just **pointers in disguise**.
-When you write `my_array[3]`, C is actually performing pointer arithmetic to reach the correct address. But for now, let's treat them as regular arrays to make things easier.
+When you write `my_array[3]`, C is actually performing pointer arithmetic to reach the correct address.
+
+#### 🧠 The Abstraction: What is `array[i]` really?
+
+In C, the bracket syntax `[]` is just **"syntactic sugar"** designed to make our lives easier. Under the hood, the compiler translates it into **Pointer Arithmetic**.
+
+#### 🕵️ The Mathematical Equivalence
+When you write `numbers[3]`, C performs the following calculation:
+
+$$*(numbers + 3)$$
+
+> **Technical Note:** The raw code without abstraction is `*(numbers + 3 * sizeof(int))`. However, the C compiler is smart: when you add `3` to an `int` pointer, it **automatically** multiplies it by the `sizeof(int)`.
+
+#### 🛠️ Why does this matter?
+This explains why arrays start at **index 0**:
+* **`numbers[0]`** is equal to **`*(numbers + 0)`**.
+* In other words: "Get the value located exactly at the starting address." There is no displacement (**offset**).
+
+#### 🤯 "Bit-Shifter" Trivia
+Since addition is commutative ($a + b = b + a$), in technical C, you could actually write `3[numbers]` and the code would work!
+* `3[numbers]` becomes `*(3 + numbers)`, which points to the same address.
+* *Warning: Never use this in professional code, but it is a great trick to understand the underlying logic!*
+
+#### 🎓 Note:
+An array is just a label for the address of the first element. Everything else is pointer mathematics.
 
 > **💡 Fun Fact:** The debate about starting from 0 or 1 is an old one, but in C, 0 won because it represents the **offset** from the beginning of the array. The first element is 0 positions away from the start.
 

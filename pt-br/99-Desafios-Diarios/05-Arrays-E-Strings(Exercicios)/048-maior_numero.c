@@ -1,3 +1,10 @@
+/* Declare um array de 5 números inteiros.
+Peça ao usuário para digitar os números.
+Crie uma função que receba um ponteiro para o array.
+A função deve percorrer o array usando ponteiros.
+A função deve retornar o maior número encontrado. */
+
+
 #include <stdio.h>
 
 int encontrarMaior(int *ptr, int tamanho) {
