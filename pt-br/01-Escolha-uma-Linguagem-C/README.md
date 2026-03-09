@@ -1628,6 +1628,76 @@ Grave isso: **"Arrays decaem para ponteiros em funções"**. É por isso que o `
 
 ---
 
+<details>
+<summary><b>🎨 Inicializadores de Arrays (Seção 6.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-3)-INICIADORES-ARRAYS)
+
+---
+
+No C, você pode definir os valores de um array no momento da declaração usando chaves `{}`.
+
+#### 1. Inicialização Básica
+Se você fornecer todos os valores, o C os coloca em ordem na memória.
+
+```c
+int a[5] = {22, 37, 3490, 18, 95}; // Array preenchido manualmente
+```
+
+#### 2. O Atalho do Zero
+Se você fornecer **menos** itens do que o tamanho do array, o C preenche o restante automaticamente com `0`.
+
+- **Zerar um array inteiro:**
+
+```c
+int a[100] = {0}; // Define o primeiro como 0 e o resto também vira 0
+```
+
+#### 3. Índices Designados
+Você pode escolher posições específicas usando `[índice] = valor`. O C preencherá as lacunas com zero e continuará a sequência a partir do índice definido.
+
+```c
+int a[10] = {0, 11, 22, [5]=55, 66, 77};
+// Resultado: 0, 11, 22, 0, 0, 55, 66, 77, 0, 0
+```
+
+#### 4. Tamanho Automático
+Se você omitir o número dentro dos colchetes `[]`, o compilador contará os itens e definirá o tamanho exato.
+
+```c
+int a[] = {22, 37, 3490}; // O compilador define automaticamente o tamanho como 3
+```
+
+---
+
+#### 🧠 A Abstração: O que acontece por baixo dos panos?
+
+Uma das maiores revelações do C é entender que a sintaxe de colchetes `[]` é apenas uma forma amigável (açúcar sintático) de escrever **Aritmética de Ponteiros**.
+
+#### 🕵️ A Equivalência Matemática
+Quando você escreve `numero[3]`, o compilador traduz isso internamente para:
+
+$$*(numero + 3)$$
+
+O compilador é inteligente: como ele sabe que `numero` aponta para um `int`, ele automaticamente calcula o deslocamento correto na memória. Ele não soma apenas o número 3, mas sim `3 * sizeof(int)` bytes a partir do endereço inicial.
+
+
+
+#### ⚠️ Avisos Importantes
+* **Excesso de elementos:** Nunca coloque mais itens no inicializador do que o tamanho reservado, ou o compilador emitirá um erro de *excess elements*.
+* **Lixo de Memória:** Se não inicializar um array local (ex: `int a[5];`), ele conterá valores aleatórios ("lixo") que estavam na memória antes. **Sempre inicialize com `{0}` por segurança.**
+
+#### 🎓 Nota:
+Entender que `array[i]` é exatamente igual a `*(array + i)` é o que permite você dominar a manipulação de memória no C. É por isso que os índices começam em **0**: o primeiro elemento está a "zero de distância" do endereço inicial do ponteiro.
+
+
+</details>
+
+---
+
 
 
 ---

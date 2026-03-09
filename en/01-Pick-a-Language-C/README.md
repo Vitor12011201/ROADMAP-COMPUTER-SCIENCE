@@ -1635,7 +1635,72 @@ Remember this: **"Arrays decay to pointers in functions"**. This is why `sizeof`
 
 ---
 
+<details>
+<summary><b>🎨 Array Initializers (Section 6.3)</b></summary>
+<br>
 
+---
+
+[Section 6.3 codes can be found here](./CODIGO_POR_DIA/DIA_006/(SECTION-6-3)-ARRAY-INITIALIZERS)
+
+---
+
+In C, you can define array values at the time of declaration using curly braces `{}`.
+
+#### 1. Basic Initialization
+If you provide all the values, C places them in order in memory.
+
+```c
+int a[5] = {22, 37, 3490, 18, 95}; // Array manually filled
+```
+
+#### 2. The Zero Shortcut
+If you provide **fewer** items than the array size, C automatically fills the rest with `0`.
+
+- **Zeroing out an entire array:**
+
+```c
+int a[100] = {0}; // Sets the first one to 0 and the rest becomes 0 as well
+```
+
+#### 3. Designated Initializers
+You can choose specific positions using `[index] = value`. C will fill the gaps with zero and continue the sequence from the defined index.
+
+```c
+int a[10] = {0, 11, 22, [5]=55, 66, 77};
+// Result: 0, 11, 22, 0, 0, 55, 66, 77, 0, 0
+```
+
+#### 4. Automatic Sizing
+If you omit the number inside the brackets `[]`, the compiler will count the items and set the exact size.
+
+```c
+int a[] = {22, 37, 3490}; // The compiler automatically sets the size to 3
+```
+
+#### 🧠 The Abstraction: What happens under the hood?
+
+One of the greatest revelations in C is understanding that the bracket syntax `[]` is just a user-friendly way (**syntactic sugar**) to write **Pointer Arithmetic**.
+
+#### 🕵️ The Mathematical Equivalence
+When you write `numbers[3]`, the compiler internally translates it to:
+
+$$*(numbers + 3)$$
+
+
+
+The compiler is smart: since it knows that `numbers` points to an `int`, it automatically calculates the correct memory offset. It doesn't just add the number 3; it adds `3 * sizeof(int)` bytes from the starting address.
+
+#### ⚠️ Important Warnings
+* **Excess elements:** Never put more items in the initializer than the reserved size, or the compiler will throw an *excess elements* error.
+* **Memory Junk (Garbage Values):** If you don't initialize a local array (e.g., `int a[5];`), it will contain random values ("garbage") that were in memory beforehand. **Always initialize with `{0}` for safety.**
+
+#### 🎓 Note:
+Understanding that `array[i]` is exactly the same as `*(array + i)` is what allows you to master memory manipulation in C. This is why indices start at **0**: the first element is at "zero distance" from the pointer's starting address.
+
+</details>
+
+---
 
 ---
 
