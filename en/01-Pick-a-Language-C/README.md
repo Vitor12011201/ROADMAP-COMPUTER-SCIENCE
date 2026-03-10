@@ -1641,7 +1641,7 @@ Remember this: **"Arrays decay to pointers in functions"**. This is why `sizeof`
 
 ---
 
-[Section 6.3 codes can be found here](./CODIGO_POR_DIA/DIA_006/(SECTION-6-3)-ARRAY-INITIALIZERS)
+[Section 6.3 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-3)-ARRAY-INITIALIZERS)
 
 ---
 
@@ -1701,6 +1701,59 @@ Understanding that `array[i]` is exactly the same as `*(array + i)` is what allo
 </details>
 
 ---
+
+<details>
+<summary><b>🚨 Undefined Behavior (Section 6.4)</b></summary>
+<br>
+
+---
+
+[Section 6.4 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-4)-UNDEFINED-BEHAVIOR)
+
+---
+
+C **does not stop** you from accessing indices that do not exist in your array. It operates on the principle that you know exactly what you are doing.
+
+#### 💣 The Disaster Example
+If you have an array of 5 elements and try to read 10, C will continue reading memory sequentially, treating whatever it finds as if it were part of your array.
+
+
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a[5] = {22, 37, 3490, 18, 95};
+
+    for (int i = 0; i < 10; i++) { // ERROR: Reading 5 extra elements!
+        printf("%d\n", a[i]);
+    }
+    return 0;
+}
+```
+
+#### What actually happens?
+
+- The program might read zeros.
+- The program might read garbage numbers (remnants from other programs).
+- The program might simply crash (**Segmentation Fault**).
+
+
+
+#### 👻 "Undefined Behavior" (UB)
+When you go out of bounds of an array, you enter the realm of **Undefined Behavior**. This means the compiler is allowed to do anything. Your code might work today and fail tomorrow, or work on your machine and crash on the server.
+
+#### 🎓 Note:
+The golden rule in C is: **Stay within the bounds!** C gives you the power to drive at 200km/h without a seatbelt; the brackets `[]` are not a protective barrier, they are just a map. If you go off-road, it's the driver's fault!
+
+#### 🧑‍💻 Remember:
+- In production code, this error can go unnoticed and become a serious **security vulnerability** (this is how many **hackers** exploit systems!).
+
+</details>
+
+---
+
+
 
 ---
 

@@ -1698,6 +1698,55 @@ Entender que `array[i]` é exatamente igual a `*(array + i)` é o que permite vo
 
 ---
 
+<details>
+<summary><b>🚨 Comportamento Indefinido (Seção 6.4)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-4)-COMPORTAMENTO-INDEFINIDO)
+
+---
+
+O C **não impede** você de acessar índices que não existem no seu array. Ele parte do princípio que você sabe exatamente o que está fazendo.
+
+#### 💣 O Exemplo do Desastre
+Se você tem um array de 5 elementos e tenta ler 10, o C continuará lendo a memória sequencialmente, tratando o que encontrar pela frente como se fosse parte do seu array.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a[5] = {22, 37, 3490, 18, 95};
+
+    for (i = 0; i < 10; i++) { // ERRO: Lendo 5 elementos a mais!
+        printf("%d\n", a[i]);
+    }
+    return 0;
+}
+```
+
+#### O que acontece na prática?
+
+- O programa pode ler zeros.
+
+- O programa pode ler números lixo (restos de outros programas).
+
+- O programa pode simplesmente travar (Crash/Segmentation Fault).
+
+#### 👻 O "Comportamento Indefinido" (Undefined Behavior)
+Quando sai dos limites de um array, entra-se no reino do Comportamento Indefinido. Isso significa que o compilador tem permissão para fazer qualquer coisa. Seu código pode funcionar hoje e falhar amanhã, ou funcionar na sua máquina e travar no servidor.
+
+#### 🎓 Nota:
+A regra de ouro no C é: **Mantenha-se dentro dos limites!** O C te dá o poder de dirigir a 200km/h sem cinto de segurança; os colchetes `[]` não são uma barreira de proteção, são apenas um mapa. Se você sair da estrada, a culpa é do motorista!
+
+#### Lembre-se:
+- No código final (produção), esse erro pode passar despercebido e se tornar uma **vulnerabilidade** de segurança grave (é assim que muitos **hackers** invadem sistemas!).
+
+</details>
+
+---
+
 
 
 ---
