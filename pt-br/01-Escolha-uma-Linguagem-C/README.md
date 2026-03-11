@@ -1747,6 +1747,55 @@ A regra de ouro no C é: **Mantenha-se dentro dos limites!** O C te dá o poder 
 
 ---
 
+<details>
+<summary><b>🗓️ Matrizes Multidimensionais (Seção 6.5)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-5)-MATRIZES-MULTIDIMENSIONAIS)
+
+---
+
+No C, você pode adicionar quantas dimensões desejar a um array. Uma matriz 2D é o uso mais comum, funcionando como uma tabela de linhas e colunas.
+
+#### 🏗️ Declaração e Memória
+Os valores são armazenados na memória em **ordem de linha** (*row-major order*). Isso significa que o primeiro índice indica a **linha** e o segundo a **coluna**.
+
+```c
+int a[10];          // 1D: Uma linha
+int b[2][7];       // 2D: 2 linhas e 7 colunas
+int c[4][5][6];    // 3D: Pense em um bloco ou cubo de dados
+```
+
+#### 🎯 Índices Designados em 2D:
+Assim como nos arrays simples, você pode inicializar posições específicas. Um exemplo clássico é a **Matriz Identidade**:
+
+```c
+// Cria uma matriz 3x3 com 1s na diagonal e 0s no resto
+int a[3][3] = {[0][0]=1, [1][1]=1, [2][2]=1};
+```
+
+#### 🔄 Percorrendo a Matriz:
+Para acessar todos os elementos, usamos loops aninhados (um `for` dentro de outro):
+
+```c
+for (row = 0; linha < 2; linha++) {
+    for (coluna = 0; coluna < 5; coluna++) {
+        printf("(%d,%d) = %d\n", linha, coluna, a[linha][coluna]);
+    }
+}
+```
+
+#### 🎓 Nota:
+Lembre-se da matemática que vimos antes! Se `a[5]` é `*(a + 5)`, uma matriz `a[2][5]` envolve uma conta um pouco mais complexa para o compilador achar o endereço: ele precisa pular a largura de uma linha inteira para chegar na próxima.
+
+- Um detalhe importante: quando trabalha com matrizes grandes, a ordem com que faz os loops (linha primeiro ou coluna primeiro) pode afetar a velocidade do seu programa por causa de como o processador lida com a memória (*cache*). No C, **sempre tente percorrer a linha primeiro** (o índice da direita mudando mais rápido), pois é assim que os dados estão encostados um no outro na memória física.
+
+</details>
+
+---
+
 
 
 ---

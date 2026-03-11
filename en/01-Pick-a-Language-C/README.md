@@ -1753,6 +1753,55 @@ The golden rule in C is: **Stay within the bounds!** C gives you the power to dr
 
 ---
 
+<details>
+<summary><b>🗓️ Multidimensional Arrays (Section 6.5)</b></summary>
+<br>
+
+---
+
+[Section 6.5 codes can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-5)-MULTIDIMENSIONAL-ARRAYS)
+
+---
+
+In C, you can add as many dimensions as you want to an array. A 2D array is the most common use case, functioning like a table of rows and columns.
+
+#### 🏗️ Declaration and Memory
+Values are stored in memory in **row-major order**. This means the first index indicates the **row** and the second one indicates the **column**.
+
+```c
+int a[10];          // 1D: A single row
+int b[2][7];       // 2D: 2 rows and 7 columns
+int c[4][5][6];    // 3D: Think of it as a block or cube of data
+```
+
+#### 🎯 Designated Initializers in 2D:
+Just like with simple arrays, you can initialize specific positions. A classic example is the **Identity Matrix**:
+
+```c
+// Creates a 3x3 matrix with 1s on the diagonal and 0s elsewhere
+int a[3][3] = {[0][0]=1, [1][1]=1, [2][2]=1};
+```
+
+#### 🔄 Iterating Through the Matrix:
+To access all elements, we use nested loops (one `for` inside another):
+
+```c
+for (int row = 0; row < 2; row++) {
+    for (int col = 0; col < 5; col++) {
+        printf("(%d,%d) = %d\n", row, col, a[row][col]);
+    }
+}
+```
+
+#### 🎓 Note:
+Remember the math we saw before! If `a[5]` is `*(a + 5)`, a 2D array `a[2][5]` involves a slightly more complex calculation for the compiler to find the address: it needs to skip the width of an entire row to reach the next one.
+
+- An important detail: when working with large matrices, the order in which you run the loops (row-first or column-first) can affect your program's speed because of how the processor handles memory (**cache**). In C, **always try to traverse by row first** (the rightmost index changing faster), as this is how the data is laid out side-by-side in physical memory.
+
+</details>
+
+---
+
 
 
 ---
