@@ -1802,8 +1802,90 @@ Remember the math we saw before! If `a[5]` is `*(a + 5)`, a 2D array `a[2][5]` i
 
 ---
 
+<details>
+<summary><b>🧩 Arrays and Pointers (Section 6.6 - Section 6.6.4)</b></summary>
+
+---
+
+[Code for Sections 6.6.0 - 6.6.4 can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-6)-ARRAYS-AND-POINTERS)
+
+---
+
+<details>
+<summary><b>🔗 The Hidden Connection (Section 6.6) </b></summary>
+<br>
+
+Up until now, we have treated arrays and pointers as different things, but the truth is: **arrays are pointers in disguise**. Understanding this relationship is the key to manipulating large volumes of data without destroying your program's performance.
+
+#### 🎭 The Great Identity
+In C, the name of an array is actually a pointer to its **first element**.
+When you use the array name without brackets, you are holding the memory address of where it begins.
+
+#### 📤 Passing Arrays to Functions
+When an array is passed to a function, C **does not copy** all the values of the array (this would be slow and consume a lot of memory). Instead, it passes only a pointer.
+
+* **What the function receives:** Only the starting address.
+* **What the function doesn't know:** It loses the sense of "size" (`sizeof`). This is why we almost always need to pass the size as a second argument.
+
+> **💡 What's coming up:** We will dive into the actual relationship between them, but the focus now is understanding how functions view this data and why they can modify the original array values.
+
+#### 🎓 Guidance:
+This is why if you change a value inside the function, it changes in the original array back in `main`. Since you passed the address (pointer), the function is working with the same memory that the original array occupies. It’s not a copy—it’s the real thing!
+
+</details>
+
+---
+
+<details>
+<summary><b>📍 Obtaining a Pointer to an Array (Section 6.6.1) </b></summary>
+<br>
+
+---
+
+[Code for Section 6.6.1 can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-6)-ARRAYS-AND-POINTERS/(SECTION-6-6-1)-POINTER-TO-AN-ARRAY)
+
+---
+
+In C, there is a fundamental secret: the name of the array is, by itself, a shortcut to the address of its first element.
+
+#### 🕵️ The Shortcut (Shorthand)
+Normally, to get the address of the first item, you would write `&a[0]`. But C allows you to use just the name of the array.
+
+```c
+int a[5] = {11, 22, 33, 44, 55};
+int *p;
+
+p = &a[0];  // Explicit form: p points to the first element
+p = a;      // PROFESSIONAL FORM: Exactly the same thing, but cleaner!
+
+printf("%d\n", *p);  // Output: 11
+```
+
+#### 🧩 The Direct Connection
+Notice that:
+
+- `p` is an `int*`.
+
+- `*p` gives us the value `11`.
+
+- `a[0]` also gives us the value `11`.
+
+This happens because, deep down, the `compiler` treats array access as access via `pointer`.
+
+#### 🎓 Note:
+This is the reason why we don't use the `&` operator when reading a string with `scanf("%s", my_string)`. Since the string is an array of chars, its name is already the address that `scanf` needs!
+
+#### 🛠️ Tip:
+Memorize this rule: **`a` is equal to `&a[0]`**. You will see this in 99% of professional C code. It is elegant, fast, and avoids the excessive use of symbols.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
