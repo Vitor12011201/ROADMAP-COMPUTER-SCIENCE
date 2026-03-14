@@ -2,15 +2,24 @@
 
 Repository dedicated to learning C focused on Computer Science fundamentals.
 
+---
+
 ## 🛠️ Development Environment
 - **OS:** Ubuntu Linux
 - **IDE:** CLion
 - **Compiler:** GCC
 
+---
+
 ## 🧠 C Philosophy (According to Beej's Guide)
 - **Low Level:** C is a language without "seatbelts." It allows you to interface directly with memory and hardware.
 - **Connectivity:** Learning C is the foundation for understanding Operating Systems and modern languages (C++, Rust, Go).
 - **The Challenge:** The concept of **Pointers** is identified as the main obstacle (memory addresses).
+
+---
+
+### 🗺️ Study Progress:
+<br>
 
 <details>
   <summary><b>🔹 Day 1: How to compile with GCC</b></summary>
@@ -1877,6 +1886,95 @@ This is the reason why we don't use the `&` operator when reading a string with 
 
 #### 🛠️ Tip:
 Memorize this rule: **`a` is equal to `&a[0]`**. You will see this in 99% of professional C code. It is elegant, fast, and avoids the excessive use of symbols.
+
+</details>
+
+---
+
+<details>
+<summary><b>📤 Passing One-Dimensional Arrays to Functions (Section 6.6.2)</b></summary>
+<br>
+
+---
+
+[Code for Section 6.6.2 can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-6)-ARRAYS-AND-POINTERS/(SECTION-6-6-2)-ONE-DIMENSIONAL-ARRAYS-FUNCTIONS)
+
+---
+
+When we pass an array to a function, C offers three ways to write the signature. **Important:** to the compiler, all three are identical and result in a pointer.
+
+#### 🎭 Three Sides of the Same Coin
+```c
+// 1. As a pointer (The most common and "honest" way)
+void times2(int *a, int len);
+
+// 2. Using empty array notation
+void times3(int a[], int len);
+
+// 3. Using array notation with size (C ignores the number 5!)
+void times4(int a[5], int len);
+```
+
+#### 🧐 The Great "Lie" of a[5]:
+You might think that `void times4(int a[5], int len)` forces the array to have a size of 5, but it doesn't. The compiler ignores the number inside the brackets in the function signature. It treats it simply as a pointer to the first element.
+
+#### 📏 The Golden Rule: Always pass the `len` (Size)
+Since the function receives only a pointer (the starting address), it has no way of knowing where the array ends. Therefore, we almost always pass a separate variable (usually called `len`, `size`, or `qty`) to provide the size information.
+
+#### 🎓 Note:
+Preferably use `int *a`. This makes it clear to anyone reading your code that you are dealing with a memory address and that the size needs to be managed manually.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Modifying Arrays in Functions (Section 6.6.3)</b></summary>
+<br>
+
+---
+
+[Code for Section 6.6.3 can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-6)-ARRAYS-AND-POINTERS/(SECTION-6-6-3)-MODIFYING-ARRAYS-IN-FUNCTIONS)
+
+---
+
+Unlike regular variables (such as a simple `int`), when you pass an array to a function, you are passing the "map" to the original data.
+
+#### 🛠️ The Side Effect
+If the function modifies the array elements using the received pointer, those changes will be reflected directly in the original array (in `main`, for example). This happens because both the original array name and the function parameter point to the **same place in memory**.
+
+
+
+```c
+#include <stdio.h>
+
+void double_array(int *a, int len) {
+    for (int i = 0; i < len; i++)
+        a[i] *= 2; // Modifies the value directly in the original memory!
+}
+
+int main(void) {
+    int x[5] = {1, 2, 3, 4, 5};
+    double_array(x, 5);
+
+    for (int i = 0; i < 5; i++)
+        printf("%d ", x[i]);  // Output: 2 4 6 8 10!
+}
+```
+
+#### 🤯 Array Notation on Pointers:
+Even if the parameter is a pointer (`int *a`), we use `a[i]` to access the data.
+
+- In C, you can use brackets on pointers and pointer arithmetic on arrays. They are interchangeable in this context!
+
+#### 🎓 Note:
+This is excellent for performance, as you don't waste time copying 1 million items into a function. You simply tell the function where the list starts. But be careful: if you don't want the function to modify your array, you should use the `const` keyword (we'll see that later).
+
+#### 🎓 Guidance:
+This is the main difference:
+1.  Passing an `int x`: C creates a **copy**. The function modifies the copy, and the original remains safe. (**Pass by Value**)
+2.  Passing an `int x[]`: C passes the **address**. The function modifies the original. (**Pass by Reference**)
+3.  Passing an `int x*`: C also passes the **address**. The function modifies the original. (**Pass by Reference**)
 
 </details>
 

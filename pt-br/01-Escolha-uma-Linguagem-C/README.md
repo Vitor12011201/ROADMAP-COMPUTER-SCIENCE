@@ -2,15 +2,24 @@
 
 Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da Computação.
 
+---
+
 ## 🛠️ Ambiente de Desenvolvimento
 - **SO:** Ubuntu Linux
 - **IDE:** CLion
 - **Compilador:** GCC
 
+---
+
 ## 🧠 Filosofia do C (Segundo o Guia do Beej)
 - **Baixo Nível:** C é uma linguagem sem "cinto de segurança". Ela permite interfacear diretamente com a memória e o hardware.
 - **Conectividade:** Aprender C é a base para entender Sistemas Operacionais e linguagens modernas (C++, Rust, Go).
 - **O Desafio:** O conceito de **Ponteiros** é identificado como o principal obstáculo (endereços de memória).
+
+---
+
+### 🗺️ Progresso de Estudos:
+<br>
 
 <details>
   <summary><b>🔹 Dia 1: Como compilar com o GCC</b></summary>
@@ -1872,6 +1881,93 @@ Essa é a razão pela qual não usamos `&` quando vamos ler uma string com `scan
 
 #### 🛠️ Dica:
 Grave bem essa regra: **`a` é igual a `&a[0]`**. Você verá isso em 99% dos códigos profissionais em C. É elegante, rápido e evita o uso excessivo de símbolos.
+
+</details>
+
+---
+
+<details>
+<summary><b>📤 Passando Arrays Unidimensionais para Funções(Seção 6.6.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.6.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-6)-ARRAYS-E-PONTEIROS/(SECAO-6-6-2)-ARRAYS-UNIDIMENCIONAIS-FUNCOES)
+
+---
+
+Quando passamos um array para uma função, o C oferece três formas de escrever a assinatura. **Importante:** para o compilador, todas as três são idênticas e resultam em um ponteiro.
+
+#### 🎭 As Três Faces da Mesma Moeda
+```c
+// 1. Como um ponteiro (A mais comum e "honesta")
+void times2(int *a, int len);
+
+// 2. Usando notação de array vazia
+void times3(int a[], int len);
+
+// 3. Usando notação de array com tamanho (O C ignora o número 5!)
+void times4(int a[5], int len);
+```
+
+#### 🧐 A Grande "Mentira" do a[5]:
+Você pode achar que `void times4(int a[5], int len)` obriga o array a ter tamanho 5, mas não. O compilador ignora o número dentro dos colchetes na assinatura da função. Ele trata apenas como um ponteiro para o primeiro elemento.
+
+#### 📏 A Regra de Ouro: Sempre passe o `len/Tamanho`
+Como a função recebe apenas um ponteiro (o endereço inicial), ela não tem como saber onde o array termina. Por isso, quase sempre passamos uma variável separada (geralmente chamada de `len` , `size`  ou `tamanho`) para informar o tamanho.
+
+#### 🎓 Nota:
+Use preferencialmente `int *a`. Isso deixa claro para quem lê seu código que você está lidando com um endereço de memória e que o tamanho precisa ser gerenciado manualmente.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Alterando Arrays em Funções (Seção 6.6.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 6.6.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-6)-ARRAYS-E-PONTEIROS/(SECAO-6-6-3)-ALTERANDO-ARRAYS-EM-FUNCOES)
+
+---
+
+Diferente de variáveis comuns (como um `int` simples), quando você passa um array para uma função, você está passando o "mapa" para os dados originais.
+
+#### 🛠️ O Efeito Colateral
+Se a função alterar os elementos do array usando o ponteiro recebido, essas mudanças serão refletidas diretamente no array original (na `main`, por exemplo). Isso acontece porque tanto o nome do array original quanto o parâmetro da função apontam para o **mesmo lugar na memória**.
+
+```c
+#include <stdio.h>
+
+void dobrar_array(int *a, int len) {
+    for (int i = 0; i < len; i++)
+        a[i] *= 2; // Altera o valor diretamente na memória original!
+}
+
+int main(void) {
+    int x[5] = {1, 2, 3, 4, 5};
+    dobrar_array(x, 5);
+
+    for (int i = 0; i < 5; i++)
+        printf("%d ", x[i]);  // Saída: 2, 4, 6, 8, 10!
+}
+```
+
+#### 🤯 Notação de Array em Ponteiros:
+Mesmo que o parâmetro seja um ponteiro (`int *a`), nós usamos `a[i]` para acessar os dados.
+
+- No C, você pode usar colchetes em ponteiros e aritmética de ponteiros em arrays. Eles são intercambiáveis nesse contexto!
+
+#### 🎓 Nota:
+Isso é excelente para performance, pois você não perde tempo copiando 1 milhão de itens para dentro de uma função. Você apenas diz à função onde a lista começa. Mas cuidado: se você não quiser que a função altere seu array, você deve usar a palavra-chave `const` (veremos isso mais adiante).
+
+#### 🎓 Orientação:
+Essa é a grande diferença:
+1.  Passar um `int x`: O C cria uma **cópia**. A função mexe na cópia e o original fica seguro. (**Passagem por Valor**)
+2.  Passar um `int x[]`: O C passa o **endereço**. A função mexe no original. (**Passagem por Referencia**)
+3.  Passar um `int x*`: O C tambem passa o **endereço**. A função mexe no original. (**Passagem por Referencia**)
 
 </details>
 
