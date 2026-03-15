@@ -1027,7 +1027,7 @@ int foo(void) { // Actual function definition
 #### 🎓 Note:
 In the old days (C89 standard), you could call functions without warning, and C would try to "guess" what they did (known as implicit declaration). Today, this is either forbidden or triggers serious warnings. Always use prototypes to keep your code legitimate and professional!
 
-#### 🎓 Guidance:
+#### 🧭 Guidance:
 Think of prototypes as **a book's Table of Contents**. You read the table of contents to know which chapters exist before reading the actual content. In C, prototypes at the top of the file provide an overview of everything the program is capable of doing.
 
 **Technical Tip: In a prototype**, you don't even need to include the variable names, only the types.
@@ -1970,7 +1970,7 @@ Even if the parameter is a pointer (`int *a`), we use `a[i]` to access the data.
 #### 🎓 Note:
 This is excellent for performance, as you don't waste time copying 1 million items into a function. You simply tell the function where the list starts. But be careful: if you don't want the function to modify your array, you should use the `const` keyword (we'll see that later).
 
-#### 🎓 Guidance:
+#### 🧭 Guidance:
 This is the main difference:
 1.  Passing an `int x`: C creates a **copy**. The function modifies the copy, and the original remains safe. (**Pass by Value**)
 2.  Passing an `int x[]`: C passes the **address**. The function modifies the original. (**Pass by Reference**)
@@ -1980,10 +1980,78 @@ This is the main difference:
 
 ---
 
+<details>
+<summary><b>📐 Passing Matrices to Functions (Section 6.6.4)</b></summary>
+<br>
+
+---
+
+[Code for Section 6.6.4 can be found here](./CODE_BY_DAY/DAY_006/(SECTION-6-6)-ARRAYS-AND-POINTERS/(SECTION-6-6-4)-PASSING-MULTIDIMENSIONAL-ARRAYS-TO-FUNCTIONS)
+
+---
+
+When passing multidimensional arrays to functions, the rules change slightly. C requires you to specify **all dimensions except the first one**.
+
+#### 🧩 The Need for Columns
+The compiler needs to know the column size to calculate the memory offset. Without knowing where a row ends, it cannot find the beginning of the next one.
+
+
+
+```c
+#include <stdio.h>
+
+// MANDATORY: Define at least the second dimension [3]
+void print_2D_array(int a[][3]) { 
+    for (int row = 0; row < 2; row++) {
+        for (int col = 0; col < 3; col++)
+            printf("%d ", a[row][col]);
+        printf("\n");
+    }
+}
+
+int main(void) {
+    int x[2][3] = { {1, 2, 3}, {4, 5, 6} };
+    print_2D_array(x);
+}
+```
+
+#### 🎭 Equivalent Signatures
+To the compiler, these two ways of declaring the parameter are identical:
+
+1. `void func(int a[2][3])`
+
+2. `void func(int a[][3])` (The most flexible and common one)
+
+#### 🔍 Why does this happen?
+Since computer memory is a straight line, the compiler needs the second dimension to calculate the "jump" required to change rows. Without knowing the number of columns, C doesn't know where one row ends and the other begins.
+
+
+
+#### ⚠️ Vital Reminder: No Seatbelts
+As always in C, there is no bounds checking at runtime. If you try to access `a[5][10]` in a `3x3` matrix, C will attempt to read that memory, and you will encounter the dreaded Undefined Behavior.
+
+#### 🎓 Note:
+Think of the matrix as a building. For C to take you to "apartment 201", it needs to know how many apartments exist per floor. If you don't provide this in the function, it won't know how many "floors" of memory it needs to skip!
+
+</details>
+
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 7: Strings </b></summary>
+
+---
+
 
 
 ---
 
 </details>
 
-</details>
+
+
+

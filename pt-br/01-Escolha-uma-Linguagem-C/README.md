@@ -1014,7 +1014,7 @@ int foo(void) { // Definição real da função
 #### 🎓 Nota:
 Antigamente (no padrão C89), você podia chamar funções sem avisar, e o C tentava "adivinhar" o que elas faziam (chamado de declaração implícita). Hoje isso é proibido ou gera avisos graves. Sempre use protótipos para manter seu código legítimo e profissional!
 
-#### 🎓 Orientação:
+#### 🧭 Orientação:
 Pense nos protótipos como o **Sumário** de um livro. Você lê o sumário para saber quais capítulos existem antes de começar a ler o conteúdo. No C, os protótipos no topo do arquivo dão uma visão geral de tudo o que o programa é capaz de fazer.
 
 **Dica técnica:** No protótipo, você nem precisa colocar o nome da variável, apenas o tipo.
@@ -1973,10 +1973,70 @@ Essa é a grande diferença:
 
 ---
 
-
+<details>
+<summary><b>📐 Passando Matrizes para Funções(Seção 6.6.4)</b></summary>
+<br>
 
 ---
 
+[Codigos da Seção 6.6.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_006/(SECAO-6-6)-ARRAYS-E-PONTEIROS/(SECAO-6-6-4)-PASSANDO-MATRIZES-PARA-FUNCOES)
+
+---
+
+Ao passar arrays multidimensionais para funções, as regras mudam um pouco. O C exige que você informe **todas as dimensões, exceto a primeira**.
+
+#### 🧩 A Necessidade das Colunas
+O compilador precisa saber o tamanho das colunas para calcular o deslocamento na memória. Sem saber onde termina uma linha, ele não consegue encontrar o início da próxima.
+
+```c
+#include <stdio.h>
+
+// OBRIGATÓRIO: Definir pelo menos a segunda dimensão [3]
+void print_2D_array(int a[][3]) { 
+    for (int row = 0; row < 2; row++) {
+        for (int col = 0; col < 3; col++)
+            printf("%d ", a[row][col]);
+        printf("\n");
+    }
+}
+
+int main(void) {
+    int x[2][3] = { {1, 2, 3}, {4, 5, 6} };
+    print_2D_array(x);
+}
+```
+
+#### 🎭 Assinaturas Equivalentes
+Para o compilador, estas duas formas de declarar o parâmetro são idênticas:
+
+1. `void func(int a[2][3])`
+
+2. `void func(int a[][3])` (A mais flexível e comum)
+
+#### 🔍 Por que isso acontece?
+Como a memória do computador é uma linha reta, o compilador precisa da segunda dimensão para calcular o "pulo" necessário para mudar de linha. Sem saber o número de colunas, o C não sabe onde uma linha termina e a outra começa.
+
+#### ⚠️ Lembrete Vital: Sem Cinto de Segurança
+Como sempre em C, não há checagem de limites em tempo de execução. Se você tentar acessar `a[5][10]` em uma matriz `3x3`, o C vai tentar ler essa memória e você terá o temido Comportamento Indefinido.
+
+#### 🎓 Nota:
+Pense na matriz como um prédio. Para o C te levar ao "apartamento 201", ele precisa saber quantos apartamentos existem por andar. Se você não disser isso na função, ele não sabe quantos "andares" de memória precisa pular!
+
 </details>
+
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 7: Strings </b></summary>
+
+---
+
+
+
+---
 
 </details>
