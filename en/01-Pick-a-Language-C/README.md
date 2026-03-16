@@ -2046,6 +2046,38 @@ Think of the matrix as a building. For C to take you to "apartment 201", it need
 
 ---
 
+[Day 7 codes can be found here](./CODE_BY_DAY/DAY_007)
+
+---
+
+<details>
+<summary><b>🧵 Strings: The Great Lie (Section 7.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.0 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-0)-STRINGS-THE-GREAT-LIE)
+
+---
+
+If you think Strings in C are a nice, neat data type like in other languages, you're mistaken!
+The harsh reality is: **Strings do not exist.** They are just pointers and character arrays pretending to be something more.
+
+### 🎭 What is happening under the hood?
+Remember everything we've seen about arrays and pointers so far?
+Well, strings are just a direct application of those concepts.
+
+* **Pointers again:** When you write a text, C hands you the address of the first letter, and that's it.
+* **Almost invisible:** In C, strings barely have a "body" of their own; they are just a sequence of `char` in memory.
+
+
+### 💡 What you need to understand:
+The only thing that separates a jumble of random letters from a "respectable" string that `printf` can read is the **null terminator (`\0`)**. Without this invisible "period," C won't stop reading memory until it hits an error or crashes the program.
+
+</details>
+
+---
+
 
 
 ---

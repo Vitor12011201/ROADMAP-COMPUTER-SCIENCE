@@ -2035,6 +2035,39 @@ Pense na matriz como um prédio. Para o C te levar ao "apartamento 201", ele pre
 
 ---
 
+[Codigos do dia 7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007)
+
+---
+
+<details>
+<summary><b>🧵 Strings: A Grande Mentira (Seção 7.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-0)-STRINGS-GRANDE-MENTIRA)
+
+---
+
+Se você acha que String no C é um tipo de dado bonitinho como em outras linguagens, se preparou errado!
+Aqui a real é curta e grossa: **Strings não existem.** Elas são apenas ponteiros e arrays de caracteres fingindo ser algo mais.
+
+### 🎭 O que está acontecendo por baixo do capô?
+Sabe tudo o que a gente viu sobre arrays e ponteiros até agora?
+Pois é, as strings são só uma aplicação direta disso.
+
+* **Ponteiros de novo:** Quando você escreve um texto, o C te entrega o endereço da primeira letra e pronto.
+* **Quase invisíveis:** No C, as strings mal têm "corpo" próprio; elas são apenas uma sequência de `char` na memória.
+
+
+
+### 💡 O que você precisa sacar:
+A única coisa que separa um amontoado de letras aleatórias de uma string "respeitável" que o `printf` consegue ler é o **terminador nulo (`\0`)**. Sem esse "ponto final" invisível, o C não para de ler a memória até encontrar um erro ou explodir o programa.
+
+</details>
+
+---
+
 
 
 ---
