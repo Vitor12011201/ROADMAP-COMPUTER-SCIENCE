@@ -9,31 +9,31 @@ Welcome to my C language learning repository! This project organizes my evolutio
 
 ## 📂 Repository Organization
 
-### [01-fundamentals](./01-Fundamentals(Exercises))
+### [01-Fundamentals](./01-Fundamentals(Exercises))
 **What you will find here:**
 The foundation of my journey. Exercises demonstrating mastery of the language's essential syntax.
 * **Skills:** Variable manipulation (`int`, `float`), data input/output (`scanf`/`printf`), arithmetic operators, and conditional structures (`if`, `else if`, `else`).
 * **Highlight:** Parity verification and proportionality calculation exercises.
 
-### [02-functions](./02-Functions(Exercises))
+### [02-Functions](./02-Functions(Exercises))
 **What you will find here:**
 The transition from sequential code to modular programming.
 * **Skills:** Creating custom functions, parameter passing, return values, and the Single Responsibility Principle.
 * **Highlight:** Functions encapsulating comparison logic and sign verification.
 
-### [03-simulations](./03-Simulations(Exercises))
+### [03-Simulations](./03-Simulations(Exercises))
 **What you will find here:**
 Applications utilizing system resources and non-deterministic logic.
 * **Skills:** System libraries (`time.h`, `stdlib.h`), pseudo-random number generation (`rand`, `srand`), and real-time event simulation.
 * **Highlight:** Randomness tests and scoreboard simulators.
 
-### [04-pointers](./04-Pointers(Exercises))
+### [04-Pointers](./04-Pointers(Exercises))
 **What you will find here:**
 Exploring C's "superpower": the direct manipulation of memory addresses.
 * **Skills:** Understanding addresses (`&`), dereference operators (`*`), pointer arithmetic, passing parameters by reference, and the intrinsic relationship between pointers and arrays.
 * **Highlight:** Implementations of value swapping (`swap`) and functions that modify multiple variables simultaneously via memory.
 
-### [05-arrays-and-strings](./05-Arrays-And-Strings(Exercises))
+### [05-Arrays](./05-Arrays(Exercises))
 **What you will find here:**
 Data collection management and memory handling.
 * **Skills:** One-dimensional arrays (numeric arrays), matrices (string arrays), loops (`for`), extreme value searching (min/max), and statistical calculations applied to lists.
