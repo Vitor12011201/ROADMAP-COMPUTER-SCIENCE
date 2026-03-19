@@ -1,6 +1,8 @@
 ## ⚡ Daily Challenges (Off-Roadmap)
 Beyond theoretical study, I complete one practical exercise per day to strengthen my logic.
 
+---
+
 # 🚀 My C Programming Study Portfolio
 
 Welcome to my C language learning repository! This project organizes my evolution from basic logic to data structures and complex simulations. Each folder is structured to demonstrate the specific skills I have been developing.
@@ -38,6 +40,13 @@ Exploring C's "superpower": the direct manipulation of memory addresses.
 Data collection management and memory handling.
 * **Skills:** One-dimensional arrays (numeric arrays), matrices (string arrays), loops (`for`), extreme value searching (min/max), and statistical calculations applied to lists.
 * **Highlight:** Full number analyzer and the name registration system using character matrices.
+
+### [06-Strings](./06-Strings(Exercises))
+
+**What you will find here:**
+Text manipulation and character processing in the C language.
+* **Skills:** Use of character arrays (`char[]`), string manipulation (`strlen`, `strcpy`, `strcat`, `strcmp`), reading strings with `fgets`, handling special characters (`\n`, `\0`), and iterating through strings with loops.
+* **Highlights:** Text validation systems, word comparison, and full string manipulators (such as reversing, character counting, and input normalization).
 
 ---
 

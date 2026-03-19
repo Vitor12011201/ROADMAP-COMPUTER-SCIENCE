@@ -2078,6 +2078,85 @@ The only thing that separates a jumble of random letters from a "respectable" st
 
 ---
 
+<details>
+<summary><b>📝 String Literals (Section 7.1)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.1 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-1)-STRING-LITERALS)
+
+---
+
+Before you start declaring variables, you need to understand what a **String Literal** is. Basically, it is any sequence of characters enclosed in **double quotes (`"`)**.
+
+> **⚠️ Crucial Difference:**
+> * **Single Quotes (`'A'`):** Enclose a single character (they are a completely different beast).
+> * **Double Quotes (`"Hello"`):** Enclose a string literal.
+
+#### 🕵️ Literal Examples
+| Example | What's going on? |
+| :--- | :--- |
+| `"Hello, world!\n"` | Has a `\n` at the end for a line break. Very common. |
+| `"This is a test"` | A simple string, no frills. |
+| `"She said: \"Hi.\""` | Uses the backslash (`\`) to put quotes inside the text. |
+
+#### 🛠️ The Backslash Trick (`\`)
+The C compiler needs some help not to get confused. If you want a quote to appear **inside** your text, you need to "escape" it by using a backslash before it.
+
+* **`\"`**: Tells C: "This is just a quote character, not the end of the string!".
+* **`\n`**: Tells C: "Break the line and move to the next one here".
+
+Without this escape character (`\`), C would think the string ended at the first quote it encountered, and the rest of your code would throw a massive error.
+
+---
+
+> **🎓 Memory Insight:**
+> Behind each of these literals, C is reserving a contiguous space in memory to store each letter, one next to the other. In the next topics, I will show how we access this using variables.
+
+</details>
+
+---
+
+<details>
+<summary><b>📦 String Variables (Section 7.2)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.2 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-2)-STRING-VARIABLES)
+
+---
+
+Now that we know how to create the text (the literal), we need a place to store it and use it later. In C, we do this using a **pointer to `char`**.
+
+```c
+char *s = "Hello, world!";
+```
+
+#### 🕵️ What's happening in memory?
+Take a look at the variable type: `char *`. That's right, a pointer.
+- The variable `s` does not contain the entire phrase.
+- It only stores the `address of the first character`, which in this case is `'H'`.
+
+#### 🖨️ How to print to the screen?
+To show the full string in `printf`, we use the format specifier `%s` (s for string).
+
+```c
+char *s = "Hello, world!";
+printf("%s\n", s);  // Output: Hello, world!
+```
+
+The `printf` function is smart: it takes the pointer `s`, goes to the address of 'H', and prints letter by letter until it finds that invisible character (`\0`) that signals the party is over.
+
+
+
+> **💡 Developer Insight:** Working with `char *` is very efficient because you only move a memory address (usually 8 bytes), regardless of whether your string has 10 or 10,000 letters.
+
+</details>
+
+---
+
 
 
 ---

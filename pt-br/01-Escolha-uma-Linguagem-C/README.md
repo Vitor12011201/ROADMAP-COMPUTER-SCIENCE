@@ -2068,6 +2068,83 @@ A única coisa que separa um amontoado de letras aleatórias de uma string "resp
 
 ---
 
+<details>
+<summary><b>📝 Literais de String (Seção 7.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-1)-LITERAIS-DE-STRING)
+
+---
+
+Antes de sair declarando variáveis, você tem que entender o que é um **Literal de String**. Basicamente, é qualquer sequência de caracteres entre **aspas duplas (`"`)**.
+
+> **⚠️ Diferença Crucial:** > * **Aspas Simples (`'A'`):** Enclausuram um único caractere (são um bicho totalmente diferente).
+> * **Aspas Duplas (`"Olá"`):** Enclausuram uma String literal.
+
+#### 🕵️ Exemplos de Literais
+| Exemplo | O que está rolando? |
+| :--- | :--- |
+| `"Hello, world!\n"` | Tem um `\n` no final para pular linha. Muito comum. |
+| `"Isso é um teste"` | Uma string simples, sem firulas. |
+| `"Ela disse: \"Oi.\""` | Usa a barra invertida (`\`) para colocar aspas dentro do texto. |
+
+
+
+#### 🛠️ O Truque da Barra Invertida (`\`)
+O compilador do C precisa de uma ajuda para não se confundir. Se você quer que uma aspa apareça **dentro** do seu texto, você precisa "escapar" ela usando uma barra invertida antes.
+
+* **`\"`**: Diz ao C: "Isso é apenas um caractere de aspa, não é o fim da string!".
+* **`\n`**: Diz ao C: "Pule para a próxima linha aqui".
+
+Sem esse caractere de escape (`\`), o C acharia que a string terminou na primeira aspa que encontrasse, e o resto do seu código daria um erro gigante.
+
+---
+
+> **🎓 Insight de Memória:** > Por trás de cada literal desses, o C está reservando um espaço contínuo na memória para guardar cada letra, uma do lado da outra. Nos próximos tópicos, vou mostrar como a gente acessa isso usando variáveis.
+
+</details>
+
+---
+
+<details>
+<summary><b>📦 Variáveis de String (Seção 7.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-2)-VARIAVEIS-DE-STRING)
+
+---
+
+Agora que já sabemos criar o texto (o literal), precisamos de um lugar para guardar ele e usar depois. No C, a gente faz isso usando um **ponteiro para `char`**.
+
+```c
+char *s = "Hello, world!";
+```
+
+#### 🕵️ O que está rolando na memória?
+Olha só o tipo da variável: `char *`. Isso mesmo, um ponteiro.
+- A variável `s` não contém a frase inteira.
+- Ela guarda apenas o `endereço do primeiro caractere`, que nesse caso é o `'H'`.
+
+#### 🖨️ Como imprimir na tela?
+Para mostrar a string completa no `printf`, usamos o especificador de formato `%s` (s de string).
+
+```c
+char *s = "Hello, world!";
+printf("%s\n", s);  // Saída: Hello, world!
+```
+O `printf` é inteligente: ele pega o ponteiro `s`, vai até o endereço do 'H' e sai imprimindo letra por letra até encontrar o tal do caractere invisível (`\0`) que avisa que a festa acabou.
+
+
+> **💡 Insight do Desenvolvedor:** Trabalhar com `char` * é muito eficiente porque você só movimenta um endereço de memória (geralmente 8 bytes), não importa se a sua string tem 10 ou 10.000 letras.
+
+</details>
+
+---
+
 
 
 ---

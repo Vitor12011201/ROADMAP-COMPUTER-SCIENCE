@@ -1,6 +1,8 @@
 ## ⚡ Desafios Diários (Fora do Roadmap)
 Além do estudo teórico, eu realizo um exercício prático por dia para fortalecer a lógica.
 
+---
+
 # 🚀 Meu Portfólio de Estudos em C
 
 Bem-vindo ao meu repositório de aprendizado de Linguagem C! Este projeto organiza minha evolução desde a lógica básica até estruturas de dados e simulações complexas. Cada pasta foi estruturada para demonstrar competências específicas que venho desenvolvendo.
@@ -38,6 +40,12 @@ A exploração do "superpoder" da linguagem C: a manipulação direta de endere�
 Gerenciamento de coleções de dados e manipulação de memória.
 * **Competências:** Vetores unidimensionais (arrays de números), matrizes (arrays de strings), laços de repetição (`for`), busca de valores extremos (máximo e mínimo) e cálculos estatísticos aplicados a listas.
 * **Destaque:** O analisador completo de números e o sistema de cadastro de nomes em matrizes de caracteres.
+
+### [06-Strings](./06-Strings(Exercicios))
+**O que encontrará aqui:**
+Manipulação de texto e processamento de caracteres na linguagem C.
+* **Competências:** Uso de arrays de caracteres (`char[]`), manipulação de strings (`strlen`, `strcpy`, `strcat`, `strcmp`), leitura de strings com `fgets`, tratamento de caracteres especiais (`\n`, `\0`) e percorrer strings com loops.
+* **Destaque:** Sistemas de validação de texto, comparação de palavras e manipuladores completos de strings (como inversão, contagem de caracteres e normalização de entrada).
 
 ---
 
