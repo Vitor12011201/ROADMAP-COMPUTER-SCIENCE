@@ -2063,7 +2063,7 @@ Think of the matrix as a building. For C to take you to "apartment 201", it need
 If you think Strings in C are a nice, neat data type like in other languages, you're mistaken!
 The harsh reality is: **Strings do not exist.** They are just pointers and character arrays pretending to be something more.
 
-### 🎭 What is happening under the hood?
+#### 🎭 What is happening under the hood?
 Remember everything we've seen about arrays and pointers so far?
 Well, strings are just a direct application of those concepts.
 
@@ -2071,7 +2071,7 @@ Well, strings are just a direct application of those concepts.
 * **Almost invisible:** In C, strings barely have a "body" of their own; they are just a sequence of `char` in memory.
 
 
-### 💡 What you need to understand:
+#### 🎓 Note:
 The only thing that separates a jumble of random letters from a "respectable" string that `printf` can read is the **null terminator (`\0`)**. Without this invisible "period," C won't stop reading memory until it hits an error or crashes the program.
 
 </details>
@@ -2108,8 +2108,6 @@ The C compiler needs some help not to get confused. If you want a quote to appea
 * **`\n`**: Tells C: "Break the line and move to the next one here".
 
 Without this escape character (`\`), C would think the string ended at the first quote it encountered, and the rest of your code would throw a massive error.
-
----
 
 > **🎓 Memory Insight:**
 > Behind each of these literals, C is reserving a contiguous space in memory to store each letter, one next to the other. In the next topics, I will show how we access this using variables.
@@ -2151,7 +2149,61 @@ The `printf` function is smart: it takes the pointer `s`, goes to the address of
 
 
 
-> **💡 Developer Insight:** Working with `char *` is very efficient because you only move a memory address (usually 8 bytes), regardless of whether your string has 10 or 10,000 letters.
+> **💡 Developer Insight:**
+> Working with `char *` is very efficient because you only move a memory address (usually 8 bytes), regardless of whether your string has 10 or 10,000 letters.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔤 String Variables as Arrays (Section 7.3)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.3 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-3)-STRING-VARIABLES-AS-ARRAYS)
+
+---
+
+If you don't want to use pointers directly, C gives you another option: declaring the string as a **char array**. In practice, the result looks the same, but the flexibility changes.
+
+```c
+char s[14] = "Hello, world!"; 
+
+// Or the "lazy" way (letting the compiler do the counting):
+char s[] = "Hello, world!";
+```
+
+#### 🔢 Accessing as an Array:
+Since the string is now an array, I can use square brackets `[]` to access each individual letter. To print letter by letter, we use the `%c` format specifier (for character).
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char s[] = "Hello, world!";
+    
+    for (int i = 0; i < 13; i++)
+        printf("%c", s[i]); // Prints one character at a time
+    
+    printf("\n");
+}
+```
+
+#### 🤯 The "Equivalence" Magic:
+What’s bizarre (but makes total sense in C) is that if I swap `char s[]` for `char *s`, the code above **still works perfectly**.
+
+```c
+char *s = "Hello, world!";
+printf("%c", s[i]); // It works! Even though it's a pointer.
+```
+
+#### 💡 Developer Insight:
+This is further proof that, deep down, **arrays and pointers are the same thing**. The `[]` is just a friendlier way of performing pointer arithmetic.
+
+> **⚠️ Security Spoiler:**
+> Although they look the same, there is a huge difference: if you declare it as an array (`char s[]`), you can change the letters. If you declare it as a pointer (`char *s`), C places it in a read-only area of memory. If you try to change a letter via the pointer, the program crashes!
 
 </details>
 

@@ -2052,7 +2052,7 @@ Pense na matriz como um prédio. Para o C te levar ao "apartamento 201", ele pre
 Se você acha que String no C é um tipo de dado bonitinho como em outras linguagens, se preparou errado!
 Aqui a real é curta e grossa: **Strings não existem.** Elas são apenas ponteiros e arrays de caracteres fingindo ser algo mais.
 
-### 🎭 O que está acontecendo por baixo do capô?
+#### 🎭 O que está acontecendo por baixo do capô?
 Sabe tudo o que a gente viu sobre arrays e ponteiros até agora?
 Pois é, as strings são só uma aplicação direta disso.
 
@@ -2061,7 +2061,7 @@ Pois é, as strings são só uma aplicação direta disso.
 
 
 
-### 💡 O que você precisa sacar:
+#### 🎓 Nota:
 A única coisa que separa um amontoado de letras aleatórias de uma string "respeitável" que o `printf` consegue ler é o **terminador nulo (`\0`)**. Sem esse "ponto final" invisível, o C não para de ler a memória até encontrar um erro ou explodir o programa.
 
 </details>
@@ -2100,9 +2100,9 @@ O compilador do C precisa de uma ajuda para não se confundir. Se você quer que
 
 Sem esse caractere de escape (`\`), o C acharia que a string terminou na primeira aspa que encontrasse, e o resto do seu código daria um erro gigante.
 
----
 
-> **🎓 Insight de Memória:** > Por trás de cada literal desses, o C está reservando um espaço contínuo na memória para guardar cada letra, uma do lado da outra. Nos próximos tópicos, vou mostrar como a gente acessa isso usando variáveis.
+> **🎓 Insight de Memória:**
+> Por trás de cada literal desses, o C está reservando um espaço contínuo na memória para guardar cada letra, uma do lado da outra. Nos próximos tópicos, vou mostrar como a gente acessa isso usando variáveis.
 
 </details>
 
@@ -2139,7 +2139,61 @@ printf("%s\n", s);  // Saída: Hello, world!
 O `printf` é inteligente: ele pega o ponteiro `s`, vai até o endereço do 'H' e sai imprimindo letra por letra até encontrar o tal do caractere invisível (`\0`) que avisa que a festa acabou.
 
 
-> **💡 Insight do Desenvolvedor:** Trabalhar com `char` * é muito eficiente porque você só movimenta um endereço de memória (geralmente 8 bytes), não importa se a sua string tem 10 ou 10.000 letras.
+> **💡 Insight do Desenvolvedor:** 
+> Trabalhar com `char` * é muito eficiente porque você só movimenta um endereço de memória (geralmente 8 bytes), não importa se a sua string tem 10 ou 10.000 letras.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔤 Variáveis de String como Arrays (Seção 7.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-3)-VARIAVEIS-STRING-COMO-ARRAYS)
+
+---
+
+Se você não quiser usar ponteiros diretamente, o C te dá outra opção: declarar a string como um **array de chars**. Na prática, o resultado parece o mesmo, mas a flexibilidade muda.
+
+```c
+char s[14] = "Hello, world!"; 
+
+// Ou do jeito "preguiçoso" (deixando o compilador contar):
+char s[] = "Hello, world!";
+```
+
+#### 🔢 Acessando como Array:
+Como agora a string é um array, eu posso usar os colchetes `[]` para pegar cada letra individualmente. Para imprimir letra por letra, usamos o especificador `%c` (de character).
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char s[] = "Hello, world!";
+    
+    for (int i = 0; i < 13; i++)
+        printf("%c", s[i]); // Imprime um caractere por vez
+    
+    printf("\n");
+}
+```
+
+#### 🤯 A "Mágica" da Equivalência:
+O que é bizarro (mas faz todo sentido em C) é que se eu trocar `char s[]` por `char *s`, o código acima **continua funcionando perfeitamente**.
+
+```c
+char *s = "Hello, world!";
+printf("%c", s[i]); // Funciona! Mesmo sendo um ponteiro.
+```
+
+#### 💡 Insight do Desenvolvedor:
+Isso é mais uma prova de que, no fundo, **arrays e ponteiros são a mesma coisa**. O `[]` é só um jeito mais amigável de fazer aritmética de ponteiros.
+
+> **⚠️ Spoiler de Segurança:**
+> Embora pareçam iguais, tem uma diferença enorme: se você declara como array (`char s[]`), você pode mudar as letras. Se declara como ponteiro (`char *s`), o C coloca isso numa área da memória que você não pode mexer. Se tentar mudar uma letra no ponteiro, o programa explode!
 
 </details>
 
