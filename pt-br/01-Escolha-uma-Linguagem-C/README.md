@@ -2199,6 +2199,48 @@ Isso é mais uma prova de que, no fundo, **arrays e ponteiros são a mesma coisa
 
 ---
 
+<details>
+<summary><b>🏗️ Inicializadores de String (Seção 7.4)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-4)-INICIALIZADORES-DE-STRING)
+
+---
+
+Existem duas formas de começar uma string, e elas se comportam de um jeito completamente diferente na memória.
+
+#### 1. O Ponteiro (`char *s`) - "Olhar, mas não tocar"
+Quando você faz isso, o C coloca o texto em uma área da memória chamada **Read-Only** (Somente Leitura).
+
+```c
+char *s = "Hello, world!"; 
+s[0] = 'z'; // ❌ ERRO FATAL: Tentou mudar o que é imutável.
+```
+- O que rola: O compilador gerencia essa memória para você em um "lugar distante" por segurança e performance. Se você tentar mudar uma letra ali, o programa provavelmente vai travar (Crash). É o chamado Undefined Behavior.
+
+#### 2. O Array (char t[]) - "Sua casa, suas regras"
+Quando você declara como um array, o C não te dá um endereço em "outra cidade". Ele cria uma cópia editável dos bytes bem ali na pilha (stack) do seu programa.
+
+```c
+char t[] = "Hello, again!"; 
+t[0] = 'z'; // ✅ SEM PROBLEMAS: Você é dono dessa memória.
+printf("%s", t); // "zello, again!"
+```
+
+#### 💡 Insight do Desenvolvedor:
+A Regra é simples:
+- Quer apenas ler ou passar um texto fixo? Use `char *`.
+- Precisa mudar letras, inverter a string ou limpar dados? Use `char []`.
+
+> **⚠️ Nota Mental:**
+> Uma string entre aspas duplas usada para inicializar um array não é tratada como um literal imutável; ela vira apenas o "molde" para a cópia que você vai usar.
+
+</details>
+
+---
+
 
 
 ---

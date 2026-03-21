@@ -2209,6 +2209,48 @@ This is further proof that, deep down, **arrays and pointers are the same thing*
 
 ---
 
+<details>
+<summary><b>🏗️ String Initializers (Section 7.4)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.4 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-4)-STRING-INITIALIZERS)
+
+---
+
+There are two ways to initialize a string, and they behave completely differently in memory.
+
+#### 1. The Pointer (`char *s`) - "Look, but don't touch"
+When you do this, C places the text in a memory area called **Read-Only**.
+
+```c
+char *s = "Hello, world!"; 
+s[0] = 'z'; // ❌ FATAL ERROR: Tried to change something immutable.
+```
+- What happens: The compiler manages this memory for you in a "remote location" for safety and performance. If you try to change a letter there, the program will likely crash. This is known as Undefined Behavior.
+
+#### 2. The Array (char t[]) - "Your house, your rules"
+When you declare it as an array, C doesn't just give you an address in "another city." It creates a writable copy of the bytes right there on your program's stack.
+
+```c
+char t[] = "Hello, again!"; 
+t[0] = 'z'; // ✅ NO PROBLEM: You own this memory.
+printf("%s", t); // "zello, again!"
+```
+
+#### 💡 Developer Insight:
+The rule is simple:
+- Just want to read or pass a fixed text? Use `char *`.
+- Need to change letters, reverse the string, or clear data? Use `char []`.
+
+> **⚠️ Mental Note:**
+> A string in double quotes used to initialize an array is not treated as an immutable literal; it simply becomes the "mold" for the copy you are going to use.
+
+</details>
+
+---
+
 
 
 ---
