@@ -2220,7 +2220,7 @@ s[0] = 'z'; // ❌ ERRO FATAL: Tentou mudar o que é imutável.
 ```
 - O que rola: O compilador gerencia essa memória para você em um "lugar distante" por segurança e performance. Se você tentar mudar uma letra ali, o programa provavelmente vai travar (Crash). É o chamado Undefined Behavior.
 
-#### 2. O Array (char t[]) - "Sua casa, suas regras"
+#### 2. O Array (`char t[]`) - "Sua casa, suas regras"
 Quando você declara como um array, o C não te dá um endereço em "outra cidade". Ele cria uma cópia editável dos bytes bem ali na pilha (stack) do seu programa.
 
 ```c
@@ -2236,6 +2236,54 @@ A Regra é simples:
 
 > **⚠️ Nota Mental:**
 > Uma string entre aspas duplas usada para inicializar um array não é tratada como um literal imutável; ela vira apenas o "molde" para a cópia que você vai usar.
+
+</details>
+
+---
+
+<details>
+<summary><b>📏 Descobrindo o Tamanho da String `strlen` (Seção 7.5)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-5)-DESCOBRINDO-TAMANHO-DA-STRING)
+
+---
+
+Diferente de linguagens modernas, o C é "esquecido": ele **não rastreia** o tamanho das suas strings. Se você quer saber o comprimento de uma, você tem que pedir para a função `strlen()` contar para você.
+
+#### 🛠️ Como usar o `strlen`
+Para usar essa função, você precisa incluir a biblioteca `<string.h>`.
+
+```c
+#include <stdio.h>
+#include <string.h> // 👈 Obrigatório para lidar com strings
+
+int main(void) {
+    char *s = "Hello, world!";
+    
+    // %zu é o formatador correto para o tipo size_t
+    printf("A string tem %zu bytes de comprimento.\n", strlen(s));
+}
+```
+
+#### 🕵️ O Segredo do `size_t`
+A função `strlen()` não retorna um `int` comum, ela retorna um `size_t`.
+- **O que é:** Um tipo de número inteiro usado para representar tamanhos de objetos na memória.
+- **Como imprimir:** Use sempre o especificador `%zu`.
+
+#### ❓ Se o C não rastreia, como ele sabe o tamanho?
+O C não tem um contador escondido. Quando você chama `strlen(s)`, a função:
+1. Pega o endereço do primeiro caractere.
+2. Vai andando de um em um pela memória.
+3. Conta cada letra até encontrar o **caractere nulo** (`\0`).
+
+#### 💡 Insight do Desenvolvedor:
+Isso significa que o `strlen()` é uma operação "cara" para o processador. Se você tem uma string de 1 milhão de caracteres, o C tem que percorrer todos eles só para te dizer o tamanho.
+
+> **🎓 Dica:**
+> Se precisar usar o tamanho várias vezes num loop, guarde o resultado em uma variável em vez de chamar a função toda hora!
 
 </details>
 

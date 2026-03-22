@@ -2230,7 +2230,7 @@ s[0] = 'z'; // ❌ FATAL ERROR: Tried to change something immutable.
 ```
 - What happens: The compiler manages this memory for you in a "remote location" for safety and performance. If you try to change a letter there, the program will likely crash. This is known as Undefined Behavior.
 
-#### 2. The Array (char t[]) - "Your house, your rules"
+#### 2. The Array (`char t[]`) - "Your house, your rules"
 When you declare it as an array, C doesn't just give you an address in "another city." It creates a writable copy of the bytes right there on your program's stack.
 
 ```c
@@ -2251,7 +2251,49 @@ The rule is simple:
 
 ---
 
+<details>
+<summary><b>📏 Discovering String Length with `strlen` (Section 7.5)</b></summary>
+<br>
 
+---
+
+[Code for Section 7.5 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-5)-DISCOVERING-STRING-SIZE)
+
+---
+
+Unlike modern languages, C is "forgetful": it **does not track** the size of your strings. If you want to know the length of one, you have to ask the `strlen()` function to count it for you.
+
+#### 🛠️ How to use `strlen`
+To use this function, you need to include the `<string.h>` library.
+
+```c
+#include <stdio.h>
+#include <string.h> // 👈 Required for handling strings
+
+int main(void) {
+    char *s = "Hello, world!";
+    
+    // %zu is the correct specifier for the size_t type
+    printf("The string is %zu bytes long.\n", strlen(s));
+}
+```
+
+#### 🕵️ The Secret of size_t
+The `strlen()` function does not return a regular `int`; it returns a `size_t`.
+- **What it is:** A type of unsigned integer used to represent the sizes of objects in memory.
+- **How to print it:** Always use the `%zu` specifier.
+
+#### ❓ If C doesn't track it, how does it know the size?
+C doesn't have a hidden counter. When you call `strlen(s)`, the function:
+1. Takes the address of the first character.
+2. Traverses the memory one by one.
+3. Counts each letter until it encounters the null character (`\0`).
+
+#### 💡 Developer Insight:
+This means that `strlen()` is an "expensive" operation for the processor. If you have a string with 1 million characters, C has to walk through all of them just to tell you the size.
+
+> **🎓 Pro Tip:**
+> If you need to use the length multiple times in a loop, store the result in a variable instead of calling the function every time!
 
 ---
 
