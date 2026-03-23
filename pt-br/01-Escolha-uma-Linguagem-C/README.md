@@ -2289,6 +2289,151 @@ Isso significa que o `strlen()` é uma operação "cara" para o processador. Se 
 
 ---
 
+<details>
+<summary><b>🔚 Determinação de String (Seção 7.6)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-6)-DETERMINACAO-DE-STRING)
+
+---
+
+O C faz strings de um jeito "raiz" que quase nenhuma linguagem moderna usa mais. Para economizar memória lá nos anos 70, em vez de guardar o tamanho da string em um número, o C decidiu usar um **marcador de fim**.
+
+#### 🚦 As Duas Opções de Design
+Imagine que você está criando uma linguagem. Como você guardaria o texto "Oi"?
+1. **Opção 1:** Guarda o número `2` (tamanho) e depois `Oi`. (Gasta bytes extras para o contador).
+2. **Opção 2:** Guarda `Oi` e um sinal de "pare" no final. **(O C escolheu esta!)**.
+
+#### 💎 A Anatomia de uma String em C
+Para o C, uma string é definida por apenas duas coisas:
+1. Um **ponteiro** para o primeiro caractere.
+2. Um caractere de valor zero (chamado de **NUL** ou `\0`) que aparece em algum lugar da memória depois do ponteiro.
+
+
+
+#### 🕵️ O "NUL" Automático
+Você não precisa digitar o `\0` toda hora. Quando você usa aspas duplas, o C coloca ele lá para você sem avisar:
+
+```c
+char *s = "Hello!";  
+// Por baixo dos panos, o C guarda: 'H' 'e' 'l' 'l' 'o' '!' '\0'
+```
+
+#### 🛠️ Criando meu próprio `strlen()`
+Aqui está como a gente faria a função `strlen` na mão, caçando o `\0` no meio do array:
+
+```c
+int meu_strlen(char *s) {
+    int contador = 0;
+
+    // Enquanto o caractere atual NÃO for o terminador nulo...
+    while (s[contador] != '\0') {
+        contador++; // ...continua contando
+    }
+
+    return contador;
+}
+```
+
+#### 💡 Insight do Desenvolvedor:
+É por isso que o C é rápido, mas perigoso. Se você esquecer ou apagar o `\0` por acidente, as funções do C (como `printf` ou `strlen`) vão continuar lendo sua memória infinitamente até encontrar um zero perdido ou o sistema derrubar seu programa. O `\0` é o cinto de segurança das strings.
+
+</details>
+
+---
+
+<details>
+<summary><b>👯 Copiando Strings (Seção 7.7)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 7.7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_007/(SECAO-7-7)-COPIANDO-STRINGS)
+
+---
+
+Aqui está o erro clássico: achar que o operador `=` copia o texto. No C, o `=` copia o **endereço** (ponteiro), não os caracteres.
+
+#### ❌ O jeito errado: Copiando o Ponteiro
+Se você fizer `t = s`, as duas variáveis apontam para o mesmo lugar na memória. Se você mudar a letra em `t`, ela muda em `s` também. Eles são "cúmplices".
+
+```c
+char s[] = "Hello!";
+char *t;
+
+t = s;    // ⚠️ ATENÇÃO: Você não copiou o texto, só o endereço!
+t[0] = 'z'; 
+printf("%s", s); // Vai imprimir "zello", porque 's' e 't' são o mesmo cara.
+```
+
+#### ✅ O jeito certo: `strcpy()`
+Para duplicar uma string de verdade, você precisa de um novo espaço na memória e copiar letra por letra. A função `strcpy` (string copy) da `<string.h>` faz esse trabalho sujo.
+
+```c
+#include <string.h>
+
+char s[] = "Hello!";
+char t[50]; // 🛡️ IMPORTANTE: Garanta que o destino tenha espaço!
+
+strcpy(t, s); // Copia o conteúdo de 's' para dentro de 't'
+```
+
+#### 💡 Macete do Desenvolvedor: A Ordem dos Fatores:
+Muita gente esquece quem vem primeiro no `strcpy(destino, origem)`. O Beej dá a `dica matadora`: pense na ordem de uma atribuição comum.
+- Se o C permitisse, você escreveria: `destino = origem`;
+- No strcpy, a ordem é a mesma: `strcpy(destino, origem)`;
+
+> **⚠️ Aviso de Incêndio:**
+> Antes de usar o strcpy, certifique-se de que o seu array de destino é grande o suficiente (incluindo o espaço para o \0). Se a origem for maior que o destino, você vai invadir a memória vizinha e o programa vai explodir.
+
+</details>
+
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 8: Structs </b></summary>
+
+---
+
+[Codigos do dia 8 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008)
+
+---
+
+<details>
+<summary><b>🏗️ Structs - Introdução (Seção 8.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-0)-STRUCTS-INTRODUCAO)
+
+---
+
+Se você já sentiu que passar 10 variáveis soltas para uma função é uma bagunça, as **Structs** são a sua salvação. No C, uma `struct` é um tipo de dado que você define para agrupar várias informações diferentes sob um único nome.
+
+### 📦 O que é uma Struct?
+Imagine que você quer representar um "Usuário". Em vez de ter variáveis isoladas como `char nome[]`, `int idade` e `float altura`, você cria uma "caixa" que guarda tudo isso junto.
+
+* **De onde vem?** Se você conhece Classes (de Java ou Python), a Struct é como uma **Classe que só tem atributos**.
+* **O que não tem?** Diferente de linguagens modernas, a Struct no C não tem "métodos" (funções internas). Ela é puramente um contêiner de dados.
+
+#### 🚀 Por que isso é útil?
+1. **Organização:** Você para de lidar com variáveis "soltas" e passa a lidar com "objetos" lógicos.
+2. **Eficiência:** Em vez de passar 5 argumentos para uma função, você passa apenas **uma** Struct (ou o ponteiro dela).
+3. **Legibilidade:** O código fica muito mais limpo. É mais fácil entender `player.health` do que uma variável `h` perdida no código.
+
+#### 💡 Insight do Desenvolvedor:
+No C nativo, não existem objetos de verdade. A Struct é o que a gente tem de mais próximo para organizar dados complexos. Ela não "faz" nada sozinha, ela apenas "guarda" as peças para que suas funções trabalhem com elas de forma organizada.
+
+</details>
+
+---
+
 
 
 ---

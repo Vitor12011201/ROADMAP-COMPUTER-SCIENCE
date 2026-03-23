@@ -2295,10 +2295,159 @@ This means that `strlen()` is an "expensive" operation for the processor. If you
 > **🎓 Pro Tip:**
 > If you need to use the length multiple times in a loop, store the result in a variable instead of calling the function every time!
 
+</details>
+
 ---
+
+<details>
+<summary><b>🔚 String Determination (Section 7.6)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.6 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-6)-STRING-DETERMINATION)
+
+---
+
+C handles strings in a "low-level" way that almost no modern language uses anymore. To save memory back in the 70s, instead of storing the string size as a number, C decided to use an **end marker**.
+
+#### 🚦 The Two Design Options
+Imagine you are creating a language. How would you store the text "Hi"?
+1. **Option 1:** Store the number `2` (length) and then `Hi`. (Uses extra bytes for the counter).
+2. **Option 2:** Store `Hi` and a "stop" signal at the end. **(C chose this one!)**.
+
+
+
+#### 💎 The Anatomy of a String in C
+For C, a string is defined by just two things:
+1. A **pointer** to the first character.
+2. A zero-valued character (called **NUL** or `\0`) that appears somewhere in memory after the pointer.
+
+#### 🕵️ The Automatic "NUL"
+You don't need to type `\0` every time. When you use double quotes, C places it there for you behind the scenes:
+
+```c
+char *s = "Hello!";  
+// Under the hood, C stores: 'H' 'e' 'l' 'l' 'o' '!' '\0'
+```
+
+#### 🛠️ Creating my own `strlen()`
+Here is how we would manually write the `strlen` function, hunting for the `\0` inside the array:
+
+```c
+int my_strlen(char *s) {
+    int counter = 0;
+
+    // As long as the current character is NOT the null terminator...
+    while (s[counter] != '\0') {
+        counter++; // ...keep counting
+    }
+
+    return counter;
+}
+```
+
+#### 💡 Developer Insight:
+This is why C is fast but dangerous. If you forget or accidentally erase the `\0`, C functions (like `printf` or `strlen`) will keep reading your memory infinitely until they find a stray zero or the system crashes your program. The `\0` is the seatbelt for strings.
+
+</details>
+
+---
+
+<details>
+<summary><b>👯 Copying Strings (Section 7.7)</b></summary>
+<br>
+
+---
+
+[Code for Section 7.7 can be found here](./CODE_BY_DAY/DAY_007/(SECTION-7-7)-COPYING-STRINGS)
+
+---
+
+Here is the classic mistake: thinking that the `=` operator copies text. In C, `=` copies the **address** (pointer), not the characters.
+
+#### ❌ The Wrong Way: Copying the Pointer
+If you do `t = s`, both variables point to the same place in memory. If you change a letter in `t`, it changes in `s` as well. They become "accomplices."
+
+```c
+char s[] = "Hello!";
+char *t;
+
+t = s;    // ⚠️ ATTENTION: You didn't copy the text, only the address!
+t[0] = 'z'; 
+printf("%s", s); // It will print "zello" because 's' and 't' are the same guy.
+```
+
+#### ✅ The Right Way: `strcpy()`
+To truly duplicate a string, you need a new space in memory and copy it letter by letter. The `strcpy` (string copy) function from `<string.h>` does this dirty work for you.
+
+```c
+#include <string.h>
+
+char s[] = "Hello!";
+char t[50]; // 🛡️ IMPORTANT: Ensure the destination has enough space!
+
+strcpy(t, s); // Copies the content of 's' into 't'
+```
+
+#### 💡 Developer Trick: The Order of Factors:
+Many people forget who comes first in `strcpy(destination, source)`. Beej gives a `killer tip`: think of the order of a standard assignment.
+- If C allowed it, you would write: `destination = source`;
+- In strcpy, the order is the same: `strcpy(destination, source)`;
+
+> **⚠️ Fire Warning:**
+Before using strcpy, make sure your destination array is large enough (including space for the \0). If the source is larger than the destination, you will invade neighboring memory and the program will explode.
 
 </details>
 
 
+</details>
+
+---
+
+<details>
+   <summary><b>🔹 Day 8: Structs </b></summary>
+
+---
+
+[Day 8 codes can be found here](./CODE_BY_DAY/DAY_008)
+
+---
+
+<details>
+<summary><b>🏗️ Structs - Introduction (Section 8.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 8.0 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-0)-STRUCTS-INTRODUCTION)
+
+---
+
+If you've ever felt that passing 10 loose variables to a function is a mess, **Structs** are your salvation. In C, a `struct` is a data type that you define to group several different pieces of information under a single name.
+
+### 📦 What is a Struct?
+Imagine you want to represent a "User". Instead of having isolated variables like `char name[]`, `int age`, and `float height`, you create a "box" that keeps all of them together.
+
+* **Where does it come from?** If you are familiar with Classes (from Java or Python), a Struct is like a **Class that only has attributes**.
+* **What's missing?** Unlike modern languages, a Struct in C does not have "methods" (internal functions). It is purely a data container.
+
+#### 🚀 Why is this useful?
+1. **Organization:** You stop dealing with "loose" variables and start dealing with logical "objects."
+2. **Efficiency:** Instead of passing 5 arguments to a function, you pass only **one** Struct (or a pointer to it).
+3. **Readability:** The code becomes much cleaner. It is easier to understand `player.health` than a variable `h` lost in the code.
+
+#### 💡 Developer Insight:
+In native C, there are no true objects. The Struct is the closest thing we have to organize complex data. It doesn't "do" anything on its own; it just "holds" the pieces so that your functions can work with them in an organized way.
+
+</details>
+
+---
+
+
+
+---
+
+</details>
 
 
