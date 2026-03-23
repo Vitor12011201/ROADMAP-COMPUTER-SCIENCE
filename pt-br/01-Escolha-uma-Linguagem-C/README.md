@@ -22,7 +22,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 <br>
 
 <details>
-  <summary><b>🔹 Dia 1: Como compilar com o GCC</b></summary>
+  <summary><b>🔹 Dia 1: O Caos e a Ordem no C</b></summary>
 
 ---
 
@@ -30,17 +30,47 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-- **Passo 1** - Ir até a Pasta (Diretório) do arquivo com o comando `cd`.
-- **Passo 2** - Compilar o arquivo com o comando `gcc (nome_do_arquivo.c) -o (nome_do_executavel)`.
-- **Passo 3** - Rodar o programa com o comando `./(nome_do_executavel)`.
+<details>
+ <summary><b>🏁 Prefácio(Seção 1.0)</b></summary>
+<br>
 
-> **Nota:** Se não usar o `-o`, o GCC criará o padrão `a.out`, que será sobrescrito na próxima compilação.
+---
+
+[Codigos da Seção 1.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_001/(SECAO-1-0)-PREFACIO)
+
+---
+
+Para começar, o C é uma linguagem minimalista. Como dizem os criadores (Kernighan & Ritchie): *"C não é uma linguagem grande, e não é bem servida por um livro grande"*.
+
+### 😵 O Código Ofuscado
+Muitas vezes, quem olha para o C pela primeira vez sente que está vendo grego. Existe até uma competição mundial (**IOCCC**) para ver quem escreve o código mais ilegível possível.
+
+Olha esse "monstro" de 2001:
+```c
+E((ck?main((z?(stat(M,&t)?P+=a+'{'?0:3:execv(M,k),a=G,i=P,y=G&255,sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
+```
+#### **A boa notícia:** 
+- Se isso parece confuso agora, não vai ser assim por muito tempo. O C tem um núcleo simples que vamos desbravar camada por camada.
+
+#### 📜 A Evolução da Linguagem:
+O C mudou muito desde 1988 (quando saiu a famosa 2ª edição do livro de K&R). Muitas funcionalidades novas foram adicionadas, mas a essência continua a mesma: **controle total sobre a máquina.**
+
+#### 🎯 O que esperar desta jornada:
+- **Simplicidade:** Vamos começar pelo núcleo básico e expandir para as bibliotecas.
+- **Clareza:** O objetivo é sair da confusão total para o estado onde o código C se torna "leitura natural".
+- **Prática:** C é uma linguagem que se aprende "quebrando a cabeça" e compilando código.
+
+> **💡 Insight do Desenvolvedor:**
+> O C é pequeno, mas o que você consegue construir com ele é gigante. O segredo não é decorar comandos, mas entender como a memória e o processador conversam.
+
+</details>
+
 </details>
 
 ---
 
 <details>
-  <summary><b>🔹 Dia 2: Hello World</b></summary>
+  <summary><b>🔹 Dia 2: Olá Mundo</b></summary>
 
 ---
 
@@ -48,32 +78,271 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 
 ---
 
-### 📖 O Hello World
+<details>
+<summary><b>🚀 O que esperar do C? (Seção 2.1)</b></summary>
+<br>
 
-#### 🧠 O que aprendi:
-- **Pré-processador (#):** Age antes do compilador. O `#include` copia bibliotecas para o código. (Tudo que começa com # roda antes do compilador.)
-- **Header Files (.h):** Arquivos como `stdio.h` fornecem ferramentas básicas (como o `printf`).
-- **Comentários:** Essenciais para documentar a lógica (`//` ou `/* */`).
-- **Fluxo de Execução:** O programa sempre começa na função `main()` e termina na sua última chave `}`.
-- **\n:** Comando para pular linha (newline).
+"Para onde levam essas escadas?"  
+"Elas vão para cima."  
+— *Os Caça-Fantasmas*
 
-#### 🛠️ Comando de Compilação Revisado:
-- `gcc -o hello hello.c` (Cria o executável 'hello').
-- `./hello` (Executa o arquivo no diretório atual).
+O C é uma linguagem de **baixo nível**. Antigamente, ele era visto como o ápice da liberdade comparado ao Assembly (linguagem de máquina). Hoje, perto de Python ou JavaScript, ele parece básico e limitado. Ele te permite fazer **qualquer coisa**, mas vai te fazer trabalhar dobrado por isso.
 
-#### 🧠 O que aprendi:
-- **Compilação:** É o processo de traduzir código-fonte para um executável.
-- **Machine Code:** C produz binários (1s e 0s) que a CPU executa diretamente, sem intermediários.
-- **C vs Outras Linguagens:** Enquanto Python/Java usam *bytecode*, o C vai direto ao "ferro" (hardware).
-- **GCC:** É o programa que faz essa tradução no ambiente Unix/Linux.
-- **Memória RAM:** Funciona como um grande array de bytes. Cada byte tem um "index" chamado de **Endereço**.
-- **Variável:** É apenas um nome legível para humanos que aponta para um endereço específico na memória.
-- **Por que usamos nomes?:** Porque é muito mais fácil lembrar de `preco` do que do endereço hexadecimal `0xAF23`.
-- **Conexão com Ponteiros:** Entender que variáveis ocupam endereços é a base para entender ponteiros (que guardam esses endereços).
+#### 🤔 Por que usar C hoje em dia?
 
-> **Nota:** O C pode ser interpretado, mas quase sempre é compilado para garantir a velocidade máxima que a linguagem oferece.
+Existem dois motivos principais para você estar aqui:
+
+1. **Aprendizado Raiz:** O C está conectado ao **núcleo do computador**. Ao aprender C, você entende como o software conversa com a memória. **Não tem cinto de segurança.** Você vai escrever códigos que travam o PC, e isso faz parte do aprendizado.
+2. **Ferramenta de Poder:** O C ainda é o rei em **Sistemas Operacionais** (Como Windows, Linux e MacOS) e **Sistemas Embarcados**.
+
+
+#### 🕵️ O "Bicho-Papão": Ponteiros
+Se você já programa em outra linguagem, quase tudo no C vai parecer familiar. A única coisa que realmente dá nó na cabeça de todo mundo são os **Ponteiros**.
+
+* **A Realidade:** O conceito por trás deles você provavelmente já conhece, mas o C te obriga a ser explícito.
+* **O Estalo:** Antes de você entender ponteiros, eles parecem enguias escorregadias. No segundo em que você entende, eles se tornam a ferramenta mais fácil e poderosa do seu arsenal.
+
+> **💡 Insight do Desenvolvedor:**
+> Tirando os ponteiros, o resto é só memorizar um jeito novo de fazer o que você já sabe. Prepare-se para chegar o mais perto do núcleo do computador que se pode chegar sem precisar escrever em binário.
+
 </details>
 
+---
+
+<details>
+<summary><b>🔬  Hello, World! - A Autópsia (Seção 2.2)</b></summary>
+<br>
+
+O código abaixo é o ponto de partida canônico. Vamos abrir esse bicho e ver o que faz ele pulsar:
+```c
+/* Hello world program */        // 1. Comentário multi-linha
+#include <stdio.h>                // 2. Pré-processador e Header
+
+int main(void)                    // 3. O Ponto de Entrada
+{
+    printf("Hello, World!\n");    // 4. A Chamada de Função
+}                                 // 5. O Fim da Linha
+```
+
+#### 🛠️ 1. Comentários (`/*` `*/` e `//`)
+Tudo entre `/*` e `*/` ou após `//` é **ignorado pelo compilador**. Serve para você deixar mensagens para o "Você do futuro". Acredite: você vai esquecer por que escreveu certas linhas, então comente!
+
+#### 🏗️ 2. O Pré-processador e o Octothorpe (`#`)
+Tudo que começa com `#` (o famoso "jogo da velha" ou, para os íntimos, `Octothorpe`) é resolvido antes do compilador sequer começar.
+- `#include:` Diz ao pré-processador: "Pegue todo o conteúdo deste arquivo e cole aqui agora".
+- `<stdio.h>:` É o header de "Standard I/O". Sem ele, o C não saberia o que é o `printf()`. Ele é o manual de instruções para entrada e saída de dados.
+
+#### 🏁 3. A Função `main()`
+Essa é a função especial. O sistema operacional procura por ela automaticamente assim que o programa abre.
+- Nada do seu código roda antes do `main()`.
+- Quando o código chega na última chave `}`, o programa morre e você volta para o terminal.
+
+#### 📢 4. `printf()` e o `\n`
+Aqui é onde o trabalho acontece. Estamos chamando uma função que já existe na biblioteca padrão.
+- Argumento: Passamos a string `"Hello, World!\n"`.
+- `\n` **(Newline)**: É o caractere de "pular linha". Sem ele, o próximo texto que você imprimir ficaria grudado na mesma linha.
+
+#### ⚡ 5. Do Código ao Executável
+O seu arquivo `.c` é apenas texto. Para virar um programa, ele passa por esse funil:
+1. **Pré-processador:** Resolve os `#includes`.
+2. **Compilador:** Transforma o texto em Machine Code (linguagem que a CPU entende rápido).
+3. **Executável:** O arquivo final pronto para rodar.
+
+No terminal (Linux/WSL), o comando clássico é:
+```bash
+gcc -o hello hello.c  # Compila hello.c e gera o executável 'hello'
+./hello               # Roda o programa no diretório atual
+```
+
+> **💡 Insight do Desenvolvedor:**
+> O C é rápido porque, após a compilação, não há intermediários. O processador lê o código de máquina diretamente. Por isso, se você errar um ponto e vírgula `;`, o compilador nem tenta rodar, ele para tudo na hora.
+
+</details>
+
+---
+
+<details>
+<summary><b>⚙️ Detalhes da Compilação (Seção 2.3)</b></summary>
+<br>
+
+Se você vem do Python ou JavaScript, talvez nunca tenha se preocupado com um "passo de compilação" separado. No C, isso não é apenas um detalhe, é o coração do fluxo de trabalho. Compilar é o processo de transformar seu texto (código-fonte) em um programa que o Sistema Operacional consegue executar de forma nativa.
+
+#### 🌍 O Espectro das Linguagens
+Diferentes linguagens lidam com o código de formas distintas. Veja onde o C se encaixa:
+
+| Tipo de Linguagem | O que acontece? | Exemplo |
+| :--- | :--- | :--- |
+| **Interpretada** | O código é lido e executado na hora por outro programa (interpretador). | Python, JS |
+| **Bytecode** | O código vira um "meio-termo" para uma Máquina Virtual (JVM/PVM). | Java, C# |
+| **Compilada (C)** | O código vira **0s e 1s reais** que a CPU entende diretamente. | C, C++, Rust |
+
+
+
+#### ⚡ Por que o C é tão rápido?
+Enquanto o Python precisa de uma "máquina virtual" rodando o tempo todo para traduzir o código enquanto ele executa, o C gera **Machine Code**.
+
+* **Sem Intermediários:** É a linguagem nativa do processador.
+* **Performance Bruta:** Uma vez compilado, o programa é um arquivo independente e extremamente veloz, pois a CPU não perde tempo "interpretando" nada.
+
+#### 🛠️ O Compilador
+O compilador é o software responsável por essa tradução. O mais famoso no mundo Unix/Linux é o **GCC** (*GNU Compiler Collection*).
+
+* **Na IDE:** Você clica em "Build", mas por baixo dos panos, a IDE está chamando o compilador com uma série de comandos complexos.
+* **No Terminal:** Você tem o controle total. É aqui que ferramentas como **Bash** e **PowerShell** entram para gerenciar projetos que têm centenas de arquivos.
+
+#### 💻 Build via Linha de Comando
+O comando básico que todo desenvolvedor C precisa dominar é:
+
+```bash
+gcc -o meu_programa fonte.c
+```
+
+- `gcc`: Chama o compilador.
+- `-o meu_programa`: Define o nome do arquivo de saída (output). Sem isso, o C gera um arquivo padrão chamado `a.out`.
+- `fonte.c`: O seu código-fonte original.
+
+> **💡 Insight do Desenvolvedor:**
+> O C foi desenhado para ser compilado. É por isso que ele não tem "redes de segurança" em tempo de execução (como o Garbage Collector do Java). O foco é oferecer o máximo de performance com o mínimo de interferência entre o seu código e o hardware.
+
+</details>
+
+---
+
+<details>
+<summary><b>🛠️ Buildando com o `gcc` (Seção 2.4)</b></summary>
+<br>
+
+Agora que entendemos o que o compilador faz, vamos ver como comandar ele na prática. Se você tem um arquivo chamado `hello.c` no seu diretório atual, o comando para transformá-lo em um programa executável é:
+
+```bash
+gcc -o hello hello.c
+```
+
+#### 🔍 Dessecando o comando:
+
+Para transformar seu código em um programa, usamos o `gcc` com os seguintes argumentos:
+
+* **`gcc`**: Chama o compilador propriamente dito.
+* **`-o hello`**: A flag `-o` significa **output** (saída). Ela diz ao GCC: *"Pegue o resultado da compilação e salve com o nome `hello`"*.
+  * ⚠️ **Nota:** Se você esquecer essa parte, o compilador vai gerar um arquivo padrão chamado `a.out`.
+* **`hello.c`**: É o arquivo de código-fonte (o texto que você escreveu) que você quer compilar.
+
+
+#### 🏗️ Lidando com Múltiplos Arquivos
+
+Na vida real, o código não fica todo em um arquivo só. Ele é quebrado em várias partes para manter a organização e facilitar a manutenção. O `gcc` consegue ler todos de uma vez e "colar" tudo em um único executável final:
+
+```bash
+gcc -o meu_jogo interface.c personagens.c npc.c itens.c
+```
+O compilador vai processar cada um desses arquivos `.c`, resolver as conexões entre eles e gerar um grande executável chamado `meu_jogo`.
+
+</details>
+
+---
+
+<details>
+ <summary><b>🍏 Buildando com o `Clang` (Seção 2.5)</b></summary>
+<br>
+
+Se você estiver desenvolvendo em um **Mac**, o compilador padrão que vem no sistema não é o `gcc`, mas sim o **Clang**.
+
+#### 🕵️ O "Disfarce" do GCC
+O macOS instala um "wrapper" (um atalho) para que, se você digitar `gcc` no terminal, o sistema entenda e execute o `clang` por baixo dos panos. Isso garante que scripts de build antigos continuem funcionando sem problemas.
+
+#### 🛠️ Diferenças e Escolhas
+* **Clang:** Conhecido por dar mensagens de erro mais amigáveis e ser a base das ferramentas da Apple e do Google (Android).
+* **GCC Proper:** Se você realmente precisar do `gcc` original no Mac, você pode instalá-lo via **Homebrew**.
+
+
+> **💡 Insight do Desenvolvedor:**
+> Para 99% dos casos no início dos estudos, não importa qual você usa. Os comandos que aprendemos para o `gcc` (como a flag `-o`) funcionam exatamente da mesma forma no `clang`. O importante é entender que o compilador é a ferramenta, não a linguagem.
+
+</details>
+
+---
+
+<details>
+<summary><b>💻 Buildando via IDEs (Seção 2.6)</b></summary>
+<br>
+
+Se você estiver usando um **Ambiente de Desenvolvimento Integrado (IDE)**, como o VS Code, o CLion ou o Tizen Studio, você não precisará digitar comandos no terminal o tempo todo. A IDE funciona como uma interface poderosa que gerencia o compilador por baixo dos panos para você.
+
+#### ⌨️ Atalhos Essenciais de Build e Run:
+
+| Ferramenta | Build (Compilar) | Run (Executar) |
+| :--- | :--- | :--- |
+| **CLion** | `CTRL` + `F9` | `SHIFT` + `F10` |
+| **Visual Studio** | `CTRL` + `F7` | `CTRL` + `F5` |
+| **VS Code** | `F5` (Build + Debug) | `F5` |
+| **Xcode (Mac)** | `CMD` + `B` | `CMD` + `R` |
+
+
+
+#### 🚀 O Diferencial do CLion
+O **CLion** é a IDE que eu utilizo nos meus estudos. Diferente de editores de texto simples, ele é focado 100% em C e C++.
+* **CMake Nativo:** O CLion usa o CMake como sistema de build padrão, o que é excelente para projetos grandes.
+* **Análise Estática:** Ele te avisa de erros de memória e ponteiros antes mesmo de você tentar compilar.
+* **Refatoração:** Facilita muito renomear variáveis e organizar o código de forma profissional.
+
+#### 🛠️ Configuração no VS Code
+Caso precise usar o **VS Code**, é indispensável instalar a extensão oficial **C/C++ da Microsoft** para habilitar o *IntelliSense* e o debugger.
+
+#### 🍎 Xcode Command Line Tools
+No macOS, mesmo usando o CLion ou qualquer outra IDE, você precisa das ferramentas de linha de comando. Instale rodando:
+```bash
+xcode-select --install
+```
+
+> **💡 Insight do Desenvolvedor:**
+> Por mais que a IDE (especialmente uma robusta como o CLion) facilite a vida com atalhos e preenchimento automático, entender como buildar pelo terminal (Command Line) é o que te salva quando o ambiente de desenvolvimento "quebra" ou quando você precisa configurar um servidor onde não existe interface gráfica.
+
+
+</details>
+
+---
+
+<details>
+<summary><b>📜 Versões do C - O Linha do Tempo (Seção 2.7)</b></summary>
+<br>
+
+O C evoluiu muito desde 1972. Cada versão (dialeto) é geralmente nomeada pelo ano em que sua especificação foi finalizada. Entender isso é vital para saber se uma função moderna vai rodar em um sistema mais antigo.
+
+| Versão | Nome Comum | O que mudou? |
+| :--- | :--- | :--- |
+| **K&R C** | "C Original" (1978) | Criado por Kernighan e Ritchie. Hoje parece "Inglês Arcaico" para nós. |
+| **C89 / C90** | ANSI C | A primeira padronização oficial. Define a base do C até hoje. |
+| **C99** | C99 | A versão mais popular. Adicionou os comentários de linha `//` e variáveis no meio do código. |
+| **C11** | C11 | Adicionou suporte a Unicode e Multi-threading (múltiplas tarefas simultâneas). |
+| **C17 / C18** | C17 | Uma atualização de correção de bugs para o C11. É o padrão estável atual. |
+| **C23** | C23 | A versão mais recente, com foco em modernizar a linguagem e remover antiguidades. |
+
+
+
+#### 🛠️ Forçando uma Versão no Compilador
+Você pode dizer ao `gcc` ou ao `clang` exatamente qual versão quer usar com a flag `-std=`. No **CLion**, isso geralmente é configurado no arquivo `CMakeLists.txt`.
+
+Exemplo no terminal:
+```bash
+gcc -std=c11 -pedantic foo.c
+```
+
+- `-std=c11`: Usa o padrão de 2011.
+
+- `-pedantic`: Ativa o "modo chato". O compilador vai reclamar de qualquer coisa que não siga estritamente o padrão escolhido.
+
+#### 🚩 O Combo de Flags do Desenvolvedor Pro:
+O Beej (e eu também) recomenda compilar seus estudos com o nível máximo de avisos. Isso ajuda a pegar erros de lógica antes mesmo de rodar o programa:
+```bash
+gcc -Wall -Wextra -std=c23 -pedantic programa.c
+```
+- `Wall`: **W**arnings **all** (Ativa todos os avisos comuns).
+- `Wextra`: Ativa avisos adicionais ainda mais detalhados.
+
+</details>
+
+
+</details>
 
 ---
 
@@ -92,7 +361,7 @@ Repositório destinado ao aprendizado de C focado em fundamentos de Ciência da 
 ---
 
 <details>
-<summary><b> 📦 Variaveis (Seção 3.1.0):</b></summary>
+<summary><b> 📦 Variaveis (Seção 3.1.0)</b></summary>
 <br>
 
 ### 💾O que é uma Variável? (Visão de Baixo Nível)

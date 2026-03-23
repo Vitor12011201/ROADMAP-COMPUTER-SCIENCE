@@ -22,7 +22,7 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 <br>
 
 <details>
-  <summary><b>🔹 Day 1: How to compile with GCC</b></summary>
+  <summary><b>🔹 Day 1: Chaos and Order in C</b></summary>
 
 ---
 
@@ -30,11 +30,41 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-- **Step 1** - Navigate to the file's Folder (Directory) using the `cd` command.
-- **Step 2** - Compile the file with the command `gcc (file_name.c) -o (executable_name)`.
-- **Step 3** - Run the program with the command `./(executable_name)`.
+<details>
+ <summary><b>🏁 Preface (Section 1.0)</b></summary>
+<br>
 
-> **Note:** If you don't use `-o`, GCC will create the default `a.out`, which will be overwritten in the next compilation.
+---
+
+[Section 1.0 codes can be found here](./CODE_BY_DAY/DAY_001/(SECTION-1-0)-PREFACE)
+
+---
+
+To begin with, C is a minimalist language. As the creators (Kernighan & Ritchie) say: *"C is not a big language, and it is not well served by a big book"*.
+
+### 😵 Obfuscated Code
+Often, those looking at C for the first time feel like they are looking at Greek. There is even a worldwide competition (**IOCCC**) to see who can write the most unreadable code possible.
+
+Look at this "monster" from 2001:
+```c
+E((ck?main((z?(stat(M,&t)?P+=a+'{'?0:3:execv(M,k),a=G,i=P,y=G&255,sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
+```
+**The good news:**
+- If this looks confusing now, it won't be for long. C has a simple core that we will explore layer by layer.
+
+#### 📜 The Evolution of the Language:
+C has changed a lot since 1988 (when the famous 2nd edition of the K&R book was released). Many new features have been added, but the essence remains the same: **total control over the machine.**
+
+#### 🎯 What to expect from this journey:
+- **Simplicity:** We will start with the basic core and expand into the libraries.
+- **Clarity:** The goal is to move from total confusion to a state where C code becomes "natural reading."
+- **Practice:** C is a language learned by "cracking your head" and compiling code.
+
+> **💡 Developer Insight:**
+> C is small, but what you can build with it is giant. The secret is not memorizing commands, but understanding how memory and the processor talk to each other.
+
+</details>
+
 </details>
 
 ---
@@ -48,30 +78,264 @@ Repository dedicated to learning C focused on Computer Science fundamentals.
 
 ---
 
-### 📖 The Hello World
+<details>
+<summary><b>🚀 What to expect from C? (Section 2.1)</b></summary>
+<br>
 
-#### 🧠 What I learned:
-- **Preprocessor (#):** Acts before the compiler. `#include` copies libraries into the code. (Everything starting with # runs before the compiler.)
-- **Header Files (.h):** Files like `stdio.h` provide basic tools (such as `printf`).
-- **Comments:** Essential for documenting logic (`//` or `/* */`).
-- **Execution Flow:** The program always starts at the `main()` function and ends at its last closing brace `}`.
-- **\n:** Command to skip to a new line (newline).
+"Where do these stairs go?"  
+"They go up."  
+— *Ghostbusters*
 
-#### 🛠️ Revised Compilation Command:
-- `gcc -o hello hello.c` (Creates the executable 'hello').
-- `./hello` (Executes the file in the current directory).
+C is a **low-level** language. Back in the day, it was seen as the height of freedom compared to Assembly (machine language). Today, next to Python or JavaScript, it seems basic and limited. It allows you to do **anything**, but it will make you work twice as hard for it.
 
-#### 🧠 Core Concepts:
-- **Compilation:** The process of translating source code into an executable.
-- **Machine Code:** C produces binaries (1s and 0s) that the CPU executes directly, without intermediaries.
-- **C vs Other Languages:** While Python/Java use *bytecode*, C goes straight to the "bare metal" (hardware).
-- **GCC:** The program that performs this translation in the Unix/Linux environment.
-- **RAM Memory:** Functions like a giant array of bytes. Each byte has an "index" called an **Address**.
-- **Variable:** Just a human-readable name that points to a specific address in memory.
-- **Why use names?:** Because it's much easier to remember `price` than the hexadecimal address `0xAF23`.
-- **Connection to Pointers:** Understanding that variables occupy addresses is the foundation for understanding pointers (which store these addresses).
+#### 🤔 Why use C nowadays?
 
-> **Note:** C can be interpreted, but it is almost always compiled to ensure the maximum speed the language offers.
+There are two main reasons for you to be here:
+
+1. **Root Learning:** C is connected to the **computer's core**. By learning C, you understand how software talks to memory. **There are no seatbelts.** You will write code that crashes the PC, and that is part of the learning process.
+2. **Power Tool:** C is still king in **Operating Systems** (like Windows, Linux, and MacOS) and **Embedded Systems**.
+
+
+
+#### 🕵️ The "Boogeyman": Pointers
+If you already program in another language, almost everything in C will feel familiar. The only thing that truly ties everyone's brain in knots is **Pointers**.
+
+* **The Reality:** You probably already know the concept behind them, but C forces you to be explicit.
+* **The "Click":** Before you understand pointers, they feel like slippery eels. The second you get it, they become the easiest and most powerful tool in your arsenal.
+
+> **💡 Developer Insight:**
+> Aside from pointers, the rest is just memorizing a new way to do what you already know. Prepare to get as close to the computer's core as you can get without having to write in binary.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔬 Hello, World! - The Autopsy (Section 2.2)</b></summary>
+<br>
+
+The code below is the canonical starting point. Let's open this beast up and see what makes it pulse:
+
+```c
+/* Hello world program */        // 1. Multi-line comment
+#include <stdio.h>                // 2. Preprocessor and Header
+
+int main(void)                    // 3. The Entry Point
+{
+    printf("Hello, World!\n");    // 4. The Function Call
+}                                 // 5. The End of the Line
+```
+
+#### 🛠️ 1. Comments (`/*` `*/` and `//`)
+Everything between `/*` and `*/` or after `//` is **ignored by the compiler**. It serves as a way to leave messages for the "Future self". Believe me: you will forget why you wrote certain lines, so comment!
+
+#### 🏗️ 2. The Preprocessor and the Octothorpe (`#`)
+Everything that starts with `#` (the famous "hashtag" or, for those in the know, the **Octothorpe**) is resolved before the compiler even begins.
+
+* **`#include`**: Tells the preprocessor: "Take all the content of this file and paste it here right now."
+* **`<stdio.h>`**: This is the "Standard I/O" header. Without it, C wouldn't know what `printf()` is. It is the instruction manual for data input and output.
+
+#### 🏁 3. The `main()` Function
+This is the special function. The operating system automatically looks for it as soon as the program starts.
+
+* None of your code runs before `main()`.
+* When the code reaches the last brace `}`, the program terminates, and you return to the terminal.
+
+#### 📢 4. `printf()` and the `\n`
+This is where the work happens. We are calling a function that already exists in the standard library.
+
+* **Argument**: We pass the string `"Hello, World!\n"`.
+* **`\n` (Newline)**: This is the "line break" character. Without it, the next text you print would be stuck on the same line.
+
+#### ⚡ 5. From Code to Executable
+Your `.c` file is just text. To become a program, it passes through this funnel:
+
+1.  **Preprocessor**: Resolves the `#includes`.
+2.  **Compiler**: Transforms the text into **Machine Code** (the language that the CPU understands fast).
+3.  **Executable**: The final file ready to run.
+
+In the terminal (Linux/WSL), the classic command is:
+
+```bash
+gcc -o hello hello.c  # Compiles hello.c and generates the 'hello' executable
+./hello               # Runs the program in the current directory
+```
+
+> **💡 Developer Insight:**
+C is fast because, after compilation, there are no intermediaries. The processor reads the machine code directly. That's why if you miss a semicolon `;`, the compiler doesn't even try to run it; it stops everything immediately.
+
+</details>
+
+---
+
+<details>
+<summary><b>⚙️ Compilation Details (Section 2.3)</b></summary>
+<br>
+
+If you come from Python or JavaScript, you might have never worried about a separate "compilation step." In C, this isn't just a detail; it's the heart of the workflow. Compiling is the process of transforming your text (source code) into a program that the Operating System can execute natively.
+
+#### 🌍 The Language Spectrum
+Different languages handle code in distinct ways. See where C fits in:
+
+| Language Type | What happens? | Example |
+| :--- | :--- | :--- |
+| **Interpreted** | The code is read and executed on the fly by another program (interpreter). | Python, JS |
+| **Bytecode** | The code becomes a "middle ground" for a Virtual Machine (JVM/PVM). | Java, C# |
+| **Compiled (C)** | The code turns into **actual 0s and 1s** that the CPU understands directly. | C, C++, Rust |
+
+#### ⚡ Why is C so fast?
+While Python needs a "virtual machine" running all the time to translate the code as it executes, C generates **Machine Code**.
+
+* **No Intermediaries:** It is the processor's native language.
+* **Raw Performance:** Once compiled, the program is a standalone and extremely fast file, as the CPU wastes no time "interpreting" anything.
+
+#### 🛠️ The Compiler
+The compiler is the software responsible for this translation. The most famous one in the Unix/Linux world is **GCC** (*GNU Compiler Collection*).
+
+* **In the IDE:** You click "Build," but behind the scenes, the IDE is calling the compiler with a series of complex commands.
+* **In the Terminal:** You have total control. This is where tools like **Bash** and **PowerShell** come in to manage projects with hundreds of files.
+
+#### 💻 Build via Command Line
+The basic command every C developer needs to master is:
+
+```bash
+gcc -o my_program source.c
+```
+- `gcc`: Calls the compiler.
+- `-o my_program`: Defines the output file name. Without this, C generates a default file named `a.out`.
+- `source.c`: Your original source code.
+
+> **💡 Developer Insight:**
+> C was designed to be compiled. This is why it has no "safety nets" at runtime (like Java's Garbage Collector). The focus is to offer maximum performance with minimum interference between your code and the hardware.
+
+</details>
+
+---
+
+<details>
+<summary><b>🛠️ Building with `gcc` (Section 2.4)</b></summary>
+<br>
+
+Now that we understand what the compiler does, let's see how to command it in practice. If you have a file named `hello.c` in your current directory, the command to transform it into an executable program is:
+
+```bash
+gcc -o hello hello.c
+```
+#### 🔍 Dissecting the command:
+
+To transform your code into a program, we use `gcc` with the following arguments:
+
+* **`gcc`**: Calls the compiler itself.
+* **`-o hello`**: The `-o` flag stands for **output**. It tells GCC: *"Take the result of the compilation and save it with the name `hello`"*.
+    * ⚠️ **Note:** If you forget this part, the compiler will generate a default file named `a.out`.
+* **`hello.c`**: This is the source code file (the text you wrote) that you want to compile.
+
+#### 🏗️ Handling Multiple Files
+
+In real life, code is not kept in a single file. It is broken down into several parts to maintain organization and make maintenance easier. `gcc` can read all of them at once and "glue" everything into a single final executable:
+
+```bash
+gcc -o my_game interface.c characters.c npc.c items.c
+```
+The compiler will process each of these `.c` files, resolve the connections between them, and generate one large executable called `my_game`.
+
+</details>
+
+---
+
+<details>
+ <summary><b>🍏 Building with `Clang` (Section 2.5)</b></summary>
+<br>
+
+If you are developing on a **Mac**, the default compiler that comes with the system is not `gcc`, but **Clang**.
+
+#### 🕵️ The GCC "Disguise"
+macOS installs a "wrapper" (a shortcut) so that if you type `gcc` in the terminal, the system understands and executes `clang` behind the scenes. This ensures that old build scripts continue to work without issues.
+
+#### 🛠️ Differences and Choices
+* **Clang:** Known for providing friendlier error messages and being the foundation for Apple and Google (Android) tools.
+* **GCC Proper:** If you truly need the original `gcc` on a Mac, you can install it via **Homebrew**.
+
+> **💡 Developer Insight:**
+> For 99% of cases at the beginning of your studies, it doesn't matter which one you use. The commands we learned for `gcc` (like the `-o` flag) work exactly the same way in `clang`. The important thing is to understand that the compiler is the tool, not the language.
+
+</details>
+
+---
+
+<details>
+<summary><b>💻 Building via IDEs (Section 2.6)</b></summary>
+<br>
+
+If you are using an **Integrated Development Environment (IDE)**, such as VS Code, CLion, or Tizen Studio, you won't need to type commands in the terminal all the time. The IDE works as a powerful interface that manages the compiler behind the scenes for you.
+
+#### ⌨️ Essential Build and Run Shortcuts:
+
+| Tool | Build (Compile) | Run (Execute) |
+| :--- | :--- | :--- |
+| **CLion** | `CTRL` + `F9` | `SHIFT` + `F10` |
+| **Visual Studio** | `CTRL` + `F7` | `CTRL` + `F5` |
+| **VS Code** | `F5` (Build + Debug) | `F5` |
+| **Xcode (Mac)** | `CMD` + `B` | `CMD` + `R` |
+
+#### 🚀 The CLion Advantage
+**CLion** is the IDE I use in my studies. Unlike simple text editors, it is 100% focused on C and C++.
+* **Native CMake:** CLion uses CMake as its default build system, which is excellent for large projects.
+* **Static Analysis:** It warns you about memory and pointer errors even before you try to compile.
+* **Refactoring:** It makes renaming variables and organizing code professionally much easier.
+
+#### 🛠️ VS Code Setup
+If you need to use **VS Code**, it is essential to install the official **Microsoft C/C++ extension** to enable *IntelliSense* and the debugger.
+
+#### 🍎 Xcode Command Line Tools
+On macOS, even when using CLion or any other IDE, you need the command line tools. Install them by running:
+```bash
+xcode-select --install
+```
+
+> **💡 Developer Insight:**
+> As much as an IDE (especially a robust one like CLion) makes life easier with shortcuts and autocomplete, understanding how to build via the terminal (Command Line) is what saves you when the development environment "breaks" or when you need to configure a server where there is no graphical interface.
+
+</details>
+
+---
+
+<details>
+<summary><b>📜 C Versions - The Timeline (Section 2.7)</b></summary>
+<br>
+
+C has evolved significantly since 1972. Each version (dialect) is generally named after the year its specification was finalized. Understanding this is vital to know if a modern function will run on an older system.
+
+| Version | Common Name | What changed? |
+| :--- | :--- | :--- |
+| **K&R C** | "Original C" (1978) | Created by Kernighan and Ritchie. Today it feels like "Archaic English" to us. |
+| **C89 / C90** | ANSI C | The first official standardization. Defines the core of C to this day. |
+| **C99** | C99 | The most popular version. Added line comments `//` and variables in the middle of the code. |
+| **C11** | C11 | Added support for Unicode and Multi-threading (simultaneous tasks). |
+| **C17 / C18** | C17 | A bug-fix update for C11. It is the current stable standard. |
+| **C23** | C23 | The latest version, focused on modernizing the language and removing outdated features. |
+
+#### 🛠️ Enforcing a Version in the Compiler
+You can tell `gcc` or `clang` exactly which version you want to use with the `-std=` flag. In **CLion**, this is usually configured in the `CMakeLists.txt` file.
+
+Terminal example:
+```bash
+gcc -std=c11 -pedantic foo.c
+```
+- `-std=c11`: Uses the 2011 standard.
+- `-pedantic`: Activates "strict mode." The compiler will complain about anything that doesn't strictly follow the chosen standard.
+
+#### 🚩 The Pro Developer's Flag Combo:
+Beej (and I as well) recommends compiling your studies with the maximum level of warnings. This helps catch logic errors even before running the program:
+```bash
+gcc -Wall -Wextra -std=c23 -pedantic program.c
+```
+- `-Wall`: **W**arnings **all** (Enables all common warnings).
+- `-Wextra`: Enables even more detailed additional warnings.
+
+
+</details>
+
 </details>
 
 ---

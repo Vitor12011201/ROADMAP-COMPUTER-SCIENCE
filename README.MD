@@ -10,10 +10,10 @@
 
 ## 🌐 Choose your language | Escolha o idioma
 
-| Idioma               | Language   | Link                                 |
-|----------------------|------------|--------------------------------------|
-| Português (PT-BR)    | Portuguese | [Acessar conteúdo em PT-BR](./pt-br) |
-| English (EN)         | English    | [Access content in EN](./en)         |
+| Language            | Idioma     | Link                                 |
+|---------------------|------------|--------------------------------------|
+| English (EN)        | English    | [Access content in EN](./en)         |
+| Português (PT-BR)   | Portuguese | [Acessar conteúdo em PT-BR](./pt-br) |
 ---
 
 ## 🎯 Purpose | Objetivo
