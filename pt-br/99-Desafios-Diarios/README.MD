@@ -47,10 +47,16 @@ Manipulação de texto e processamento de caracteres na linguagem C.
 * **Competências:** Uso de arrays de caracteres (`char[]`), manipulação de strings (`strlen`, `strcpy`, `strcat`, `strcmp`), leitura de strings com `fgets`, tratamento de caracteres especiais (`\n`, `\0`) e percorrer strings com loops.
 * **Destaque:** Sistemas de validação de texto, comparação de palavras e manipuladores completos de strings (como inversão, contagem de caracteres e normalização de entrada).
 
+### [07-Structs](./07-Structs(Exercicios))
+**O que encontrará aqui:**
+Organização e modelagem de dados complexos utilizando `struct` na linguagem C.
+* **Competências:** Criação e uso de `struct`, acesso a membros com `.`, uso de ponteiros para structs (`->`), passagem de structs para funções (por valor e por referência), arrays de structs e organização de dados compostos.
+* **Destaque:** Sistemas que simulam entidades reais (como cadastros de pessoas, produtos ou alunos), manipulação de múltiplos dados relacionados e construção de estruturas mais próximas de aplicações reais.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas
-* **Linguagem:** C (Padrão C99/C11)
+* **Linguagem:** C (Padrão C23)
 * **Ambiente:** Linux (Ubuntu)
 * **Compilador:** GCC
 * **Versionamento:** Git

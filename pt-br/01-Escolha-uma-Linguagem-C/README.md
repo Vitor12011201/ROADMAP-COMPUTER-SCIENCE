@@ -2703,6 +2703,55 @@ No C nativo, não existem objetos de verdade. A Struct é o que a gente tem de m
 
 ---
 
+<details>
+<summary><b>🛠️ Declarando a Primeira Struct (Seção 8.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-1)-DECLARANDO-PRIMEIRA-STRUCT)
+
+---
+
+Uma `struct` é, na prática, um **novo tipo de dado** que você inventa. Diferente de um array (onde todos os itens devem ser iguais), na struct você mistura "alhos com bugalhos".
+
+#### 📝 Como declarar o "Molde"
+Geralmente declaramos o molde da struct no escopo global (fora das funções) para que todo o programa saiba o que é um `struct car`.
+
+```c
+struct carro {
+    char *nome;   // Um ponteiro para o nome (string)
+    float preco;  // Um decimal para o preço
+    int velocidade;    // Um inteiro para a velocidade
+};
+```
+
+#### 🏗️ Criando uma Variável (Instanciando)
+- Ter o molde não cria o carro. Você precisa declarar uma variável desse novo tipo.
+**⚠️ Atenção:** No C, o nome do tipo é `struct carro` completo, e não apenas `carro`.
+```c
+struct carro mercedes; // Variável "mercedes" do tipo "struct carro"
+```
+
+#### 📍 Acessando os Campos (Operador Ponto `.`)
+Para entrar na "caixa" e mexer nos dados, usamos o `ponto`. É aqui que o C emprestou essa sintaxe para quase todas as linguagens modernas (Java, JS, Python, etc).
+```c
+// Atribuindo valores
+mercedes.nome = "Mercedes-Benz C300";
+mercedes.preco = 15999.99;
+mercedes.velocidade = 175;
+
+// Lendo valores
+printf("Nome: %s | Preço: %.2f\n", mercedes.nome, mercedes.preco);
+```
+
+> **💡 Insight do Desenvolvedor (CLion):**
+> No CLion, ao digitar `mercedes.` ele já vai te sugerir os campos `nome`, `preco` e `velocidade`. Isso acontece porque o compilador já calculou exatamente quantos bytes de distância cada campo está do início da struct na memória.
+
+</details>
+
+---
+
 
 
 ---

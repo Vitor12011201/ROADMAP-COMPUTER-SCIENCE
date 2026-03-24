@@ -42,16 +42,21 @@ Data collection management and memory handling.
 * **Highlight:** Full number analyzer and the name registration system using character matrices.
 
 ### [06-Strings](./06-Strings(Exercises))
-
 **What you will find here:**
 Text manipulation and character processing in the C language.
 * **Skills:** Use of character arrays (`char[]`), string manipulation (`strlen`, `strcpy`, `strcat`, `strcmp`), reading strings with `fgets`, handling special characters (`\n`, `\0`), and iterating through strings with loops.
 * **Highlights:** Text validation systems, word comparison, and full string manipulators (such as reversing, character counting, and input normalization).
 
+### [07-Structs](./07-Structs(Exercises))
+**What you will find here:** 
+Data organization and modeling of complex structures using `struct` in the C language.
+* **Skills:** Creating and using `structs`, accessing members with the dot operator (`.`), using pointers to structs (the arrow operator `->`), passing structs to functions (by value and by reference), arrays of structs, and organizing composite data.
+* **Highlight:** Systems that simulate real-world entities (such as registries for people, products, or students), manipulation of multiple related data points, and building structures closer to real-world applications.
+
 ---
 
 ## 🛠️ Technologies and Tools
-* **Language:** C (C99/C11 Standards)
+* **Language:** C (C23 Standards)
 * **Environment:** Linux (Ubuntu)
 * **Compiler:** GCC
 * **Versioning:** Git

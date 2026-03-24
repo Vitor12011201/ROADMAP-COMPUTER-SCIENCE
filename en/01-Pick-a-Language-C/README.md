@@ -2708,6 +2708,55 @@ In native C, there are no true objects. The Struct is the closest thing we have 
 
 ---
 
+<details>
+<summary><b>🛠️ Declaring Your First Struct (Section 8.1)</b></summary>
+<br>
+
+---
+
+[Code for Section 8.1 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-1)-DECLARING-YOUR-FIRST-STRUCT)
+
+---
+
+A `struct` is, in practice, a **new data type** that you invent. Unlike an array (where all items must be the same type), in a struct, you can mix "apples and oranges."
+
+#### 📝 How to Declare the "Blueprint"
+We usually declare the struct blueprint in the global scope (outside of functions) so that the entire program knows what a `struct car` is.
+
+```c
+struct car {
+    char *name;       // A pointer to the name (string)
+    float price;      // A decimal for the price
+    int speed;        // An integer for the speed
+};
+```
+
+#### 🏗️ Creating a Variable (Instantiating)
+- Having the blueprint doesn't create the car. You need to declare a variable of this new type.
+**⚠️ Note:** In C, the type name is the full `struct car`, and not just `car`.
+```c
+struct car mercedes; // Variable "mercedes" of type "struct car"
+```
+
+#### 📍 Accessing Fields (The Dot Operator `.`)
+To look inside the "box" and manipulate the data, we use the `dot`. It is from here that C "lent" this syntax to almost all modern languages (Java, JS, Python, etc.).
+```c
+// Assigning values
+mercedes.name = "Mercedes-Benz C300";
+mercedes.price = 15999.99;
+mercedes.speed = 175;
+
+// Reading values
+printf("Name: %s | Price: %.2f\n", mercedes.name, mercedes.price);
+```
+
+> **💡 Developer Insight (CLion):**
+> In CLion, when you type `mercedes.`, it will automatically suggest the fields `name`, `price`, and `speed`. This happens because the compiler has already calculated exactly how many bytes of offset each field is from the start of the struct in memory.
+
+</details>
+
+---
+
 
 
 ---
