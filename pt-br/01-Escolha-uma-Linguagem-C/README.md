@@ -2752,6 +2752,43 @@ printf("Nome: %s | Preço: %.2f\n", mercedes.nome, mercedes.preco);
 
 ---
 
+<details>
+<summary><b>⚡ Inicializadores de Estrutura (Seção 8.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-2)-INICIALIZADORES-DE-ESTRUTURA)
+
+---
+
+No capítulo anterior, preenchemos o `mercedes` campo por campo. Funciona, mas é trabalhoso. O C permite inicializar uma `struct` de forma muito mais elegante, direto na declaração.
+
+#### 1. Inicialização por Ordem (O jeito "clássico"): 
+Você pode passar os valores entre chaves, seguindo a **exata mesma ordem** em que os campos foram definidos na `struct`.
+
+```c
+struct carro mercedes = {"Mercedes-Benz C300", 15999.99, 175};
+```
+#### ⚠️ Perigo:
+Se alguém mudar a ordem dos campos no topo do arquivo (ex: colocar preco antes do nome), esse código vai quebrar ou tentar salvar um preço dentro de um nome. Perigoso, né?
+
+#### 2. Designadores de Campo (O jeito Moderno/Seguro): 
+A partir do C99, ganhamos os **Designated Initializers**. Com eles, você diz explicitamente qual campo está preenchendo usando o ponto `.`.
+```c
+struct carro mercedes = {.velocidade=175, .nome="Mercedes-Benz C300"};
+```
+- ✅ **Independente da ordem:** Você pode colocar a velocidade antes do nome.
+- ✅ **Auto-preenchimento:** O campo que você esquecer (como o `.preco` acima) será automaticamente zerado pelo compilador.
+- ✅ **Clareza:** Quem lê o código sabe exatamente o que é cada valor.
+
+> **💡 Insight do Desenvolvedor:**
+> Sempre que possível, use o estilo `.campo = valor`. Em projetos grandes, as structs podem ter 50 campos, tentar acertar a ordem de 50 valores manualmente é pedir para ter um bug de memória.
+
+</details>
+
+---
+
 
 
 ---

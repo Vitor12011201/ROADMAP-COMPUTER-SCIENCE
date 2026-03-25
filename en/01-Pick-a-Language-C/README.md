@@ -2757,6 +2757,43 @@ printf("Name: %s | Price: %.2f\n", mercedes.name, mercedes.price);
 
 ---
 
+<details>
+<summary><b>⚡ Struct Initializers (Section 8.2)</b></summary>
+<br>
+
+---
+
+[Section 8.2 Code can be found here](./CODIGO_POR_DIA/DIA_008/(SECTION-8-2)-STRUCT-INITIALIZERS)
+
+---
+
+In the previous chapter, we filled the `mercedes` field by field. It works, but it's tedious. C allows you to initialize a `struct` in a much more elegant way, directly at the declaration.
+
+#### 1. Ordered Initialization (The "Classic" way):
+You can pass the values inside curly braces, following the **exact same order** in which the fields were defined in the `struct`.
+
+```c
+struct car mercedes = {"Mercedes-Benz C300", 15999.99, 175};
+```
+#### ⚠️ Danger:
+If someone changes the order of the fields at the top of the file (example: placing price before the name), this code will break or attempt to save a price inside a name field. Risky, right?
+
+#### 2. Designated Initializers (The Modern/Safe way):
+Since C99, we have **Designated Initializers**. With them, you explicitly state which field you are filling using the dot `.` operator.
+```c
+struct car mercedes = {.speed=175, .name="Mercedes-Benz C300"};
+```
+- ✅ **Order Independent:** You can put the speed before the name.
+- ✅ **Auto-fill:** Any field you omit (like `.price` above) will be automatically zeroed out by the compiler.
+- ✅ **Clarity:** Anyone reading the code knows exactly what each value represents.
+
+> **💡 Developer Insight:**
+> Whenever possible, use the `.field = value` style. In large projects, structs can have 50 fields; trying to get the order of 50 values right manually is an invitation for memory bugs.
+
+</details>
+
+---
+
 
 
 ---
