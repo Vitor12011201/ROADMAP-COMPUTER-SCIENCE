@@ -2763,7 +2763,7 @@ printf("Name: %s | Price: %.2f\n", mercedes.name, mercedes.price);
 
 ---
 
-[Section 8.2 Code can be found here](./CODIGO_POR_DIA/DIA_008/(SECTION-8-2)-STRUCT-INITIALIZERS)
+[Code for Section 8.2 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-2)-STRUCT-INITIALIZERS)
 
 ---
 
@@ -2794,7 +2794,79 @@ struct car mercedes = {.speed=175, .name="Mercedes-Benz C300"};
 
 ---
 
+<details>
+<summary><b>🏎️ Passing Structs to Functions (Section 8.3)</b></summary>
+<br>
 
+---
+
+[Code for Section 8.3 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-3)-PASSING-STRUCTS-TO-FUNCTIONS)
+
+---
+
+There are two primary ways to send a `struct` to a function. Understanding when to use each one demonstrates your grasp of how computer memory is managed.
+
+### 📦 1. Pass by Value (Copy)
+When passing the `struct` directly, C creates a **full copy** of all its fields for the function to work on.
+* **Advantage:** Safety. The original data in the calling function remains unchanged.
+* **Disadvantage:** If the `struct` is large (e.g., many fields or strings), copying all that data into the function's memory (*stack*) consumes unnecessary time and resources.
+
+---
+
+### 🎯 2. Pass by Reference (Pointers)
+This is the more professional and performant approach. Instead of sending the entire "object," you send only the **address** of where it resides in memory.
+
+**Why use pointers with Structs?**
+1. **Data Modification:** It allows the function to modify the values of the original `struct` (e.g., updating an item's price).
+2. **Raw Efficiency:** Copying an address (pointer) is instantaneous, regardless of whether the `struct` has 3 or 300 fields.
+
+#### 💻 Practical Example: Updating Vehicle Data
+
+```c
+#include <stdio.h>
+
+struct Vehicle {
+    char *model;
+    float price;
+    int horsepower;
+};
+
+// Prototype: receives a POINTER to the struct and the new value
+void update_price(struct Vehicle *v, float new_value);
+
+int main(void) {
+    // Initializing our struct
+    struct Vehicle my_car = {.model = "Comfort Sedan", .horsepower = 150};
+
+    // We pass the address (&) to the function
+    update_price(&my_car, 95000.00);
+
+    printf("Model: %s | Updated Price: $ %.2f\n", my_car.model, my_car.price);
+    
+    return 0;
+}
+```
+
+#### ⚠️ The Pointer Syntax Challenge:
+If we try to access a pointer's field using the dot `.` operator, the compiler will return an error, as the dot only works on direct structs, not addresses.
+
+To access the actual value, we would need to "dereference" the pointer first:
+
+```c
+void update_price(struct Vehicle *v, float new_value) {
+    (*v).price = new_value;  // ✅ Works, but the syntax is cluttered.
+}
+```
+- While `(*v).price` is technically correct, the excessive use of parentheses and asterisks makes the code difficult to read and maintain in large-scale projects.
+
+> **💡 Developer Insight:**
+In professional development, we rarely use the (*pointer).field syntax. To make the code more elegant and "idiomatic" (standard for the community), C created a shortcut called the **Arrow Operator (`->`)**. It does exactly the same thing: **dereferences the pointer and accesses the field in a single**, visually clean step. Mastering this transition between the dot and the arrow is the first step toward writing high-performance code.
+
+</details>
+
+---
+
+ 
 
 ---
 

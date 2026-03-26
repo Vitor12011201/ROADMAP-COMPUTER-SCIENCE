@@ -810,7 +810,7 @@ Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para 
 
 O `if` testa uma condição. Se ela for verdadeira, o bloco do `if` roda. Se for falsa, o C pula para o próximo comando — a menos que você forneça um `else`.
 
-### 1. O Plano B: `else`
+#### 1. O Plano B: `else`
 O `else` serve para executar um código especificamente quando a condição do `if` **falha**.
 
 ```c
@@ -823,7 +823,7 @@ if (i == 10) {
 }
 ```
 
-### 2. O if-else (A Bifurcação)
+#### 2. O if-else (A Bifurcação)
 Aqui você garante que um dos dois caminhos será tomado. É impossível o C executar o if e o else ao mesmo tempo, ou não executar nenhum dos dois.
 ```c
 #include <stdio.h>
@@ -842,7 +842,7 @@ int main() {
 }
 ```
 
-### 3. O Cascateamento: else if
+#### 3. O Cascateamento: else if
 Quando você tem várias opções e quer testar uma por uma até achar a verdadeira, você "empilha" os else if.
 ```c
 int i = 99;
@@ -2784,6 +2784,79 @@ struct carro mercedes = {.velocidade=175, .nome="Mercedes-Benz C300"};
 
 > **💡 Insight do Desenvolvedor:**
 > Sempre que possível, use o estilo `.campo = valor`. Em projetos grandes, as structs podem ter 50 campos, tentar acertar a ordem de 50 valores manualmente é pedir para ter um bug de memória.
+
+</details>
+
+---
+
+<details>
+<summary><b>🏎️ Passando Structs para Funções (Seção 8.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-3)-PASSANDO-STRUCTS-PARA-FUNCOES)
+
+---
+
+Existem duas formas principais de enviar uma `struct` para uma função. Entender quando usar cada uma demonstra que você compreende como a memória do computador é gerenciada.
+
+
+### 📦 1. Passagem por Valor (Cópia)
+Ao passar a `struct` diretamente, o C cria uma **cópia completa** de todos os seus campos para que a função trabalhe nela.
+* **Vantagem:** Segurança. A função original não tem seus dados alterados.
+* **Desvantagem:** Se a `struct` for grande (ex: muitos campos ou strings), copiar tudo isso para a memória da função (*stack*) consome tempo e recursos desnecessários.
+
+---
+
+### 🎯 2. Passagem por Referência (Ponteiros)
+Esta é a abordagem mais profissional e performática. Em vez de enviar o "objeto" inteiro, você envia apenas o **endereço** de onde ele está na memória.
+
+**Por que usar ponteiros com Structs?**
+1. **Alteração de Dados:** Permite que a função modifique os valores da `struct` original (ex: atualizar o preço de um item).
+2. **Eficiência Bruta:** Copiar um endereço (ponteiro) é instantâneo, não importa se a `struct` tem 3 ou 300 campos.
+
+#### 💻 Exemplo Prático: Atualizando Dados de um Veículo
+
+```c
+#include <stdio.h>
+
+struct Veiculo {
+    char *modelo;
+    float preco;
+    int cavalos;
+};
+
+// Protótipo: recebe um PONTEIRO para a struct e o novo valor
+void atualizar_preco(struct Veiculo *v, float novo_valor);
+
+int main(void) {
+    // Inicializando nossa struct
+    struct Veiculo meu_carro = {.modelo = "Sedan Confort", .cavalos = 150};
+
+    // Passamos o endereço (&) para a função
+    atualizar_preco(&meu_carro, 95000.00);
+
+    printf("Modelo: %s | Preço Atualizado: R$ %.2f\n", meu_carro.modelo, meu_carro.preco);
+    
+    return 0;
+}
+```
+
+#### ⚠️ O Desafio da Sintaxe com Ponteiros:
+Se tentarmos acessar o campo de um ponteiro usando o ponto `.`, o compilador retornará um erro, pois o ponto só funciona em structs diretas, não em endereços.
+
+Para acessar o valor real, precisaríamos "desreferenciar" o ponteiro primeiro:
+
+```c
+void atualizar_preco(struct Veiculo *v, float novo_valor) {
+    (*v).preco = novo_valor;  // ✅ Funciona, mas é uma sintaxe poluída.
+}
+```
+- Embora `(*v).preco` seja tecnicamente correto, o uso excessivo de parênteses e asteriscos torna o código difícil de ler e manter em projetos de larga escala.
+
+> **💡 Insight do Desenvolvedor:**
+No desenvolvimento profissional, raramente usamos a sintaxe (*ponteiro).campo. Para tornar o código mais elegante e "idiomático" (dentro dos padrões da comunidade), o C criou um atalho chamado **Operador de Seta (`->`)**. Ele faz exatamente a mesma coisa: **desreferencia o ponteiro e acessa o campo em um único passo visualmente limpo**. Dominar essa transição entre o ponto e a seta é o primeiro passo para escrever códigos de alta performance.
 
 </details>
 
