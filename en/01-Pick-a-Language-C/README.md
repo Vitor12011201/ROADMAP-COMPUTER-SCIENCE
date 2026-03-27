@@ -2806,14 +2806,14 @@ struct car mercedes = {.speed=175, .name="Mercedes-Benz C300"};
 
 There are two primary ways to send a `struct` to a function. Understanding when to use each one demonstrates your grasp of how computer memory is managed.
 
-### 📦 1. Pass by Value (Copy)
+#### 📦 1. Pass by Value (Copy)
 When passing the `struct` directly, C creates a **full copy** of all its fields for the function to work on.
 * **Advantage:** Safety. The original data in the calling function remains unchanged.
 * **Disadvantage:** If the `struct` is large (e.g., many fields or strings), copying all that data into the function's memory (*stack*) consumes unnecessary time and resources.
 
 ---
 
-### 🎯 2. Pass by Reference (Pointers)
+#### 🎯 2. Pass by Reference (Pointers)
 This is the more professional and performant approach. Instead of sending the entire "object," you send only the **address** of where it resides in memory.
 
 **Why use pointers with Structs?**
@@ -2860,13 +2860,141 @@ void update_price(struct Vehicle *v, float new_value) {
 - While `(*v).price` is technically correct, the excessive use of parentheses and asterisks makes the code difficult to read and maintain in large-scale projects.
 
 > **💡 Developer Insight:**
-In professional development, we rarely use the (*pointer).field syntax. To make the code more elegant and "idiomatic" (standard for the community), C created a shortcut called the **Arrow Operator (`->`)**. It does exactly the same thing: **dereferences the pointer and accesses the field in a single**, visually clean step. Mastering this transition between the dot and the arrow is the first step toward writing high-performance code.
+> In professional development, we rarely use the (*pointer).field syntax. To make the code more elegant and "idiomatic" (standard for the community), C created a shortcut called the **Arrow Operator (`->`)**. It does exactly the same thing: **dereferences the pointer and accesses the field in a single**, visually clean step. Mastering this transition between the dot and the arrow is the first step toward writing high-performance code.
 
 </details>
 
 ---
 
- 
+<details>
+<summary><b>➡️ The Arrow Operator (Section 8.4)</b></summary>
+<br>
+
+---
+
+[Code for Section 8.4 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-4)-ARROW-OPERATOR)
+
+---
+
+The arrow operator is C's "syntactic sugar." It was created to make a developer's life easier when accessing **struct** fields through a **pointer**, replacing the need for asterisks and parentheses.
+
+#### 🛠️ Simplifying the Syntax
+
+Remember the "cluttered" and hard-to-read form from the previous section? The arrow operator does exactly the same thing, but in a much cleaner way:
+
+```c
+void adjust_value(struct Product *p, float new_price) {
+    // (*p).price = new_price;  // ❌ 100% correct, but nobody uses it this way.
+    
+    p->price = new_price;       // ✅ 100% elegant and the industry standard!
+} 
+```
+- Visually, the `->` arrow indicates: "Go to the address the pointer points to and access this field inside it."
+
+#### 📏 Golden Rule: Dot vs. Arrow
+
+To never forget which operator to use in your code, follow this simple rule based on the data type you have at hand:
+
+| If you have... | Use the Operator... | Practical Example |
+| :--- | :---: | :--- |
+| **The Struct directly** | Dot (`.`) | `car.price = 500.00;` |
+| **A Pointer to the struct** | Arrow (->) | `ptr_car->price = 500.00;` |
+
+#### 💻 Full Example:
+```c
+#include <stdio.h>
+
+struct Student {
+    char *name;
+    int enrollment_id;
+    float grade;
+};
+
+int main(void) {
+    struct Student vitor = {.name = "Vitor", .enrollment_id = 12345};
+    struct Student *ptr = &vitor; // Creating a pointer to the struct
+
+    // Using the Dot on the direct struct
+    vitor.grade = 9.5;
+
+    // Using the Arrow through the pointer
+    ptr->grade = 10.0; 
+
+    printf("Student: %s | Final Grade: %.1f\n", ptr->name, vitor.grade);
+
+    return 0;
+}
+```
+
+> **💡 Developer Insight:**
+> In professional software development, you will spend most of your time using the `Arrow (->)`. This is because passing pointers to functions is much more efficient than copying the entire structure. Mastering the quick reading of this arrow is essential for rapidly understanding the data flow in large codebases, where data "travels" between functions via memory addresses.
+
+</details>
+
+---
+
+<details>
+<summary><b>📋 Copying and Returning Structs (Section 8.5)</b></summary>
+<br>
+
+---
+
+[Code for Section 8.5 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-5)-COPYING-AND-RETURNING-STRUCTS)
+
+---
+
+One of the conveniences in C is that you can copy all the data from one **struct** to another at once, without needing to copy each field manually.
+
+#### 🔄 1. Direct Assignment Copying
+
+Unlike arrays (which you cannot simply set equal to one another), the assignment operator `=` works perfectly with **structs** to create a copy.
+
+```c
+struct Car {
+    char *model;
+    float price;
+};
+
+struct Car a = {.model = "Sedan", .price = 50000.00};
+struct Car b;
+
+b = a;  // ✅ All data from 'a' has been copied to 'b'
+```
+
+#### ⚠️ The Concept of "Shallow Copy"
+
+This is where many developers get confused. C performs a **Shallow Copy**. This means it copies the raw values stored inside the struct.
+- **Simple Values (int, float, char):** These are copied entirely.
+- **Pointers:** C copies only the memory address stored in the pointer.
+
+🚨 **Danger:** If the `original struct` has a pointer to a string, the new `struct` will point to the **same string in memory**. If you change the string's content through one struct, the other will also see the change!
+
+#### ↩️ 2. Returning Structs from Functions
+You can also have a function return an `entire struct`. When doing this, C performs a copy of the function's result to the variable receiving it.
+```c
+struct Point {
+    int x, y;
+};
+
+struct Point create_point(int x, int y) {
+    struct Point p = {.x = x, .y = y};
+    return p; // A copy of 'p' is sent back to the function caller
+}
+
+int main(void) {
+    struct Point my_point = create_point(10, 20);
+    return 0;
+}
+```
+
+> 💡 **Developer Insight:**
+> While returning an `entire struct` is perfectly valid and easy to read, keep the performance rule in mind: if your structure is very large, the **cost of "copying" this data during the function return can be high**. In high-performance systems, it is more common to pass a pointer for the function to fill in the data, thus avoiding the need to create extra copies in memory.
+
+</details>
+
+---
+
+
 
 ---
 

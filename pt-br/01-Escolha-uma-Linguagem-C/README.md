@@ -2802,14 +2802,14 @@ struct carro mercedes = {.velocidade=175, .nome="Mercedes-Benz C300"};
 Existem duas formas principais de enviar uma `struct` para uma função. Entender quando usar cada uma demonstra que você compreende como a memória do computador é gerenciada.
 
 
-### 📦 1. Passagem por Valor (Cópia)
+#### 📦 1. Passagem por Valor (Cópia)
 Ao passar a `struct` diretamente, o C cria uma **cópia completa** de todos os seus campos para que a função trabalhe nela.
 * **Vantagem:** Segurança. A função original não tem seus dados alterados.
 * **Desvantagem:** Se a `struct` for grande (ex: muitos campos ou strings), copiar tudo isso para a memória da função (*stack*) consome tempo e recursos desnecessários.
 
 ---
 
-### 🎯 2. Passagem por Referência (Ponteiros)
+#### 🎯 2. Passagem por Referência (Ponteiros)
 Esta é a abordagem mais profissional e performática. Em vez de enviar o "objeto" inteiro, você envia apenas o **endereço** de onde ele está na memória.
 
 **Por que usar ponteiros com Structs?**
@@ -2856,7 +2856,136 @@ void atualizar_preco(struct Veiculo *v, float novo_valor) {
 - Embora `(*v).preco` seja tecnicamente correto, o uso excessivo de parênteses e asteriscos torna o código difícil de ler e manter em projetos de larga escala.
 
 > **💡 Insight do Desenvolvedor:**
-No desenvolvimento profissional, raramente usamos a sintaxe (*ponteiro).campo. Para tornar o código mais elegante e "idiomático" (dentro dos padrões da comunidade), o C criou um atalho chamado **Operador de Seta (`->`)**. Ele faz exatamente a mesma coisa: **desreferencia o ponteiro e acessa o campo em um único passo visualmente limpo**. Dominar essa transição entre o ponto e a seta é o primeiro passo para escrever códigos de alta performance.
+> No desenvolvimento profissional, raramente usamos a sintaxe (*ponteiro).campo. Para tornar o código mais elegante e "idiomático" (dentro dos padrões da comunidade), o C criou um atalho chamado **Operador de Seta (`->`)**. Ele faz exatamente a mesma coisa: **desreferencia o ponteiro e acessa o campo em um único passo visualmente limpo**. Dominar essa transição entre o ponto e a seta é o primeiro passo para escrever códigos de alta performance.
+
+</details>
+
+---
+
+<details>
+<summary><b>➡️ O Operador de Seta (Seção 8.4)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-4)-OPERADOR-DE-SETA)
+
+---
+
+O operador de seta é o "açúcar sintático" do C. Ele foi criado para facilitar a vida do desenvolvedor ao acessar campos de uma `struct` através de um **ponteiro**, substituindo a necessidade de usar asteriscos e parênteses.
+
+
+#### 🛠️ Simplificando a Sintaxe
+
+Lembra da forma "feia" e difícil de ler da seção anterior? O operador de seta faz exatamente a mesma coisa, mas de forma muito mais limpa:
+
+```c
+void ajustar_valor(struct Produto *p, float novo_preco) {
+    // (*p).preco = novo_preco;  // ❌ 100% correto, mas ninguém usa assim.
+    
+    p->preco = novo_preco;       // ✅ 100% elegante e o padrão do mercado!
+}
+```
+- Visualmente, a seta `->` indica: "Vá até o endereço onde o ponteiro aponta e acesse este campo lá dentro".
+
+#### 📏 Regra de Ouro: Ponto vs. Seta
+
+Para nunca mais esquecer qual operador usar no seu código, siga esta regra simples baseada no tipo de dado que você tem em mãos:
+
+| Se você tem em mãos... | Use o Operador... | Exemplo Prático |
+| :--- | :---: | :--- |
+| **A Struct diretamente** | Ponto (`.`) | `carro.preco = 500.00;` |
+| **Um Ponteiro para a struct** | Seta (`->`) | `ptr_carro->preco = 500.00;` |
+
+#### 💻 Exemplo Completo:
+```c
+#include <stdio.h>
+
+struct Aluno {
+    char *nome;
+    int matricula;
+    float nota;
+};
+
+int main(void) {
+    struct Aluno vitor = {.nome = "Vitor", .matricula = 12345};
+    struct Aluno *ptr = &vitor; // Criando um ponteiro para a struct
+
+    // Usando o Ponto na struct direta
+    vitor.nota = 9.5;
+
+    // Usando a Seta através do ponteiro
+    ptr->nota = 10.0; 
+
+    printf("Aluno: %s | Nota Final: %.1f\n", ptr->nome, vitor.nota);
+
+    return 0;
+}
+```
+
+> **💡 Insight do Desenvolvedor:**
+> No desenvolvimento de software profissional, você passará a maior parte do tempo usando a `Seta (->)`. Isso acontece porque, como vimos, passar ponteiros para funções é muito mais eficiente do que copiar a estrutura toda. Dominar a leitura rápida dessa seta é essencial para entender rapidamente o fluxo de dados em grandes bases de código, onde os dados "viajam" entre funções via endereços de memória.
+
+
+</details>
+
+---
+
+<details>
+<summary><b>📋 Copiando e Retornando Structs (Seção 8.5)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-5)-COPIANDO-E-RETORNANDO-STRUCTS)
+
+---
+
+Uma das facilidades do C é que você pode copiar todos os dados de uma `struct` para outra de uma só vez, sem precisar copiar campo por campo manualmente.
+
+#### 🔄 1. A Cópia Direta de Atribuição
+
+Diferente de arrays (que você não pode simplesmente igualar um ao outro), com `structs` o operador de atribuição `=` funciona perfeitamente para criar uma cópia.
+
+```c
+struct Carro {
+    char *modelo;
+    float preco;
+};
+
+struct Carro a = {.modelo = "Sedan", .preco = 50000.00};
+struct Carro b;
+
+b = a;  // ✅ Todos os dados de 'a' foram copiados para 'b'
+```
+
+#### ⚠️ O Conceito de "Cópia Rasa" (Shallow Copy)
+É aqui que muitos desenvolvedores se confundem. O C faz uma **Cópia Rasa**. Isso significa que ele copia os valores brutos que estão dentro da struct.
+- **Valores Simples (int, float, char):** São copiados integralmente.
+- **Ponteiros:** O C copia apenas o endereço de memória salvo no ponteiro.
+
+🚨 **Perigo:** Se a `struct original` tiver um ponteiro para uma string, a nova `struct` apontará para a **mesma string na memória**. Se você alterar o conteúdo da string através de uma, a outra também verá a mudança!
+
+#### ↩️ 2. Retornando Structs de Funções
+Você também pode fazer uma função retornar uma `struct inteira`. Ao fazer isso, o C realiza uma cópia do resultado da função para a variável que o recebe.
+```c
+struct Ponto {
+    int x, y;
+};
+
+struct Ponto criar_ponto(int x, int y) {
+    struct Ponto p = {.x = x, .y = y};
+    return p; // Uma cópia de 'p' é enviada para quem chamou a função
+}
+
+int main(void) {
+    struct Ponto meu_ponto = criar_ponto(10, 20);
+    return 0;
+}
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> Embora retornar uma `struct inteira` seja perfeitamente válido e fácil de ler, lembre-se da regra de performance: se a sua estrutura for muito grande, o **custo de "copiar" esses dados no retorno da função pode ser alto**. Em sistemas de alta performance, é mais comum passar um ponteiro para a função preencher os dados, evitando assim a necessidade de criar cópias extras na memória.
 
 </details>
 
