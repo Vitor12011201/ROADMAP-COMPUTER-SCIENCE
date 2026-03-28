@@ -21,4 +21,6 @@ int main()
     p_2.x = 99;
     printf("A coordenada p_1.x e: [%d]\n", p_1.x);
     printf("A coordenada p_2.x e: [%d]\n", p_2.x);
+
+    return 0;
 }

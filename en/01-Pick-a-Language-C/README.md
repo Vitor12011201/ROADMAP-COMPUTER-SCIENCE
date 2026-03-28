@@ -2994,10 +2994,169 @@ int main(void) {
 
 ---
 
+<details>
+<summary><b>⚖️ Comparing Structs (Section 8.6)</b></summary>
+<br>
+
+---
+
+[Code for Section 8.6 can be found here](./CODE_BY_DAY/DAY_008/(SECTION-8-6)-COMPARING-STRUCTS)
+
+---
+
+In C, you **cannot** use the `==` operator to compare two structs. The compiler doesn't know if you want to compare values, memory addresses, or just a specific field. To solve this, we must understand how memory is organized "under the hood."
+
+#### 🔍 1. The Padding Problem
+
+Computers prefer to read data in aligned blocks (usually 4 or 8 bytes). To maintain this alignment, the compiler inserts invisible empty bytes between struct fields. This is known as **Padding**.
+
+```c
+struct Example {
+    char a;    // 1 byte
+               // Here the compiler skips 3 bytes (Padding) to align the next int
+    int b;     // 4 bytes
+};
+```
+- These padding bytes may contain "garbage" (random memory values), making raw memory comparison unpredictable.
+
+#### 👀 Check this example:
+```c
+struct Point {
+    int x, y;
+};
+
+struct Point p1 = {10, 20};
+struct Point p2 = {10, 20};
+
+if (p1 == p2) { // ❌ COMPILATION ERROR!
+    // C does not allow this direct comparison.
+}
+```
+
+#### ✅ The Only Safe Way: Member-by-Member
+To compare two structures, you must create logic (usually a function) that checks each field individually. This demonstrates to anyone reading your code that you have full control over the data.
+```c
+#include <stdbool.h>
+
+bool points_are_equal(struct Point a, struct Point b) {
+    return (a.x == b.x && a.y == b.y);
+}
+```
+
+#### 🛠️ 2. Memory Manipulation: `memset()` and `memcmp()`
+To handle structs at the byte level, we use the `<string.h>` library.
+
+**`memset()` – Clearing the "Garbage"**
+The `memset()` function fills a block of memory with a specific value (usually zero). It is essential to ensure that even the padding bytes are zeroed out.
+**Syntax:** `memset(&variable, value, size_in_bytes)`;
+
+**`memcmp()` – Raw Comparison**
+The `memcmp()` function compares two memory blocks byte by byte. It returns 0 if the blocks are identical.
+**Syntax:** `memcmp(&a, &b, sizeof(struct))`;
+
+#### 🚀 3. Practical Example: The Safe Way vs. The Fast Way
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+struct User {
+    int id;
+    float balance;
+};
+
+// METHOD 1: Manual (Safer and clearer)
+bool users_are_equal(struct User u1, struct User u2) {
+    return (u1.id == u2.id && u1.balance == u2.balance);
+}
+
+int main(void) {
+    struct User user1, user2;
+
+    // METHOD 2: Raw Memory (Requires prior clearing)
+    // 1. Zero out the memory to eliminate padding "garbage"
+    memset(&user1, 0, sizeof(user1));
+    memset(&user2, 0, sizeof(user2));
+
+    // 2. Assign values
+    user1.id = 1; user1.balance = 100.50;
+    user2.id = 1; user2.balance = 100.50;
+
+    // 3. Compare bytes
+    if (memcmp(&user1, &user2, sizeof(struct User)) == 0) {
+        printf("Users are identical in memory!\n");
+    }
+
+    return 0;
+}
+```
+
+> 💡 **Developer Insight:**
+> While `memcmp()` might seem like a tempting shortcut, manual member-by-member comparison is the golden rule in professional development. It prevents your code from failing due to `padding bytes` and allows you to ignore irrelevant fields in the comparison, such as a "last login" timestamp. In C, understanding `memset` and `padding` is what distinguishes a programmer who understands the hardware from one who just writes syntax.
+
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 9: File Input/Output (I/O) </b></summary>
+
+---
+
+[Day 9 codes can be found here](./CODE_BY_DAY/DAY_009)
+
+---
+
+<details>
+<summary><b>📁 File I/O - Introduction (Section 9.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.0 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-0)-FILE-IO-INTRODUCTION)
+
+---
+
+So far, we have used `printf()` to display data on the console and `scanf()` to capture user input. However, in real-world applications, data needs to be **persistent**. In this section, we will learn how C communicates with the file system to read and write information permanently to the disk.
+
+#### 📥 The Stream Concept
+
+In C, it doesn't matter if you are writing to the monitor, a `.txt` file, or sending data over a network; everything is treated as a **Stream** (a flow of bytes).
+
+* **stdin:** Standard Input (usually the keyboard).
+* **stdout:** Standard Output (usually the console).
+* **stderr:** Standard Error (used for logs and failure messages).
+
+#### 📑 The File Pointer (`FILE *`)
+
+To handle a file, C uses a special data type called `FILE`, defined in the `<stdio.h>` library. We never manipulate the file data directly; instead, we use a **File Pointer**.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp; // "fp" stands for File Pointer
+    
+    // File operations follow a mandatory lifecycle:
+    // 1. Open the file (fopen)
+    // 2. Process (read or write)
+    // 3. Close the file (fclose)
+    
+    return 0;
+}
+```
+
+> 💡 Developer Insight:
+> Working with files requires a **defensive mindset**. Unlike a variable in memory that is "always there," a file might not exist, could be write-protected, or the disk might be full. Checking if your `FILE *` pointer is `NULL` before using it is the hallmark of production-ready code.
+
+</details>
+
+---
+
 
 
 ---
 
 </details>
-
-

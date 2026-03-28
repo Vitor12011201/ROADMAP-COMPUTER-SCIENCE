@@ -2991,6 +2991,170 @@ int main(void) {
 
 ---
 
+<details>
+<summary><b>⚖️ Comparando Structs (Seção 8.6)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 8.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_008/(SECAO-8-6)-COMPARANDO-STRUCTS)
+
+---
+
+No C, você **não pode** usar o operador `==` para comparar duas structs. O compilador não sabe se você quer comparar os valores, os endereços ou apenas um campo específico. Para resolver isso, temos que entender como a memória é organizada "debaixo do capô".
+
+#### 🔍 1. O Problema do Padding (Preenchimento)
+
+O computador prefere ler dados em blocos alinhados (geralmente de 4 ou 8 bytes). Para manter esse alinhamento, o compilador insere bytes vazios invisíveis entre os campos de uma struct. Isso é o **Padding**.
+
+```c
+struct Exemplo {
+    char a;    // 1 byte
+               // Aqui o compilador pula 3 bytes (Padding) para alinhar o próximo int
+    int b;     // 4 bytes
+};
+```
+- Esses bytes de preenchimento podem conter "lixo" (valores aleatórios da memória), o que torna a comparação de memória bruta imprevisível.
+
+#### 👀 Veja esse exemplo:
+```c
+struct Ponto {
+    int x, y;
+};
+
+struct Ponto p1 = {10, 20};
+struct Ponto p2 = {10, 20};
+
+if (p1 == p2) { // ❌ ERRO DE COMPILAÇÃO!
+    // O C não permite essa comparação direta.
+}
+```
+
+#### ✅ A Única Forma Segura: Campo por Campo
+Para comparar duas estruturas, você deve criar uma lógica (geralmente uma função) que verifique cada campo individualmente. Isso demonstra para quem lê seu código que você tem controle total sobre os dados.
+```c
+#include <stdbool.h>
+
+bool pontos_sao_iguais(struct Ponto a, struct Ponto b) {
+    return (a.x == b.x && a.y == b.y);
+}
+```
+
+#### 🛠️ 2. Manipulação de Memória: `memset()` e `memcmp()`
+Para lidar com structs a nível de bytes, usamos a biblioteca <string.h>.
+
+**`memset()` – Limpando a "Sujeira"**
+- A função `memset()` preenche um bloco de memória com um valor específico (geralmente zero). É essencial para garantir que até os bytes de padding estejam zerados.
+**Sintaxe:** `memset(&variavel, valor, tamanho_em_bytes)`;
+
+**`memcmp()` – Comparação Bruta**
+A função `memcmp()` compara dois blocos de memória byte por byte. Ela retorna 0 se os blocos forem identicos.
+**Sintaxe:** `memcmp(&a, &b, sizeof(struct))`;
+
+#### 🚀 3. Exemplo Prático: A Forma Segura vs. A Forma Rápida
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+struct Usuario {
+    int id;
+    float saldo;
+};
+
+// FORMA 1: Manual (Mais segura e clara)
+bool usuarios_sao_iguais(struct Usuario u1, struct Usuario u2) {
+    return (u1.id == u2.id && u1.saldo == u2.saldo);
+}
+
+int main(void) {
+    struct Usuario user1, user2;
+
+    // FORMA 2: Memória Bruta (Requer limpeza prévia)
+    // 1. Zeramos a memória para eliminar o "lixo" do padding
+    memset(&user1, 0, sizeof(user1));
+    memset(&user2, 0, sizeof(user2));
+
+    // 2. Atribuímos os valores
+    user1.id = 1; user1.saldo = 100.50;
+    user2.id = 1; user2.saldo = 100.50;
+
+    // 3. Comparamos os bytes
+    if (memcmp(&user1, &user2, sizeof(struct Usuario)) == 0) {
+        printf("Os usuários são identicos na memória!\n");
+    }
+
+    return 0;
+}
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> Embora o `memcmp()` pareça um atalho tentador, a comparação manual campo a campo é a regra de ouro no desenvolvimento profissional. Ela evita que seu código falhe por causa de bytes de preenchimento (`padding`) e permite que você ignore campos irrelevantes na comparação, como um marcador de "último login". No C, entender o `memset` e o `padding` é o que diferencia um programador que entende o hardware de um que apenas escreve sintaxe.
+
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 9: Entrada/Saída de Arquivos </b></summary>
+
+---
+
+[Codigos do dia 9 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009)
+
+---
+
+<details>
+<summary><b>📁 Entrada/Saída de Arquivos - Introdução (Seção 9.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-0)-ENTRADA-E-SAIDA-INTRODUCAO)
+
+---
+
+Até agora, usamos o `printf()` para exibir dados no console e o `scanf()` para capturar o que o usuário digita. No entanto, em aplicações reais, os dados precisam ser persistentes. Nesta seção, aprenderemos como o C se comunica com o sistema de arquivos para ler e gravar informações permanentemente no disco.
+
+
+#### 📥 O Conceito de Stream (Fluxo)
+
+No C, não importa se você está escrevendo no monitor, em um arquivo `.txt` ou enviando dados pela rede; tudo é tratado como um **Stream** (um fluxo de bytes).
+
+* **stdin:** Entrada padrão (geralmente o teclado).
+* **stdout:** Saída padrão (geralmente o console).
+* **stderr:** Saída de erro (usada para logs e mensagens de falha).
+
+
+
+#### 📑 O Ponteiro de Arquivo (`FILE *`)
+
+Para manipular um arquivo, o C utiliza um tipo de dado especial chamado `FILE`, definido na biblioteca `<stdio.h>`. Nós nunca manipulamos os dados do arquivo diretamente; em vez disso, usamos um **ponteiro de arquivo**.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp; // "fp" significa File Pointer (Ponteiro de Arquivo)
+    
+    // As operações de arquivo seguem um ciclo de vida obrigatório:
+    // 1. Abrir o arquivo (fopen)
+    // 2. Processar (ler ou escrever)
+    // 3. Fechar o arquivo (fclose)
+    
+    return 0;
+}
+```
+
+> 💡 Insight do Desenvolvedor:
+> Trabalhar com arquivos exige uma **postura defensiva**. Diferente de uma variável na memória que "sempre está lá", um arquivo pode não existir, pode estar protegido contra escrita ou o disco pode estar cheio. Verifica se o seu ponteiro `FILE *` é `NULL` antes de usá-lo é o sinal de que você escreve código pronto para produção
+
+</details>
+
+---
+
 
 
 ---
