@@ -53,6 +53,12 @@ Organização e modelagem de dados complexos utilizando `struct` na linguagem C.
 * **Competências:** Criação e uso de `struct`, acesso a membros com `.`, uso de ponteiros para structs (`->`), passagem de structs para funções (por valor e por referência), arrays de structs e organização de dados compostos.
 * **Destaque:** Sistemas que simulam entidades reais (como cadastros de pessoas, produtos ou alunos), manipulação de múltiplos dados relacionados e construção de estruturas mais próximas de aplicações reais.
 
+### [08-Entrada e Saída de Arquivos](./08-Entrada_Saida_Arquivos(Exercicios))
+**O que encontrará aqui:**
+Manipulação de arquivos para leitura e escrita de dados persistentes fora da memória do programa.
+* **Competências:** Uso de ponteiros de arquivo (`FILE *`), abertura e fechamento de arquivos (`fopen`, `fclose`), leitura (`fscanf`, `fgets`, `fread`) e escrita (`fprintf`, `fputs`, `fwrite`), modos de abertura (`r`, `w`, `a`) e tratamento básico de erros.
+* **Destaque:** Sistemas de armazenamento em arquivos (como cadastro de usuários), leitura e análise de dados externos e manipulação de arquivos binários e de texto.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

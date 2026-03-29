@@ -53,6 +53,12 @@ Data organization and modeling of complex structures using `struct` in the C lan
 * **Skills:** Creating and using `structs`, accessing members with the dot operator (`.`), using pointers to structs (the arrow operator `->`), passing structs to functions (by value and by reference), arrays of structs, and organizing composite data.
 * **Highlight:** Systems that simulate real-world entities (such as registries for people, products, or students), manipulation of multiple related data points, and building structures closer to real-world applications.
 
+### [08-File Input and Output (I/O)](./08-File_Input_Output(Exercises))
+**What you will find here:**
+File manipulation for reading and writing persistent data outside the program's volatile memory.
+* **Skills:** Use of file pointers (`FILE *`), opening and closing files (`fopen`, `fclose`), reading (`fscanf`, `fgets`, `fread`) and writing (`fprintf`, `fputs`, `fwrite`), access modes (`r`, `w`, `a`), and basic error handling.
+* **Highlights:** File-based storage systems (such as user registration), external data reading/parsing, and manipulation of both binary and text files.
+
 ---
 
 ## 🛠️ Technologies and Tools

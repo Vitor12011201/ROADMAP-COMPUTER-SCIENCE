@@ -3155,6 +3155,52 @@ int main(void) {
 
 ---
 
+<details>
+ <summary><b>📄 The `FILE*` Data Type (Section 9.1)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-1)-FILE-DATA-TYPE)
+
+---
+
+Every Input and Output (I/O) operation in C is performed through a structure called `FILE`. We do not manipulate this structure directly; instead, we use a **pointer** to it (`FILE*`). This pointer holds all the information the system needs: which file is open, which line is being read, and whether any errors have occurred.
+
+#### 🌊 What are Streams?
+
+Although we often talk about "files," the correct technical term in C is **Stream**. Think of a Stream as a pipe through which data flows. A file on a disk is just a special type of Stream.
+
+When starting any C program, the operating system already leaves three "pipes" open and ready for use:
+
+| `FILE*` Pointer | Name | Description |
+| :--- | :--- | :--- |
+| **stdin** | Standard Input | Standard input (usually the keyboard). |
+| **stdout** | Standard Output | Standard output (usually the screen). |
+| **stderr** | Standard Error | Error output (usually the screen as well). |
+
+#### ⚠️ The Importance of `stderr`
+
+You might have noticed that both `stdout` and `stderr` display messages on the screen. So, why use two different ones?
+
+The answer is: **Redirection**. Professional operating systems (like Linux or Windows) allow you to separate success messages from errors.
+
+* **Practical Example:** You can run a program and save only the important data to a file, while the errors still appear on your terminal so you know something failed.
+
+In C, the famous `printf()` is actually an alias for `fprintf()` sending data to `stdout`:
+
+```c
+printf("Hello, world!\n");             // What we always use
+fprintf(stdout, "Hello, world!\n");    // Exactly the same thing, but explicit
+```
+
+>💡 **Developer Insight:**
+> Always send critical error messages to `stderr` instead of the regular `printf`. This designs software with **maintainability** and automation in mind. If your program encounters an error on a server, whoever is monitoring can filter specifically for `stderr` messages to find what broke without having to read through thousands of lines of regular logs.
+
+</details>
+
+---
+
 
 
 ---
