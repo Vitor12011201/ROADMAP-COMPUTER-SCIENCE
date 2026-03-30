@@ -3202,6 +3202,68 @@ fprintf(stdout, "Olá, mundo!\n");    // Exatamente a mesma coisa, mas explícit
 
 ---
 
+<details>
+<summary><b>📖 Lendo Arquivos de Texto (Seção 9.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-2)-LENDO-ARQUIVOS-DE-TEXTO)
+
+---
+
+No C, os arquivos (streams) são divididos em duas grandes categorias: **Texto** e **Binário**.
+
+* **Arquivos de Texto:** São sequências de linhas que você consegue ler em qualquer editor comum (como o Bloco de Notas ou VS Code). O C faz pequenas traduções automáticas nessas streams, como ajustar o caractere de "nova linha" (`\n`) dependendo do sistema operacional.
+* **Arquivos Binários:** São dados puros (imagens, executáveis, vídeos). Veremos mais sobre eles adiante.
+
+---
+
+### 🛠️ O Ciclo de Vida de um Arquivo
+
+Para ler um arquivo, seguimos sempre três passos obrigatórios: **Abrir**, **Processar** e **Fechar**.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp; // Ponteiro para representar o arquivo aberto
+
+    // 1. ABRIR: Usamos fopen(nome_do_arquivo, modo)
+    // "r" significa "read" (abrir apenas para leitura de texto)
+    fp = fopen("ola.txt", "r");
+
+    // 2. PROCESSAR: Lendo o primeiro caractere do arquivo
+    int c = fgetc(fp); 
+
+    // Exibindo o caractere lido no console
+    printf("O primeiro caractere é: %c\n", c);
+
+    // 3. FECHAR: Liberar o arquivo para o sistema operacional
+    fclose(fp);
+
+    return 0;
+}
+```
+
+#### 🔍 Detalhes Importantes para o Desenvolvedor:
+1. **Por que `int c` em vez de `char c`?**
+Você notou que a função `fgetc()` retorna um `int`? Isso acontece porque, além de todos os caracteres possíveis, ela precisa ser capaz de retornar um valor especial chamado `EOF (End Of File)`, que indica que o arquivo acabou. O char comum não tem espaço para esse valor extra, por isso usamos `int`.
+---
+2. **O Modo "`r`":**
+O segundo argumento do `fopen` define o que você pretende fazer. O "`r`" garante que você não apagará o arquivo acidentalmente, pois ele abre o fluxo `apenas para leitura`.
+---
+3. **O Cursor de Leitura:**
+O ponteiro `FILE*` funciona como um cursor invisível. Cada vez que você chama `fgetc()`, o C lê um caractere e pula o cursor para o próximo. Se você chamar a função 10 vezes, lerá as próximas 10 letras do arquivo.
+---
+
+> 💡 **Insight do Desenvolvedor:**
+> Sempre feche seus arquivos com `fclose()`. Embora o sistema operacional feche os arquivos quando seu programa termina, deixar arquivos abertos consome recursos do sistema ("file descriptors"). Em servidores que rodam por meses, esquecer de fechar arquivos pode causar o travamento do sistema por falta de recursos.
+
+</details>
+
+---
+
 
 
 ---

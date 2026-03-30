@@ -3201,6 +3201,68 @@ fprintf(stdout, "Hello, world!\n");    // Exactly the same thing, but explicit
 
 ---
 
+<details>
+<summary><b>📖 Reading Text Files (Section 9.2)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.2 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-2)-READING-TEXT-FILES)
+
+---
+
+In C, files (streams) are divided into two major categories: **Text** and **Binary**.
+
+* **Text Files:** These are sequences of lines that you can read in any common editor (like Notepad or VS Code). C performs small automatic translations on these streams, such as adjusting the "newline" character (`\n`) depending on the operating system.
+* **Binary Files:** These are raw data (images, executables, videos). We will cover more about them later.
+
+---
+
+### 🛠️ The File Lifecycle
+
+To read a file, we always follow three mandatory steps: **Open**, **Process**, and **Close**.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp; // Pointer to represent the open file
+
+    // 1. OPEN: We use fopen(file_name, mode)
+    // "r" stands for "read" (open for text reading only)
+    fp = fopen("hello.txt", "r");
+
+    // 2. PROCESS: Reading the first character of the file
+    int c = fgetc(fp); 
+
+    // Displaying the character read on the console
+    printf("The first character is: %c\n", c);
+
+    // 3. CLOSE: Releasing the file to the operating system
+    fclose(fp);
+
+    return 0;
+}
+```
+
+#### 🔍 Critical Developer Details:
+1. **Why `int c` instead of `char c`?**
+Did you notice that the `fgetc()` function returns an `int`? This happens because, besides all possible characters, it needs to be able to return a special value called `EOF (End Of File)`, which indicates that the file has ended. A standard char doesn't have room for this extra value, which is why we use `int`.
+---
+2. **The "`r`" Mode:**
+The second argument of `fopen` defines what you intend to do. The "`r`" ensures you won't accidentally erase the file, as it opens the stream for `reading only`.
+---
+3. **The Reading Cursor:**
+The `FILE*` pointer acts like an invisible cursor. Every time you call `fgetc()`, C reads one character and moves the cursor to the next one. If you call the function 10 times, you will read the next 10 characters of the file.
+---
+
+> 💡 **Developer Insight:**
+> Always close your files with `fclose()`. Although the operating system closes files when your program ends, leaving files open consumes system resources ("file descriptors"). In servers that run for months, forgetting to close files can cause system crashes due to resource exhaustion.
+
+</details>
+
+---
+
 
 
 ---
