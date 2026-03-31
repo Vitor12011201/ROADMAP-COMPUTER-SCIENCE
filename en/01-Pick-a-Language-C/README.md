@@ -3263,6 +3263,67 @@ The `FILE*` pointer acts like an invisible cursor. Every time you call `fgetc()`
 
 ---
 
+<details>
+<summary><b>🔚 The End of File: EOF (Section 9.3)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.3 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-3)-THE-END-OF-FILE-EOF)
+
+---
+
+How does the program know when a file has ended? C uses a special macro called `EOF` (short for *End Of File*). It acts as a flag that the system sends when you attempt to read beyond the last character of the file.
+
+#### 🧐 The `int` vs `char` Mystery
+
+You might have wondered: "If I am reading characters, why does the `fgetc()` function return an `int`?".
+
+The answer is both technical and fascinating: `EOF` is not a real character (like 'A' or 'B'). It is a special numerical value (usually `-1`) that falls outside the range of a standard `char` type.
+
+* **The Problem:** If `fgetc()` returned a `char`, it wouldn't have an "extra" value to signal the end of the file without confusing it with a valid character.
+* **The Solution:** Using `int` allows the function to return any of the 256 possible characters **PLUS** the special `EOF` value.
+---
+
+#### 🔄 Reading an Entire File with Loops
+
+Now that we are familiar with `EOF`, we can create a `while` loop to process a file from beginning to end, regardless of its size.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    int c; // We use int to capture EOF correctly
+
+    fp = fopen("message.txt", "r");
+    
+    // Safety check (Best practice!)
+    if (fp == NULL) {
+        fprintf(stderr, "Error opening the file!\n");
+        return 1;
+    }
+
+    // The "Idiomatic C Loop":
+    // 1. Assigns the character read to 'c'
+    // 2. Checks if 'c' is not EOF
+    // 3. If it's different, it enters the loop and prints
+    while ((c = fgetc(fp)) != EOF) {
+        printf("%c", c);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+> 💡 **Developer Insight:**
+> The line while `((c = fgetc(fp)) != EOF)` might look strange at first, but it is what we call Idiomatic Code. It is a compact and efficient way to perform two operations (assignment and comparison) in a single line. In professional development, you will encounter this pattern constantly. Mastering this syntax shows that you are comfortable with "hardcore" C syntax and ready to handle continuous data streams.
+
+</details>
+
+---
+
 
 
 ---
