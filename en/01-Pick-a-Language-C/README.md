@@ -3264,12 +3264,23 @@ The `FILE*` pointer acts like an invisible cursor. Every time you call `fgetc()`
 ---
 
 <details>
-<summary><b>🔚 The End of File: EOF (Section 9.3)</b></summary>
+<summary><b>🔚EOF - The End of File (Section 9.3.0 - Section 9.3.1)</b></summary>
 <br>
 
 ---
 
-[Code for Section 9.3 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-3)-THE-END-OF-FILE-EOF)
+[Code for Section 9.3.0 - 9.3.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-3)-EOF-END-OF-FILE)
+
+---
+
+
+<details>
+<summary><b>🧱 The End of File: EOF (Section 9.3.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.3.0 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-3)-EOF-END-OF-FILE/(SECTION-9-3-0)-THE-END-OF-FILE)
 
 ---
 
@@ -3319,6 +3330,75 @@ int main(void) {
 
 > 💡 **Developer Insight:**
 > The line while `((c = fgetc(fp)) != EOF)` might look strange at first, but it is what we call Idiomatic Code. It is a compact and efficient way to perform two operations (assignment and comparison) in a single line. In professional development, you will encounter this pattern constantly. Mastering this syntax shows that you are comfortable with "hardcore" C syntax and ready to handle continuous data streams.
+
+</details>
+
+---
+
+<details>
+<summary><b>📝 Reading One Line at a Time with fgets() (Section 9.3.1)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.3.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-3)-EOF-END-OF-FILE/(SECTION-9-3-1)-READING-ONE-LINE-AT-A-TIME)
+
+---
+
+Reading one character at a time works, but it is inefficient for large files. In practice, we usually process text files **line by line**. To do this, C provides the `fgets()` function.
+
+#### 🛠️ How does `fgets()` work?
+
+Unlike `fgetc()`, `fgets()` needs three pieces of information (arguments) to work safely:
+1. **The Buffer:** A `char` array where the read line will be stored.
+2. **The Maximum Size:** The byte limit it can read (this prevents your program from trying to read more than the array can hold, avoiding memory bugs).
+3. **The File Pointer:** The `FILE*` representing the open file.
+
+`fgets()` reads until it encounters a newline (`\n`), reaches the size limit, or hits the end of the file. It also automatically appends the null character (`\0`) to the end of the string.
+
+---
+
+#### 💻 Practical Example: Line Counter
+
+Let's imagine a file named `quote.txt` with a famous phrase. The code below reads the file line by line and prints the line number before the text:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    char buffer[1024]; // Enough space for a long line
+    int counter = 0;
+
+    fp = fopen("quote.txt", "r");
+
+    // Error checking upon opening
+    if (fp == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    // The loop continues as long as fgets() does not return NULL (end of file)
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%d: %s", ++counter, buffer);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### **⚠️ Important Technical Details:**
+- **NULL Return:** While `fgetc()` uses `EOF`, `fgets()` returns `NULL` when it reaches the end of the file or encounters an error.
+
+- **The \n Character:** `fgets()` usually keeps the newline character (`\n`) inside the string if there is space. This is why, in the example above, the printf does not need an extra `\n` at the end.
+
+- **Buffer Safety:** Using `sizeof(buffer)` as an argument ensures that the program will never write outside the array boundaries, an essential practice to avoid security vulnerabilities.
+
+> 💡 **Developer Insight:**
+> In professional development, the buffer size (like the `1024` we used) is a choice based on the expected data type. If you are reading a giant log file with massive lines, you will need larger buffers. Seeing a developer use `fgets()` instead of unsafe functions like `gets()` is a clear sign that they care about the stability and security of the application.
+
+</details>
 
 </details>
 

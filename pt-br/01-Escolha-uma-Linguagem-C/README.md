@@ -3265,17 +3265,26 @@ O ponteiro `FILE*` funciona como um cursor invisível. Cada vez que você chama 
 ---
 
 <details>
-<summary><b>🔚 O Fim do Arquivo: EOF - End Of File (Seção 9.3)</b></summary>
+<summary><b>🔚 EOF - End Of File (Seção 9.3.0 - Seção 9.3.1)</b></summary>
 <br>
 
 ---
 
-[Codigos da Seção 9.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-3)-O-FIM-DO-ARQUIVO-EOF)
+[Codigos das Seções 9.3.0 - 9.3.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-3)-END-OF-FILE-EOF)
+
+---
+
+<details>
+<summary><b>🧱 O Fim do Arquivo: EOF (Seção 9.3.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.3.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-3)-END-OF-FILE-EOF/(SECAO-9-3-0)-O-FIM-DO-ARQUIVO)
 
 ---
 
 Como o programa sabe que o arquivo acabou? O C utiliza uma macro especial chamada `EOF` (abreviação de *End Of File*). Ela funciona como um sinalizador que o sistema envia quando você tenta ler algo além do último caractere do arquivo.
-
 
 #### 🧐 O Mistério do `int` vs `char`
 
@@ -3322,6 +3331,75 @@ int main(void) {
 > 💡 **Insight do Desenvolvedor:**
 > A linha while `((c = fgetc(fp)) != EOF)` pode parecer estranha à primeira vista, mas ela é o que chamamos de Código Idiomático. É uma forma compacta e eficiente de realizar duas operações (atribuição e comparação) em uma única linha. No desenvolvimento profissional, você encontrará esse padrão constantemente. Dominar essa leitura demonstra que você já está confortável com a sintaxe "raiz" do C e pronto para lidar com fluxos de dados contínuos.
 
+
+</details>
+
+---
+
+<details>
+<summary><b>📝 Lendo uma Linha por Vez com fgets() (Seção 9.3.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.3.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-3)-END-OF-FILE-EOF/(SECAO-9-3-1)-LENDO-UMA-LINHA-POR-VEZ)
+
+---
+
+Ler um caractere de cada vez funciona, mas é ineficiente para arquivos grandes. Na prática, costumamos processar arquivos de texto **linha por linha**. Para isso, o C nos fornece a função `fgets()`.
+
+#### 🛠️ Como funciona o `fgets()`?
+
+Diferente do `fgetc()`, o `fgets()` precisa de três informações (argumentos) para trabalhar com segurança:
+1. **O Buffer:** Um array de `char` onde a linha lida será guardada.
+2. **O Tamanho Máximo:** O limite de bytes que ele pode ler (isso evita que seu programa tente ler mais do que cabe no array, prevenindo bugs de memória).
+3. **O Ponteiro do Arquivo:** O `FILE*` que representa o arquivo aberto.
+
+O `fgets()` lê até encontrar uma nova linha (`\n`), chegar ao limite de tamanho ou atingir o fim do arquivo. Ele também adiciona automaticamente o caractere nulo (`\0`) ao final da string.
+
+---
+
+#### 💻 Exemplo Prático: Contador de Linhas
+
+Vamos imaginar um arquivo chamado `citacao.txt` com uma frase famosa. O código abaixo lê o arquivo linha por linha e imprime o número da linha antes do texto:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    char buffer[1024]; // Espaço suficiente para uma linha longa
+    int contador = 0;
+
+    fp = fopen("citacao.txt", "r");
+
+    // Verificação de erro ao abrir
+    if (fp == NULL) {
+        perror("Erro ao abrir arquivo");
+        return 1;
+    }
+
+    // O loop continua enquanto fgets() não retornar NULL (fim do arquivo)
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        printf("%d: %s", ++contador, buffer);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### **⚠️ Detalhes Técnicos Importantes:**
+- **Retorno NULL:** Enquanto o `fgetc()` usa o `EOF`, o `fgets()` retorna `NULL` quando chega ao fim do arquivo ou encontra um erro.
+
+- **O caractere \n:** O `fgets()` geralmente mantém o caractere de nova linha (`\n`) dentro da string se houver espaço. É por isso que, no exemplo acima, o printf não precisa de um `\n` extra no final.
+
+- **Segurança de Buffer:** Usar `sizeof(buffer)` como argumento garante que o programa nunca escreverá fora dos limites do array, uma prática essencial para evitar vulnerabilidades de segurança.
+
+> 💡 **Insight do Desenvolvedor:**
+> No desenvolvimento profissional, o tamanho do buffer (como o `1024` que usamos) é uma escolha baseada no tipo de dado esperado. Se você estiver lendo um arquivo de log gigante com linhas imensas, precisará de buffers maiores. Ver um desenvolvedor usando `fgets()` em vez de funções inseguras como `gets()` é um sinal claro de que ele se preocupa com a **estabilidade e segurança** da aplicação.
+
+</details>
 
 </details>
 
