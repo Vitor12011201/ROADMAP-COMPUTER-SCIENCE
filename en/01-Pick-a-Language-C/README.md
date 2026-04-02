@@ -349,17 +349,19 @@ gcc -Wall -Wextra -std=c23 -pedantic program.c
 
 ---
 
-#### 🧠 What to expect:
-- Learn how to classify program elements.
-- Understand how C handles different data types and instructions.
+<details>
+<summary><b> 📦 Variables (Section 3.1.0 - Section 3.1.3):</b></summary>
+<br>
+
+---
+
+[Section 3.1.0 - 3.1.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1)-VARIABLES)
 
 ---
 
 <details>
-<summary><b> 📦 Variables (Section 3.1.0):</b></summary>
+<summary><b>💾 What is a Variable? (Section 3.1.0)</b></summary>
 <br>
-
-### 💾 What is a Variable? (Low-Level View)
 
 To the user, it is a name. To C, a variable is an **abstraction of a physical memory address**.
 
@@ -375,8 +377,6 @@ Every variable in your code has four fundamental characteristics that the comput
 Think of RAM as a **gigantic array of bytes**. Each byte has an index (the address).
 - If you declare an `int x`, C reserves a block (usually 4 bytes).
 - The name `x` becomes the label for the address of the **first byte** of that block.
-
-[Image showing a sequence of memory cells with addresses like 0x100, 0x101, etc., highlighting a block of 4 cells labeled as 'Variable X']
 
 #### 🔄 The Leap to Pointers
 The reason we study this now is simple: in C, you can manipulate the **address** directly, not just the **value**.
@@ -402,7 +402,7 @@ Imagine the computer's memory as a large hotel with thousands of rooms:
 
 ---
 
-[Section 3.1.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-1)-VARIABLE-NAMES)
+[Section 3.1.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1)-VARIABLES/(SECTION-3-1-1)-VARIABLE-NAMES)
 
 ---
 
@@ -428,7 +428,7 @@ C is **Case Sensitive**, meaning `vitor`, `Vitor`, and `VITOR` would be three di
 
 ---
 
-[Section 3.1.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-2)-VARIABLE-TYPES)
+[Section 3.1.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1)-VARIABLES/(SECTION-3-1-2)-VARIABLE-TYPES)
 
 ---
 
@@ -462,7 +462,7 @@ To print variables, we use `printf` with format specifiers:
 
 ---
 
-[Section 3.1.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1-3)-BOOLEAN-TYPES)
+[Section 3.1.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-1)-VARIABLES/(SECTION-3-1-3)-BOOLEAN-TYPES)
 
 ---
 
@@ -486,6 +486,18 @@ if (rich) {
 
 </details>
 
+</details>
+
+---
+
+<details>
+<summary><b>🧠 Operators and Expressions (Section 3.2.0 - Section 3.2.7)</b></summary>
+<br>
+
+---
+
+[Section 3.2.0 - 3.2.7 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS)
+
 ---
 
 <details>
@@ -494,7 +506,7 @@ if (rich) {
 
 ---
 
-[Section 3.2.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-1)-ARITHMETIC-OPERATORS)
+[Section 3.2.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-1)-ARITHMETIC-OPERATORS)
 
 ---
 
@@ -519,7 +531,7 @@ if (rich) {
 
 ---
 
-[Section 3.2.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-2)-TERNARY-OPERATOR)
+[Section 3.2.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-2)-TERNARY-OPERATOR)
 
 ---
 
@@ -547,7 +559,7 @@ printf("The number %d is %s\n", x, result);
 
 ---
 
-[Section 3.2.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-3)-INCREMENT-AND-DECREMENT)
+[Section 3.2.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-3)-INCREMENT-AND-DECREMENT)
 
 ---
 
@@ -584,7 +596,7 @@ printf("B: %d\n", ++b + ++b);
 
 ---
 
-[Section 3.2.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-4)-COMMA-OPERATOR)
+[Section 3.2.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-4)-COMMA-OPERATOR)
 
 ---
 
@@ -621,7 +633,7 @@ printf("i: %d | j: %d\n", i, j);
 
 ---
 
-[Section 3.2.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-5)-CONDITIONAL-OPERATORS)
+[Section 3.2.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-5)-CONDITIONAL-OPERATORS)
 
 ---
 
@@ -657,7 +669,7 @@ if (a <= 10) {
 
 ---
 
-[Section 3.2.6 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-6)-LOGICAL-OPERATORS)
+[Section 3.2.6 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-6)-LOGICAL-OPERATORS)
 
 ---
 
@@ -716,7 +728,7 @@ Given the code: `if (5 > 2 || 2 > 10)`, will the program enter the `if` block?
 
 ---
 
-[Section 3.2.7 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2-7)-SIZEOF-OPERATOR-(Measuring-Memory))
+[Section 3.2.7 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-2)-OPERATORS-AND-EXPRESSIONS/(SECTION-3-2-7)-SIZEOF-OPERATOR-(Measuring-Memory))
 
 ---
 
@@ -750,15 +762,28 @@ Imagine you are going to buy a box to store 10 oranges. You need to know the siz
 
 </details>
 
+</details>
+
+
 ---
 
 <details>
- <summary><b>🚦 Flow Control (Section 3.3.0) </b></summary>
+<summary><b>⚖️ Control Flow (Section 3.3.0 - Section 3.3.5)</b></summary>
 <br>
 
 ---
 
-[Section 3.3.0 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-0)-CONTROL-FLOW)
+[Section 3.2.7 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW)
+
+---
+
+<details>
+ <summary><b>🚦 Introduction - Control Flow (Section 3.3.0) </b></summary>
+<br>
+
+---
+
+[Section 3.3.0 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-0)-CONTROL-FLOW)
 
 ---
 
@@ -808,7 +833,7 @@ Follow the "Veteran's Best Practice": Always use braces { }, even for a single l
 
 ---
 
-[Section 3.3.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-1)-STRUCTURE-(if-else))
+[Section 3.3.1 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-1)-STRUCTURE-(if-else))
 
 ---
 
@@ -873,7 +898,7 @@ if (i == 10) {
 
 ---
 
-[Section 3.3.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-2)-WHILE-(LOOP))
+[Section 3.3.2 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-2)-WHILE-(LOOP))
 
 ---
 
@@ -906,7 +931,7 @@ printf("Loop finished!\n");
 
 ---
 
-[Section 3.3.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-3)-DO-WHILE-(CONTROL-FLOW))
+[Section 3.3.3 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-3)-DO-WHILE-(CONTROL-FLOW))
 
 ---
 
@@ -975,7 +1000,7 @@ The do-while loop is ideal for data input validation. For example: "Ask the user
 
 ---
 
-[Section 3.3.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-4)-FOR-(LOOP))
+[Section 3.3.4 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-4)-FOR-(LOOP))
 
 ---
 
@@ -1042,7 +1067,7 @@ The primary advantage of for over while is scope and safety. In a for loop, the 
 
 ---
 
-[Section 3.3.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3-5)-SWITCH-CASE)
+[Section 3.3.5 codes can be found here](./CODE_BY_DAY/DAY_003/(SECTION-3-3)-CONTROL-FLOW/(SECTION-3-3-5)-SWITCH-CASE)
 
 ---
 
@@ -1109,6 +1134,8 @@ switch (choice) {
 
 #### 🎓 Note:
 Never try to use decimal numbers (float/double) or strings inside a switch. The compiler will throw an error immediately. The switch statement was designed for discrete, exact values.
+
+</details>
 
 </details>
 

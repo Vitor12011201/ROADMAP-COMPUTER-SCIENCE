@@ -355,16 +355,19 @@ gcc -Wall -Wextra -std=c23 -pedantic programa.c
 
 ---
 
-#### 🧠 O que esperar:
-- Aprender a classificar os elementos de um programa.
-- Entender como o C lida com diferentes tipos de dados e instruções.
+<details>
+<summary><b> 📦 Variaveis (Seção 3.1.0 - Seção 3.1.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 3.1.0 - 3.1.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1)-VARIAVEIS)
+
 ---
 
 <details>
-<summary><b> 📦 Variaveis (Seção 3.1.0)</b></summary>
+<summary><b>💾O que é uma Variável? (Seção 3.1.0)</b></summary>
 <br>
-
-### 💾O que é uma Variável? (Visão de Baixo Nível)
 
 Para o usuário, é um nome. Para o C, uma variável é uma **abstração de um endereço de memória física**.
 
@@ -380,8 +383,6 @@ Toda variável no seu código possui quatro características fundamentais que o 
 Pense na memória RAM como um **array gigantesco de bytes**. Cada byte tem um índice (o endereço).
 - Se você declara um `int x`, o C reserva um bloco (geralmente 4 bytes).
 - O nome `x` passa a ser o rótulo para o endereço do **primeiro byte** desse bloco.
-
-[Image showing a sequence of memory cells with addresses like 0x100, 0x101, etc., highlighting a block of 4 cells labeled as 'Variable X']
 
 #### 🔄 O Salto para Ponteiros
 A razão pela qual estudamos isso agora é simples: em C, você pode manipular o **endereço** diretamente, não apenas o **valor**.
@@ -407,7 +408,7 @@ Imagine a memória do computador como um grande hotel com milhares de quartos:
 
 ---
 
-[Codigos da Seção 3.1.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1-1)-NOMES-DE-VARIAVEIS)
+[Codigos da Seção 3.1.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1)-VARIAVEIS/(SECAO-3-1-1)-NOMES-DE-VARIAVEIS)
 
 ---
 
@@ -432,7 +433,7 @@ O C é **Case Sensitive**, ou seja, `vitor`, `Vitor` e `VITOR` seriam três vari
 
 ---
 
-[Codigos da Seção 3.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1-2)-TIPOS-DE-VARIAVEIS)
+[Codigos da Seção 3.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1)-VARIAVEIS/(SECAO-3-1-2)-TIPOS-DE-VARIAVEIS)
 
 ---
 
@@ -465,7 +466,7 @@ Para imprimir variáveis, usamos o `printf` com marcadores:
 
 ---
 
-[Codigos da Seção 3.1.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1-3)-TIPOS-BOOLEANOS)
+[Codigos da Seção 3.1.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-1)-VARIAVEIS/(SECAO-3-1-3)-TIPOS-BOOLEANOS)
 
 ---
 
@@ -488,6 +489,18 @@ if (rico) {
 ```
 </details>
 
+</details>
+
+---
+
+<details>
+<summary><b>🧠 Operadores e Expressões(Seção 3.2.0 - Seção 3.2.7)</b></summary>
+<br>
+
+---
+
+[Codigos das Seções 3.2.0 - 3.2.7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES)
+
 ---
 
 <details>
@@ -496,7 +509,7 @@ if (rico) {
 
 ---
 
-[Codigos da Seção 3.2.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-1)-OPERADORES-ARITMETICOS)
+[Codigos da Seção 3.2.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-1)-OPERADORES-ARITMETICOS)
 
 ---
 
@@ -521,7 +534,7 @@ if (rico) {
 
 ---
 
-[Codigos da Seção 3.2.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-2)-OPERADOR-TERNARIO)
+[Codigos da Seção 3.2.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-2)-OPERADOR-TERNARIO)
 
 ---
 
@@ -549,7 +562,7 @@ printf("O numero %d e %s\n", x, resultado);
 
 ---
 
-[Codigos da Seção 3.2.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-3)-INCREMENTO-E-DECREMENTO)
+[Codigos da Seção 3.2.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-3)-INCREMENTO-E-DECREMENTO)
 
 ---
 
@@ -587,7 +600,7 @@ printf("B: %d\n", ++b + ++b);
 
 ---
 
-[Codigos da Seção 3.2.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-4)-OPERADOR-VIRGULA)
+[Codigos da Seção 3.2.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-4)-OPERADOR-VIRGULA)
 
 ---
 
@@ -622,7 +635,7 @@ printf("i: %d | j: %d\n", i, j);
 
 ---
 
-[Codigos da Seção 3.2.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-5)-OPERADORES-CONDICIONAIS)
+[Codigos da Seção 3.2.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-5)-OPERADORES-CONDICIONAIS)
 
 ---
 
@@ -659,7 +672,7 @@ if (a <= 10) {
 
 ---
 
-[Codigos da Seção 3.2.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-6)-OPERADORES-LOGICOS)
+[Codigos da Seção 3.2.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-6)-OPERADORES-LOGICOS)
 
 ---
 
@@ -717,7 +730,7 @@ Se você tiver o código: `if (5 > 2 || 2 > 10)`, o programa entrará no `if`?
 
 ---
 
-[Codigos da Seção 3.2.7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2-7)-OPERADOR-SIZEOF-(Medindo-a-Memoria))
+[Codigos da Seção 3.2.7 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-2)-OPERADORES-E-EXPRESSOES/(SECAO-3-2-7)-OPERADOR-SIZEOF-(Medindo-a-Memoria))
 
 ---
 
@@ -750,14 +763,27 @@ Imagine que você vai comprar uma caixa para guardar 10 laranjas. Você precisa 
 
 </details>
 
+</details>
+
 ---
+
 <details>
- <summary><b>🚦 Controle de Fluxo (Seção 3.3.0) </b></summary>
+<summary><b>⚖️ Fluxo de Controle (Seção 3.3.0 - Seção 3.3.5)</b></summary>
 <br>
 
 ---
 
-[Codigos da Seção 3.3.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-0)-CONTROLE-DE-FLUXO)
+[Codigos da Seções 3.3.0 - 3.3.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE)
+
+---
+
+<details>
+ <summary><b>🚦 Introdução - Controle de Fluxo (Seção 3.3.0) </b></summary>
+<br>
+
+---
+
+[Codigos da Seção 3.3.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-0)-CONTROLE-DE-FLUXO)
 
 ---
 
@@ -804,7 +830,7 @@ Siga a "Boa Prática dos Veteranos": Sempre use chaves { }, mesmo que seja para 
 
 ---
 
-[Codigos da Seção 3.3.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-1)-ESTRUTURA-(if-else))
+[Codigos da Seção 3.3.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-1)-ESTRUTURA-(if-else))
 
 ---
 
@@ -866,7 +892,7 @@ if (i == 10) {
 
 ---
 
-[Codigos da Seção 3.3.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-2)-WHILE-(LACO-DE-REPETICAO))
+[Codigos da Seção 3.3.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-2)-WHILE-(LACO-DE-REPETICAO))
 
 ---
 
@@ -900,7 +926,7 @@ printf("Acabou o loop!\n");
 
 ---
 
-[Codigos da Seção 3.3.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-3)-DO-WHILE-(CONTROLE-DE-FLUXO))
+[Codigos da Seção 3.3.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-3)-DO-WHILE-(CONTROLE-DE-FLUXO))
 
 ---
 
@@ -971,7 +997,7 @@ O do-while é ideal para validação de entrada de dados. Por exemplo: "Peça um
 
 ---
 
-[Codigos da Seção 3.3.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-4)FOR-(LACO-DE-REPETICAO))
+[Codigos da Seção 3.3.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-4)FOR-(LACO-DE-REPETICAO))
 
 ---
 
@@ -1039,7 +1065,7 @@ A grande vantagem do for sobre o while é o escopo. No for, a variável de contr
 
 ---
 
-[Codigos da Seção 3.3.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3-5)-SWITCH-CASE)
+[Codigos da Seção 3.3.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_003/(SECAO-3-3)-FLUXO-DE-CONTROLE/(SECAO-3-3-5)-SWITCH-CASE)
 
 ---
 
@@ -1103,6 +1129,8 @@ printf("Opção B\n"); break;
 ```
 #### 🎓Nota:
 Nunca tente usar números decimais (float/double) ou frases (strings) dentro de um switch. O compilador vai dar erro na hora. O switch foi feito para valores discretos e exatos.
+
+</details>
 
 </details>
 
