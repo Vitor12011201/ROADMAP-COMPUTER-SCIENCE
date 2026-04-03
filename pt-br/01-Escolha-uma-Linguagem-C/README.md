@@ -3433,6 +3433,74 @@ int main(void) {
 
 ---
 
+<details>
+<summary><b>📊 Entrada Formatada com `fscanf()` (Seção 9.4)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-4)-ENTRADA-FORMATADA-FSCANF)
+
+---
+
+Se o `printf()` serve para exibir dados formatados, o `fscanf()` é o seu equivalente para **ler** dados formatados diretamente de um arquivo. Ele é ideal quando o seu arquivo segue um padrão rígido, como uma tabela ou uma lista de registros.
+
+---
+
+#### 🐋 Exemplo Prático: Processando Dados de Baleias
+
+Imagine um arquivo chamado `baleias.txt` com o nome da espécie, comprimento (metros) e peso (toneladas):
+```text
+azul 29.9 173
+franca 20.7 135
+cinzenta 14.9 41
+```
+
+#### Podemos ler esses dados diretamente para variáveis específicas:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    char nome[100];
+    float comprimento;
+    int massa;
+
+    fp = fopen("baleias.txt", "r");
+
+    if (fp == NULL) {
+        perror("Erro ao abrir arquivo");
+        return 1;
+    }
+
+    // O fscanf pula espaços em branco e retorna EOF no fim do arquivo
+    while (fscanf(fp, "%s %f %d", nome, &comprimento, &massa) != EOF) {
+        printf("Espécie: %s | Peso: %d t | Comp.: %.1f m\n", nome, massa, comprimento);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### **⚠️ Alerta de Segurança: O Perigo do `scanf`**
+Embora o `fscanf()` seja prático, ele pode ser perigoso se os dados no arquivo não forem confiáveis.
+
+1. **Buffer Overflow:** Se você usar `%s` sem limitar o tamanho, e o arquivo contiver uma palavra maior que o seu array `nome`, o programa irá travar ou ser invadido.
+
+- **Solução:** Use sempre um limite, como `%99s` (para um array de 100 posições).
+
+2. **Conversões Inválidas:** Se o arquivo esperar um número mas encontrar uma letra, o comportamento pode ser imprevisível.
+
+
+>💡 **Insight do Desenvolvedor:**
+> Em projetos profissionais de grande escala, é muito comum ler a linha inteira primeiro com `fgets()` e depois processar essa string na memória usando `sscanf()`. Isso torna o programa muito mais resiliente a arquivos corrompidos ou mal formatados.
+
+</details>
+
+---
+
 
 
 ---

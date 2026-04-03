@@ -3431,6 +3431,73 @@ int main(void) {
 
 ---
 
+<details>
+<summary><b>📊 Formatted Input with `fscanf()` (Section 9.4)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.4 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-4)-FORMATTED-INPUT-FSCANF)
+
+---
+
+Just as `printf()` is used to display formatted data, `fscanf()` is its equivalent for **reading** formatted data directly from a file. It is ideal when your file follows a strict pattern, such as a table or a list of records.
+
+---
+
+#### 🐋 Practical Example: Processing Whale Data
+
+Imagine a file named `whales.txt` containing the species name, length (meters), and weight (tons):
+```text
+blue 29.9 173
+right 20.7 135
+gray 14.9 41
+```
+
+#### We can read this data directly into specific variables:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    char name[100];
+    float length;
+    int mass;
+
+    fp = fopen("whales.txt", "r");
+
+    if (fp == NULL) {
+        perror("Error opening file");
+        return 1;
+    }
+
+    // fscanf skips whitespace and returns EOF at the end of the file
+    while (fscanf(fp, "%s %f %d", name, &length, &mass) != EOF) {
+        printf("Species: %s | Weight: %d t | Length: %.1f m\n", name, mass, length);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### **⚠️ Security Alert: The Danger of `fscanf`**
+While `fscanf()` is convenient, it can be dangerous if the file data is untrustworthy.
+
+1. **Buffer Overflow:** If you use `%s` without limiting the size, and the file contains a word larger than your `name` array, the program will crash or be compromised.
+
+- **Solution:** Always use a width limit, such as `%99s` (for a 100-position array).
+
+2. Invalid Conversions: If the file expects a number but finds a character, the behavior can be unpredictable.
+
+> 💡 **Developer Insight:**
+> In large-scale professional projects, it is very common to read the entire line first with `fgets()` and then process that string in memory using `sscanf()`. This makes the program much more resilient to corrupted or poorly formatted files.
+
+</details>
+
+---
+
 
 
 ---

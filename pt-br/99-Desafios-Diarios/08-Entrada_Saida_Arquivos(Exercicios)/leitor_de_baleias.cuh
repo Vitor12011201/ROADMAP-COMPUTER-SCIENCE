@@ -1,0 +1,14 @@
+//
+// Created by vitor on 03/04/2026.
+//
+
+#ifndef ROADMAP_COMPUTER_SCIENCE_LEITOR_DE_BALEIAS_CUH
+#define ROADMAP_COMPUTER_SCIENCE_LEITOR_DE_BALEIAS_CUH
+
+
+class leitor_de_baleias
+{
+};
+
+
+#endif //ROADMAP_COMPUTER_SCIENCE_LEITOR_DE_BALEIAS_CUH
