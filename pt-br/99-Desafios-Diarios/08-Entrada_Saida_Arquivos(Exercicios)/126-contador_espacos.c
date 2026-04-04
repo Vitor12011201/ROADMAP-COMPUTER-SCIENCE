@@ -6,15 +6,16 @@
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     int c;
     int contador = 0;
 
     fp = fopen("frase.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Essa arquivo nao existe\n");
         return 1;
     }
@@ -25,13 +26,16 @@ int main() {
 
     fp = fopen("frase.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
-    while ((c = getc(fp)) != EOF) {
-        if (c == ' ') {
+    while ((c = getc(fp)) != EOF)
+    {
+        if (c == ' ')
+        {
             contador++;
         }
     }

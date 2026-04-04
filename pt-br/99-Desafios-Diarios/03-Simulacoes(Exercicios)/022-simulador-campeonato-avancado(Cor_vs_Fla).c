@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main() {
+int main()
+{
     int golsFlamengo;
     int golsCorinthians;
     srand(time(NULL));
 
-    char *jogadoresFlamengo[] = {
+    char* jogadoresFlamengo[] = {
         "Varela",
         "Danilo",
         "Leo Pereira",
@@ -20,7 +21,7 @@ int main() {
         "Bruno Henrique"
     };
 
-    char *jogadoresCorinthians[] = {
+    char* jogadoresCorinthians[] = {
         "Gustavo Henquique",
         "Andre Ramalho",
         "Matheus Bidu",
@@ -45,22 +46,29 @@ int main() {
     printf("\n");
     printf("Fim de Jogo o Placar final e de Corinthians %d x %d Flamengo \n", golsCorinthians, golsFlamengo);
     printf("\n");
-    for (int i = 0; i < golsFlamengo; i++ ) {
+    for (int i = 0; i < golsFlamengo; i++)
+    {
         int autor = rand() % 10;
-        printf("Com Gol(s) Flamengo: %s \n" , jogadoresFlamengo[autor]);
+        printf("Com Gol(s) Flamengo: %s \n", jogadoresFlamengo[autor]);
     }
 
-    for (int i = 0; i < golsCorinthians; i++ ) {
+    for (int i = 0; i < golsCorinthians; i++)
+    {
         int autor = rand() % 10;
-        printf("Com Gols(s) Corinthians: %s \n" ,jogadoresCorinthians[autor]);
+        printf("Com Gols(s) Corinthians: %s \n", jogadoresCorinthians[autor]);
     }
-    if (golsFlamengo > golsCorinthians) {
+    if (golsFlamengo > golsCorinthians)
+    {
         printf("\n");
         printf("O Flamengo e campeao da Super Copa do Brasil \n");
-    } else if (golsFlamengo < golsCorinthians) {
+    }
+    else if (golsFlamengo < golsCorinthians)
+    {
         printf("\n");
         printf("O Corinthians e campeao da Super Copa do Brasil \n");
-    } else {
+    }
+    else
+    {
         printf("A Partida empatou vamos para os Penaltis \n");
         printf("\n");
 
@@ -72,12 +80,14 @@ int main() {
         int ordemFlamengo[10];
         int ordemCorinthians[10];
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             ordemFlamengo[i] = i;
             ordemCorinthians[i] = i;
         }
 
-        for (int i = 9; i > 0; i--) {
+        for (int i = 9; i > 0; i--)
+        {
             int j = rand() % (i + 1);
 
             int temp = ordemFlamengo[i];
@@ -90,97 +100,128 @@ int main() {
         }
 
 
-        for (int i = 0; i <= 4; i++) {
-
+        for (int i = 0; i <= 4; i++)
+        {
             int batedorFlamengo = ordemFlamengo[i];
             int batedorCorinthians = ordemCorinthians[i];
 
             int batidaFlamengo = rand() % 2;
             int batidaCorinthians = rand() % 2;
 
-            if (batidaFlamengo == 1) {
+            if (batidaFlamengo == 1)
+            {
                 golsPenFlamengo++;
                 printf("\n");
-                printf("BATIDA NUMERO %d PARA O FLAMENGO: BATEU COM O JOGADOR (%s) E FEZ O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n" , i + 1, jogadoresFlamengo[batedorFlamengo] ,golsPenFlamengo , golsPenCorinthians);
-                printf("\n");
-            } else {
-                printf("\n");
-                printf("BATIDA NUMERO %d PARA O FLAMENGO: BATEU COM O JOGADOR (%s) E PERDEU O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n" , i + 1 , jogadoresFlamengo[batedorFlamengo] , golsPenFlamengo , golsPenCorinthians);
+                printf(
+                    "BATIDA NUMERO %d PARA O FLAMENGO: BATEU COM O JOGADOR (%s) E FEZ O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n",
+                    i + 1, jogadoresFlamengo[batedorFlamengo], golsPenFlamengo, golsPenCorinthians);
                 printf("\n");
             }
-            if (batidaCorinthians == 1) {
+            else
+            {
+                printf("\n");
+                printf(
+                    "BATIDA NUMERO %d PARA O FLAMENGO: BATEU COM O JOGADOR (%s) E PERDEU O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n",
+                    i + 1, jogadoresFlamengo[batedorFlamengo], golsPenFlamengo, golsPenCorinthians);
+                printf("\n");
+            }
+            if (batidaCorinthians == 1)
+            {
                 golsPenCorinthians++;
                 printf("\n");
-                printf("BATIDA NUMERO %d PARA O CORINTHIANS: BATEU COM O JOGADOR (%s) E FEZ O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n" , i + 1, jogadoresCorinthians[batedorCorinthians] , golsPenFlamengo , golsPenCorinthians);
+                printf(
+                    "BATIDA NUMERO %d PARA O CORINTHIANS: BATEU COM O JOGADOR (%s) E FEZ O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n",
+                    i + 1, jogadoresCorinthians[batedorCorinthians], golsPenFlamengo, golsPenCorinthians);
                 printf("\n");
-            } else {
+            }
+            else
+            {
                 printf("\n");
-                printf("BATIDA NUMERO %d PARA O CORINTHIANS: BATEU COM O JOGADOR (%s) E PERDEU O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n" , i + 1, jogadoresCorinthians[batedorCorinthians] , golsPenFlamengo , golsPenCorinthians);
+                printf(
+                    "BATIDA NUMERO %d PARA O CORINTHIANS: BATEU COM O JOGADOR (%s) E PERDEU O GOL DE PENALTI: PLACAR FLAMENGO %d x %d CORINTHIANS \n",
+                    i + 1, jogadoresCorinthians[batedorCorinthians], golsPenFlamengo, golsPenCorinthians);
                 printf("\n");
             }
         }
+        printf("\n");
+        printf("O Placar nos Penaltis ficou: Corinthians %d x %d Flamengo \n", golsPenCorinthians, golsPenFlamengo);
+        printf("\n");
+
+        if (golsPenFlamengo > golsPenCorinthians)
+        {
+            printf("FLAMENGO CAMPEAO DA SUPER COPA DO BRASIL \n");
+        }
+        else if (golsPenFlamengo < golsPenCorinthians)
+        {
+            printf("CORINTHIANS CAMPEAO DA SUPER COPA DO BRASIL \n");
+        }
+        else
+        {
+            printf("JOGO EMPATADO, VAMOS PARA MORTE SUBITA");
             printf("\n");
-            printf("O Placar nos Penaltis ficou: Corinthians %d x %d Flamengo \n" , golsPenCorinthians , golsPenFlamengo);
+
+            int indiceMorteSubita = 5;
+
+            printf("\nINICIO DA MORTE SUBITA! \n");
             printf("\n");
 
-            if (golsPenFlamengo > golsPenCorinthians) {
-                printf("FLAMENGO CAMPEAO DA SUPER COPA DO BRASIL \n");
-            } else if (golsPenFlamengo < golsPenCorinthians) {
-                printf("CORINTHIANS CAMPEAO DA SUPER COPA DO BRASIL \n");
-            } else {
-                printf("JOGO EMPATADO, VAMOS PARA MORTE SUBITA");
-                printf("\n");
+            while (1)
+            {
+                int batedorFlamengo = ordemFlamengo[indiceMorteSubita];
+                int batedorCorinthians = ordemCorinthians[indiceMorteSubita];
 
-                int indiceMorteSubita = 5;
+                int batidaFlamengo = rand() % 2;
+                int batidaCorinthians = rand() % 2;
 
-                printf("\nINICIO DA MORTE SUBITA! \n");
-                printf("\n");
+                printf("\nFLAMENGO BATEU COM %s... \n", jogadoresFlamengo[batedorFlamengo]);
+                if (batidaFlamengo)
+                {
+                    printf("\n");
+                    printf("GOL DO FLAMENGO \n");
+                    printf("\n");
+                }
+                else
+                {
+                    printf("\n");
+                    printf("FLAMENGO PERDEU \n");
+                    printf("\n");
+                }
 
-                while (1) {
-                    int batedorFlamengo = ordemFlamengo[indiceMorteSubita];
-                    int batedorCorinthians= ordemCorinthians[indiceMorteSubita];
+                printf("CORINTHIANS BATEU COM %s ... \n", jogadoresCorinthians[batedorCorinthians]);
+                if (batidaCorinthians)
+                {
+                    printf("\n");
+                    printf("GOL DO CORINTHIANS \n");
+                    printf("\n");
+                }
+                else
+                {
+                    printf("\n");
+                    printf("CORINTHIANS PERDEU \n");
+                    printf("\n");
+                }
 
-                    int batidaFlamengo = rand() % 2;
-                    int batidaCorinthians = rand() % 2;
-
-                    printf("\nFLAMENGO BATEU COM %s... \n", jogadoresFlamengo[batedorFlamengo]);
-                    if (batidaFlamengo) {
-                        printf("\n");
-                        printf("GOL DO FLAMENGO \n");
-                        printf("\n");
-                    } else {
-                        printf("\n");
-                        printf("FLAMENGO PERDEU \n");
-                        printf("\n");
+                if (batidaFlamengo != batidaCorinthians)
+                {
+                    if (batidaFlamengo > batidaCorinthians)
+                    {
+                        printf("\nFLAMENGO CAMPEAO MORTE SUBITA \n");
                     }
-
-                    printf("CORINTHIANS BATEU COM %s ... \n", jogadoresCorinthians[batedorCorinthians]);
-                    if (batidaCorinthians) {
-                        printf("\n");
-                        printf("GOL DO CORINTHIANS \n");
-                        printf("\n");
-                    } else {
-                        printf("\n");
-                        printf("CORINTHIANS PERDEU \n");
-                        printf("\n");
+                    else
+                    {
+                        printf("\nCORINTHIANS CAMPEAO MORTE SUBITA \n");
                     }
+                    break;
+                }
 
-                    if (batidaFlamengo != batidaCorinthians) {
-                        if (batidaFlamengo > batidaCorinthians) {
-                            printf("\nFLAMENGO CAMPEAO MORTE SUBITA \n");
-                        } else {
-                            printf("\nCORINTHIANS CAMPEAO MORTE SUBITA \n");
-                        }
-                        break;
-                    }
+                indiceMorteSubita--;
 
-                    indiceMorteSubita--;
-
-                    if (indiceMorteSubita >= 10) {
-                        printf("ACABARAM OS JOGADORES! MORTE SUBITA ETERNA \n");
-                        break;
-                    }
+                if (indiceMorteSubita >= 10)
+                {
+                    printf("ACABARAM OS JOGADORES! MORTE SUBITA ETERNA \n");
+                    break;
                 }
             }
+        }
     }
 }

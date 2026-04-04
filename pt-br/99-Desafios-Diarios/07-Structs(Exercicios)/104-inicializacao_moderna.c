@@ -5,15 +5,16 @@
 
 #include <stdio.h>
 
-struct smartphone {
-    char *modelo;
+struct smartphone
+{
+    char* modelo;
     int ram;
     float preco;
 };
 
-int main() {
-
-    struct smartphone s_1 = {.preco = 1999.99 , .modelo = "Samsumg S3", .ram = 8};
+int main()
+{
+    struct smartphone s_1 = {.preco = 1999.99, .modelo = "Samsumg S3", .ram = 8};
     printf("O modelo do celular e: [%s]\n", s_1.modelo);
     printf("A quantidade de memoria Ram do celular e: [%d de Ram]\n", s_1.ram);
     printf("O Preco do celular e: [R$: %.2f]\n", s_1.preco);

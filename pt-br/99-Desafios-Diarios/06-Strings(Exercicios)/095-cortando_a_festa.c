@@ -8,7 +8,7 @@
 int main()
 {
     char frase[] = "O C e uma linguagem muito legal";
-    frase [13] = '\0';
+    frase[13] = '\0';
     printf("%s", frase);
 
     return 0;

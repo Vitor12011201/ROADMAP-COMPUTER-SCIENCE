@@ -6,20 +6,24 @@ Imprima a matriz completa como se fosse um mapa (5 linhas com 5 caracteres cada)
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
+    char mar[5][5];
 
-    char mar [5][5];
-
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
             mar[i][j] = '~';
         }
     }
-    mar [2][2] = 'x';
+    mar[2][2] = 'x';
 
     printf("--- MAPA DE BATALHA ---\n");
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
             printf("%c ", mar[i][j]);
         }
         printf("\n");

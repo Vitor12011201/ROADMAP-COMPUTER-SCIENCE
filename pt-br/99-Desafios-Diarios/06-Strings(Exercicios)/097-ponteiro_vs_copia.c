@@ -8,10 +8,10 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-
+int main()
+{
     char original[] = "C e top";
-    char *copia_falsa = original;
+    char* copia_falsa = original;
     char copia_real[20];
     strcpy(copia_real, original);
     copia_falsa[0] = 'B';

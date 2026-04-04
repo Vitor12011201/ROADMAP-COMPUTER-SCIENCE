@@ -9,16 +9,17 @@ Se forem diferentes: "Erro de sintaxe nos parênteses".*/
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     int c;
     int aberto = 0;
     int fechado = 0;
 
-    fp = fopen("codigo.txt" , "w");
+    fp = fopen("codigo.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
@@ -27,26 +28,33 @@ int main() {
 
     fclose(fp);
 
-    fp = fopen("codigo.txt" , "r");
+    fp = fopen("codigo.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
-    while ((c = getc(fp)) != EOF) {
-        if (c == '(') {
+    while ((c = getc(fp)) != EOF)
+    {
+        if (c == '(')
+        {
             aberto++;
         }
-        else if (c == ')') {
+        else if (c == ')')
+        {
             fechado++;
         }
     }
     printf("O numero de parentes abertos sao: [%d]\n", aberto);
     printf("O numero de parentes fechados sao: [%d]\n", fechado);
-    if (aberto == fechado) {
+    if (aberto == fechado)
+    {
         printf("Parenteses Balancedos\n");
-    } else {
+    }
+    else
+    {
         printf("Erro de sintaxe nos parenteses\n");
     }
 

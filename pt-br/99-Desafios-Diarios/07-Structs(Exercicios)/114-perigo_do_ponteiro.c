@@ -9,19 +9,21 @@ Imprima o nome de p1.*/
 
 #include <stdio.h>
 
-struct pessoa {
-    char *nome;
+struct pessoa
+{
+    char* nome;
     int idade;
 };
 
-int main() {
+int main()
+{
     struct pessoa p_1 = {.nome = "Alice", .idade = 25};
     struct pessoa p_2;
     p_2 = p_1;
     p_2.idade = 30;
     p_2.nome[0] = 'E';
-    printf("p_1.nome: %s, p_1.idade: %d\n", p_1.nome , p_1.idade);
-    printf("p_2.nome: %s, p_2.idade: %d\n", p_2.nome , p_2.idade);
+    printf("p_1.nome: %s, p_1.idade: %d\n", p_1.nome, p_1.idade);
+    printf("p_2.nome: %s, p_2.idade: %d\n", p_2.nome, p_2.idade);
 
     return 0;
 }

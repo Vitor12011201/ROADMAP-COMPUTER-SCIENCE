@@ -30,9 +30,9 @@ int main()
     struct Produto produto_alvo = {0};
 
     struct Produto lista_produtos[3] = {
-        {.id = 1234 , .preco = 120.00},
-        {.id = 4567 , .preco = 60.00},
-        {.id = 8910 , .preco = 1400.00}
+        {.id = 1234, .preco = 120.00},
+        {.id = 4567, .preco = 60.00},
+        {.id = 8910, .preco = 1400.00}
     };
 
     printf("Digite o ID do produto: \n");
@@ -45,7 +45,8 @@ int main()
     if (resultado == -1)
     {
         printf("Produto nao encontrado\n");
-    } else
+    }
+    else
     {
         printf("O produto foi encontrado do indice [%d]\n", resultado);
     }

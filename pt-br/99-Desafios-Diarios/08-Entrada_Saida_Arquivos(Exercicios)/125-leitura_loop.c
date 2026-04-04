@@ -9,14 +9,15 @@ while ((c = fgetc(fp)) != EOF) {
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     int contador;
 
     fp = fopen("segredo.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
@@ -25,16 +26,18 @@ int main() {
 
     fclose(fp);
 
-    fp = fopen("segredo.txt" , "r");
+    fp = fopen("segredo.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
     int c;
 
-    while ((c = getc(fp)) != EOF) {
+    while ((c = getc(fp)) != EOF)
+    {
         printf("%c\n", c);
         contador++;
     }

@@ -7,15 +7,16 @@ Exemplo: "Hello" vira "H*ll*"
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     int c;
 
     fp = fopen("Ola.txt", "w");
 
-    if (fp == NULL) {
-        printf("Esse arquivo nao foi encontrado\n");
+    if (fp == NULL)
+    {
+        fprintf(stderr,"Esse arquivo nao foi encontrado\n");
         return 1;
     }
 
@@ -25,13 +26,16 @@ int main() {
 
     fp = fopen("Ola.txt", "r");
 
-    if (fp == NULL) {
-        printf("Esse arquivo nao foi encontrado\n");
+    if (fp == NULL)
+    {
+        fprintf(stderr,"Esse arquivo nao foi encontrado\n");
         return 1;
     }
 
-    while ((c = getc(fp)) != EOF) {
-        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+    while ((c = getc(fp)) != EOF)
+    {
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+        {
             c = '*';
         }
         printf("%c", c);

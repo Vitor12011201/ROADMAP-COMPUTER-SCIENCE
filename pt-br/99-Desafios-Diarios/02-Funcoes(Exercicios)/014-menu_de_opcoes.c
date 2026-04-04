@@ -13,14 +13,17 @@ float soma(float a, float b)
 {
     return a + b;
 }
+
 float subtracao(float a, float b)
 {
     return a - b;
 }
-float multiplicacao(float a , float b)
+
+float multiplicacao(float a, float b)
 {
     return a * b;
 }
+
 float divisao(float a, float b)
 {
     if (b == 0)
@@ -30,11 +33,12 @@ float divisao(float a, float b)
     return a / b;
 }
 
-int main ()
+int main()
 {
-    float n_1 , n_2;
+    float n_1, n_2;
     int resposta;
-    do {
+    do
+    {
         printf("Digite um numero: \n");
         scanf("%f", &n_1);
         printf("Digite outro numero: \n");
@@ -50,19 +54,19 @@ int main ()
         switch (resposta)
         {
         case 1:
-            printf("A soma de %.2f e %.2f é de: %.2f \n", n_1 , n_2, soma(n_1,n_2));
+            printf("A soma de %.2f e %.2f é de: %.2f \n", n_1, n_2, soma(n_1, n_2));
             break;
         case 2:
-            printf("A Subtracao de %.2f e %.2f e de: %.2f \n", n_1, n_2, subtracao(n_1,n_2));
+            printf("A Subtracao de %.2f e %.2f e de: %.2f \n", n_1, n_2, subtracao(n_1, n_2));
             break;
         case 3:
-            printf("A multiplicacao de %.2f e %.2f e de: %.2f \n", n_1 , n_2 , multiplicacao(n_1,n_2));
+            printf("A multiplicacao de %.2f e %.2f e de: %.2f \n", n_1, n_2, multiplicacao(n_1, n_2));
             break;
         case 4:
-            printf("A Divisao de %.2f e %.2f e de: %.2f \n ", n_1, n_2, divisao(n_1,n_2));
+            printf("A Divisao de %.2f e %.2f e de: %.2f \n ", n_1, n_2, divisao(n_1, n_2));
             break;
         }
-}
+    }
     while (resposta != 0);
 
     printf("Obrigado por usar o programa, volte sempre \n");

@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int meu_tamanho_string(char *s)
+int meu_tamanho_string(char* s)
 {
     int contador = 0;
     for (int i = 0; s[i] != '\0'; i++)

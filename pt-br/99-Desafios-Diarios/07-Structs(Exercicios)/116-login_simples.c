@@ -9,16 +9,19 @@ Dica: Use strcmp() para o nome e == para a senha.
 #include <stdio.h>
 #include <string.h>
 
-struct usuario {
+struct usuario
+{
     char nome[20];
     int senha;
 };
 
-int main() {
+int main()
+{
     struct usuario usuario_mestre = {.nome = "admin", .senha = 1234};
     struct usuario tentativa;
 
-    do {
+    do
+    {
         printf("Digite o seu usuario: \n");
         scanf("%s", tentativa.nome);
         printf("\n");
@@ -26,16 +29,18 @@ int main() {
         scanf("%d", &tentativa.senha);
 
 
-        if (strcmp(usuario_mestre.nome, tentativa.nome) == 0 && usuario_mestre.senha == tentativa.senha) {
+        if (strcmp(usuario_mestre.nome, tentativa.nome) == 0 && usuario_mestre.senha == tentativa.senha)
+        {
             printf("Senha autorizada\n");
             printf("Seja bem-vindo, Administrador\n");
-
-        } else {
+        }
+        else
+        {
             printf("Senha negada, tente de novo\n");
             printf("\n");
         }
-    } while (!(strcmp(usuario_mestre.nome, tentativa.nome) == 0 && usuario_mestre.senha == tentativa.senha));
+    }
+    while (!(strcmp(usuario_mestre.nome, tentativa.nome) == 0 && usuario_mestre.senha == tentativa.senha));
 
     return 0;
-
 }

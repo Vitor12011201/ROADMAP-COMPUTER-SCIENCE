@@ -6,18 +6,21 @@ Não esqueça: Você precisa copiar o \0 para o destino também!
 
 #include <stdio.h>
 
-void minha_strcpy(char *destino, char *origem) {
+void minha_strcpy(char* destino, char* origem)
+{
     int i = 0;
-    for (i = 0; origem[i] != '\0'; i++) {
+    for (i = 0; origem[i] != '\0'; i++)
+    {
         destino[i] = origem[i];
     }
     destino[i] = '\0';
 }
 
-int main() {
+int main()
+{
     char frase_original[] = "Engenharia";
     char frase_vazia[20];
-    minha_strcpy(frase_vazia,frase_original);
+    minha_strcpy(frase_vazia, frase_original);
     printf("Isso que existe no array frase_original: [%s]\n", frase_original);
     printf("Isso que existe no array frase_vazia: [%s]\n", frase_vazia);
 

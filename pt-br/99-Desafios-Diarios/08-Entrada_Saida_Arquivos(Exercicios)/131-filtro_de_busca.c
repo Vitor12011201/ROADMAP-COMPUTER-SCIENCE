@@ -8,14 +8,16 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
+int main()
+{
     FILE *fp;
     char s[1024];
     char resposta_usuario[1024];
 
     fp = fopen("lista_compras.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
@@ -33,7 +35,8 @@ int main() {
 
     fp = fopen("lista_compras.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
@@ -43,16 +46,21 @@ int main() {
 
     int encontrado = 0;
 
-    while (fgets(s, sizeof s, fp) != NULL) {
-       if (strstr(s, resposta_usuario) != NULL) {
-           encontrado = 1;
-           break;
-       }
+    while (fgets(s, sizeof s, fp) != NULL)
+    {
+        if (strstr(s, resposta_usuario) != NULL)
+        {
+            encontrado = 1;
+            break;
+        }
     }
 
-    if (encontrado) {
+    if (encontrado)
+    {
         printf("%s e um item que esta na lista\n", resposta_usuario);
-    } else {
+    }
+    else
+    {
         printf("%s e um item que NAO esta na lista\n", resposta_usuario);
     }
 

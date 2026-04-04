@@ -6,11 +6,14 @@
 
 #include <stdio.h>
 
-void analizar_maximo(int *a, int comprimento) {
+void analizar_maximo(int* a, int comprimento)
+{
     int maximo = *a;
     int indice = 0;
-    for (int i = 0; i < comprimento; i++) {
-        if (maximo < a[i]) {
+    for (int i = 0; i < comprimento; i++)
+    {
+        if (maximo < a[i])
+        {
             maximo = a[i];
             indice = i;
         }
@@ -18,7 +21,8 @@ void analizar_maximo(int *a, int comprimento) {
     printf("O maior elemento do Array e: [%d] e ele esta na posicao [%d]\n", maximo, indice);
 }
 
-int main() {
-    int array[] = {-4 , 6 , -5, 8, 9};
+int main()
+{
+    int array[] = {-4, 6, -5, 8, 9};
     analizar_maximo(array, sizeof(array) / sizeof(int));
 }

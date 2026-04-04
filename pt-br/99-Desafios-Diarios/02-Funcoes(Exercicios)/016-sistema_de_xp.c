@@ -18,16 +18,15 @@ int calcular_xp(int xp_atual, int bonus)
     return experiencia_atual;
 }
 
-int main ()
+int main()
 {
     int bonus;
     int meu_xp = 100;
     printf("A jornada foi longe e voce ganhou XP extras\n");
     printf("Digite aqui quantos XPs voce ganhou na sua jornada \n");
     scanf("%d", &bonus);
-    meu_xp = calcular_xp(meu_xp,bonus);
-    printf("Parabens voce ganhou %d de XP a mais para sua proxima jornada, com bonus seu xp dobra para: %d \n", bonus , bonus * 2);
-    printf("Seu bonus atual e de: %d" , meu_xp);
+    meu_xp = calcular_xp(meu_xp, bonus);
+    printf("Parabens voce ganhou %d de XP a mais para sua proxima jornada, com bonus seu xp dobra para: %d \n", bonus,
+           bonus * 2);
+    printf("Seu bonus atual e de: %d", meu_xp);
 }
-
-

@@ -6,27 +6,29 @@
 
 #include <stdio.h>
 
-void log_sistema(int tipo, char *mensagem) {
-
-    if (tipo > 0) {
-        fprintf(stdout, "INFO: %s" , mensagem);
-    } else {
+void log_sistema(int tipo, char* mensagem)
+{
+    if (tipo > 0)
+    {
+        fprintf(stdout, "INFO: %s", mensagem);
+    }
+    else
+    {
         fprintf(stderr, "ERRO: %s", mensagem);
     }
 }
 
-int main() {
-
+int main()
+{
     int tipo_da_mensagem;
     char mensagem_exibida[50];
     fprintf(stdout, "Digite um numeros inteiro: \n");
     fscanf(stdin, "%d", &tipo_da_mensagem);
     fprintf(stdout, "\n");
-    fprintf(stdout,"Digite uma mensagem: \n");
-    fscanf(stdin,"%s", mensagem_exibida);
+    fprintf(stdout, "Digite uma mensagem: \n");
+    fscanf(stdin, "%s", mensagem_exibida);
 
     log_sistema(tipo_da_mensagem, mensagem_exibida);
 
     return 0;
-
 }

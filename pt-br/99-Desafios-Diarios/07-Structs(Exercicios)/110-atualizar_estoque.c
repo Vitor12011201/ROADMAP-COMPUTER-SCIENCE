@@ -8,11 +8,11 @@
 
 struct item
 {
-    char *nome;
+    char* nome;
     int quantidade;
 };
 
-void adicionar_estoque(struct item *i, int quantidade_nova)
+void adicionar_estoque(struct item* i, int quantidade_nova)
 {
     i->quantidade = i->quantidade + quantidade_nova;
 }
@@ -20,10 +20,12 @@ void adicionar_estoque(struct item *i, int quantidade_nova)
 int main()
 {
     struct item placa_video = {.nome = "RTX 4060", .quantidade = 10};
-    printf("Antes de repor o estoque do item [%s], a quantidade em estoque e de: [%d unidades]\n", placa_video.nome, placa_video.quantidade);
+    printf("Antes de repor o estoque do item [%s], a quantidade em estoque e de: [%d unidades]\n", placa_video.nome,
+           placa_video.quantidade);
     printf("\n");
     adicionar_estoque(&placa_video, 5);
-    printf("Depois de repor o estoque do item [%s], a quantidade em estoque e de: [%d unidades]\n", placa_video.nome, placa_video.quantidade);
+    printf("Depois de repor o estoque do item [%s], a quantidade em estoque e de: [%d unidades]\n", placa_video.nome,
+           placa_video.quantidade);
 
     return 0;
 }

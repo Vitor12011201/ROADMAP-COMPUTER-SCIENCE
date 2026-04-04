@@ -5,9 +5,10 @@ Imprima apenas o primeiro, o terceiro (índice 2) e o último valor do array. */
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     int array[5] = {10, 20, 30, 40, 50};
 
-    printf("O primeiro numero do Array e [%d], O terceiro numero do Array e [%d], O quinto numero do Array e [%d]\n", array[0], array [2], array[4]);
+    printf("O primeiro numero do Array e [%d], O terceiro numero do Array e [%d], O quinto numero do Array e [%d]\n",
+           array[0], array[2], array[4]);
 }

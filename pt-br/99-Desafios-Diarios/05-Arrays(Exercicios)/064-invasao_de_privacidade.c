@@ -7,10 +7,12 @@ Veja se, em algum momento da impressão, o valor 500 do seu vizinho aparece "do 
 
 #include <stdio.h>
 
-int main() {
-    int array[2] = {1 , 1};
+int main()
+{
+    int array[2] = {1, 1};
     int vizinho = 500;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)
+    {
         printf("%d\n", array[i]);
     }
 }

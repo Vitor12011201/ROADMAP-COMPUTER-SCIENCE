@@ -9,25 +9,25 @@ Use um loop while para manter a luta enquanto o HP de ambos for maior que zero.
 
 #include <stdio.h>
 
-void jogar_pedra(int* ptr,int* mana)
+void jogar_pedra(int* ptr, int* mana)
 {
     *ptr = *ptr - 10;
     *mana = *mana - 5;
 }
 
-void atacar_com_estilingue(int* ptr, int *mana)
+void atacar_com_estilingue(int* ptr, int* mana)
 {
     *ptr = *ptr - 20;
     *mana = *mana - 10;
 }
 
-void atacar_com_espada(int* ptr,int* mana)
+void atacar_com_espada(int* ptr, int* mana)
 {
     *ptr = *ptr - 30;
     *mana = *mana - 15;
 }
 
-void curar(int* ptr,int* mana)
+void curar(int* ptr, int* mana)
 {
     *ptr = *ptr + 10;
     *mana = *mana - 5;
@@ -44,7 +44,8 @@ void recuperar_mana(int* ptr)
     if (*ptr > 50)
     {
         *ptr = 50;
-    } else if (*ptr < 0)
+    }
+    else if (*ptr < 0)
     {
         *ptr = 0;
     }
@@ -76,17 +77,20 @@ int main()
         {
         case 1:
             jogar_pedra(&vilao_vida, &heroi_mana);
-            printf("O Heroi tacou uma pedra e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n", vilao_vida, heroi_mana);
+            printf("O Heroi tacou uma pedra e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n",
+                   vilao_vida, heroi_mana);
             break;
 
         case 2:
             atacar_com_estilingue(&vilao_vida, &heroi_mana);
-            printf("O Heroi atacou com um estilingue e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n", vilao_vida, heroi_mana);
+            printf("O Heroi atacou com um estilingue e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n",
+                   vilao_vida, heroi_mana);
             break;
 
         case 3:
             atacar_com_espada(&vilao_vida, &heroi_mana);
-            printf("O Heroi atacou com uma espada e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n", vilao_vida, heroi_mana);
+            printf("O Heroi atacou com uma espada e deu dano no Vilao (Vida do vilao e: %d). Sua mana atual (%d)\n",
+                   vilao_vida, heroi_mana);
             break;
 
         case 4:
@@ -118,17 +122,20 @@ int main()
         {
         case 1:
             jogar_pedra(&heroi_vida, &vilao_mana);
-            printf("O vilao atingiu o Heroi com o cajado (Vida do Heroi e: %d). Sua mana atual (%d)\n", heroi_vida, vilao_mana);
+            printf("O vilao atingiu o Heroi com o cajado (Vida do Heroi e: %d). Sua mana atual (%d)\n", heroi_vida,
+                   vilao_mana);
             break;
 
         case 2:
             atacar_com_estilingue(&heroi_vida, &vilao_mana);
-            printf("O vilao atingiu o Heroi com o a magia mediana (Vida do Heroi e: %d). Sua mana atual (%d)\n", heroi_vida, vilao_mana);
+            printf("O vilao atingiu o Heroi com o a magia mediana (Vida do Heroi e: %d). Sua mana atual (%d)\n",
+                   heroi_vida, vilao_mana);
             break;
 
         case 3:
             atacar_com_espada(&heroi_vida, &vilao_mana);
-            printf("O vilao atingiu o Heroi com o a magia mais forte (Vida do Heroi e: %d). Sua mana atual (%d)\n", heroi_vida, vilao_mana);
+            printf("O vilao atingiu o Heroi com o a magia mais forte (Vida do Heroi e: %d). Sua mana atual (%d)\n",
+                   heroi_vida, vilao_mana);
             break;
 
         case 4:

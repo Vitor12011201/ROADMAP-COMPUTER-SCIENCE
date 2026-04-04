@@ -7,7 +7,7 @@
 
 struct pet
 {
-    char *nome;
+    char* nome;
     int idade;
 };
 
@@ -19,7 +19,7 @@ void exibir_pet(struct pet p)
 
 int main()
 {
-    struct pet cachorro = {.nome = "Amora" , .idade = 5};
+    struct pet cachorro = {.nome = "Amora", .idade = 5};
 
     exibir_pet(cachorro);
 

@@ -8,10 +8,10 @@ Imprima a matriz e verifique se o C realmente preencheu o resto com 0. */
 int main()
 {
     int indentidade[4][4] = {0};
-    indentidade [0][0] = 1;
-    indentidade [1][1] = 1;
-    indentidade [2][2] = 1;
-    indentidade [3][3] = 1;
+    indentidade[0][0] = 1;
+    indentidade[1][1] = 1;
+    indentidade[2][2] = 1;
+    indentidade[3][3] = 1;
 
     for (int i = 0; i < 4; i++)
     {

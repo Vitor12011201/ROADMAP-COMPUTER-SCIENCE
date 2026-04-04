@@ -8,11 +8,11 @@
 
 struct livro
 {
-    char *nome;
+    char* nome;
     float preco;
 };
 
-void dar_desconto(struct livro *l, float porcentagem)
+void dar_desconto(struct livro* l, float porcentagem)
 {
     (*l).preco = (*l).preco - ((*l).preco * porcentagem / 100);
 }
@@ -23,7 +23,7 @@ int main()
 
     printf("O valor atual do manga [%s] e: [%.2f]", one_piece.nome, one_piece.preco);
     printf("\n");
-    dar_desconto(&one_piece,20);
+    dar_desconto(&one_piece, 20);
     printf("O valor do manga [%s] com desconto e: [%.2f]", one_piece.nome, one_piece.preco);
 
     return 0;

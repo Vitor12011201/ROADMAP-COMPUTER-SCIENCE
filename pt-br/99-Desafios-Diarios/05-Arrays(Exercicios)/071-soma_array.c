@@ -5,17 +5,19 @@ Chame a função passando o array e o número 4, e imprima o resultado da soma.*
 
 #include <stdio.h>
 
-int somar_array(int *a , int comprimento) {
-
+int somar_array(int* a, int comprimento)
+{
     int soma = 0;
-    for (int i = 0; i < comprimento; i++) {
+    for (int i = 0; i < comprimento; i++)
+    {
         soma = soma + a[i];
     }
     return soma;
 }
 
-int main() {
-    int array[4] = {5 , 10 , 15 , 20};
+int main()
+{
+    int array[4] = {5, 10, 15, 20};
     int soma = somar_array(array, 4);
     printf("A soma de todos os elementos do Array e: [%d]\n", soma);
 }

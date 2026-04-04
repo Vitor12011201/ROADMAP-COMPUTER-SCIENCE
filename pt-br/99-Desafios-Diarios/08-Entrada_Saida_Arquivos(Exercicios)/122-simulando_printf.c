@@ -7,8 +7,8 @@ Dica: fscanf(stdin, "%d", &idade);.
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     int idade = 25;
 
     fprintf(stdout, "A idade e: [%d anos]\n", idade);
@@ -20,5 +20,4 @@ int main() {
     fprintf(stdout, "Agora a idade e: [%d anos]\n", idade);
 
     return 0;
-
 }

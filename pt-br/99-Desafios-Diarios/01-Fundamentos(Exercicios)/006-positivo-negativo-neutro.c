@@ -7,15 +7,21 @@ maior que 0 → mostrar: Numero positivo
 menor que 0 → mostrar: Numero negativo
 igual a 0 → mostrar: Numero neutro */
 
-int main () {
+int main()
+{
     int n;
     printf("Digite um numero inteiro: ");
     scanf("%d", &n);
-    if (n > 0) {
+    if (n > 0)
+    {
         printf("O seu numero e Positivo");
-    } else if (n < 0) {
+    }
+    else if (n < 0)
+    {
         printf("O seu numeros e Negativo");
-    } else {
+    }
+    else
+    {
         printf("Seu numero e Neutro");
     }
 }

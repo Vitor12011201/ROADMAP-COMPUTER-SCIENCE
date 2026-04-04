@@ -9,15 +9,14 @@ E char *texto: É um ponteiro (um endereço de memória). Em sistemas de 64 bits
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     char letra = 'A';
-    char *texto = "A";
+    char* texto = "A";
 
     int tamanho_char = sizeof(letra);
     int tamanho_string = sizeof(texto);
 
     printf("O Tamanho da Variavel letra(Char) : [%d] Bytes\n", tamanho_char);
     printf("O Tamanho da Variavel texto(String) : [%d] Bytes\n", tamanho_string);
-
 }

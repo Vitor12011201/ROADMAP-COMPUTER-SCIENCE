@@ -4,10 +4,11 @@
 
 #include <stdio.h>
 
-int main() {
-  int dados[] = {10 , 20 , 30};
-  int vazio[10] = {0};
-  int tamanho = sizeof(dados) / sizeof(int);
-  printf("O tamanho do Array Dados e de [%d] Inteiros\n", tamanho);
-  printf("Todas as posicoes do Array vazio estao zerados. O valor que esta em vazio[9] e de [%d]\n", vazio[9]);
+int main()
+{
+    int dados[] = {10, 20, 30};
+    int vazio[10] = {0};
+    int tamanho = sizeof(dados) / sizeof(int);
+    printf("O tamanho do Array Dados e de [%d] Inteiros\n", tamanho);
+    printf("Todas as posicoes do Array vazio estao zerados. O valor que esta em vazio[9] e de [%d]\n", vazio[9]);
 }

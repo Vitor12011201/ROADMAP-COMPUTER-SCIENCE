@@ -5,21 +5,24 @@
 //caso contrário devera multiplicar A por B. Ao final de qualquer um dos cálculos deve-se atribuir o resultado a uma variável C e
 //imprimir seu valor na tela.
 
-int main () {
+int main()
+{
     int a;
     int b;
     int c;
-    printf ("Digite o numero A: \n");
-    scanf("%d" , &a);
-    printf ("Digite o numero B: \n");
+    printf("Digite o numero A: \n");
+    scanf("%d", &a);
+    printf("Digite o numero B: \n");
     scanf("%d", &b);
-    if (a == b) {
+    if (a == b)
+    {
         printf("Os numeros A e B são iguais \n");
         c = a + b;
-
-    } else {
+    }
+    else
+    {
         printf("Os numeros A e B são diferentes \n");
         c = a * b;
     }
-    printf ("Resuldado final: %d \n" , c);
+    printf("Resuldado final: %d \n", c);
 }

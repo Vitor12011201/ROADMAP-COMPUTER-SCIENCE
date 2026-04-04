@@ -10,15 +10,15 @@ Desafio Extra: Use o sizeof para imprimir quanto espaço o ponteiro p1 ocupa na 
 
 #include <stdio.h>
 
-int main () {
-
+int main()
+{
     float saldo = 500.00;
-    float *p_1;
-    float *p_2;
+    float* p_1;
+    float* p_2;
     p_1 = &saldo;
     p_2 = &saldo;
-    printf("O endereco da variavel saldo e: %p\n", (void *) &saldo);
-    printf("O endereco do ponteiro p_1 e: %p\n", (void *) p_1);
-    printf("O endereco do ponteiro p_2 e: %p\n", (void *) p_2);
+    printf("O endereco da variavel saldo e: %p\n", (void*)&saldo);
+    printf("O endereco do ponteiro p_1 e: %p\n", (void*)p_1);
+    printf("O endereco do ponteiro p_2 e: %p\n", (void*)p_2);
     printf("O tamanho do ponteoro p_1 e: %zu\n", sizeof(p_1));
 }

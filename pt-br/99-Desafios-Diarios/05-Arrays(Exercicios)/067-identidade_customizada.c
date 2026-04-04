@@ -6,11 +6,14 @@ Use loops aninhados para imprimir a matriz, mas com um detalhe: onde o valor for
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     char mapa[4][4];
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
             mapa[i][j] = '.';
         }
     }
@@ -20,8 +23,10 @@ int main() {
     mapa[2][2] = '1';
     mapa[3][3] = '1';
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
             printf("%c ", mapa[i][j]);
         }
         printf("\n");

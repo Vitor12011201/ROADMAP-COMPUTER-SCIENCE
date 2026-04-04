@@ -47,13 +47,15 @@ int main()
             break;
 
         case 2:
-            if (mao_heroi == NULL) {
-            printf("O Heroi abriu o Bau e dentro tinha uma espada (vida vilao %d)\n", vida_vilao);
-            mao_heroi = &dano_espada;
-        } else
-        {
-            printf("Sua espada ja esta equipada\n");
-        }
+            if (mao_heroi == NULL)
+            {
+                printf("O Heroi abriu o Bau e dentro tinha uma espada (vida vilao %d)\n", vida_vilao);
+                mao_heroi = &dano_espada;
+            }
+            else
+            {
+                printf("Sua espada ja esta equipada\n");
+            }
             break;
         }
     }

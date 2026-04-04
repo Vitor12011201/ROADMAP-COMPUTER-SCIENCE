@@ -9,15 +9,19 @@ Crie o array
 Leia os 3 números com for
 Chame a função */
 
-void mostrarNumeros(int numeros[]) {
-    for (int i = 0; i < 3; i++) {
+void mostrarNumeros(int numeros[])
+{
+    for (int i = 0; i < 3; i++)
+    {
         printf("Os numeros são: %d\n", numeros[i]);
     }
 }
 
-int main() {
+int main()
+{
     int numero[3];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         printf("Digite um numero: \n");
         scanf("%d", &numero[i]);
     }

@@ -6,19 +6,21 @@
 
 #include <stdio.h>
 
-void aplicar_indice(int *a, int comprimento) {
-
-    for (int i = 0; i < comprimento; i++) {
+void aplicar_indice(int* a, int comprimento)
+{
+    for (int i = 0; i < comprimento; i++)
+    {
         int multiplicacao = a[i] * i;
         a[i] = multiplicacao;
-        printf("O elemento:[%d], do Array multiplicado pelo seu indice:[%d] tem o valor total de: [%d]\n", a[i] , i , multiplicacao);
+        printf("O elemento:[%d], do Array multiplicado pelo seu indice:[%d] tem o valor total de: [%d]\n", a[i], i,
+               multiplicacao);
     }
 }
 
-int main() {
-    int array[] = {10 , 20 , 30 , 40 , 50};
+int main()
+{
+    int array[] = {10, 20, 30, 40, 50};
     int comprimento = sizeof(array) / sizeof(int);
 
     aplicar_indice(array, comprimento);
-
 }

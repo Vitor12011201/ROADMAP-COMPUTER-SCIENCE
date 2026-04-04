@@ -6,9 +6,10 @@
 
 #include <stdio.h>
 
-int main () {
-
-    int valores[3] = {100 , 200 , 300};
-    int *ptr = valores;
-    printf("Mostras que valores[] == Ao primeiro elemento do primeiro endereco do Array, que no caso e o : [%d]\n", *valores);
+int main()
+{
+    int valores[3] = {100, 200, 300};
+    int* ptr = valores;
+    printf("Mostras que valores[] == Ao primeiro elemento do primeiro endereco do Array, que no caso e o : [%d]\n",
+           *valores);
 }

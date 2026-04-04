@@ -5,10 +5,11 @@ Imprima o endereço usando %p e o ponteiro ptr.*/
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     float f = 10.5;
-    float *ptr;
+    float* ptr;
     ptr = &f;
-    printf("O endereco da variavel f e: %p\n", (void *) ptr);
-    printf("O endereco da variavel f e: %p", (void *) &f);
+    printf("O endereco da variavel f e: %p\n", (void*)ptr);
+    printf("O endereco da variavel f e: %p", (void*)&f);
 }

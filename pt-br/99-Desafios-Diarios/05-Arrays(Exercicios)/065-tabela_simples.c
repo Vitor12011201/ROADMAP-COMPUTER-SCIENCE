@@ -5,7 +5,8 @@
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     float notas[3][2] = {
         {6.5, 7.3},
         {5.3, 8.9},

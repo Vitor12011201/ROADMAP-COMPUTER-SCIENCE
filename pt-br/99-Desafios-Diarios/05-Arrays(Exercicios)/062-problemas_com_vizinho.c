@@ -6,9 +6,9 @@ Anote que valores bizarros apareceram.*/
 
 #include <stdio.h>
 
-int main() {
-
-    int array[3] = {11 , 22 , 33};
+int main()
+{
+    int array[3] = {11, 22, 33};
     printf("%d\n", array[3]);
     printf("%d\n", array[4]);
 }

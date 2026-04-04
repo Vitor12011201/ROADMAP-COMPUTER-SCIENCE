@@ -9,14 +9,13 @@
 
 int main()
 {
-        FILE *fp;
+    FILE *fp;
 
-        fp = fopen("notas.txt" , "w");
+    fp = fopen("notas.txt", "w");
 
-        fputs("Estudando a linguagem C\n", fp);
+    fputs("Estudando a linguagem C\n", fp);
 
-        fclose(fp);
+    fclose(fp);
 
-        return 0;
-
+    return 0;
 }

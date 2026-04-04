@@ -5,13 +5,11 @@
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     fprintf(stdout, "Isso e uma mensagem normal.\n");
 
     fprintf(stderr, "Isso e um aviso de erro!\n");
 
     return 0;
-
 }
-

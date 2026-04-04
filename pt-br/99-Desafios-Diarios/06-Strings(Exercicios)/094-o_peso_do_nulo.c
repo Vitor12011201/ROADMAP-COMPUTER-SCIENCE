@@ -9,7 +9,8 @@ Resposta: O Array existe o nulo(\0), o nulo mostro para o compilador onde a Stri
 int main()
 {
     char s[] = "Oi";
-    printf("O Array s[] mede [%zu] Bytes, pois na medida esta incluido o nulo, mostrando onde a String deve parar\n", sizeof(s));
+    printf("O Array s[] mede [%zu] Bytes, pois na medida esta incluido o nulo, mostrando onde a String deve parar\n",
+           sizeof(s));
 
     return 0;
 }

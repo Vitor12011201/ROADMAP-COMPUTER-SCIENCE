@@ -6,10 +6,12 @@ Imprima a média no final.*/
 
 #include <stdio.h>
 
-float calcularMedia(int *ptr, int tamanho) {
+float calcularMedia(int* ptr, int tamanho)
+{
     int soma = 0;
 
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         soma += *(ptr + i);
     }
 
@@ -18,13 +20,14 @@ float calcularMedia(int *ptr, int tamanho) {
     return media;
 }
 
-int main() {
-
+int main()
+{
     int numeros[5];
 
     printf("Digite 5 numeros:\n");
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)
+    {
         scanf("%d", &numeros[i]);
     }
 

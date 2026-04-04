@@ -6,28 +6,32 @@
 
 #include <stdio.h>
 
-struct ponto {
+struct ponto
+{
     int x;
     int y;
 };
 
-int pontos_iguais(struct ponto p1, struct ponto p2) {
-
-    if (p1.x == p2.x && p1.y == p2.y) {
+int pontos_iguais(struct ponto p1, struct ponto p2)
+{
+    if (p1.x == p2.x && p1.y == p2.y)
+    {
         printf("As coordenadas das duas structs sao iguais\n");
         return 1;
-    } else {
+    }
+    else
+    {
         printf("As coordenadas das duas structs sao diferentes\n");
         return 0;
     }
 }
 
-int main() {
+int main()
+{
     struct ponto coordenada_1 = {.x = 15, .y = 20};
     struct ponto coordenada_2 = {.x = 15, .y = 20};
 
-    pontos_iguais(coordenada_1,coordenada_2);
+    pontos_iguais(coordenada_1, coordenada_2);
 
     return 0;
-
 }

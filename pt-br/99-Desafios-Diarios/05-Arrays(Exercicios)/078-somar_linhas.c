@@ -6,18 +6,21 @@
 
 #include <stdio.h>
 
-void total_por_linha(int matriz[][2], int linha) {
-    for (int i = 0; i < linha; i++) {
+void total_por_linha(int matriz[][2], int linha)
+{
+    for (int i = 0; i < linha; i++)
+    {
         int soma = 0;
-        for (int j = 0; j < 2; j++) {
-        soma = soma + matriz[i][j];
+        for (int j = 0; j < 2; j++)
+        {
+            soma = soma + matriz[i][j];
         }
-        printf("O vendedor numero: %d, em 2 meses vendeu: R$%d \n", i + 1 , soma);
+        printf("O vendedor numero: %d, em 2 meses vendeu: R$%d \n", i + 1, soma);
     }
 }
 
-int main() {
-
+int main()
+{
     int vendas[][2] = {
         {583, 834},
         {743, 942},

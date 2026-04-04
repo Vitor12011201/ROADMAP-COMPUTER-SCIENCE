@@ -10,5 +10,5 @@ int main()
     int numero;
     printf("Digite um numero inteiro: \n");
     scanf("%d", &numero);
-    printf("O valor %d esta guardado no endereco numero %p\n", numero, (void *)&numero);
+    printf("O valor %d esta guardado no endereco numero %p\n", numero, (void*)&numero);
 }

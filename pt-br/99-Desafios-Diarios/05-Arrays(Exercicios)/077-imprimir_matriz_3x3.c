@@ -6,22 +6,24 @@
 
 #include <stdio.h>
 
-void mostrar_matriz(int matriz[][3], int linha) {
-    for (int i = 0; i < linha; i++) {
-        for (int j = 0; j < 3; j++) {
+void mostrar_matriz(int matriz[][3], int linha)
+{
+    for (int i = 0; i < linha; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
             printf("%d ", matriz[i][j]);
         }
         printf("\n");
     }
 }
 
-int main() {
-
+int main()
+{
     int matriz[][3] = {
-        {1 , 2 , 3},
-        {4 , 5 , 6}
+        {1, 2, 3},
+        {4, 5, 6}
     };
 
     mostrar_matriz(matriz, 2);
-
 }

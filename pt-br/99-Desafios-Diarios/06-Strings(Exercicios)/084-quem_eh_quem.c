@@ -9,16 +9,17 @@ Resposta: Porque quando medimos o Array no sizeof ele conta todos os caracteres 
 
 #include <stdio.h>
 
-int main() {
-
-    char *ptr = "Programacao";
+int main()
+{
+    char* ptr = "Programacao";
     char arr[] = "Programacao";
 
     int i = 0;
 
     printf("Essa e a contagem de caracteres que tem no Array arr[] ate chegar no nulo\n");
 
-    while (arr[i] != '\0') {
+    while (arr[i] != '\0')
+    {
         i++;
         printf("[%d] ", i);
     }

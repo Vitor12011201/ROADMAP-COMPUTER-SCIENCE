@@ -9,31 +9,40 @@
 a média
 a quantidade de números acima da média */
 
-void ler_Numeros(float numeros[], int tamanho) {
-    for (int i = 0; i < tamanho; i++) {
+void ler_Numeros(float numeros[], int tamanho)
+{
+    for (int i = 0; i < tamanho; i++)
+    {
         printf("(%d) Digite um numero: ", i + 1);
-        scanf("%f" ,&numeros[i]);
+        scanf("%f", &numeros[i]);
     }
 }
-float media_Numeros(float numeros[], int tamanho) {
+
+float media_Numeros(float numeros[], int tamanho)
+{
     float soma = 0;
-    for (int i = 0; i < tamanho; i++) {
+    for (int i = 0; i < tamanho; i++)
+    {
         soma += numeros[i];
     }
     return soma / tamanho;
 }
 
-int numeros_Maiores_Media(float numeros[], int tamanho, float media) {
+int numeros_Maiores_Media(float numeros[], int tamanho, float media)
+{
     int contador = 0;
-    for (int i = 0; i < tamanho; i++) {
-        if (numeros[i] > media) {
+    for (int i = 0; i < tamanho; i++)
+    {
+        if (numeros[i] > media)
+        {
             contador++;
         }
     }
     return contador;
 }
 
-int main() {
+int main()
+{
     float array[6];
     ler_Numeros(array, 6);
     float resultado_Media = media_Numeros(array, 6);

@@ -10,9 +10,9 @@ float aumentar_salario(float salario)
     return salario;
 }
 
-int main ()
+int main()
 {
     float salario_1 = 2000.00;
     printf("Parabens voce recebeu um aumento de salario \n");
-    printf("Seu nome salario e de: %.2f \n" , aumentar_salario(salario_1));
+    printf("Seu nome salario e de: %.2f \n", aumentar_salario(salario_1));
 }

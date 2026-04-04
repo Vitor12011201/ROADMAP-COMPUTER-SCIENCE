@@ -6,7 +6,8 @@ Mas o \atalho\ é perigoso.
 
 #include <stdio.h>
 
-int main() {
-    char *texto_poetico = "Ele disse: \"O caminho e longo...\nMas o \\atalho\\ e perigoso.";
+int main()
+{
+    char* texto_poetico = "Ele disse: \"O caminho e longo...\nMas o \\atalho\\ e perigoso.";
     printf("%s", texto_poetico);
 }

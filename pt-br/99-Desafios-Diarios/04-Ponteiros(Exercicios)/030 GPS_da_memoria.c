@@ -7,14 +7,15 @@ Depois, mude o mesmo ponteiro p para apontar para b e imprima o valor.
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     int a;
     int b;
     printf("Digite um numero: \n");
     scanf("%d", &a);
     printf("Digite outro numero: \n");
     scanf("%d", &b);
-    int *p = &a;
+    int* p = &a;
     printf("O valor da variavel A e: %d\n", a);
     *p = &b;
     printf("O valor da variavel A agora e: %d\n", a);

@@ -6,12 +6,13 @@
 #include <stdio.h>
 #include <string.h>
 
-void senha_segura(char *a)
+void senha_segura(char* a)
 {
     if (strlen(a) >= 6)
     {
         printf("Senha aceitavel (Segura)\n");
-    } else
+    }
+    else
     {
         printf("Senha muito curta (insegura)\n");
     }

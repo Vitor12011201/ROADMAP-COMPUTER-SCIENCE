@@ -8,12 +8,14 @@
 
 #include <stdio.h>
 
-struct jogador{
+struct jogador
+{
     int pontuacao;
     float nivel_experiencia;
 };
 
-int main() {
+int main()
+{
     struct jogador p1 = {100, 1.5};
     printf("A pontuacao do jogador e de: [%d]\n", p1.pontuacao);
     printf("O nivel de experiencia do jogador e de: [%.2f]\n", p1.nivel_experiencia);

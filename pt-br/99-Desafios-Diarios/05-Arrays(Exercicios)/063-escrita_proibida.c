@@ -6,9 +6,9 @@ O programa travou (Crash/Segmentation Fault) ou ele aceitou o valor?*/
 
 #include <stdio.h>
 
-int main() {
-
-    int notas[2] = {10 , 10};
-    notas [5] = 999;
+int main()
+{
+    int notas[2] = {10, 10};
+    notas[5] = 999;
     printf("%d", notas[5]);
 }

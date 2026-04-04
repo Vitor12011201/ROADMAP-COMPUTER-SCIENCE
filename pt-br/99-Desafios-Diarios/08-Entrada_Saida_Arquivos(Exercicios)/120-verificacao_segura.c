@@ -15,7 +15,8 @@ int main()
     if (fp == NULL)
     {
         printf("O arquivo e inexistente\n");
-    } else
+    }
+    else
     {
         printf("O arquivo foi aberto com sucesso\n");
         fclose(fp);

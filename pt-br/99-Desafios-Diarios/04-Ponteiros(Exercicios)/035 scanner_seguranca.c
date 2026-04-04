@@ -13,12 +13,14 @@ void verificar_sistema(int* ptr)
     if (ptr == NULL)
     {
         printf("O Sistema esta DESLISGADO\n");
-    } else {
+    }
+    else
+    {
         printf("O Sistema esta ATIVO\n");
     }
 }
 
-int main ()
+int main()
 {
     int* sensor = NULL;
     int leitura = 42;
@@ -26,4 +28,3 @@ int main ()
     sensor = &leitura;
     verificar_sistema(sensor);
 }
-

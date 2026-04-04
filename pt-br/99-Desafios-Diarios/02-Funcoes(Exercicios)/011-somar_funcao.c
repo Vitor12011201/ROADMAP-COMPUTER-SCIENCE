@@ -23,5 +23,5 @@ int main()
     printf("Digite outro numero: \n");
     scanf("%d", &b);
 
-    printf("A soma de %d + %d = %d", a, b, soma(a,b));
+    printf("A soma de %d + %d = %d", a, b, soma(a, b));
 }

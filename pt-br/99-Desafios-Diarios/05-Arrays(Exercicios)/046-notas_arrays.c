@@ -3,10 +3,12 @@
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     float media = 0;
     float notas[4] = {4.5, 7.8, 5.7, 9.4};
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         printf("A nota do seu %d Bimestre e: %.2f\n", i + 1, notas[i]);
         media += notas[i];
     }

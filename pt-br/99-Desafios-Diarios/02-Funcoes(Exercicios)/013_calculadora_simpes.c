@@ -27,8 +27,7 @@ float divisao(float a, float b)
     {
         printf("Nao existe divisao por 0 \n");
     }
-        return a / b;
-
+    return a / b;
 }
 
 int main()
@@ -39,9 +38,9 @@ int main()
     printf("Digite outro numero: \n");
     scanf("%f", &b);
 
-    printf("Os numeros digitados foram n %.2f e %.2f\n", a , b);
+    printf("Os numeros digitados foram n %.2f e %.2f\n", a, b);
     printf("A soma dos numeros e: %.2f \n", soma(a, b));
     printf("A subitracao dos numeros e: %.2f \n", subtracao(a, b));
     printf("A multiplicacao dos numeros e: %.2f \n", multiplicacao(a, b));
-    printf("A divisao dos numeros e: %.2f \n", divisao(a,b));
+    printf("A divisao dos numeros e: %.2f \n", divisao(a, b));
 }

@@ -5,39 +5,42 @@
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     char s[10]; // Buffer pequeno para demonstrar limites de tamanho
 
-    fp = fopen("teste.txt" , "w");
+    fp = fopen("teste.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
-    fputs("Tudo o que um sonho precisa para ser realizado e alguem que acredite que ele possa ser realizado\n" , fp);
+    fputs("Tudo o que um sonho precisa para ser realizado e alguem que acredite que ele possa ser realizado\n", fp);
 
     fclose(fp);
 
-    fp = fopen("teste.txt" , "r");
+    fp = fopen("teste.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
     // Leitura única: apenas preenche o buffer (9 caracteres + terminador nulo)
-    fgets(s , sizeof s, fp);
+    fgets(s, sizeof s, fp);
     printf("A frase sem o loop While: \n");
-    printf("%s\n",s);
+    printf("%s\n", s);
     printf("\n");
 
     printf("O restante da frase dentro do loop While: \n");
 
     // Loop While: continua lendo o restante do arquivo em blocos de 10 bytes
-    while (fgets(s, sizeof s, fp) != NULL) {
+    while (fgets(s, sizeof s, fp) != NULL)
+    {
         printf("%s", s);
     }
 

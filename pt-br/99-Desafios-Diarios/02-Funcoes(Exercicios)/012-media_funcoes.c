@@ -10,18 +10,19 @@ float soma(float a, float b)
 {
     return a + b;
 }
+
 float media(float total)
 {
-   return total / 2;
+    return total / 2;
 }
+
 int main()
 {
-
     float a, b;
     printf("Digite um numero: \n");
     scanf("%f", &a);
     printf("Digite outro numero: \n");
     scanf("%f", &b);
-    float soma_1 = soma(a,b);
+    float soma_1 = soma(a, b);
     printf("A media de %.2f e %.2f e de %.2f", a, b, media(soma_1));
 }

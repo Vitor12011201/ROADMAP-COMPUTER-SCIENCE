@@ -7,23 +7,25 @@
 
 #include <stdio.h>
 
-struct retangulo {
+struct retangulo
+{
     float largura;
     float altura;
 };
 
-struct retangulo criar_quadrado(float lado) {
+struct retangulo criar_quadrado(float lado)
+{
     struct retangulo r;
     r.largura = lado;
     r.altura = lado;
     return r;
 }
 
-int main() {
+int main()
+{
     struct retangulo r = criar_quadrado(5.00);
     float area = r.largura * r.altura;
     printf("A Area desse do retangulo recebido e de: %.2f\n", area);
 
     return 0;
 }
-

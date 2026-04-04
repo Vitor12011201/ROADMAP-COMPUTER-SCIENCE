@@ -6,19 +6,24 @@
 
 #include <stdio.h>
 
-void zerar_numeros_negativos(int a[], int comprimento) {
-    for (int i = 0; i < comprimento; i++) {
-        if (a[i] < 0) {
+void zerar_numeros_negativos(int a[], int comprimento)
+{
+    for (int i = 0; i < comprimento; i++)
+    {
+        if (a[i] < 0)
+        {
             a[i] = 0;
         }
         printf("%d\n", a[i]);
     }
 }
 
-int main() {
-    int array[5] = {10 , -5 , 20 , -1 , 30};
+int main()
+{
+    int array[5] = {10, -5, 20, -1, 30};
     printf("O Array original e: \n");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)
+    {
         printf("%d\n", array[i]);
     }
     printf("=====================\n");

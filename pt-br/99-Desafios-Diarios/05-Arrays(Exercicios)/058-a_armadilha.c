@@ -8,13 +8,15 @@ Depois, chame a função tentar_medir(lista) e veja o que ela imprime.*/
 
 #include <stdio.h>
 
-int tentar_medir(int x[]) {
+int tentar_medir(int x[])
+{
     int tamanho = sizeof(x) / sizeof(int);
     return tamanho;
 }
 
-int main() {
-    int lista[] = {0 , 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9};
+int main()
+{
+    int lista[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int tamanho_no_main = sizeof(lista) / sizeof(int);
     int tamanho_na_funcao = tentar_medir(lista);
     printf("Tamanho do array dentro do MAIN [%d] Bytes - (CORRETO)\n", tamanho_no_main);

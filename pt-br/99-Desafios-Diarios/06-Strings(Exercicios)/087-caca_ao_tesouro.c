@@ -5,14 +5,16 @@
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     int posicao[100];
     int contador = 0;
     char frase[] = "O rato roeu a roupa do rei";
 
-    for (int i = 0; frase[i] != '\0'; i++) {
-        if (frase[i] == 'r') {
+    for (int i = 0; frase[i] != '\0'; i++)
+    {
+        if (frase[i] == 'r')
+        {
             posicao[contador] = i;
             contador++;
         }
@@ -20,7 +22,8 @@ int main() {
     printf("O numero de 'r' que aparece no Array frase[] e de: [%d] vezes\n", contador);
     printf("Os 'r' encontrados da String estao nos localizados nas posicoes: \n");
 
-    for (int i = 0; i < contador; i++) {
+    for (int i = 0; i < contador; i++)
+    {
         printf("- frase[%d] ", posicao[i]);
     }
     printf("\n");

@@ -6,14 +6,16 @@
 
 #include <stdio.h>
 
-struct livro {
-    char *titulo;
-    char *autor;
+struct livro
+{
+    char* titulo;
+    char* autor;
     int paginas;
 };
 
-int main() {
-    struct livro meu_favorito = {"One piece" , "Eiichiro Oda", 120};
+int main()
+{
+    struct livro meu_favorito = {"One piece", "Eiichiro Oda", 120};
 
     printf("O meu livro favorito e: [%s]\n", meu_favorito.titulo);
     printf("O Autor desse livro e o: [%s]\n", meu_favorito.autor);

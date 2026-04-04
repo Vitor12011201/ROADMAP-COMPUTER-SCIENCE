@@ -8,22 +8,24 @@
 
 #include<stdio.h>
 
-struct jogo {
+struct jogo
+{
     int tentados;
     int convertidos;
     float aproveitamento;
 };
 
-int main() {
-
-    struct jogo arremessos = {.tentados = 0 , .convertidos = 0, .aproveitamento = 0};
+int main()
+{
+    struct jogo arremessos = {.tentados = 0, .convertidos = 0, .aproveitamento = 0};
 
     printf("Digite quantos arremessos foram dados: \n");
     scanf("%d", &arremessos.tentados);
     printf("\n");
     printf("Digite quantos desses arremessos foram convertidos em pontos: \n");
     scanf("%d", &arremessos.convertidos);
-    if (arremessos.tentados < arremessos.convertidos) {
+    if (arremessos.tentados < arremessos.convertidos)
+    {
         printf("O numero de arremessos tentados nao tem como ser menor que o numero de arremessos convertidos\n");
         printf("Digite um numero menor que dos arremessos tentados\n");
         scanf("%d", &arremessos.convertidos);
@@ -38,12 +40,14 @@ int main() {
 
     printf("A taxa de acerto e de: [%.2f por cento]\n", arremessos.aproveitamento);
 
-    if (arremessos.aproveitamento > 50) {
+    if (arremessos.aproveitamento > 50)
+    {
         printf("Esse jogador e mao quente\n");
-    } else {
+    }
+    else
+    {
         printf("Esse jogador precisa treinar mais\n");
     }
 
     return 0;
 }
-

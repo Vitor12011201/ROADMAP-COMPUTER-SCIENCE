@@ -6,12 +6,12 @@ Use um loop para imprimir o array inteiro e observe o que aconteceu nos índices
 
 #include <stdio.h>
 
-int main() {
-
-    int sequencia[8] = {100 , [4] = 500 , 600 , 700};
+int main()
+{
+    int sequencia[8] = {100, [4] = 500, 600, 700};
     printf("Os numeros dos Arrays sao: \n");
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++)
+    {
         printf("%d\n", sequencia[i]);
     }
-
 }

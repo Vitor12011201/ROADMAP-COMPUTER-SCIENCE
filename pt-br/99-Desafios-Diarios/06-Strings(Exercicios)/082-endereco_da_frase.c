@@ -6,11 +6,10 @@ Exemplo: printf("%p\n", s); */
 
 #include <stdio.h>
 
-int main() {
-
-    char *s = "C e uma linguaguem incrivel";
+int main()
+{
+    char* s = "C e uma linguaguem incrivel";
     printf("%s\n", s);
     printf("O endereco na memoria do ponteiro s e: [%p]\n", s);
     printf("O tamanho do ponteiro s e: [%zu]", sizeof(s));
-
 }

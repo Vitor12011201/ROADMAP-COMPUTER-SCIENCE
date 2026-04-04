@@ -6,20 +6,23 @@
 
 #include <stdio.h>
 
-void inverter_valor(int *a, int comprimento) {
+void inverter_valor(int* a, int comprimento)
+{
     printf("=============================\n");
     printf("Sequencia do Array invertido:\n");
-    for (int i = comprimento - 1; i >= 0; i--) {
+    for (int i = comprimento - 1; i >= 0; i--)
+    {
         printf("%d\n", a[i]);
     }
 }
 
-int main() {
-
-    int array[] = {1 , 2 , 3 , 4 , 5 , 6};
+int main()
+{
+    int array[] = {1, 2, 3, 4, 5, 6};
     int comprimento = sizeof(array) / sizeof(int);
     printf("Sequencia do Array em ordem:\n");
-    for (int i = 0; i < comprimento; i++) {
+    for (int i = 0; i < comprimento; i++)
+    {
         printf("%d\n", array[i]);
     }
 

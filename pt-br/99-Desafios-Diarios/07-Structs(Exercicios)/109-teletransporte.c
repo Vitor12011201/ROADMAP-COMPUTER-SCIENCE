@@ -16,25 +16,25 @@ struct jogador
     int energia;
 };
 
-void teleportar(struct jogador *j, int novo_x, int novo_y)
+void teleportar(struct jogador* j, int novo_x, int novo_y)
 {
     (*j).y = novo_y;
     (*j).x = novo_x;
-    if (novo_x != 0 || novo_y != 0) {
-    (*j).energia = (*j).energia - 10;
-}
-
+    if (novo_x != 0 || novo_y != 0)
+    {
+        (*j).energia = (*j).energia - 10;
+    }
 }
 
 int main()
 {
     struct jogador p_1 = {.x = 0, .y = 0, .energia = 100};
 
-    printf("O jogador se encontra na posicao (%d,%d) com [%d de energia]\n", p_1.x , p_1.y, p_1.energia);
-    teleportar(&p_1, 100 , 250);
+    printf("O jogador se encontra na posicao (%d,%d) com [%d de energia]\n", p_1.x, p_1.y, p_1.energia);
+    teleportar(&p_1, 100, 250);
     printf("\n");
     printf("O jogador usou o teleporte\n");
-    printf("O jogador se encontra na posicao (%d,%d) com (%d de energia]\n", p_1.x , p_1.y, p_1.energia);
+    printf("O jogador se encontra na posicao (%d,%d) com (%d de energia]\n", p_1.x, p_1.y, p_1.energia);
 
     return 0;
 }

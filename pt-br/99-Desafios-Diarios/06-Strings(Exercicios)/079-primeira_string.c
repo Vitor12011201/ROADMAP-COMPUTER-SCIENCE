@@ -5,9 +5,9 @@
 
 #include <stdio.h>
 
-int main() {
-
-    char *frase = "Aprendo a linguagem C";
+int main()
+{
+    char* frase = "Aprendo a linguagem C";
 
     printf("%s\n", frase);
 

@@ -7,10 +7,12 @@ E se a gente não quiser contar na mão?
 
 #include <stdio.h>
 
-int main() {
+int main()
+{
     char s[] = "Uma Frase qualquer";
 
-    for (int i = 0; s[i] != '\0' ; i++) {
-        printf("s[%d] = %c\n", i , s[i]);
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        printf("s[%d] = %c\n", i, s[i]);
     }
 }

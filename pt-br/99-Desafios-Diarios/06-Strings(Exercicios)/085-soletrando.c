@@ -5,15 +5,16 @@ O resultado deve ser: C -   - e -   - t - o - p. (Sim, conte os espaços como ca
 
 #include <stdio.h>
 
-int main() {
-
+int main()
+{
     int i = 0;
 
     char s[] = "C e top";
 
-    while (s[i] != '\0') {
+    while (s[i] != '\0')
+    {
         printf("%c - ", s[i]);
         i++;
     }
-    printf("\nO array s[] tem: [%zu] elementos\n" , sizeof(s) / sizeof(char));
+    printf("\nO array s[] tem: [%zu] elementos\n", sizeof(s) / sizeof(char));
 }

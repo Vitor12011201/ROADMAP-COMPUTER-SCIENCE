@@ -7,36 +7,39 @@
 #include <stdio.h>
 #include <string.h>
 
-int main() {
-
+int main()
+{
     FILE *fp;
     char s[1024];
     int linha = 0;
 
-    fp = fopen("poema.txt" , "w");
+    fp = fopen("poema.txt", "w");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
-    fputs("O poeta e um fingidor\n" , fp);
-    fputs("Finge tao completamente\n" , fp);
-    fputs("Que chega a fingir que é dor\n" , fp);
-    fputs("A dor que deveras sente.\n" , fp);
+    fputs("O poeta e um fingidor\n", fp);
+    fputs("Finge tao completamente\n", fp);
+    fputs("Que chega a fingir que é dor\n", fp);
+    fputs("A dor que deveras sente.\n", fp);
 
     fclose(fp);
 
-    fp = fopen("poema.txt" , "r");
+    fp = fopen("poema.txt", "r");
 
-    if (fp == NULL) {
+    if (fp == NULL)
+    {
         printf("Esse arquivo nao existe\n");
         return 1;
     }
 
-    while (fgets(s, sizeof s, fp) != NULL) {
+    while (fgets(s, sizeof s, fp) != NULL)
+    {
         linha++;
-        printf("Linha: %d caracteres: %zu\n", linha , strlen(s));
+        printf("Linha: %d caracteres: %zu\n", linha, strlen(s));
     }
 
     fclose(fp);

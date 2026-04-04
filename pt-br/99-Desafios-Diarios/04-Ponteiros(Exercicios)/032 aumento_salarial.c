@@ -6,11 +6,13 @@ No main, chame a função passando o endereço do seu salário e depois imprima 
 
 #include <stdio.h>
 
-void aumento_salario(float *prt) {
+void aumento_salario(float* prt)
+{
     *prt = *prt * 1.10;
 }
 
-int main () {
+int main()
+{
     float salario = 1500;
     printf("O valor do seu salario e de: %.2f\n", salario);
     printf("=================================\n");
