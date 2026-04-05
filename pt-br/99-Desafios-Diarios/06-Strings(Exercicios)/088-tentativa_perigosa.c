@@ -8,7 +8,7 @@ O que aconteceu? O programa fechou sozinho? Deu erro? (Isso prova que o ponteiro
 
 int main()
 {
-    char* perigo = "Nao me mude";
+    char *perigo = "Nao me mude";
     perigo[0] = 'X';
     printf("%s", perigo);
 

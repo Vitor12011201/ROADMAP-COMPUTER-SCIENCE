@@ -9,7 +9,7 @@
 int main()
 {
     char texto[] = "ABCDE";
-    char* p = texto;
+    char *p = texto;
     printf("O texto original e: [%s]\n", p);
     p[2] = 'X';
     p++;

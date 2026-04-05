@@ -7,7 +7,7 @@
 
 struct carro
 {
-    char* nome;
+    char *nome;
     float preco;
     int velocidade;
 };

@@ -11,7 +11,7 @@ Resposta: Porque quando medimos o Array no sizeof ele conta todos os caracteres 
 
 int main()
 {
-    char* ptr = "Programacao";
+    char *ptr = "Programacao";
     char arr[] = "Programacao";
 
     int i = 0;

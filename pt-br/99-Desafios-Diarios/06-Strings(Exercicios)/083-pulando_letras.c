@@ -7,7 +7,7 @@
 
 int main()
 {
-    char* s = "Ola Mundo!";
-    char* p = s + 4;
+    char *s = "Ola Mundo!";
+    char *p = s + 4;
     printf("%s", p);
 }

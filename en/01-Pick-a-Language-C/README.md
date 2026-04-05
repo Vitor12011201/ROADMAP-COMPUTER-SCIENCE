@@ -3498,6 +3498,74 @@ While `fscanf()` is convenient, it can be dangerous if the file data is untrustw
 
 ---
 
+<details>
+<summary><b>✍️ Writing to Text Files (Section 9.5)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.5 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-5)-WRITING-TO-TEXT-FILES)
+
+---
+
+Just as we have functions for reading (`fgetc`, `fgets`, `fscanf`), C offers symmetrical functions for writing data to files: `fputc()`, `fputs()`, and the powerful `fprintf()`.
+
+---
+
+#### ⚠️ The Write Mode ("w")
+
+To write to a file, we must open it using the `"w"` (*write*) mode.
+
+> **Warning:** When opening an existing file with `"w"`, C will **instantly erase all previous content** (truncate to 0 bytes). If the file does not exist, it will be created.
+
+---
+
+#### 💻 Practical Example: Generating an Output Log
+
+Let's create a program that uses different functions to generate a file named `output.txt`:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    int value = 42;
+
+    // Opening for writing (CAUTION: this overwrites the file!)
+    fp = fopen("output.txt", "w");
+
+    if (fp == NULL) {
+        perror("Error creating file");
+        return 1;
+    }
+
+    // 1. fputc: Writes a single character
+    fputc('A', fp);
+    fputc('\n', fp); 
+
+    // 2. fprintf: Writes formatted data (just like the standard printf)
+    fprintf(fp, "The calculation result is: %d\n", value);
+
+    // 3. fputs: Writes a complete string
+    fputs("Finalizing data logging.\n", fp);
+
+    fclose(fp); // Always close to ensure data is flushed from the buffer to the disk
+    return 0;
+}
+```
+
+> 💡 **Developer Insight:**
+A powerful curiosity in C is that `stdout` (your screen) is technically treated as a file. If you changed the `fopen` line to `fp = stdout;`, all write functions would send the data to the console instead of the disk.
+For your portfolio, remember:
+> - Use `fprintf()` when you need formatting (numbers, dates).
+> - Use `fputs()` for plain text, as it is slightly faster and simpler.
+> - Always check if the `fp` pointer is `NULL`. Write errors are common (full disk, lack of folder permissions, etc.).
+
+
+</details>
+
+---
+
 
 
 ---

@@ -6,7 +6,7 @@ Não esqueça: Você precisa copiar o \0 para o destino também!
 
 #include <stdio.h>
 
-void minha_strcpy(char* destino, char* origem)
+void minha_strcpy(char *destino, char *origem)
 {
     int i = 0;
     for (i = 0; origem[i] != '\0'; i++)

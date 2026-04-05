@@ -10,7 +10,7 @@ Exemplo: defensor->vida -= atacante->forca;
 
 struct personagem
 {
-    char* nome;
+    char *nome;
     int vida;
     int forca;
 };

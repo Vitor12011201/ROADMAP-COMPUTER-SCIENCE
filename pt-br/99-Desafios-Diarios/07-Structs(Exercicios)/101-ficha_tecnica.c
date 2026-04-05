@@ -8,8 +8,8 @@
 
 struct livro
 {
-    char* titulo;
-    char* autor;
+    char *titulo;
+    char *autor;
     int paginas;
 };
 

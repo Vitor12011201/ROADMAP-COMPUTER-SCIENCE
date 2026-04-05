@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-void mudar_letras(char* nome)
+void mudar_letras(char *nome)
 {
     printf("O nome passou de: [%s]\n", nome);
     nome[0] = 's', nome[2] = 'm', nome[3] = 'u';

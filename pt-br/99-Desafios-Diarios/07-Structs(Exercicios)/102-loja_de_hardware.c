@@ -8,7 +8,7 @@ Calcule e imprima o valor total se você comprasse o estoque inteiro dos dois pr
 
 struct produto
 {
-    char* nome;
+    char *nome;
     float preco;
     int estoque;
 };

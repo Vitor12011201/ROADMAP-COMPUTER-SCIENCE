@@ -22,7 +22,7 @@ void verificar_sistema(int* ptr)
 
 int main()
 {
-    int* sensor = NULL;
+    int *sensor = NULL;
     int leitura = 42;
     verificar_sistema(sensor);
     sensor = &leitura;

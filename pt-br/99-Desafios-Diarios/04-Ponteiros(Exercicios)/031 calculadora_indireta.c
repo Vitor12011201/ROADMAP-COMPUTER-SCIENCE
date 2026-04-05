@@ -13,13 +13,13 @@ int main()
     int x = 10;
     int y = 20;
     printf("A soma de %d + %d = %d\n", x, y, (x + y));
-    int* p_x = &x;
-    int* p_y = &y;
+    int *p_x = &x;
+    int *p_y = &y;
     *p_x = x;
     *p_y = y;
     int soma = *p_x + *p_y;
     printf("A soma de %d + %d = %d\n", x, y, soma);
-    int* soma_1 = &soma;
+    int *soma_1 = &soma;
     *soma_1 = 0;
     printf("Agora a resultado de %d + % d = %d\n", *p_x, *p_y, *soma_1);
 }

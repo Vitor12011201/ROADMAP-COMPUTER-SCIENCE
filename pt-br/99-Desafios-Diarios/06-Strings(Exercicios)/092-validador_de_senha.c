@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void senha_segura(char* a)
+void senha_segura(char *a)
 {
     if (strlen(a) >= 6)
     {

@@ -8,7 +8,7 @@
 
 struct livro
 {
-    char* nome;
+    char *nome;
     float preco;
 };
 

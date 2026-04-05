@@ -13,8 +13,8 @@ Desafio Extra: Use o sizeof para imprimir quanto espaço o ponteiro p1 ocupa na 
 int main()
 {
     float saldo = 500.00;
-    float* p_1;
-    float* p_2;
+    float *p_1;
+    float *p_2;
     p_1 = &saldo;
     p_2 = &saldo;
     printf("O endereco da variavel saldo e: %p\n", (void*)&saldo);

@@ -12,7 +12,7 @@ E char *texto: É um ponteiro (um endereço de memória). Em sistemas de 64 bits
 int main()
 {
     char letra = 'A';
-    char* texto = "A";
+    char *texto = "A";
 
     int tamanho_char = sizeof(letra);
     int tamanho_string = sizeof(texto);

@@ -15,7 +15,7 @@ int main()
     scanf("%d", &a);
     printf("Digite outro numero: \n");
     scanf("%d", &b);
-    int* p = &a;
+    int *p = &a;
     printf("O valor da variavel A e: %d\n", a);
     *p = &b;
     printf("O valor da variavel A agora e: %d\n", a);

@@ -7,7 +7,7 @@
 
 struct smartphone
 {
-    char* modelo;
+    char *modelo;
     int ram;
     float preco;
 };

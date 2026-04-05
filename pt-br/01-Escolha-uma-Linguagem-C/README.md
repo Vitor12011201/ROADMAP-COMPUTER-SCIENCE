@@ -3501,6 +3501,73 @@ Embora o `fscanf()` seja prático, ele pode ser perigoso se os dados no arquivo 
 
 ---
 
+<details>
+<summary><b>✍️ Escrevendo em Arquivos de Texto (Seção 9.5)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.5 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-5)-ESCREVENDO-EM-ARQUIVOS-DE-TEXTO)
+
+---
+
+Assim como temos funções para ler (`fgetc`, `fgets`, `fscanf`), o C nos oferece funções simétricas para escrever dados em arquivos: `fputc()`, `fputs()` e o poderoso `fprintf()`.
+
+---
+
+#### ⚠️ O Modo de Escrita ("w")
+
+Para escrever em um arquivo, precisamos abri-lo com o modo `"w"` (*write*).
+
+> **Atenção:** Ao abrir um arquivo existente com `"w"`, o C irá **apagar todo o conteúdo anterior** (truncar para 0 bytes) instantaneamente. Se o arquivo não existir, ele será criado.
+
+---
+
+#### 💻 Exemplo Prático: Criando um Log de Saída
+
+Vamos criar um programa que utiliza diferentes funções para gerar um arquivo chamado `saida.txt`:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    int valor = 42;
+
+    // Abrindo para escrita (CUIDADO: isso sobrescreve o arquivo!)
+    fp = fopen("saida.txt", "w");
+
+    if (fp == NULL) {
+        perror("Erro ao criar o arquivo");
+        return 1;
+    }
+
+    // 1. fputc: Escreve um único caractere
+    fputc('A', fp);
+    fputc('\n', fp); 
+
+    // 2. fprintf: Escreve dados formatados (como o printf comum)
+    fprintf(fp, "O resultado do calculo e: %d\n", valor);
+
+    // 3. fputs: Escreve uma string completa
+    fputs("Finalizando o registro de dados.\n", fp);
+
+    fclose(fp); // Sempre feche para garantir que os dados saiam do buffer para o disco
+    return 0;
+}
+```
+
+> **💡 Insight do Desenvolvedor:**
+Uma curiosidade poderosa do C é que o `stdout` (a sua tela) é tratado tecnicamente como um arquivo. Se você alterasse a linha do `fopen` para `fp = stdout;`, todas as funções de escrita enviariam os dados para o console em vez de para o disco.
+Para um portfólio, lembre-se:
+> - Use `fprintf()` quando precisar de formatação (números, datas).
+> - Use `fputs()` quando for apenas texto puro, pois ela é ligeiramente mais rápida e simples.
+> - Sempre verifique se o ponteiro `fp` é `NULL`. Erros de escrita são comuns (disco cheio, falta de permissão na pasta, etc.).
+
+</details>
+
+---
+
 
 
 ---

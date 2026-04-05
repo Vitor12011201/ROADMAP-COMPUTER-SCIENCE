@@ -8,7 +8,7 @@ Imprima o valor da variável vida no final.*/
 int main()
 {
     int vida = 100;
-    int* prt = &vida;
+    int *prt = &vida;
     printf("A vida do personagem e: %d\n", vida);
     *prt = 80;
     printf("A vida do personagem agora e: %d", vida);

@@ -10,7 +10,7 @@ Qual o sizeof(*ptr)?*/
 int main()
 {
     double real = 10.5;
-    double* ptr = &real;
+    double *ptr = &real;
 
     printf("O tamanho de %.2f e igual a %zu Bytes\n", real, sizeof(real));
     // Esse vai dar 8 Bytes pois devolve o valor que o programa separa para um double
@@ -21,7 +21,7 @@ int main()
 
 
     char letra = 'A';
-    char* ptr_2 = &letra;
+    char *ptr_2 = &letra;
 
     printf("O tamanho da variavel Letra e igual a (%zu Bytes)\n", sizeof(letra));
     printf("O tamanha do endereco de ponteiro da variavel Letra e igual a (%zu Bytes)\n", sizeof(ptr_2));

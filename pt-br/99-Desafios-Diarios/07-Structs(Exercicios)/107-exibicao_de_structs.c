@@ -7,7 +7,7 @@
 
 struct pet
 {
-    char* nome;
+    char *nome;
     int idade;
 };
 

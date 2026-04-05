@@ -11,7 +11,7 @@ Imprima o nome de p1.*/
 
 struct pessoa
 {
-    char* nome;
+    char *nome;
     int idade;
 };
 

@@ -8,7 +8,7 @@
 
 struct item
 {
-    char* nome;
+    char *nome;
     int quantidade;
 };
 

@@ -8,7 +8,7 @@ Crie um loop while que mostre um menu:
 
 #include <stdio.h>
 
-void espada_mao(int* ptr, int* ptr_1)
+void espada_mao(int *ptr, int *ptr_1)
 {
     if (ptr == NULL)
     {
@@ -25,7 +25,7 @@ void espada_mao(int* ptr, int* ptr_1)
 int main()
 {
     int resposta_usuario;
-    int* mao_heroi = NULL;
+    int *mao_heroi = NULL;
     int vida_vilao = 150;
     int dano_espada = 20;
 

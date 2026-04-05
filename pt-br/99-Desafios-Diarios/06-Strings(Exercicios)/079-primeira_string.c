@@ -7,7 +7,7 @@
 
 int main()
 {
-    char* frase = "Aprendo a linguagem C";
+    char *frase = "Aprendo a linguagem C";
 
     printf("%s\n", frase);
 

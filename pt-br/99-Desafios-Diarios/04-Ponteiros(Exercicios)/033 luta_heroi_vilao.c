@@ -9,25 +9,25 @@ Use um loop while para manter a luta enquanto o HP de ambos for maior que zero.
 
 #include <stdio.h>
 
-void jogar_pedra(int* ptr, int* mana)
+void jogar_pedra(int *ptr, int *mana)
 {
     *ptr = *ptr - 10;
     *mana = *mana - 5;
 }
 
-void atacar_com_estilingue(int* ptr, int* mana)
+void atacar_com_estilingue(int *ptr, int *mana)
 {
     *ptr = *ptr - 20;
     *mana = *mana - 10;
 }
 
-void atacar_com_espada(int* ptr, int* mana)
+void atacar_com_espada(int *ptr, int *mana)
 {
     *ptr = *ptr - 30;
     *mana = *mana - 15;
 }
 
-void curar(int* ptr, int* mana)
+void curar(int *ptr, int *mana)
 {
     *ptr = *ptr + 10;
     *mana = *mana - 5;
@@ -37,7 +37,7 @@ void curar(int* ptr, int* mana)
     }
 }
 
-void recuperar_mana(int* ptr)
+void recuperar_mana(int *ptr)
 {
     *ptr = *ptr + 10;
 
