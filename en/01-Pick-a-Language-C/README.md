@@ -3566,6 +3566,99 @@ For your portfolio, remember:
 
 ---
 
+<details>
+<summary><b> 💾 Binary File I/O - Binary I/O (Section 9.6)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.6 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-6)-I-O-BINARY-FILES)
+
+---
+
+So far, we have dealt with text files. However, there is a much more efficient category for storing complex data: **Binary Files**. Unlike text files, they do not undergo automatic translations (such as `\n` adjustments) and store bytes exactly as they are in memory.
+
+---
+
+#### 🛠️ Opening Modes and the "b" Suffix
+
+The first major difference is in `fopen()`. To tell the system we do not want text translations, we add the **"b"** character to the mode:
+
+| Mode | Description |
+| :--- | :--- |
+| **"rb"** | Opens for binary reading (*read binary*). |
+| **"wb"** | Opens for binary writing (*write binary*). Overwrites the file. |
+| **"ab"** | Opens for appending binary data (*append binary*). |
+
+---
+
+#### 📦 The `fwrite()` and `fread()` Functions
+
+Since binary files can contain the null character (`\0`) in the middle of the data, functions like `fprintf` or `fputs` do not work well (they would stop at the first null occurrence). We use functions that handle **blocks of bytes**:
+
+#### 1. Writing Raw Data (`fwrite`)
+Imagine we want to save a sequence of numerical values that are not readable characters:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    unsigned char bytes[6] = {5, 37, 0, 88, 255, 12};
+
+    fp = fopen("output.bin", "wb");
+
+    // fwrite Arguments:
+    // 1. Pointer to the data
+    // 2. Size of each item (sizeof)
+    // 3. Number of items
+    // 4. The file pointer (FILE*)
+    fwrite(bytes, sizeof(unsigned char), 6, fp);
+
+    fclose(fp);
+    return 0;
+}
+```
+When opening this file in a text editor, you will only see "garbage" or strange symbols. This is normal! To see the actual content, we use tools like `hexdump`.
+
+#### 2. Reading Raw Data (`fread`)
+The `fread` function returns the number of items successfully read. If it returns `0`, we have reached the End of File (EOF).
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    unsigned char c;
+
+    fp = fopen("output.bin", "rb");
+
+    // We read 1 item at a time until fread returns 0
+    while (fread(&c, sizeof(unsigned char), 1, fp) > 0) {
+        printf("%d\n", c);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### 📏 Why are the middle arguments unusual?
+The `fread` and `fwrite` functions ask for the **item size** and the **quantity**. This is extremely useful for saving entire structs or arrays at once:
+
+```c
+// Example: Saving 10 structs at once
+fwrite(my_users, sizeof(struct User), 10, fp);
+```
+
+>💡 **Developer Insight:**
+> Binary files are the foundation for almost everything that is not plain text: images (PNG, JPG), databases (SQLite), and game save files. Demonstrating that you know how to use `fread` and `fwrite` with `sizeof` shows that you understand how memory is structured and know how to create custom, efficient file formats.
+
+
+</details>
+
+---
+
 
 
 ---

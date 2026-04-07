@@ -3568,6 +3568,98 @@ Para um portfólio, lembre-se:
 
 ---
 
+<details>
+<summary><b> 💾 E/S de Arquivos Binários - Binary I/O (Seção 9.6)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-6)-E-S-ARQUIVOS-BINARIOS)
+
+---
+
+Até agora, lidamos com arquivos de texto. No entanto, existe uma categoria muito mais eficiente para armazenar dados complexos: os **Arquivos Binários**. Diferente dos arquivos de texto, eles não sofrem traduções automáticas (como o ajuste de `\n`) e armazenam os bytes exatamente como estão na memória.
+
+---
+
+#### 🛠️ Modos de Abertura e o Sufixo "b"
+
+A primeira grande diferença está no `fopen()`. Para indicar ao sistema que não queremos traduções de texto, adicionamos o caractere **"b"** ao modo:
+
+| Modo | Descrição |
+| :--- | :--- |
+| **"rb"** | Abre para leitura binária (*read binary*). |
+| **"wb"** | Abre para escrita binária (*write binary*). Sobrescreve o arquivo. |
+| **"ab"** | Abre para anexar dados binários (*append binary*). |
+
+---
+
+#### 📦 As Funções `fwrite()` e `fread()`
+
+Como arquivos binários podem conter o caractere nulo (`\0`) no meio dos dados, funções como `fprintf` ou `fputs` não funcionam bem (elas parariam na primeira ocorrência do nulo). Usamos funções que lidam com **blocos de bytes**:
+
+#### 1. Escrevendo Dados Brutos (`fwrite`)
+Imagine que queremos salvar uma sequência de valores numéricos que não são caracteres legíveis:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    unsigned char bytes[6] = {5, 37, 0, 88, 255, 12};
+
+    fp = fopen("saida.bin", "wb");
+
+    // Argumentos do fwrite:
+    // 1. Ponteiro para os dados
+    // 2. Tamanho de cada item (sizeof)
+    // 3. Quantidade de itens
+    // 4. O ponteiro do arquivo (FILE*)
+    fwrite(bytes, sizeof(unsigned char), 6, fp);
+
+    fclose(fp);
+    return 0;
+}
+```
+Ao abrir esse arquivo em um editor de texto, você verá apenas "lixo" ou símbolos estranhos. Isso é normal! Para ver o conteúdo real, usamos ferramentas como o `hexdump`.
+
+#### 2. Lendo Dados Brutos (`fread`)
+A função `fread` retorna a quantidade de itens lidos com sucesso. Se retornar `0`, chegamos ao fim do arquivo (EOF).
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp;
+    unsigned char c;
+
+    fp = fopen("saida.bin", "rb");
+
+    // Lemos 1 item por vez até que fread retorne 0
+    while (fread(&c, sizeof(unsigned char), 1, fp) > 0) {
+        printf("%d\n", c);
+    }
+
+    fclose(fp);
+    return 0;
+}
+```
+
+#### 📏 Por que os argumentos do meio são estranhos?
+As funções `fread` e `fwrite` pedem o **tamanho do item** e a **quantidade**. Isso é extremamente útil para salvar structs ou arrays inteiros de uma só vez:
+
+```c
+// Exemplo: Salvando 10 structs de uma vez
+fwrite(meus_usuarios, sizeof(struct Usuario), 10, fp);
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> Arquivos binários são a base para quase tudo o que não é texto simples: imagens (PNG, JPG), bancos de dados (SQLite) e arquivos de salvamento de jogos (save files). Demonstrar que você sabe usar `fread` e `fwrite` com `sizeof` mostra que você entende como a memória é estruturada e sabe como criar formatos de arquivos customizados e eficientes.
+
+</details>
+
+---
+
 
 
 ---
