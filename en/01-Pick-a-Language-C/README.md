@@ -3567,7 +3567,7 @@ For your portfolio, remember:
 ---
 
 <details>
-<summary><b> 💾 Binary File I/O - Binary I/O (Section 9.6)</b></summary>
+<summary><b> 💾 Binary File I/O (Section 9.6)</b></summary>
 <br>
 
 ---
