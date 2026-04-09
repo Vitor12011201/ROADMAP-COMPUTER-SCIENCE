@@ -3567,12 +3567,22 @@ For your portfolio, remember:
 ---
 
 <details>
-<summary><b> 💾 Binary File I/O (Section 9.6)</b></summary>
+<summary><b> 💾 Binary I/O (Section 9.6.0 - Section 9.6.1)</b></summary>
 <br>
 
 ---
 
-[Code for Section 9.6 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-6)-I-O-BINARY-FILES)
+[Code for Section 9.6.0 - Section 9.6.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-6)-I-O-BINARY)
+
+---
+
+<details>
+<summary><b>🛠️Binary File I/O(Seção 9.6.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 9.6.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-6)-I-O-BINARY/(SECTION-9-6-0)-BINARY-FILE-I-O)
 
 ---
 
@@ -3659,8 +3669,65 @@ fwrite(my_users, sizeof(struct User), 10, fp);
 
 ---
 
+<details>
+<summary><b>⚠️ 9.6.1 Portability Issues: Structs and Numbers</b></summary>
+<br>
+
+---
+
+[Code for Section 9.6.1 can be found here](./CODE_BY_DAY/DAY_009/(SECTION-9-6)-I-O-BINARY/(SECTION-9-6-1)-PORTABILITY-ISSUES)
+
+---
+
+Saving a `struct` or a multi-byte number (like an `int` or `double`) directly to disk with `fwrite()` seems easy, but it hides traps that can break your program when switching computers. For professional software, we must ensure **Portability**.
+
+---
+
+#### 📏 1. The Alignment Problem (Padding)
+As we have seen before, the compiler inserts filling bytes (*padding*) to align data in memory.
+* The issue is that **different processors and compilers** use different padding rules.
+* If you save a struct on a PC and try to read it on a Raspberry Pi (or a Mac server), the bytes might be in different positions, corrupting your data.
+
 
 
 ---
 
+#### 🔄 2. The "Endianness" Problem (Byte Order)
+Not all computers read numbers the same way. Imagine the hexadecimal number `0x1234`:
+
+* **Big-Endian:** Saves bytes in the "natural" order: `12 34`.
+* **Little-Endian:** (Common in Intel/AMD processors): Saves bytes reversed: `34 12`.
+
+If your program writes one way and reads another, a "Price" or "User ID" value will become a completely random and incorrect number.
+
+
+
+---
+
+#### 🛠️ The Solution: Serialization
+
+For your binary data to be portable, you should never save "raw" memory. Instead, you must **Serialize** the data.
+
+**Serialization** means converting your data into a standard, controlled, and platform-independent format.
+
+#### How to do it professionally:
+1. **Manual:** Write a function that saves field by field, ensuring each `int` is converted to a fixed byte order (usually *Network Byte Order*).
+2. **Libraries (Recommended):** Use industry-established tools that solve this for you and allow your C code to communicate with other languages (Java, Python, etc.).
+* **Protocol Buffers (Google)**
+* **JSON/XML** (For text)
+* **MessagePack** (For compact binary)
+
+>💡 **Developer Insight:**
+> In the real world, binary files that travel across the internet or between different systems (like a cloud game save) **must** be serialized. Demonstrating knowledge of *Endianness* and *Padding* shows a recruiter that you don't just "make the code work on your machine," but understand the architectural challenges of distributed and multi-platform systems.
+
 </details>
+
+</details>
+
+</details>
+
+---
+
+
+
+---

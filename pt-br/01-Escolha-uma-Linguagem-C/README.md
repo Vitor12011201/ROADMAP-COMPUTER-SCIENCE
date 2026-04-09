@@ -3569,12 +3569,22 @@ Para um portfólio, lembre-se:
 ---
 
 <details>
-<summary><b> 💾 E/S de Arquivos Binários - Binary I/O (Seção 9.6)</b></summary>
+<summary><b>💾 Binary I/O (Seção 9.6.0 - Seção 9.6.1)</b></summary>
 <br>
 
 ---
 
-[Codigos da Seção 9.6 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-6)-E-S-ARQUIVOS-BINARIOS)
+[Codigos das Seções 9.6.0 - 9.6.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-6)-BINARY-I-O)
+
+---
+
+<details>
+<summary><b>🛠️ E/S de Arquivos Binários(Seção 9.6.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.6.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-6)-BINARY-I-O/(SECAO-9-6-0)-E-S-ARQUIVOS-BINARIOS)
 
 ---
 
@@ -3660,8 +3670,63 @@ fwrite(meus_usuarios, sizeof(struct Usuario), 10, fp);
 
 ---
 
+<details>
+<summary><b>⚠️ 9.6.1 Problemas de Portabilidade: Structs e Números</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 9.6.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_009/(SECAO-9-6)-BINARY-I-O/(SECAO-9-6-1)-PROBLEMAS-PORTABILIDADE)
+
+---
+
+Salvar uma `struct` ou um número multibyte (como um `int` ou `double`) diretamente no disco com `fwrite()` parece fácil, mas esconde armadilhas que podem quebrar seu programa ao mudar de computador. Para um software profissional, precisamos garantir a **Portabilidade**.
+
+---
+
+#### 📏 1. O Problema do Alinhamento (Padding)
+Como vimos anteriormente, o compilador insere bytes de preenchimento (*padding*) para alinhar dados na memória.
+* O problema é que **diferentes processadores e compiladores** usam regras de preenchimento diferentes.
+* Se você salvar uma struct no PC e tentar ler no Raspberry Pi (ou em um servidor Mac), os bytes podem estar em lugares diferentes, corrompendo seus dados.
+
+---
+
+#### 🔄 2. O Problema da "Endianness" (Ordem dos Bytes)
+Nem todos os computadores leem números da mesma forma. Imagine o número hexadecimal `0x1234`:
+
+* **Big-Endian:** Salva os bytes na ordem "natural": `12 34`.
+* **Little-Endian:** (Comum em processadores Intel/AMD): Salva os bytes invertidos: `34 12`.
+
+Se o seu programa escreve de um jeito e lê de outro, um valor de "Preço" ou "ID de Usuário" se tornará um número completamente aleatório e errado.
+
+---
+
+#### 🛠️ A Solução: Serialização
+
+Para que seus dados binários sejam portáteis, você nunca deve salvar a memória "bruta". Em vez disso, você deve **Serializar** os dados.
+
+**Serializar** significa converter seus dados para um formato padrão, controlado e independente de plataforma.
+
+#### Como fazer isso profissionalmente:
+1. **Manual:** Escrever uma função que salva campo por campo, garantindo que cada `int` seja convertido para uma ordem de bytes fixa (geralmente *Network Byte Order*).
+2. **Bibliotecas (Recomendado):** Usar ferramentas consagradas no mercado que resolvem isso para você e permitem que seu código em C converse com outras linguagens (Java, Python, etc.).
+  * **Protocol Buffers (Google)**
+  * **JSON/XML** (Para texto)
+  * **MessagePack** (Para binário compacto)
+
+
+>💡 **Insight do Desenvolvedor:**
+> No mundo real, arquivos binários que viajam pela internet ou entre sistemas diferentes (como um save de jogo na nuvem) **precisam** ser serializados. Demonstrar conhecimento sobre *Endianness* e *Padding* mostra a um recrutador que você não apenas "faz o código funcionar na sua máquina", mas entende os desafios de arquitetura de sistemas distribuídos e multiplataforma.
+
+</details>
+
+</details>
+
+</details>
+
+---
+
 
 
 ---
 
-</details>
