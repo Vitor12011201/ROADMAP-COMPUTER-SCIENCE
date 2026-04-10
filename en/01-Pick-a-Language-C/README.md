@@ -3728,6 +3728,81 @@ For your binary data to be portable, you should never save "raw" memory. Instead
 
 ---
 
-
+<details>
+  <summary><b>🔹Day 10: `typedef`: Creating New Names for Types </b></summary>
 
 ---
+
+[Day 10 code can be found here](./CODE_BY_DAY/DAY_010)
+
+---
+
+<details>
+<summary><b>🏷️ `typedef`: - Introduction (Section 10.0)</b></summary>
+<br>
+
+---
+
+[Section 10.0 code can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-0)-TYPEDEF-INTRODUCTION)
+
+---
+
+At first glance, `typedef` might seem like just an unnecessary "nickname," but it is fundamental for making C code more readable, organized, and easier to maintain. Instead of dealing only with generic types like `int` or `struct`, you can create names that describe exactly what that data represents in your program.
+
+---
+
+#### 🔍 What does `typedef` do?
+
+It allows you to define a new name (an *alias*) for an existing type. The basic syntax follows this pattern:
+`typedef [existing_type] [new_name];`
+
+#### Simple Example:
+```c
+typedef int Distance; // Now 'Distance' is an alias for 'int'
+
+Distance km_traveled = 500;
+int x = 10; // Both are treated the same way by the compiler
+```
+
+---
+
+#### 🏗️ Most Common Use: Simplifying Structs
+
+Without `typedef`, every time you declare a structure variable, you must repeat the `struct` keyword. With `typedef`, you eliminate this repetition, making the code much cleaner.
+
+| Without `typedef` | With `typedef` |
+| :--- | :--- |
+| `struct Point p1;` | `Point p1;` |
+
+#### **Professional Implementation:**
+
+```c
+typedef struct {
+    float x;
+    float y;
+} Point; // Now 'Point' is a complete, independent type
+
+int main(void) {
+    Point p = {10.5, 20.0}; // Much cleaner and more readable!
+    return 0;
+}
+```
+
+#### ⚖️ Why use typedef?
+
+* **Abstraction:** If you decide that `Distance` should no longer be an `int`, but rather a `double`, you only need to change it in the `typedef`, and your entire codebase will be updated automatically.
+* **Self-documentation:** Declaring `Age user1` is much more explanatory and semantic than just using a generic `int`.
+* **Portability:** It allows you to create names that ensure the correct data size across different architectures (such as the well-known `size_t` or `int32_t`).
+
+---
+
+> 💡 **Developer Insight:**
+> In operating systems and embedded systems development, `typedef` is widely used to "hide" hardware complexity. When you encounter a type like `uint8_t`, know that under the hood, there is a `typedef unsigned char`. Using this technique demonstrates that your code is designed to be portable and easy to maintain.
+
+</details>
+
+---
+
+---
+
+</details>
