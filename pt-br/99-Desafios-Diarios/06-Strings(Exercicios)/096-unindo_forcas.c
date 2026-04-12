@@ -1,4 +1,4 @@
-/*Objetivo: Manipular o \0 para juntar (concatenar) duas strings manualmente.
+/* Objetivo: Manipular o \0 para juntar (concatenar) duas strings manualmente.
 1. Crie dois arrays: char destino[20] = "Ola "; e char origem[] = "Mundo";.
 2. Encontre onde está o \0 no array destino.
 3. Começando exatamente naquela posição, use um loop para copiar as letras de origem para dentro de destino.

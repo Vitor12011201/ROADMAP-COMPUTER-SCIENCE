@@ -1,4 +1,4 @@
-/*Objetivo: Aprender a definir a estrutura e como acessar as "gavetas" dentro dela usando o ponto (.).
+/* Objetivo: Aprender a definir a estrutura e como acessar as "gavetas" dentro dela usando o ponto (.).
 1. Defina a Struct: Fora do main, crie uma struct Jogador que tenha:
 - Um inteiro pontuacao.
 - Um float nivel_experiencia.

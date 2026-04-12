@@ -1,4 +1,4 @@
-/*Objetivo: Manipular endereços e valores ao mesmo tempo.
+/* Objetivo: Manipular endereços e valores ao mesmo tempo.
 1. Declare char texto[] = "ABCDE";.
 2. Crie um ponteiro que aponte para esse array: char *p = texto;.
 3. Usando apenas o ponteiro p, mude a letra 'C' para 'X'.

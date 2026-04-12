@@ -1,4 +1,4 @@
-/*Objetivo: Encontrar um caractere específico dentro de uma string-array.
+/* Objetivo: Encontrar um caractere específico dentro de uma string-array.
 1. Crie uma string char frase[] = "O rato roeu a roupa do rei";.
 2. Use um loop para percorrer a string e contar quantas vezes a letra 'r' (minúscula) aparece.
 3. No final, imprima o total encontrado.*/

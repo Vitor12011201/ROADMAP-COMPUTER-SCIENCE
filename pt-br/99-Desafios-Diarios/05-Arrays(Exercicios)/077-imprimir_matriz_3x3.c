@@ -1,4 +1,4 @@
-/*Objetivo: Passar uma matriz fixa para uma função.
+/* Objetivo: Passar uma matriz fixa para uma função.
 1. Crie uma função void mostrar_matriz(int m[][3], int linhas).
 2. No main, crie uma matriz int matriz[2][3] = {{1, 2, 3}, {4, 5, 6}};.
 3. A função deve usar loops aninhados para imprimir a matriz formatada (com espaços e quebras de linha).

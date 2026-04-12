@@ -1,4 +1,4 @@
-/*Objetivo: Criar um arquivo formatado que o Excel ou o Bloco de Notas consigam ler como tabela.
+/* Objetivo: Criar um arquivo formatado que o Excel ou o Bloco de Notas consigam ler como tabela.
 1. Crie um array de structs struct Produto { char nome[20]; int qtd; float preco; } com 3 itens.
 2. Abra um arquivo relatorio.csv no modo "w".
 3. Use um loop for para percorrer o array.

@@ -1,4 +1,4 @@
-/*Objetivo: Filtrar informações específicas enquanto lê o arquivo.
+/* Objetivo: Filtrar informações específicas enquanto lê o arquivo.
 1. Use o mesmo arquivo baleias.txt do Exercício 132.
 2. Seu programa deve ler o arquivo inteiro, mas só imprimir as baleias que pesam mais de 100 toneladas.
 3. No final, o programa deve exibir quantas baleias no total foram lidas e a média de comprimento delas.*/

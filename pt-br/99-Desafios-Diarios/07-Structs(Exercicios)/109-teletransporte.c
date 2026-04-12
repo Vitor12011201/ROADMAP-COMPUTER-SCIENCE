@@ -1,4 +1,4 @@
-/*Objetivo: Entender a economia de memória e a alteração real de dados.
+/* Objetivo: Entender a economia de memória e a alteração real de dados.
 1. Crie uma struct Jogador com int x, int y e int energia.
 2. Crie uma função chamada teletransportar(struct Jogador *j, int novo_x, int novo_y).
 3. Essa função deve:

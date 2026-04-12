@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a modificação direta dos valores originais.
+/* Objetivo: Praticar a modificação direta dos valores originais.
 1. Crie uma função void aplicar_indice(int *a, int len).
 2. Essa função deve multiplicar cada elemento do array pelo seu próprio índice (ex: a[i] = a[i] * i).
 3. No main, crie um array {10, 10, 10, 10, 10}.

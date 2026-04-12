@@ -1,4 +1,4 @@
-/*Objetivo: Usar strcpy para proteger um dado original.
+/* Objetivo: Usar strcpy para proteger um dado original.
 1. Peça para o usuário digitar uma palavra e guarde em char senha[50].
 2. Faça um "backup" dessa palavra em outro array chamado char backup[50] usando strcpy.
 3. Altere todos os caracteres da string entrada para '*' (um loop que vai até o \0).

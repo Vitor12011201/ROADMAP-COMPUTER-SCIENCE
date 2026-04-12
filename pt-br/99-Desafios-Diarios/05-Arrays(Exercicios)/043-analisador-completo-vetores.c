@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/*🧠 Exercício: Analisador de números
+/*Exercício: Analisador de números
 Crie um programa em C que:
 Peça para o usuário digitar 10 números inteiros
 Guarde esses números em um array

@@ -1,6 +1,7 @@
-/*1. Declare um array de inteiros chamado dados[] (deixe o C calcular o tamanho) e inicialize-o com os valores {10, 20, 30}.
-  2. Declare um segundo array chamado vazio[10] e inicialize-o usando o atalho para que todos os elementos sejam zero.
-  3. Imprima o tamanho do primeiro array (usando o truque do sizeof que aprendemos na seção anterior) e imprima o último elemento do segundo array para confirmar que é zero.*/
+/*
+1. Declare um array de inteiros chamado dados[] (deixe o C calcular o tamanho) e inicialize-o com os valores {10, 20, 30}.
+2. Declare um segundo array chamado vazio[10] e inicialize-o usando o atalho para que todos os elementos sejam zero.
+3. Imprima o tamanho do primeiro array (usando o truque do sizeof que aprendemos na seção anterior) e imprima o último elemento do segundo array para confirmar que é zero.*/
 
 #include <stdio.h>
 

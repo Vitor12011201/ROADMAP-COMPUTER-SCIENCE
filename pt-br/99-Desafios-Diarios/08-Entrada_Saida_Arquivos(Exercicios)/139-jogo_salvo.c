@@ -1,4 +1,4 @@
-/*Objetivo: Mostrar por que binário é tão poderoso para salvar estruturas complexas.
+/* Objetivo: Mostrar por que binário é tão poderoso para salvar estruturas complexas.
 1- Crie uma struct:
 struct Jogadores {
     int id;

@@ -1,4 +1,4 @@
-/*Objetivo: Processar dados de uma matriz dentro de uma função.
+/* Objetivo: Processar dados de uma matriz dentro de uma função.
 1. Crie uma função void total_por_linha(int m[][2], int linhas).
 2. Essa função deve percorrer cada linha, somar os dois elementos dela e imprimir: "Soma da linha X: Y".
 3. No main, crie uma matriz int dados[3][2] com valores de sua escolha (ex: vendas de 3 vendedores em 2 meses).

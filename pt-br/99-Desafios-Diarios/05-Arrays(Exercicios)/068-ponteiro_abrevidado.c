@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a sintaxe simplificada dos ponteiros
+/* Objetivo: Praticar a sintaxe simplificada dos ponteiros
 1. Declare um array int valores[3] = {100, 200, 300};.
 2. Declare um ponteiro de inteiro int *ptr;.
 3. Em vez de usar &valores[0], use o atalho: ptr = valores;.

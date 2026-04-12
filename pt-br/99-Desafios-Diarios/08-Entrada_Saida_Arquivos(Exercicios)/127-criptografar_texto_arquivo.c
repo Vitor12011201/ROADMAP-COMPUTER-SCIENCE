@@ -1,4 +1,4 @@
-/*Objetivo: Manipular os caracteres lidos antes de exibir.
+/* Objetivo: Manipular os caracteres lidos antes de exibir.
 1. Leia o arquivo hello.txt caractere por caractere.
 2. A Lógica: Se o caractere for uma vogal (a, e, i, o, u), substitua-a por um asterisco * na hora de imprimir com o printf.
 3. Se não for vogal, imprima o caractere normal.

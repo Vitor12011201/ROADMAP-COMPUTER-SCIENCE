@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a inicialização nomeada (Designated Initializers) e ver a ordem não importar.
+/* Objetivo: Praticar a inicialização nomeada (Designated Initializers) e ver a ordem não importar.
 1. Crie uma struct Smartphone com: char *modelo, int ram e float preco.
 2. No main, inicialize uma variável s1 usando a sintaxe de ponto, mas mude a ordem: coloque o preco primeiro, depois o modelo e por fim a ram.
 3. Imprima os valores para confirmar que o C organizou tudo corretamente.*/

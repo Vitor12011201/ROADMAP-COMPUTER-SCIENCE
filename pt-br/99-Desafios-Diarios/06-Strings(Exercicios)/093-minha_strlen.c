@@ -1,4 +1,4 @@
-/*Objetivo: Recriar a função strlen do zero para entender como ela funciona por dentro.
+/* Objetivo: Recriar a função strlen do zero para entender como ela funciona por dentro.
 1. Crie sua própria função: int meu_tamanho_string(char *s).
 2. Dentro dela, use um ponteiro ou um contador para percorrer a string até achar o \0.
 3. No main, compare o resultado da sua função com o resultado da strlen() oficial para a frase "Engenharia de Software".*/

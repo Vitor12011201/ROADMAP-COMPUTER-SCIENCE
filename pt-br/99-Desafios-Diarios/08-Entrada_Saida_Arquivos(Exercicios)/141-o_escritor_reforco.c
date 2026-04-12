@@ -1,4 +1,4 @@
-/*Objetivo: Simplesmente criar um arquivo e escrever seu nome nele.
+/* Objetivo: Simplesmente criar um arquivo e escrever seu nome nele.
 1. Use FILE *fp; para criar o ponteiro do arquivo.
 2. Use fp = fopen("nome.txt", "w"); para abrir.
 3. Use fprintf(fp, "Meu nome e [Seu Nome]");.

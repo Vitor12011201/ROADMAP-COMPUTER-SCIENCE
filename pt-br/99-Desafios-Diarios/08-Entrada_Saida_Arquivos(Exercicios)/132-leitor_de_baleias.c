@@ -1,4 +1,4 @@
-/*Objetivo: Replicar o exemplo do Beej para sentir o funcionamento do fscanf.
+/* Objetivo: Replicar o exemplo do Beej para sentir o funcionamento do fscanf.
 1. Crie um arquivo baleias.txt com os dados que o Beej forneceu.
 2. Escreva o código para ler esse arquivo usando while (fscanf(...) != EOF).
 3. Imprima os dados formatados, mas tente mudar a ordem: primeiro a massa, depois o nome, depois o comprimento.*/

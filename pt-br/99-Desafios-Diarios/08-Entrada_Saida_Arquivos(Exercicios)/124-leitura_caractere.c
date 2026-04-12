@@ -1,4 +1,4 @@
-/*Objetivo: Ler os primeiros caracteres de um arquivo manualmente.
+/* Objetivo: Ler os primeiros caracteres de um arquivo manualmente.
 1. Crie manualmente um arquivo chamado segredo.txt e escreva "Cevada" dentro dele.
 2. No seu código, abra o arquivo no modo "r".
 3. Chame fgetc(fp) três vezes seguidas, guardando cada resultado em uma variável int diferente.

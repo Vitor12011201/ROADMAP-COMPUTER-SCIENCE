@@ -1,4 +1,4 @@
-/*Objetivo: Manipular a ordem dos elementos originais na exibição do programa.
+/* Objetivo: Manipular a ordem dos elementos originais na exibição do programa.
 1. Crie uma função void inverter(int *a, int len).
 2. Essa função deve inverter a ordem do array.
 3. No main, declare um array {1, 2, 3, 4, 5, 6}.

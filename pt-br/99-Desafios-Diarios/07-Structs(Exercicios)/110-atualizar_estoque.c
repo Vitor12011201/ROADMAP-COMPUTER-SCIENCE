@@ -1,4 +1,4 @@
-/*Objetivo: Usar a seta para lógica de acumulação (soma) dentro de funções.
+/* Objetivo: Usar a seta para lógica de acumulação (soma) dentro de funções.
 1. Crie uma struct Item com char *nome e int quantidade.
 2. Crie uma função void adicionar_estoque(struct Item *i, int qtd_nova).
 3. Dentro dela, use a seta para somar a qtd_nova ao valor que já existia na struct: i->quantidade += qtd_nova;.

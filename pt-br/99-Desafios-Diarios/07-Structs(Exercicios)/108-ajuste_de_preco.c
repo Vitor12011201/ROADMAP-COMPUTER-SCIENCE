@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a desreferenciação "feia" (*p).campo para entender a lógica antes da seta.
+/* Objetivo: Praticar a desreferenciação "feia" (*p).campo para entender a lógica antes da seta.
 1. Crie uma struct Livro com char *titulo e float preco.
 2. Crie uma função void dar_desconto(struct Livro *l, float porcentagem).
 3. Dentro da função, altere o preço usando a sintaxe de parênteses: (*l).preco = (*l).preco - ((*l).preco * porcentagem / 100);.

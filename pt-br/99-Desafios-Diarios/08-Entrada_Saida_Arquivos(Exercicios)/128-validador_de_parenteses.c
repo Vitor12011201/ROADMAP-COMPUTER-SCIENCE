@@ -1,4 +1,4 @@
-/*Objetivo: Usar a leitura de arquivo para resolver um problema lógico.
+/* Objetivo: Usar a leitura de arquivo para resolver um problema lógico.
 1. Crie um arquivo chamado codigo.txt e coloque um pedaço de código C ou uma expressão matemática, tipo (a + b) * (c).
 2. Seu programa deve ler o arquivo inteiro e contar:
 Quantos parênteses abrem (.

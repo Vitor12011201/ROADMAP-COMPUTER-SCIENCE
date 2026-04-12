@@ -1,4 +1,4 @@
-/*Objetivo: Usar a notação de ponteiro para encontrar o maior valor.
+/* Objetivo: Usar a notação de ponteiro para encontrar o maior valor.
 1. Crie uma função void analisar_maximo(int *a, int len).
 2. Essa função deve encontrar qual é o maior valor do array e em qual índice ele está.
 3. No final da função, imprima: "O maior valor é X e está no índice Y".

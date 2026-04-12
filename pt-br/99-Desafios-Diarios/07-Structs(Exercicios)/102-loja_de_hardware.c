@@ -1,4 +1,4 @@
-/*Objetivo: Lidar com múltiplos itens do mesmo tipo de struct.
+/* Objetivo: Lidar com múltiplos itens do mesmo tipo de struct.
 Crie uma struct Produto com char *nome, float preco e int estoque.
 No main, declare duas variáveis: p1 e p2.
 Preencha o p1 com um "Teclado" (R$ 150.00) e o p2 com um "Mouse" (R$ 80.00).

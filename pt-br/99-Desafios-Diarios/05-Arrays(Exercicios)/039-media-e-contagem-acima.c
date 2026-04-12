@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-/*Criar um programa em C que:
+/* Criar um programa em C que:
 1️-Leia 6 números inteiros
 2️-Guarde tudo em um array
 3-️Use uma função para calcular a média dos números

@@ -1,4 +1,4 @@
-/*Objetivo: Diferenciar o ponteiro do conteúdo usando o que aprendemos sobre sizeof.
+/* Objetivo: Diferenciar o ponteiro do conteúdo usando o que aprendemos sobre sizeof.
 1. Declare char *ptr = "Programacao";.
 2. Declare char arr[] = "Programacao";.
 3. Imprima o sizeof(ptr) e o sizeof(arr).

@@ -1,4 +1,4 @@
-/*Objetivo: Praticar o loop idiomático para contar elementos.
+/* Objetivo: Praticar o loop idiomático para contar elementos.
 1. Crie um arquivo frase.txt com uma frase qualquer (ex: "Aprendendo C no Clion").
 2. Use o loop while ((c = fgetc(fp)) != EOF) para percorrer o arquivo.
 3. Dentro do loop, use um if para contar quantos espaços em branco (' ') existem no arquivo.

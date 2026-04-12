@@ -1,4 +1,4 @@
-/*Objetivo: Ler o arquivo do Beej e mostrar os valores em Hexadecimal, como um hacker faria.
+/* Objetivo: Ler o arquivo do Beej e mostrar os valores em Hexadecimal, como um hacker faria.
 1- Crie o arquivo output.bin exatamente como o Beej fez (com os números 5, 37, 0, 88, 255, 12).
 2- No seu programa de leitura, use o loop do fread.
 3- Em vez de %d, use o printf com o especificador %02X.

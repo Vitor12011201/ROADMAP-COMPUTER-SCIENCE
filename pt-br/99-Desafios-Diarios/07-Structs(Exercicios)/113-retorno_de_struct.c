@@ -1,4 +1,4 @@
-/*Objetivo: Praticar uma função que retorna uma struct inteira (em vez de um ponteiro).
+/* Objetivo: Praticar uma função que retorna uma struct inteira (em vez de um ponteiro).
 1. Crie uma struct Retangulo com float largura e float altura.
 2. Crie uma função struct Retangulo criar_quadrado(float lado).
 3. Dentro da função, declare uma struct temporária, preencha a largura e altura com o lado e dê um return nela.

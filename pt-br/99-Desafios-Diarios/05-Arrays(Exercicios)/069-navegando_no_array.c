@@ -1,10 +1,10 @@
-/*Objetivo: Ver como o ponteiro "anda" pela memória do array.
-Declare int nums[4] = {10, 20, 30, 40};.
-Crie um ponteiro int *p = nums;.
-Imprima o valor de *p.
-Agora, use o comando p++; (isso move o ponteiro para o próximo inteiro na memória).
-Imprima *p novamente. O que aconteceu?
-Repita o p++; e imprima de novo.*/
+/* Objetivo: Ver como o ponteiro "anda" pela memória do array.
+1. Declare int nums[4] = {10, 20, 30, 40};.
+2. Crie um ponteiro int *p = nums;.
+3. Imprima o valor de *p.
+4. Agora, use o comando p++; (isso move o ponteiro para o próximo inteiro na memória).
+5. Imprima *p novamente. O que aconteceu?
+6. Repita o p++; e imprima de novo.*/
 
 #include <stdio.h>
 

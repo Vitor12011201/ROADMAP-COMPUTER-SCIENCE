@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 /* Cadastro de nomes
 Crie um programa em C que:
 Peça ao usuário 5 nomes (cada nome pode ter até 50 caracteres)

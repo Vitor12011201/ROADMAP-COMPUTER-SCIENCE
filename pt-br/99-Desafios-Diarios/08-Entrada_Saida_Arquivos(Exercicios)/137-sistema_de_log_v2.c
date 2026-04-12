@@ -1,4 +1,4 @@
-/*Objetivo: Usar o modo "a" (Append) para criar um histórico que nunca se apaga.
+/* Objetivo: Usar o modo "a" (Append) para criar um histórico que nunca se apaga.
 1. Crie uma função void adicionar_log(char *msg).
 2. Dentro dessa função, abra o arquivo sistema.log no modo "a".
 3. Use fprintf para escrever a mensagem, mas adicione um contador ou um prefixo "LOG: ".

@@ -1,4 +1,4 @@
-/*Objetivo: Entender o que acontece com campos que você não inicializa.
+/* Objetivo: Entender o que acontece com campos que você não inicializa.
 1. crie uma struct carro com os atributos(nome, preco, velocidade).
 2. Inicialize um carro chamado meu_carro definindo apenas o .nome = "Fusca".
 3. Imprima o nome, o preço e a velocidade.*/

@@ -1,4 +1,4 @@
-/*Objetivo: Ver a cópia de structs em ação.
+/* Objetivo: Ver a cópia de structs em ação.
 1. Crie uma struct Coordenada com int x e int y.
 2. No main, crie p1 com valores (10, 20).
 3. Crie p2 e faça p2 = p1;.

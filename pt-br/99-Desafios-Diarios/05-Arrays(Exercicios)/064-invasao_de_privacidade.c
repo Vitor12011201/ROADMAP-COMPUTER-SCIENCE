@@ -1,4 +1,4 @@
-/*Objetivo: Ver como um array pode "invadir" o espaço de outro quando estouramos o limite.
+/* Objetivo: Ver como um array pode "invadir" o espaço de outro quando estouramos o limite.
 Declare duas variáveis na sequência:
 1. Primeiro: int array_perigoso[2] = {1, 1};
 2. Segundo: int vizinho = 500;

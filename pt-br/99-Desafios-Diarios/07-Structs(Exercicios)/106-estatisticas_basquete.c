@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a precisão de dados e cálculos dentro da struct usando a nova sintaxe.
+/* Objetivo: Praticar a precisão de dados e cálculos dentro da struct usando a nova sintaxe.
 1. Crie uma struct Jogo com os campos: int tentados, int convertidos e float aproveitamento.
 2. No main, peça ao usuário para digitar os arremessos tentados e os convertidos.
 3. Declare a struct meu_jogo inicializando os campos tentados e convertidos com o que o usuário digitou (use a sintaxe .campo = valor).

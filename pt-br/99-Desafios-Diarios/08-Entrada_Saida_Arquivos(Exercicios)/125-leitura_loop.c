@@ -1,4 +1,4 @@
-/*Objetivo: Usar um loop para ler um arquivo inteiro, caractere por caractere.
+/* Objetivo: Usar um loop para ler um arquivo inteiro, caractere por caractere.
 1. Crie manualmente um arquivo chamado segredo.txt e escreva "Cevada" dentro dele.
 2 .No seu código, abra o arquivo no modo "r"
 3. Use um loop while (Para ler letra por letra):

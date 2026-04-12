@@ -1,4 +1,4 @@
-/*Objetivo: Usar os índices explícitos (Designated Initializers) em 2D e lógica de loop.
+/* Objetivo: Usar os índices explícitos (Designated Initializers) em 2D e lógica de loop.
 Crie uma matriz int matriz[4][4].
 Inicialize-a em uma única linha usando a sintaxe [linha][coluna] = valor para que ela se torne uma Matriz Identidade (onde a diagonal principal é 1 e o resto é 0).
 Dica: Você precisa setar [0][0], [1][1], [2][2] e [3][3].

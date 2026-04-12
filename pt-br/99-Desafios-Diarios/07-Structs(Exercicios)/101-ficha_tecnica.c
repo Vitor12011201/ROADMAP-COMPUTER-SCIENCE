@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a declaração global e o preenchimento manual de campos.
+/* Objetivo: Praticar a declaração global e o preenchimento manual de campos.
 1. Declare uma struct Livro no escopo global (fora do main) com: char *titulo, char *autor e int paginas.
 2. No main, declare a variável struct Livro meu_favorito;.
 3. Atribua os valores usando o operador ponto (.).

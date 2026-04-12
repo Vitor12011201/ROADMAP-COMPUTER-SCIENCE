@@ -1,4 +1,4 @@
-/*Objetivo: Usar funções para "limpar" ou restringir dados em um array.
+/* Objetivo: Usar funções para "limpar" ou restringir dados em um array.
 Imagine que você está recebendo dados de um sensor que não podem passar de 100.
 1. Crie uma função void aplicar_teto(int a[], int len).
 2. Se algum valor no array for maior que 100, a função deve alterá-lo para exatamente 100.

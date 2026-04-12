@@ -1,4 +1,4 @@
-/*Objetivo: Ler o que você escreveu no exercício anterior e mostrar na tela.
+/* Objetivo: Ler o que você escreveu no exercício anterior e mostrar na tela.
 1. Abra o arquivo nome.txt no modo "r".
 2. Crie um array de char: char conteudo[50];.
 3. Use fgets(conteudo, 50, fp); para pegar o que está escrito.

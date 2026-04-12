@@ -1,4 +1,4 @@
-/*Objetivo: Recriar a strcpy manualmente (igual você fez com a strlen).
+/* Objetivo: Recriar a strcpy manualmente (igual você fez com a strlen).
 1. Crie sua própria função: void minha_strcpy(char *destino, char *origem).
 2. Use um loop while/for para copiar origem[i] para destino[i] até encontrar o \0.
 Não esqueça: Você precisa copiar o \0 para o destino também!

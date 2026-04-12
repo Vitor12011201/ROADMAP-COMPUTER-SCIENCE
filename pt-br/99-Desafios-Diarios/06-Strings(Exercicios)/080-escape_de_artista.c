@@ -1,4 +1,4 @@
-/*Objetivo: Dominar as sequências de escape (caracteres especiais).
+/* Objetivo: Dominar as sequências de escape (caracteres especiais).
 Escreva um programa que imprima exatamente a seguinte frase (incluindo as aspas e os pulos de linha):
 1. Ele disse: "O caminho é longo..."
 Mas o \atalho\ é perigoso.

@@ -1,7 +1,7 @@
-/*Objetivo: Criar uma função que recebe um array e seu tamanho.
-Escreva uma função int somar_tudo(int *a, int comprimento) que percorre o array e retorna a soma de todos os elementos.
-No main, crie um array com 4 valores: {5, 10, 15, 20}.
-Chame a função passando o array e o número 4, e imprima o resultado da soma.*/
+/* Objetivo: Criar uma função que recebe um array e seu tamanho.
+1. Escreva uma função int somar_tudo(int *a, int comprimento) que percorre o array e retorna a soma de todos os elementos.
+2. No main, crie um array com 4 valores: {5, 10, 15, 20}.
+3. Chame a função passando o array e o número 4, e imprima o resultado da soma.*/
 
 #include <stdio.h>
 

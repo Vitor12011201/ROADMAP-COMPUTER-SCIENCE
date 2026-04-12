@@ -1,4 +1,4 @@
-/*Objetivo: Sentir na pele o erro de memória (ou o comportamento indefinido).
+/* Objetivo: Sentir na pele o erro de memória (ou o comportamento indefinido).
 1. Declare uma string usando ponteiro: char *perigo = "Nao me mude";.
 2. Tente mudar a primeira letra: perigo[0] = 'X';.
 3. Tente rodar o programa.

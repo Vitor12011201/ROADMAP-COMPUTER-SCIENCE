@@ -1,4 +1,4 @@
-/*Objetivo: Usar o loop e o formatador %c para ver a string letra por letra.
+/* Objetivo: Usar o loop e o formatador %c para ver a string letra por letra.
 1. Declare uma string char s[] = "C e top";.
 2. Use um loop for para imprimir cada caractere separado por um hífen.
 O resultado deve ser: C -   - e -   - t - o - p. (Sim, conte os espaços como caracteres!).*/

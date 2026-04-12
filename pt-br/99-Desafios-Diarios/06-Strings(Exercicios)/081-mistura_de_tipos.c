@@ -1,4 +1,4 @@
-/*Objetivo: Diferenciar claramente char (aspa simples) de string (aspa dupla).
+/* Objetivo: Diferenciar claramente char (aspa simples) de string (aspa dupla).
 1. Declare duas variáveis:
 char letra = 'A';
 char *texto = "A";

@@ -1,4 +1,4 @@
-/*Objetivo: Usar structs para resolver um problema lógico simples.
+/* Objetivo: Usar structs para resolver um problema lógico simples.
 Crie uma struct Ponto que contenha int x e int y.
 Peça ao usuário para digitar as coordenadas de dois pontos diferentes (p1 e p2).
 Calcule o "Ponto Médio" entre eles.

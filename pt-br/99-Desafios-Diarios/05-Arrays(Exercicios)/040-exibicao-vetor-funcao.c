@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-/*🧠 Enunciado (pra você fazer)
-Crie uma função chamada mostrarNumeros que:
+/* Crie uma função chamada mostrarNumeros que:
 Recebe um array de 3 números
 Usa um for para mostrar cada número na tela
 No main:

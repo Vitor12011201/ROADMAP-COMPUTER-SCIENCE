@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a modificação real em arrays.
+/* Objetivo: Praticar a modificação real em arrays.
 1. Declare um array de char: char nome[] = "daniel";.
 2. Crie uma função void mudar_letras(char s[]) que transforma o nome daniel em samuel.
 3. Chame a função passando o seu array.

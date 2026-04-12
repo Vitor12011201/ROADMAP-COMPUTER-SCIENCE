@@ -1,4 +1,4 @@
-/*Objetivo: Simular uma interação entre duas structs usando ponteiros e setas.
+/* Objetivo: Simular uma interação entre duas structs usando ponteiros e setas.
 1. Crie uma struct Personagem com char *nome, int vida e int forca.
 2. Crie uma função void atacar(struct Personagem *atacante, struct Personagem *defensor).
 A lógica é: a vida do defensor deve diminuir de acordo com a força do atacante.

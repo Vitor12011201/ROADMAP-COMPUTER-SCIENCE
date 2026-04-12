@@ -1,4 +1,4 @@
-/*Objetivo: Ler de volta a struct que você salvou no Exercício 139.
+/* Objetivo: Ler de volta a struct que você salvou no Exercício 139.
 1. Abra o arquivo salve.dat no modo "rb".
 2. Crie uma struct vazia: struct Player p_lido;.
 3. Use o fread para "sugar" os dados do arquivo para dentro de p_lido.

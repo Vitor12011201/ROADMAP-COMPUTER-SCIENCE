@@ -1,4 +1,4 @@
-/*Objetivo: Escrever uma frase inteira usando fputs().
+/* Objetivo: Escrever uma frase inteira usando fputs().
 1. Abra um arquivo chamado notas.txt no modo "w".
 2. Use a função fputs("Estudando a linguagem C\n", fp); para escrever uma frase.
 3. Feche o arquivo.*/

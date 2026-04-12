@@ -1,4 +1,4 @@
-/*Objetivo: Provar que o fgets realmente traz a informação para a memória e entender o que ele "pega" do arquivo.
+/* Objetivo: Provar que o fgets realmente traz a informação para a memória e entender o que ele "pega" do arquivo.
 1. Arquivo de dados: Crie manualmente um arquivo chamado frase.txt e escreva nele: Linguagem C.
 2. No seu código (contador.c):
 3. Abra o arquivo frase.txt no modo "r".

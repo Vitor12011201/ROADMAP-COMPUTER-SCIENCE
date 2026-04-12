@@ -1,4 +1,4 @@
-/*Objetivo: Provar que funções podem alterar o array original porque recebem o endereço dele.
+/* Objetivo: Provar que funções podem alterar o array original porque recebem o endereço dele.
 1. Crie uma função void zerar_negativos(int a[], int len). Ela deve percorrer o array e, se encontrar um número menor que zero, deve transformá-lo em 0.
 2. No main, crie um array com valores mistos: {10, -5, 20, -1, 30}.
 3. Imprima o array antes da função.

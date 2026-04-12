@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a inclusão da biblioteca e o uso da função oficial.
+/* Objetivo: Praticar a inclusão da biblioteca e o uso da função oficial.
 Não esqueça do #include <string.h>
 1. Peça para o usuário digitar o nome dele.
 2. Use strlen() para dizer: "Olá [nome], seu nome tem [X] letras".

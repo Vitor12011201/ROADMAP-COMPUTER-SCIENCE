@@ -1,4 +1,4 @@
-/*Objetivo: Praticar a escrita de diferentes tipos de dados no mesmo arquivo.
+/* Objetivo: Praticar a escrita de diferentes tipos de dados no mesmo arquivo.
 1. Crie um programa que tenha três variáveis: char nome[] = "Link", int vida = 100 e float forca = 15.5.
 2. Abra um arquivo status.txt no modo "w".
 3. Use o fprintf para salvar esses dados em uma linha organizada.

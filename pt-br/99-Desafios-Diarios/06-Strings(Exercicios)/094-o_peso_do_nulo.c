@@ -1,4 +1,4 @@
-/*Objetivo: Provar que o \0 ocupa espaço real na memória.
+/* Objetivo: Provar que o \0 ocupa espaço real na memória.
 1. Declare char s[] = "Oi";.
 2. Imprima o sizeof(s).
 Pergunta: Se "Oi" tem 2 letras, por que o sizeof diz que são 3 bytes?
