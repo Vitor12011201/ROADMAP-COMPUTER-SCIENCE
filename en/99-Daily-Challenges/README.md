@@ -59,6 +59,11 @@ File manipulation for reading and writing persistent data outside the program's 
 * **Skills:** Use of file pointers (`FILE *`), opening and closing files (`fopen`, `fclose`), reading (`fscanf`, `fgets`, `fread`) and writing (`fprintf`, `fputs`, `fwrite`), access modes (`r`, `w`, `a`), and basic error handling.
 * **Highlights:** File-based storage systems (such as user registration), external data reading/parsing, and manipulation of both binary and text files.
 
+### [09-Typedef](./09-Typedef(Exercises))
+**What you will find here:** The use of `typedef` to create aliases for data types, making the code more readable, organized, and easier to maintain.
+* **Skills:** Defining new names for primitive and composite types, simplifying complex declarations (such as pointers and structs), improving readability, and standardizing types in the code.
+* **Highlight:** Creating custom types (e.g., `typedef struct`), reducing declaration complexity, and building more professional foundations for larger projects.
+
 ---
 
 ## 🛠️ Technologies and Tools

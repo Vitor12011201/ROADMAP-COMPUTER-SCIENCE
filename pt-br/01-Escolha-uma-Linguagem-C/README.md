@@ -3801,6 +3801,53 @@ int main(void) {
 
 ---
 
+<details>
+ <summary><b>📖 10.1 typedef na Teoria</b></summary>
+<br>
+
+
+---
+
+[Codigos da Seção 10.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-1)-TYPEDEF-NA-TEORIA)
+
+---
+
+
+A essência do `typedef` é simples: você pega um tipo que já existe e cria um "apelido" (*alias*) para ele. A partir daí, o compilador trata esse novo nome exatamente como o tipo original.
+
+#### 🛠️ Sintaxe Básica
+
+Você pode transformar qualquer tipo em um novo nome. Veja como funciona a estrutura:
+
+```c
+typedef int antilope;  // Faz de "antilope" um apelido para "int"
+
+antilope x = 10;       // O tipo "antilope" é identico ao tipo "int"
+```
+
+---
+
+O C também permite que você crie múltiplos apelidos de uma só vez usando uma lista separada por vírgulas, da mesma forma que declara variáveis:
+
+```c
+typedef int antilope, bagel, cogumelo;  // Todos agora são apelidos para "int"
+```
+
+#### 🧐 Por que isso importa?
+
+Embora pareça inútil trocar `int` por `cogumelo`, a teoria por trás disso é o que permite a criação de abstrações poderosas. No dia a dia, não usamos nomes aleatórios, mas sim nomes que explicam o papel do dado no sistema:
+- Em vez de `unsigned long`, usamos `TamanhoArquivo`.
+- Em vez de `unsigned char`, usamos `Byte`.
+
+---
+
+> 💡 **Insight do Desenvolvedor:**
+> O uso do `typedef` na teoria serve para introduzir o conceito de **Tipagem Semântica**. Quando você lê `antilope x`, você não sabe o que `x` faz. Mas quando você lê `Coordenada x`, o código se explica sozinho. A funcionalidade é simples, mas o uso inteligente dela é o que diferencia um código amador de um código profissional e legível.
+
+</details>
+
+---
+
 
 
 ---

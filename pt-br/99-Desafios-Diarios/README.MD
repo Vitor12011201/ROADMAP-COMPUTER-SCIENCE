@@ -59,6 +59,12 @@ Manipulação de arquivos para leitura e escrita de dados persistentes fora da m
 * **Competências:** Uso de ponteiros de arquivo (`FILE *`), abertura e fechamento de arquivos (`fopen`, `fclose`), leitura (`fscanf`, `fgets`, `fread`) e escrita (`fprintf`, `fputs`, `fwrite`), modos de abertura (`r`, `w`, `a`) e tratamento básico de erros.
 * **Destaque:** Sistemas de armazenamento em arquivos (como cadastro de usuários), leitura e análise de dados externos e manipulação de arquivos binários e de texto.
 
+### [09-Typedef](./09-Typedef(Exercicios))
+**O que encontrará aqui:**  
+Uso do `typedef` para criar aliases (apelidos) de tipos de dados, tornando o código mais legível, organizado e fácil de manter.
+* **Competências:** Definição de novos nomes para tipos primitivos e compostos, simplificação de declarações complexas (como ponteiros e structs), melhoria da legibilidade e padronização de tipos no código.
+* **Destaque:** Criação de tipos personalizados (ex: `typedef struct`), redução de complexidade em declarações e construção de bases mais profissionais para projetos maiores.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

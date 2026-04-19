@@ -3803,6 +3803,51 @@ int main(void) {
 
 ---
 
+<details>
+ <summary><b>📖 10.1 typedef in Theory</b></summary>
+<br>
+
+---
+
+[Section 10.1 code can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-1)-TYPEDEF-IN-THEORY)
+
+---
+
+The essence of `typedef` is simple: you take an existing type and create an **alias** for it. From that point on, the compiler treats this new name exactly like the original type.
+
+#### 🛠️ Basic Syntax
+
+You can transform any type into a new name. Here is how the structure works:
+
+```c
+typedef int antelope;  // Makes "antelope" an alias for "int"
+
+antelope x = 10;       // The "antelope" type is identical to the "int" type
+```
+
+---
+C also allows you to create multiple aliases at once using a comma-separated list, in the same way you declare variables:
+
+```c
+typedef int antelope, bagel, mushroom;  // All are now aliases for "int"
+```
+
+#### 🧐 Why does this matter?
+While replacing `int` with `mushroom` might seem useless, the theory behind it is what enables the creation of powerful **abstractions**. In day-to-day development, we don't use random names; instead, we use names that explain the data's role in the system:
+- Instead of `unsigned long`, we use `FileSize`.
+- Instead of `unsigned char`, we use `Byte`.
+
+---
+
+> 💡 **Developer Insight:**
+> The theoretical use of `typedef` serves to introduce the concept of **Semantic Typing**. When you read `antelope x`, you don't know what `x` does. But when you read `Coordinate x`, the code explains itself. The functionality is simple, but its intelligent use is what differentiates amateur code from professional, readable code.
+
+</details>
+
+---
+
+
+
 ---
 
 </details>
