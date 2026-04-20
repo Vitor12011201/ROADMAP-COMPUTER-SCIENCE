@@ -3802,7 +3802,7 @@ int main(void) {
 ---
 
 <details>
- <summary><b>📖 10.1 typedef na Teoria</b></summary>
+ <summary><b>📖 typedef na Teoria (Seção 10.1)</b></summary>
 <br>
 
 
@@ -3848,8 +3848,82 @@ Embora pareça inútil trocar `int` por `cogumelo`, a teoria por trás disso é 
 
 ---
 
+<details>
+<summary><b>🛠️typedef na Prática (Seção 10.2.0 - Seção 10.2.4)</b></summary>
+<br>
+
+---
+
+
+[Codigos das Seções 10.2.0 - Seções 10.2.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-2)-TYPEDEF-NA-PRATICA)
 
 
 ---
+
+<details>
+<summary><b>📦 typedef Criar Abstrações (Seção 10.2.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 10.2.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-2)-TYPEDEF-NA-PRATICA/(SECAO-10-2-0)-TYPEDEF-CRIAR-ABSTRACOES)
+
+---
+
+Renomear um `int` para um nome aleatório não é muito útil. Onde o `typedef` realmente brilha é na simplificação de tipos complexos, tornando o código mais limpo e profissional.
+
+---
+
+#### 📦 1. Simplificando Structs
+
+Este é o uso número 1 do `typedef`. Sem ele, você é obrigado a escrever a palavra `struct` toda vez que declarar uma variável. Com o `typedef`, você cria um nome de tipo "curto" e direto.
+
+| Abordagem | Código |
+| :--- | :--- |
+| **Tradicional** | `struct Ponto p1;` |
+| **Com typedef** | `Ponto p1;` |
+
+**Implementação Comum:**
+```c
+typedef struct {
+    int x, y;
+} Ponto; // 'Ponto' agora é o nome oficial do tipo
+```
+
+#### 🧬 2. Facilitando o uso de Ponteiros
+Ponteiros podem tornar a sintaxe do C confusa rapidamente. O `typedef` ajuda a esconder essa complexidade, criando tipos que já implicam um ponteiro.
+```c
+typedef struct No *Lista; // 'Lista' agora representa um ponteiro para um 'struct No'
+
+// Em vez de: struct No *minha_lista;
+Lista minha_lista; // Muito mais semântico!
+```
+
+#### 🏗️ 3. Criando Tipos de Dados Abstratos (ADTs)
+Muitas vezes queremos esconder como um dado é guardado para que o resto do programa não precise se preocupar com isso.
+- Exemplo: Imagine que você está criando um sistema de IDs. Hoje eles são `int`, mas amanhã podem ser `long long`.
+
+```c
+typedef int UsuarioID;
+
+// No resto do código você usa:
+UsuarioID id1 = 1005;
+```
+
+Se o tipo do ID precisar mudar, você altera apenas **uma linha** no seu arquivo de cabeçalho, e não em centenas de arquivos `.c`.
+
+> 💡 **Insight do Desenvolvedor:**
+> Na prática profissional, o `typedef` é usado para criar uma **camada de abstração**. Quando você usa bibliotecas como a `SDL2` para jogos ou a `OpenSSL` para segurança, você quase nunca vê os tipos primitivos do C. Você interage com tipos como `SDL_Window` ou `EVP_PKEY`.
+> Isso demonstra que o autor da biblioteca se preocupou em criar uma linguagem específica para o problema dele.
+
+</details>
+
+---
+
+
+
+---
+
+</details>
 
 </details>

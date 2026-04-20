@@ -3804,7 +3804,7 @@ int main(void) {
 ---
 
 <details>
- <summary><b>📖 10.1 typedef in Theory</b></summary>
+ <summary><b>📖 typedef in Theory (Section 10.1)</b></summary>
 <br>
 
 ---
@@ -3846,8 +3846,79 @@ While replacing `int` with `mushroom` might seem useless, the theory behind it i
 
 ---
 
+<details>
+<summary><b>🛠️ typedef in Practice (Section 10.2.0 - Section 10.2.4)</b></summary>
+<br>
+
+---
+
+[Codes for Sections 10.2.0 - 10.2.4 can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-2)-TYPEDEF-IN-PRACTICEY)
+
+---
+
+<details>
+<summary><b>📦 typedef Creating Abstractions (Section 10.2.0)</b></summary>
+<br>
+
+---
+
+[Codes for Section 10.2.0 can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-2)-TYPEDEF-IN-PRACTICEY/(SECTION-10-2-0)-TYPEDEF-CREATING-ABSTRACTIONS)
+
+---
+
+Renaming an `int` to a random name isn't very useful. Where `typedef` truly shines is in simplifying complex types, making the code cleaner and more professional.
+
+---
+
+#### 📦 1. Simplifying Structs
+
+This is the number one use case for `typedef`. Without it, you are forced to write the word `struct` every time you declare a variable. With `typedef`, you create a "short" and direct type name.
+
+| Approach | Code |
+| :--- | :--- |
+| **Traditional** | `struct Point p1;` |
+| **With typedef** | `Point p1;` |
+
+**Common Implementation:**
+```c
+typedef struct {
+    int x, y;
+} Point; // 'Point' is now the official type name
+```
+
+#### 🧬 2. Facilitating Pointer Usage
+Pointers can quickly make C syntax confusing. `typedef` helps hide this complexity by creating types that already imply a pointer.
+```c
+typedef struct Node *List; // 'List' now represents a pointer to a 'struct Node'
+
+// Instead of: struct Node *my_list;
+List my_list; // Much more semantic!
+```
+
+#### 🏗️ 3. Creating Abstract Data Types (ADTs)
+Often we want to hide how data is stored so the rest of the program doesn't have to worry about it.
+- Example: Imagine you are creating an ID system. Today they are `int`, but tomorrow they might be `long long`.
+```c
+typedef int UserID;
+
+// In the rest of the code you use:
+UserID id1 = 1005;
+```
+
+If the ID type needs to change, you only update one line in your header file, rather than hundreds of `.c files`.
+
+> 💡 **Developer Insight:**
+> In professional practice, `typedef` is used to create an **abstraction layer**. When using libraries like `SDL2` for games or `OpenSSL` for security, you rarely see C's primitive types. Instead, you interact with types like `SDL_Window` or `EVP_PKEY`.
+> This demonstrates that the library author focused on creating a domain-specific language for their problem.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
