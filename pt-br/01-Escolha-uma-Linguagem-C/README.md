@@ -3920,6 +3920,84 @@ Se o tipo do ID precisar mudar, você altera apenas **uma linha** no seu arquivo
 
 ---
 
+<details>
+<summary><b> 🏗️ Práticas de Definição: typedef e structs (Seção 10.2.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 10.2.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-2)-TYPEDEF-NA-PRATICA/(SECAO-10-2-1)-PRATICAS-DE-DEFINICOES)
+
+---
+
+O uso de `typedef` com estruturas é uma das técnicas mais eficazes para reduzir o "ruído" visual no C. Ao criar um apelido para uma `struct`, o código se torna mais limpo, pois elimina a necessidade de repetir a palavra-chave `struct` em cada declaração de variável.
+
+Existem três padrões principais que utilizei nos meus estudos:
+
+---
+
+#### 1. Alias após a Definição
+Nesta abordagem, a estrutura é definida primeiro e o apelido é criado logo em seguida. Isso mantém uma separação clara entre a estrutura do dado e o seu nome de tipo.
+
+```c
+struct animal {
+    char *nome;
+    int patas;
+};
+
+typedef struct animal animal; // Criando o alias 'animal'
+
+struct animal x; // Declaração clássica (funciona)
+animal y;        // Declaração simplificada (funciona)
+```
+---
+
+#### 2. Definição Combinada (Otimizada)
+Este é o padrão que mais utilizo por ser conciso. A `struct` e o `typedef` são declarados no mesmo bloco de código.
+
+```c
+typedef struct animal {
+    char *nome;
+    int patas;
+} animal;
+
+struct animal x; // Acessível via tag 'struct animal'
+animal y;        // Acessível via alias 'animal'
+```
+---
+
+#### 3. Estruturas Anônimas
+Quando não há necessidade de referenciar a struct internamente, podemos omitir o nome da etiqueta (tag), criando uma estrutura anônima vinculada diretamente ao alias.
+
+```c
+typedef struct {
+    int x, y;
+} Ponto;
+
+// struct Ponto p1; // ERRO: A struct não possui nome interno (tag)
+Ponto p1 = {.x=20, .y=40}; // FUNCIONA: Interface limpa e direta
+```
+
+#### ⚖️ Análise Técnica: Quando usar cada uma?
+Embora as três formas alcancem resultados semelhantes, a escolha depende do contexto do projeto:
+- **Legibilidade:** O uso de `typedef` torna o código mais **próximo de linguagens modernas**, tratando a `struct` como um "objeto" ou "tipo" definido pelo usuário.
+- **Auto-referência:** Para estruturas de dados como `Listas Encadeadas` ou `Árvores`, a "Estrutura Anônima" não funciona, pois o ponteiro para o próximo nó precisa de um nome de etiqueta para ser declarado antes do `typedef` ser finalizado.
+
+```c
+// Exemplo de obrigatoriedade de Tag para listas:
+typedef struct No {
+int dado;
+struct No *proximo; // Requer a tag 'struct No' aqui
+} No;
+```
+
+> 💡 **Insight de Estudo:**
+> Opte por usar `typedef` na maioria das `structs` para garantir uma API mais limpa. No entanto, mantenha a consciência de que manter a palavra `struct` em certos contextos pode ajudar outros desenvolvedores a identificar imediatamente que aquele `tipo` é uma `estrutura alocada na memória`, e não um tipo primitivo simples. A escolha do `typedef` é, acima de tudo, uma decisão de design de interface.
+
+</details>
+
+---
+
 
 
 ---
