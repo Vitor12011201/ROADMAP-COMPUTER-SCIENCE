@@ -4100,10 +4100,52 @@ HandlerFunc my_callback;
 
 ---
 
-
+<details>
+<summary><b> 🔡 typedef and Standardization (Section 10.2.4)</b></summary>
+<br>
 
 ---
 
+[Codes for Section 10.2.4 can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-2)-TYPEDEF-IN-PRACTICE/(SECTION-10-2-4)-TYPEDEF-AND-STANDARDIZATION)
+
+---
+
+The official C specification (C11) does not dictate a single rule for naming types created with `typedef`. As a result, we find various styles in the real world. The most important thing is not which style to choose, but rather **maintaining consistency** throughout the project.
+
+---
+
+#### 🎨 Common Naming Styles
+
+There are four naming patterns most commonly used in the community:
+
+1.  **lower_snake_case:** `my_point` (Very common in Unix systems and the Linux Kernel).
+2.  **CamelCase / PascalCase:** `MyPoint` (Common in high-level applications and modern frameworks).
+3.  **Leading Uppercase:** `Mypoint` (Classic style used in fundamental books like K&R).
+4.  **UPPER_SNAKE_CASE:** `MY_POINT` (Generally avoided for types, as it is usually reserved for macros and constants).
+
+---
+
+#### 🛠️ The `_t` Convention
+
+A widespread practice, especially in POSIX systems, is to add the suffix `_t` (standing for *type*) at the end of the name. Native C examples like `size_t`, `int32_t`, and `uint8_t` follow this rule.
+
+* **Advantage:** Instantly identifies that the word is a type defined by a `typedef`.
+* **Warning:** Some style guides suggest avoiding creating your own names ending in `_t` to prevent conflicts with future standard types of the language.
+
+---
+
+#### 💡 **Study Insight:**
+> If you are creating a type that abstracts a complex structure, use **PascalCase** (e.g., `UserConfig`) to visually differentiate it from regular variables. If you are creating an alias for a primitive type, use **snake_case** with the `_t` suffix (e.g., `distance_t`).
+> The most valuable lesson here is: **Follow the Style Guide.** If the project already exists, use the pattern that is there. If the project is new, define your pattern and do not break it. A code where each file uses a different capitalization looks amateur and makes maintenance harder.
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>

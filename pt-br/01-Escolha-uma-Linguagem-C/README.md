@@ -4103,10 +4103,52 @@ HandlerFunc meu_callback;
 
 ---
 
-
+<details>
+<summary><b> 🔡 typedef e Padronização (Seção 10.2.4)</b></summary>
+<br>
 
 ---
 
+[Codigos da Seção 10.2.4 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-2)-TYPEDEF-NA-PRATICA/(SECAO-10-2-4)-TYPEDEF-E-PADRONIZACAO)
+
+---
+
+A especificação oficial do C (C11) não dita uma regra única para nomear tipos criados com `typedef`. Como resultado, encontramos diversos estilos no mundo real. O mais importante não é qual estilo escolher, mas sim **manter a consistência** em todo o projeto.
+
+---
+
+#### 🎨 Estilos Comuns de Nomeclatura
+
+São quatro padrões de nomeclatura mais utilizados na comunidade:
+
+1.  **lower_snake_case:** `my_point` (Muito comum em sistemas Unix e no Kernel do Linux).
+2.  **CamelCase:** `MyPoint` (Comum em aplicações de alto nível e frameworks modernos).
+3.  **Leading Uppercase:** `Mypoint` (Estilo clássico utilizado em livros fundamentais como o K&R).
+4.  **UPPER_SNAKE_CASE:** `MY_POINT` (Geralmente evitado para tipos, pois costuma ser reservado para macros e constantes).
+
+---
+
+#### 🛠️ A Convenção `_t`
+
+Uma prática muito difundida, especialmente em sistemas POSIX, é adicionar o sufixo `_t` (de *type*) ao final do nome. Exemplos nativos do C como `size_t`, `int32_t` e `uint8_t` seguem essa regra.
+
+* **Vantagem:** Identifica instantaneamente que aquela palavra é um tipo definido por um `typedef`.
+* **Aviso:** Alguns guias de estilo sugerem evitar criar nomes próprios terminados em `_t` para não conflitar com futuros tipos padrão da linguagem.
+
+---
+
+#### 💡 **Insight de Estudo:**
+> Se estiver criando um tipo que abstrai uma estrutura complexa, use **PascalCase** (ex: `UsuarioConfig`) para diferenciá-lo visualmente de variáveis comuns. Se estiver criando um apelido para um tipo primitivo, uso **snake_case** com o sufixo `_t` (ex: `distancia_t`).
+> A lição mais valiosa aqui é: **Siga o Guia de Estilo.** Se o projeto já existe, use o padrão que está lá. Se o projeto é novo, defina seu padrão e não o quebre. Um código onde cada arquivo usa uma capitalização diferente parece amador e dificulta a manutenção.
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>
