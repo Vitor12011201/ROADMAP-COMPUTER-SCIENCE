@@ -4137,7 +4137,7 @@ Uma prática muito difundida, especialmente em sistemas POSIX, é adicionar o su
 
 ---
 
-#### 💡 **Insight de Estudo:**
+>💡 **Insight do Desenvolvedor:**
 > Se estiver criando um tipo que abstrai uma estrutura complexa, use **PascalCase** (ex: `UsuarioConfig`) para diferenciá-lo visualmente de variáveis comuns. Se estiver criando um apelido para um tipo primitivo, uso **snake_case** com o sufixo `_t` (ex: `distancia_t`).
 > A lição mais valiosa aqui é: **Siga o Guia de Estilo.** Se o projeto já existe, use o padrão que está lá. Se o projeto é novo, defina seu padrão e não o quebre. Um código onde cada arquivo usa uma capitalização diferente parece amador e dificulta a manutenção.
 
@@ -4147,7 +4147,50 @@ Uma prática muito difundida, especialmente em sistemas POSIX, é adicionar o su
 
 ---
 
+<details>
+<summary><b> 📏 Arrays e typedef (Seção 10.3)</b></summary>
+<br>
 
+---
+
+[Codigos da Seção 10.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_010/(SECAO-10-3)-ARRAYS-E-TYPEDEF)
+
+---
+
+Embora seja uma prática raramente vista no dia a dia, o C permite que você crie um apelido para um **array de tamanho fixo**. A sintaxe é um pouco peculiar, pois o nome do novo tipo fica posicionado onde normalmente estaria o nome da variável.
+
+---
+
+#### 🛠️ Sintaxe e Exemplo
+
+```c
+// Define o tipo 'cinco_ints' como um array de 5 inteiros
+typedef int cinco_ints[5];
+
+// 'x' agora é um array de 5 posições
+cinco_ints x = {11, 22, 33, 44, 55};
+```
+
+---
+
+#### ⚖️ Prós e Contras:
+- **Ponto Positivo:** Pode ser útil em contextos matemáticos muito específicos, como definir um tipo `Matriz3x3` ou `Vetor3D`, garantindo que essas estruturas tenham sempre o mesmo tamanho.
+
+- **Ponto Negativo (Ocultação)**: Assim como acontece com os ponteiros, esse `typedef` **esconde a natureza de array da variável**. Quem lê o código pode não perceber imediatamente que `x` é um `array` e que, ao ser passado para uma função, ele sofrerá o processo de decay (será tratado como um ponteiro).
+
+> 💡 **Insight do Desenvolvedor:**
+> Essa técnica pode tornar o código perigoso se não for bem documentada. Se for declarado `cinco_ints x`;, não há nenhum colchete `[]` visível para lembrar que `x` tem limites de índice.
+> Prefira manter a declaração de arrays explícita ou, se precisar de um tipo fixo, envolver o array dentro de uma `struct`. Isso torna o código muito mais seguro e legível para outros desenvolvedores.
+
+</details>
+
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 11: Ponteiros II: Aritmética</b></summary>
 
 ---
 

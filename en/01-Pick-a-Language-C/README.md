@@ -4134,7 +4134,7 @@ A widespread practice, especially in POSIX systems, is to add the suffix `_t` (s
 
 ---
 
-#### 💡 **Study Insight:**
+>💡 **Developer Insight:**
 > If you are creating a type that abstracts a complex structure, use **PascalCase** (e.g., `UserConfig`) to visually differentiate it from regular variables. If you are creating an alias for a primitive type, use **snake_case** with the `_t` suffix (e.g., `distance_t`).
 > The most valuable lesson here is: **Follow the Style Guide.** If the project already exists, use the pattern that is there. If the project is new, define your pattern and do not break it. A code where each file uses a different capitalization looks amateur and makes maintenance harder.
 
@@ -4144,7 +4144,49 @@ A widespread practice, especially in POSIX systems, is to add the suffix `_t` (s
 
 ---
 
+<details>
+<summary><b> 📏 Arrays and typedef (Section 10.3)</b></summary>
+<br>
 
+---
+
+[Codes for Section 10.3 can be found here](./CODE_BY_DAY/DAY_010/(SECTION-10-3)-ARRAYS-AND-TYPEDEF)
+
+---
+
+Although it is a practice rarely seen in everyday development, C allows you to create an alias for a **fixed-size array**. The syntax is somewhat peculiar, as the name of the new type is positioned where the variable name would normally be.
+
+---
+
+#### 🛠️ Syntax and Example
+
+```c
+// Defines the type 'five_ints' as an array of 5 integers
+typedef int five_ints[5];
+
+// 'x' is now an array with 5 positions
+five_ints x = {11, 22, 33, 44, 55};
+```
+
+---
+
+#### ⚖️ Pros and Cons:
+- **Pro:** Can be useful in very specific mathematical contexts, such as defining a `Matrix3x3` or `Vector3D` type, ensuring that these structures always have the same size.
+
+- **Con (Hiding):** Just as with pointers, this `typedef` **hides the array nature of the variable**. Anyone reading the code might not immediately realize that `x` is an `array` and that, when passed to a function, it will undergo the decay process (it will be treated as a pointer).
+
+> 💡 **Developer's Insight:**
+> This technique can make the code dangerous if not well documented. If `five_ints x`; is declared, there are no visible brackets `[]` to remind you that `x` has index boundaries.
+> Prefer to keep array declarations explicit or, if you need a fixed type, wrap the array inside a `struct`. This makes the code much safer and more readable for other developers.
+
+</details>
+
+</details>
+
+---
+
+<details>
+<summary><b>🔹 Day 11: Pointers II: Arithmetic</b></summary>
 
 ---
 
