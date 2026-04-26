@@ -3913,7 +3913,6 @@ If the ID type needs to change, you only update one line in your header file, ra
 
 </details>
 
----
 
 ---
 
@@ -4187,6 +4186,63 @@ five_ints x = {11, 22, 33, 44, 55};
 
 <details>
 <summary><b>🔹 Day 11: Pointers II: Arithmetic</b></summary>
+
+---
+
+[Day 11 code can be found here](./CODE_BY_DAY/DAY_011)
+
+---
+
+<details>
+<summary><b> 📍 Pointers II: Arithmetic and Advanced Concepts (Section 11.0)</b></summary>
+<br>
+
+It's time to go deeper! While the first part about pointers served to understand basic addresses and values, this chapter marks the beginning of a much more technical exploration. Here, the focus shifts from initial theory to the practical use of pointers for manipulating data collections and managing raw memory.
+
+</details>
+
+---
+
+<details>
+<summary><b> 🧮 Pointer Arithmetic (Section 11.1)</b></summary>
+
+---
+
+[Codes for Section 11.1 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC)
+
+---
+
+In C, pointers are not just static addresses; it is possible to perform mathematical operations with them, with **addition** and **subtraction** being the most fundamental.
+
+---
+
+#### ❓ What happens in practice?
+
+When we add `1` to a pointer, the compiler doesn't just add 1 byte to the address. It moves the pointer to the **next item of the corresponding type** in memory.
+
+* **Pointer to `int`:** Adding `1` jumps the size of an integer (usually 4 bytes).
+* **Pointer to `char`:** Adding `1` jumps exactly 1 byte.
+
+This logic ensures that, when navigating through memory, you always land exactly at the beginning of the next data element, regardless of the size it occupies.
+
+---
+
+#### ⚠️ The Danger of Invalid Dereferencing
+
+The freedom to move pointers carries a high risk. When navigating through memory, it is easy to "go off the rails" and point to addresses that do not belong to your program or that have not been initialized.
+
+> **Golden Rule:** Always make sure the pointer is at a valid location before using the dereference operator (`*`). Attempting to read from or write to invalid locations causes **undefined behavior**, almost always resulting in an immediate crash (Segmentation Fault).
+
+---
+
+> 💡 **Developer's Insight:**
+> Pointer arithmetic and the **Equivalence between Arrays and Pointers** are concepts that blend together (the classic "chicken and egg" problem). Mastering this math is what allows you to understand how C accesses array elements under the hood. Instead of seeing just indices, I now see memory displacements (*offsets*), which is essential for code optimization and direct manipulation of data buffers.
+
+</details>
+
+---
+
+
 
 ---
 

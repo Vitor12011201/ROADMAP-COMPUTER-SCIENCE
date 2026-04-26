@@ -4194,4 +4194,61 @@ cinco_ints x = {11, 22, 33, 44, 55};
 
 ---
 
+[Codigos do dia 11 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011)
+
+---
+
+<details>
+<summary><b> 📍 Ponteiros II: Aritmética e Conceitos Avançados (Seção 11.0)</b></summary>
+<br>
+
+É hora de aprofundar! Se a primeira parte sobre ponteiros serviu para entender endereços e valores básicos, este capítulo marca o início de uma exploração muito mais técnica. Aqui, o foco sai da teoria inicial e entra no uso prático de ponteiros para manipular coleções de dados e gerenciar memória de forma bruta.
+
+</details>
+
+---
+
+<details>
+<summary><b> 🧮 Aritmética de Ponteiros (Seção 11.1)</b></summary>
+
+---
+
+[Codigos da Seção 11.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS)
+
+---
+
+Em C, ponteiros não são apenas endereços estáticos; é possível realizar operações matemáticas com eles, sendo a **adição** e a **subtração** as mais fundamentais.
+
+---
+
+#### ❓ O que acontece na prática?
+
+Quando somamos `1` a um ponteiro, o compilador não soma apenas 1 byte ao endereço. Ele move o ponteiro para o **próximo item do tipo correspondente** na memória.
+
+* **Ponteiro para `int`:** Adicionar `1` pula o tamanho de um inteiro (geralmente 4 bytes).
+* **Ponteiro para `char`:** Adicionar `1` pula exatamente 1 byte.
+
+Essa lógica garante que, ao navegar pela memória, você sempre caia exatamente no início do próximo dado, independentemente do tamanho que ele ocupa.
+
+---
+
+#### ⚠️ O Perigo da Desreferenciação Inválida
+
+A liberdade de mover ponteiros traz um risco alto. Ao navegar pela memória, é fácil "sair dos trilhos" e apontar para endereços que não pertencem ao seu programa ou que não foram inicializados.
+
+> **Regra de Ouro:** Certifique-se sempre de que o ponteiro está em um local válido antes de usar o operador de desreferenciação (`*`). Tentar ler ou escrever em locais inválidos causa **comportamento indefinido**, resultando quase sempre em um *crash* imediato (Segmentation Fault).
+
+---
+
+> 💡 **Insight do Desenvolvedor:**
+> A aritmética de ponteiros e a **Equivalência entre Arrays e Ponteiros** são conceitos que se misturam (o clássico problema do "ovo e a galinha"). Dominar essa matemática é o que permite entender como o C acessa elementos de um array por baixo dos panos. Em vez de ver apenas índices, agora vejo deslocamentos de memória (*offsets*), o que é essencial para otimização de código e manipulação direta de buffers de dados.
+
+</details>
+
+---
+
+
+
+---
+
 </details>
