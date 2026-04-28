@@ -4204,11 +4204,21 @@ It's time to go deeper! While the first part about pointers served to understand
 ---
 
 <details>
-<summary><b> 🧮 Pointer Arithmetic (Section 11.1)</b></summary>
+<summary><b> 🧮 Pointer Arithmetic (Section 11.1.0 - Section 11.1.3)</b></summary>
 
 ---
 
-[Codes for Section 11.1 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC)
+[Codes for Section 11.1.0 - 11.1.3 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC)
+
+---
+
+<details>
+<summary><b> ⏰ Pointer Arithmetic - Introduction (Section 11.1.0)</b></summary>
+<br>
+
+---
+
+[Codes for Section 11.1.0 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC/(SECTION-11-1-0)-ARITHMETIC-POINTER-INTRO)
 
 ---
 
@@ -4245,5 +4255,7 @@ The freedom to move pointers carries a high risk. When navigating through memory
 
 
 ---
+
+</details>
 
 </details>

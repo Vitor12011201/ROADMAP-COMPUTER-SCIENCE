@@ -60,9 +60,16 @@ File manipulation for reading and writing persistent data outside the program's 
 * **Highlights:** File-based storage systems (such as user registration), external data reading/parsing, and manipulation of both binary and text files.
 
 ### [09-Typedef](./09-Typedef(Exercises))
-**What you will find here:** The use of `typedef` to create aliases for data types, making the code more readable, organized, and easier to maintain.
+**What you will find here:** 
+The use of `typedef` to create aliases for data types, making the code more readable, organized, and easier to maintain.
 * **Skills:** Defining new names for primitive and composite types, simplifying complex declarations (such as pointers and structs), improving readability, and standardizing types in the code.
 * **Highlight:** Creating custom types (e.g., `typedef struct`), reducing declaration complexity, and building more professional foundations for larger projects.
+
+### [10-Pointers-II-Arithmetic](./10-Pointers_2_Arithmetic(Exercises))
+**What you will find here:**
+Advanced pointer manipulation focusing on arithmetic, exploring how to navigate memory efficiently and safely.
+* **Competencies:** Use of pointer arithmetic (`p + i`, `p++`), understanding how pointer types influence memory jumps (`sizeof`), iterating over arrays using pointers, and the equivalence between pointers and arrays (`p[i] == *(p + i)`).
+* **Highlights:** Direct memory navigation without using indices, building pointer-based loops (including the use of sentinel values), and developing a deeper understanding of the internal mechanics of arrays in C.
 
 ---
 

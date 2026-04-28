@@ -65,6 +65,12 @@ Uso do `typedef` para criar aliases (apelidos) de tipos de dados, tornando o có
 * **Competências:** Definição de novos nomes para tipos primitivos e compostos, simplificação de declarações complexas (como ponteiros e structs), melhoria da legibilidade e padronização de tipos no código.
 * **Destaque:** Criação de tipos personalizados (ex: `typedef struct`), redução de complexidade em declarações e construção de bases mais profissionais para projetos maiores.
 
+### [10-Pointers-II-Aritmético](./10-Ponteiros_2_Aritmetico(Exercicios))
+**O que encontrará aqui:**
+Manipulação avançada de ponteiros com foco em aritmética, explorando como navegar pela memória de forma eficiente e segura.
+* **Competências:** Uso de aritmética de ponteiros (`p + i`, `p++`), compreensão de como o tipo do ponteiro influencia os saltos na memória (`sizeof`), iteração sobre arrays utilizando ponteiros e equivalência entre ponteiros e arrays (`p[i] == *(p + i)`).
+* **Destaque:** Navegação direta na memória sem uso de índices, construção de loops baseados em ponteiros (incluindo uso de valores sentinela) e desenvolvimento de uma compreensão mais profunda do funcionamento interno dos arrays em C.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

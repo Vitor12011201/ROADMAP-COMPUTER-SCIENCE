@@ -4209,11 +4209,21 @@ cinco_ints x = {11, 22, 33, 44, 55};
 ---
 
 <details>
-<summary><b> 🧮 Aritmética de Ponteiros (Seção 11.1)</b></summary>
+<summary><b> 🧮 Aritmética de Ponteiros(Seção 11.1.0 - Seção 11.1.3)</b></summary>
 
 ---
 
-[Codigos da Seção 11.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS)
+[Codigos da Seções 11.1 - 11.1.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS)
+
+---
+
+<details>
+<summary><b> ⏰ Pointer Arithmetic - Introduction (Section 11.1.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 11.1.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS/(SECAO-11-1-0)-ARITMETICA-DE-PONTEIROS-INTRO)
 
 ---
 
@@ -4250,5 +4260,7 @@ A liberdade de mover ponteiros traz um risco alto. Ao navegar pela memória, é 
 
 
 ---
+
+</details>
 
 </details>
