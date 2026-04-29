@@ -4218,7 +4218,7 @@ cinco_ints x = {11, 22, 33, 44, 55};
 ---
 
 <details>
-<summary><b> ⏰ Pointer Arithmetic - Introduction (Section 11.1.0)</b></summary>
+<summary><b> ⏰ Ponteiros Aritméticos - Introdução (Seção 11.1.0)</b></summary>
 <br>
 
 ---
@@ -4257,9 +4257,77 @@ A liberdade de mover ponteiros traz um risco alto. Ao navegar pela memória, é 
 
 ---
 
+<details>
+<summary><b> ➕ Somando a Ponteiros (Seção 11.1.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 11.1.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS/(SECAO-11-1-1)-SOMANDO-A-PONTEIROS)
+
+---
+
+Para entender a aritmética de ponteiros, o melhor cenário é observar um array na memória. Como os elementos de um array são garantidos como contíguos (um colado no outro), a matemática de endereços funciona perfeitamente.
+
+#### 🛠️ O Experimento Prático
+
+Considere o seguinte array e um ponteiro apontando para o seu início:
+
+```c
+int a[5] = {11, 22, 33, 44, 55};
+int *p = &a[0]; // Ou simplesmente 'int *p = a;'
+```
+
+- Se desreferenciarmos `p`, teremos o valor `11`. Mas e se quisermos o próximo?
+
+```c
+printf("%d\n", *p);       // Imprime 11
+printf("%d\n", *(p + 1)); // Imprime 22!
+```
+
+#### O que aconteceu?
+- O C sabe que `p` é um ponteiro para `int`. Ele consulta o `sizeof(int)` e pula exatamente essa quantidade de bytes para chegar ao próximo inteiro.
+
+---
+
+#### 🔄 Iteração com Ponteiros vs. Arrays
+Essa lógica nos permite percorrer arrays usando apenas ponteiros, de forma idêntica ao que fazemos com índices:
+
+```c
+for (int i = 0; i < 5; i++) {
+printf("%d\n", *(p + i)); // Exatamente o mesmo que p[i]!
+}
+```
+
+Isso ocorre porque, para o computador, um ponteiro é apenas um **índice na memória**.
+
+---
+
+#### 🧠 Como funciona "sob o capô"?
+Imagine a memória como um imenso array global onde cada índice é um endereço de 1 byte.
+
+1. Se um `int` (digamos, 3490) está no **endereço 2000**.
+
+2. E cada `int` ocupa **4 bytes**.
+
+3. O próximo `int` estará no **endereço 2004**.
+
+Quando você faz `p + 1` no código, o C faz a conta real:
+`Endereço Atual + (1 * sizeof(int))` ⮕ `2000 + 4` = `2004`.
+
+Se fosse um ponteiro para `double` (8 bytes), `p + 1` resultaria em `2008`. O compilador abstrai esse cálculo para que você foque na lógica e não nos bytes individuais.
+
+> 💡 **Insight do Desenvolvedor:**
+> Entender que `*(p + i)` é a mesma coisa que `p[i]` é um momento de "clique". Isso explica por que o C é tão rápido: o acesso a arrays é apenas uma soma de endereço e uma desreferenciação. Isso reforça que arrays não são objetos complexos, mas apenas blocos de memória com um ponteiro apontando para a base.
+
+</details>
+
+---
+
 
 
 ---
+
 
 </details>
 

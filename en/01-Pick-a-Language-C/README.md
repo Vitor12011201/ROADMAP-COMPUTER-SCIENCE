@@ -4252,6 +4252,73 @@ The freedom to move pointers carries a high risk. When navigating through memory
 
 ---
 
+<details>
+<summary><b> ➕ Adding to Pointers (Section 11.1.1)</b></summary>
+<br>
+
+---
+
+[Codes for Section 11.1.1 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC/(SECTION-11-1-1)-ADDING-TO-POINTERS)
+
+---
+
+To understand pointer arithmetic, the best scenario is to observe an array in memory. Since array elements are guaranteed to be contiguous (one right after the other), address math works perfectly.
+
+#### 🛠️ The Practical Experiment
+
+Consider the following array and a pointer pointing to its beginning:
+
+```c
+int a[5] = {11, 22, 33, 44, 55};
+int *p = &a[0]; // Or simply 'int *p = a;'
+```
+
+- If we dereference `p`, we get the value `11`. But what if we want the next one?
+
+```c
+printf("%d\n", *p);       // Prints 11
+printf("%d\n", *(p + 1)); // Prints 22!
+```
+
+#### What happened?
+- C knows that `p` is a pointer to `int`. It checks `sizeof(int)` and jumps exactly that number of bytes to reach the next integer.
+
+---
+
+#### 🔄 Iteration with Pointers vs. Arrays
+This logic allows us to traverse arrays using only pointers, in the same way we do with indices:
+
+```c
+for (int i = 0; i < 5; i++) {
+    printf("%d\n", *(p + i)); // Exactly the same as p[i]!
+}
+```
+
+This happens because, for the computer, a pointer is just a **memory index**.
+
+---
+
+#### 🧠 How does it work "under the hood"?
+Imagine memory as a huge global array where each index is a 1-byte address.
+
+1. If an `int` (let's say, 3490) is at **address 2000**.
+
+2. And each `int` occupies **4 bytes**.
+
+3. The next `int` will be at **address 2004**.
+
+When you do `p + 1` in code, C performs the actual calculation:
+`Current Address + (1 * sizeof(int))` ⮕ `2000 + 4` = `2004`.
+
+If it were a pointer to `double` (8 bytes), `p + 1` would result in `2008`. The compiler abstracts this calculation so you can focus on logic instead of individual bytes.
+
+> 💡 **Developer's Insight:**
+> Understanding that `*(p + i)` is the same as `p[i]` is a real "aha!" moment. This explains why C is so fast: array access is just an address addition plus a dereference. It reinforces that arrays are not complex objects, but simply blocks of memory with a pointer pointing to the base.
+
+</details>
+
+---
+
 
 
 ---
