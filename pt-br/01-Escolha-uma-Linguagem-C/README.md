@@ -4324,6 +4324,64 @@ Se fosse um ponteiro para `double` (8 bytes), `p + 1` resultaria em `2008`. O co
 
 ---
 
+<details>
+<summary><b> 🚀 Modificando Ponteiros (Seção 11.1.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 11.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS/(SECAO-11-1-2)-MODIFICANDO-PONTEIROS)
+
+---
+
+Vimos que podemos somar um inteiro a um ponteiro para ver o que está adiante. Agora, vamos elevar o nível: **vamos modificar o próprio ponteiro**.
+
+---
+
+Em C, você pode incrementar (`p++`) ou decrementar (`p--`) um ponteiro diretamente. Isso faz com que o endereço armazenado na variável mude, movendo o ponteiro para a próxima posição de memória baseada no tipo de dado.
+
+#### 🚩 Usando um Valor Sentinela:
+Para demonstrar isso, vamos utilizar um valor sentinela (`999`). Ele serve como um sinalizador de "fim de linha", permitindo que percorramos o array sem precisar saber o seu tamanho exato de antemão.
+
+```c
+int a[] = {11, 22, 33, 44, 55, 999}; // 999 é o nosso sinal de parada
+int *p = &a[0]; // p começa apontando para o 11
+```
+
+#### 🔄 Navegando com o Operador ++:
+Em vez de usar um índice (`i`), podemos simplesmente "empurrar" o ponteiro para frente dentro de um loop:
+
+```c
+while (*p != 999) {       // Enquanto o valor apontado não for 999
+    printf("%d\n", *p);   // Imprime o valor atual
+    p++;                  // Move 'p' para o próximo inteiro na memória!
+}
+```
+
+#### O que acontece a cada iteração?
+
+1. Na primeira volta, `p` aponta para `11`.
+
+2. O comando `p++` faz `p` saltar `sizeof(int)` bytes.
+
+3. Agora `p` aponta para `22`.
+
+4. O ciclo continua até que `*p` encontre o `999`.
+
+---
+
+#### ⚖️ Vantagem Técnica:
+Essa abordagem é extremamente comum em C por ser muito eficiente. Em muitos casos, incrementar um ponteiro é mais rápido do que calcular `base + (index * sizeof(type))` a cada acesso, pois o processador apenas soma o deslocamento ao valor que já está no registrador.
+
+---
+
+> 💡 **Insight do Desenvolvedor:**
+> Tratar o ponteiro como um cursor é a forma "nativa" de processar dados em C. É exatamente assim que funções padrão como `strlen()` percorrem strings: elas incrementam um ponteiro de caractere em caractere até encontrar o terminador nulo (`\0`).
+
+</details>
+
+---
+
 
 
 ---

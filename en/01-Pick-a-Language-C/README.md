@@ -4319,6 +4319,64 @@ If it were a pointer to `double` (8 bytes), `p + 1` would result in `2008`. The 
 
 ---
 
+<details>
+<summary><b> 🚀 Modifying Pointers (Section 11.1.2)</b></summary>
+<br>
+
+---
+
+[Codes for Section 11.1.2 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC/(SECTION-11-1-2)-MODIFYING-POINTERS)
+
+---
+
+We have seen that we can add an integer to a pointer to see what lies ahead. Now, let's take it to the next level: **we are going to modify the pointer itself**.
+
+---
+
+In C, you can increment (`p++`) or decrement (`p--`) a pointer directly. This causes the address stored in the variable to change, moving the pointer to the next memory position based on the data type.
+
+#### 🚩 Using a Sentinel Value:
+To demonstrate this, we will use a sentinel value (`999`). It serves as an "end-of-line" flag, allowing us to traverse the array without needing to know its exact size beforehand.
+
+```c
+int a[] = {11, 22, 33, 44, 55, 999}; // 999 is our stop signal
+int *p = &a[0]; // p starts pointing to 11
+```
+
+#### 🔄 Navigating with the ++ Operator:
+Instead of using an index (`i`), we can simply "push" the pointer forward inside a loop:
+
+```c
+while (*p != 999) {       // While the pointed value is not 999
+    printf("%d\n", *p);   // Prints the current value
+    p++;                  // Moves 'p' to the next integer in memory!
+}
+```
+
+#### What happens at each iteration?
+
+1. In the first round, `p` points to `11`.
+
+2. The `p++` command makes `p` jump `sizeof(int)` bytes.
+
+3. Now `p` points to `22`.
+
+4. The cycle continues until `*p` finds `999`.
+
+---
+
+#### ⚖️ Technical Advantage:
+This approach is extremely common in C because it is very efficient. In many cases, incrementing a pointer is faster than calculating `base + (index * sizeof(type))` at each access, as the processor simply adds the offset to the value already in the register.
+
+---
+
+> 💡 **Developer Insight:**
+> Treating the pointer as a cursor is the "native" way to process data in C. This is exactly how standard functions like `strlen()` traverse strings: they increment a pointer character by character until they find the null terminator (`\0`).
+
+</details>
+
+---
+
 
 
 ---
