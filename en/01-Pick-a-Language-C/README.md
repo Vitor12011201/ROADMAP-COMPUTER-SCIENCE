@@ -4377,10 +4377,70 @@ This approach is extremely common in C because it is very efficient. In many cas
 
 ---
 
-
+<details>
+<summary><b> ➖ Subtracting Pointers (Section 11.1.3)</b></summary>
+<br>
 
 ---
 
+[Codes for Section 11.1.3 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-1)-POINTER-ARITHMETIC/(SECTION-11-1-3)-SUBTRACTING-POINTERS)
+
+---
+
+Just as we can add values to move forward, we can subtract values from a pointer to return to previous addresses. However, C offers something even more interesting: subtraction between two pointers.
+
+---
+
+#### 📏 Calculating the Distance Between Elements:
+When you subtract one pointer from another (e.g., `p2 - p1`), the result is not the difference in bytes, but rather the **number of items of the corresponding type that exist between them**.
+
+- **Crucial Rule:**
+  Pointer subtraction is only guaranteed and valid if both point to elements within the **same array**. Otherwise, the behavior is undefined.
+
+---
+
+#### 🛠️ Implementing `my_strlen` with Subtraction:
+A classic application of this technique is calculating string length. Instead of using a counter (`int i = 0`), we can use two pointers: one fixed at the beginning and a "cursor" that travels to the end.
+```c
+#include <stdio.h>
+
+int my_strlen(char *s) {
+    char *p = s; // 'p' starts at the beginning of the string
+
+    // Moves the cursor 'p' until it finds the null character (\0)
+    while (*p != '\0') {
+        p++;
+    }
+
+    // The difference between the final and initial pointer is the string length!
+    return p - s;
+}
+
+int main(void) {
+    printf("%d\n", my_strlen("Hello, world!")); // Prints 13
+}
+```
+
+#### 🧠 Why does this work?
+Think of pointers as house addresses on a street where all houses are the same size:
+
+1. If the first house (pointer `s`) is number **100**.
+
+2. And the cursor `p` stopped at house number **113**.
+
+3. The distance `p - s` is **13**, indicating that there are 13 houses (or characters) between the beginning and the end.
+
+> 💡 **Developer Insight:**
+> This implementation of `strlen` is extremely common in low-level libraries because it is very direct. It reinforces the idea that a string name in C is nothing more than a pointer to its first element.
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>

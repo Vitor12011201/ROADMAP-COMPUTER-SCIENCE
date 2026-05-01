@@ -4382,11 +4382,71 @@ Essa abordagem é extremamente comum em C por ser muito eficiente. Em muitos cas
 
 ---
 
+<details>
+<summary><b> ➖ Subtraindo Ponteiros (Seção 11.1.3)</b></summary>
+<br>
 
+---
+
+[Codigos da Seção 11.1.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-1)-ARITMETICA-DE-PONTEIROS/(SECAO-11-1-3)-SUBTRAINDO-PONTEIROS)
+
+---
+
+Assim como podemos somar valores para avançar, podemos subtrair valores de um ponteiro para retornar a endereços anteriores. Mas o C oferece algo ainda mais interessante: a subtração entre dois ponteiros.
+
+---
+
+#### 📏 Calculando a Distância entre Elementos:
+Quando você subtrai um ponteiro de outro (ex: `p2 - p1`), o resultado não é a diferença em bytes, mas sim a **quantidade de itens do tipo correspondente que existem entre eles**.
+
+- **Regra Crucial:**
+A subtração de ponteiros só é garantida e válida se ambos apontarem para elementos dentro do **mesmo array**. Caso contrário, o comportamento é indefinido.
+
+---
+
+#### 🛠️ Implementando `my_strlen` com Subtração:
+Uma aplicação clássica dessa técnica é calcular o tamanho de uma string. Em vez de usar um contador (`int i = 0`), podemos usar dois ponteiros: um fixo no início e um "cursor" que viaja até o fim.
+
+```c
+#include <stdio.h>
+
+int my_strlen(char *s) {
+    char *p = s; // 'p' começa no início da string
+
+    // Move o cursor 'p' até encontrar o caractere nulo (\0)
+    while (*p != '\0') {
+        p++;
+    }
+
+    // A diferença entre o ponteiro final e o inicial é o tamanho da string!
+    return p - s;
+}
+
+int main(void) {
+    printf("%d\n", my_strlen("Hello, world!")); // Imprime 13
+}
+```
+
+#### 🧠 Por que isso funciona?
+Pense nos ponteiros como endereços de casas em uma rua onde todas as casas têm o mesmo tamanho:
+
+1. Se a primeira casa (ponteiro `s`) é o número **100**.
+
+2. E o cursor `p` parou na casa número **113**.
+
+3. A distância `p - s` é **13**, indicando que existem 13 casas (ou caracteres) entre o início e o fim.
+
+> 💡 **Insight do Desenvolvedor:**
+> Essa forma de implementar `strlen` é extremamente comum em bibliotecas de baixo nível por ser muito direta. Ela reforça a ideia de que o nome de uma string em C nada mais é do que um ponteiro para o seu primeiro elemento.
+
+</details>
+
+</details>
 
 ---
 
 
-</details>
+
+---
 
 </details>
