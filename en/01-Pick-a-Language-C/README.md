@@ -4439,8 +4439,81 @@ Think of pointers as house addresses on a street where all houses are the same s
 
 ---
 
+<details>
+ <summary><b>🧩 Equivalence Between Arrays and Pointers (Section 11.2 - Section 11.2.1)</b></summary>
+
+---
+
+[Codes for Section 11.2.0 - 11.2.1 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-2)-EQUIVALENCE-BETWEEN-ARRAYS-AND-POINTERS)
+
+---
+
+<details>
+ <summary><b>📝 Fundamental Formula (Section 11.2.0)</b></summary>
+<br>
+
+---
+
+[Codes for Section 11.2.0 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-2)-EQUIVALENCE-BETWEEN-ARRAYS-AND-POINTERS/(SECTION-11-2-0)-FUNDAMENTAL-FORMULA)
+
+---
+
+Finally, the missing piece of the puzzle. In C, the relationship between arrays and pointers is so intimate that there is a **fundamental formula** that defines this equivalence:
+
+> **`a[b] == *(a + b)`**
+
+This means that the bracket notation we have used from the beginning is actually just "syntactic sugar" for a pointer arithmetic operation followed by dereferencing.
+
+---
+
+#### 🧪 Practical Versatility
+
+We can use array notation on pointers and pointer notation on arrays interchangeably. In the code below, this translates into total flexibility:
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a[] = {11, 22, 33, 44, 55};
+    int *p = a; // 'p' points to the first element of 'a'
+    int i = 2;  // Example index
+
+    // Equivalent ways to access data:
+    printf("%d\n", a[i]);      // Array notation with array
+    
+    printf("%d\n", p[i]);      // Array notation with pointer
+    
+    printf("%d\n", *(a + i));  // Pointer notation with array
+    
+    printf("%d\n", *(p + i));  // Pointer notation with pointer
+}
+```
+
+#### ⚠️ The Big Difference: The Pointer is Mobile, the Array is Not.
+Although we can use the same notations to access elements, there is a **crucial restriction** that separates the two natures:
+
+1. **Pointers are variables:** You can change where they point (`p++`, `p = &something_else`).
+
+2. **Array identifiers are not mutable variables:** You **cannot** reassign an array or move it through memory.
+
+```c
+p++;           // WORKS: The pointer now points to the next item.
+// a++;        // ERROR: The array identifier is fixed!
+```
+
+#### Note on copying:
+If you need to copy the content of one array to another, you cannot simply do `array1 = array2`. You must use a loop or specific functions like `memcpy()`.
+
+> 💡 **Developer Insight:**
+> This equivalence explains why C is so performant. When you write `a[i]`, the compiler applies exactly `*(a + i)`. Understanding this removes the "mystery" behind arrays and gives you absolute control over how data is read.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
