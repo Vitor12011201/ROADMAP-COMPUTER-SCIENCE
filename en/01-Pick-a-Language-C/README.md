@@ -4510,10 +4510,58 @@ If you need to copy the content of one array to another, you cannot simply do `a
 
 ---
 
-
+<details>
+ <summary><b>📞 Equivalence in Function Calls (Section 11.2.1)</b></summary>
+<br>
 
 ---
 
+[Codes for Section 11.2.0 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-2)-EQUIVALENCE-BETWEEN-ARRAYS-AND-POINTERS/(SECTION-11-2-1)-EQUIVALENCE-IN-FUNCTION-CALLS)
+
+---
+
+This is, without a doubt, the scenario where you will most frequently encounter the equivalence between arrays and pointers. When we define a function that receives a pointer, it gains the ability to accept both pointers and original arrays.
+
+#### 🔄 Argument Flexibility
+
+If we have a function that expects a pointer:
+```c
+int my_strlen(char *s)
+```
+
+We can pass it a character array or a character pointer, and both will work perfectly:
+
+```c
+char s[] = "Antelopes"; // Array
+char *t = "Wombats";   // Pointer
+
+printf("%d\n", my_strlen(s));  // IT WORKS!
+printf("%d\n", my_strlen(t));  // IT WORKS TOO!
+```
+
+---
+
+#### 🎭 Equivalent Signatures:
+Due to this language feature, the two function declarations below are exactly the same to the compiler:
+
+```c
+int my_strlen(char *s)    // Pointer notation
+int my_strlen(char s[])   // Array notation
+```
+
+Even if you write `char s[]`, C will internally convert it to `char *s`. Using brackets in the function signature serves only as a "visual hint" to other programmers that the function expects a data set (an array) rather than just a pointer to a single character.
+
+> 💡 **Developer Insight:**
+> This characteristic is what makes standard library functions (such as `printf`, `scanf`, or `strcat`) so versatile.
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>

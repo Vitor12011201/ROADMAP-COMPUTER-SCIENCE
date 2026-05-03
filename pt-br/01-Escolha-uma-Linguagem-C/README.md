@@ -4519,10 +4519,58 @@ Se precisar copiar o conteúdo de um array para outro, não se pode simplesmente
 
 ---
 
-
+<details>
+ <summary><b>📞 Equivalência em Chamadas de Função (Seção 11.2.1)</b></summary>
+<br>
 
 ---
 
+[Codigos da Seção 11.2.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-2)-EQUIVALENCIA-ENTRE-ARRAYS-E-PONTEIROS/(SECAO-11-2-1)-EQUIVALENCIA-EM-CHAMADA-DE-FUNCOES)
+
+---
+
+Este é, sem dúvida, o cenário onde você mais encontrará a equivalência entre arrays e ponteiros. Quando definimos uma função que recebe um ponteiro, ela ganha a capacidade de aceitar tanto ponteiros quanto arrays originais.
+
+### 🔄 Flexibilidade nos Argumentos
+
+Se tivermos uma função que espera um ponteiro:
+```c
+int my_strlen(char *s)
+```
+
+Podemos passar para ela um array de caracteres ou um ponteiro de caracteres, e ambos funcionarão perfeitamente:
+
+```c
+char s[] = "Antelopes"; // Array
+char *t = "Wombats";   // Ponteiro
+
+printf("%d\n", my_strlen(s));  // FUNCIONA!
+printf("%d\n", my_strlen(t));  // FUNCIONA TAMBÉM!
+```
+
+---
+
+#### 🎭 Assinaturas Equivalentes:
+Devido a essa característica da linguagem, as duas declarações de função abaixo são exatamente iguais para o compilador:
+
+```c
+int my_strlen(char *s)    // Notação de ponteiro
+int my_strlen(char s[])   // Notação de array
+```
+
+Mesmo que se escreva `char s[]`, o C converterá isso internamente para `char *s`. O uso dos colchetes na assinatura da função serve apenas como uma "dica visual" para outros programadores de que a função espera um conjunto de dados (um array) e não apenas um ponteiro para um único caractere.
+
+> 💡 **Insight do Desenvolvedor:**
+> Essa característica é o que permite que as funções da biblioteca padrão (como `printf`, `scanf` ou `strcat`) sejam tão versáteis.
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>
