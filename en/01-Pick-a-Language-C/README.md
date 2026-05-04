@@ -4560,6 +4560,108 @@ Even if you write `char s[]`, C will internally convert it to `char *s`. Using b
 
 ---
 
+<details>
+ <summary><b>🌀 Void Pointers (Section 11.3)</b></summary>
+<br>
+
+---
+
+[Codes for Section 11.3 can be found here](./CODE_BY_DAY/DAY_011/(SECTION-11-3)-VOID-POINTERS)
+
+---
+
+We have already used `void` to indicate that a function returns nothing, but a `void *` is a completely different beast. It is a pointer to "something" that exists, but whose **type is unknown** to the compiler.
+
+This abstraction is what allows us to create flexible and generic code in a typed language.
+
+---
+
+#### 🛠️ Why use void*?
+
+There are two main use cases I explored:
+
+1.  **Byte-by-Byte Operations:** Functions like `memcpy()` need to copy memory regardless of what is stored there (whether it is an `int`, `float`, or `struct`). The `void *` allows the function to accept any address.
+2.  **Callbacks and Generic Data:** Library functions like `qsort()` use `void *` so they can sort any array. They pass the data to you, and since **you** know the type, you perform the conversion (cast) back.
+
+---
+
+#### 🔬 Real Example: The Versatility of `memcpy()`
+
+`memcpy()` is the perfect example of the power of `void *`. Its signature is:
+`void *memcpy(void *dest, void *src, size_t n);`
+
+Thanks to `void *`, I can use the same function to copy totally different things:
+```c
+// Copying a String
+memcpy(t, s, 7); 
+
+// Copying an Integer Array
+int a[] = {11, 22, 33};
+int b[3];
+memcpy(b, a, 3 * sizeof(int)); // We must specify the total BYTES
+```
+
+If we didn't have `void *`, we would need a version of the function for every type (`memcpy_int`, `memcpy_float`, etc.)
+
+---
+
+#### ⚠️ The Golden Rules (and Limitations):
+
+With great power comes great restrictions. Since the compiler does not know the size of what is being pointed to by a void *, WE CANNOT:
+
+1. Perform pointer arithmetic (`p++` or `p + 1`).
+
+2. Dereference (`*p`).
+
+3. Use array notation (`p[i]`).
+
+4. Use the arrow operator (`p->field`).
+
+**The Solution**: Before using the data, you must convert it (cast) to a specific type.
+
+```c
+char a = 'X';
+void *p = &a;   // Ok: p points to 'X'
+// printf("%c", *p); // ERROR!
+char *q = (char *)p;    // Ok: Converting to char*
+printf("%c", *q); // It works!
+```
+---
+
+#### 🏗️ Creating my own version of `memcpy`:
+To understand the logic, here is a simple version that converts `void *` to `char *` to manipulate memory byte by byte:
+
+```c
+void *my_memcpy(void *dest, void *src, int byte_count) {
+    char *s = (char *)src, *d = (char *)dest; // Conversion to char* (1 byte)
+    
+    while (byte_count--) {
+        *d++ = *s++; // Copies byte by byte
+    }
+    return dest;
+}
+```
+
+> 💡 **Developer Insight:**
+> The `void *` is the foundation for what we would call "polymorphism" in C. When using `qsort()`, for example, the function doesn't need to know if it's sorting numbers or complex structures; it just moves blocks of bytes based on the result of a comparison function that is provided.
+
+</details>
+
+
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 12: Manual Memory Allocation</b></summary>
+
+---
+
+[Day 12 code can be found here](./CODE_BY_DAY/DAY_012)
+
+---
+
 
 
 ---

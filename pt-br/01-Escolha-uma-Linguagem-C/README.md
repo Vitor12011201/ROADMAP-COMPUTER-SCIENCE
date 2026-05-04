@@ -4569,6 +4569,109 @@ Mesmo que se escreva `char s[]`, o C converterá isso internamente para `char *s
 
 ---
 
+<details>
+ <summary><b>🌀 Ponteiros void (Seção 11.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 11.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_011/(SECAO-11-3)-PONTEIROS-VOID)
+
+---
+
+Já utilizamos `void` para indicar que uma função não retorna nada, mas um `void *` é um apelido completamente diferente. Ele é um ponteiro para um "algo" que existe, mas cujo **tipo é desconhecido** para o compilador.
+
+Essa abstração é o que nos permite criar códigos flexíveis e genéricos em uma linguagem tipada.
+
+---
+
+#### 🛠️ Por que usar void*?
+
+Existem dois casos de uso principais que explorei:
+
+1.  **Operações Byte a Byte:** Funções como `memcpy()` precisam copiar memória independentemente do que está lá (se é um `int`, `float` ou `struct`). O `void *` permite que a função aceite qualquer endereço.
+2.  **Callbacks e Dados Genéricos:** Funções de biblioteca como `qsort()` usam `void *` para que possam ordenar qualquer array. Elas passam os dados para você, e como **você** sabe o tipo, você faz a conversão de volta.
+
+
+---
+
+#### 🔬 Exemplo Real: A Versatilidade do `memcpy()`
+
+O `memcpy()` é o exemplo perfeito do poder do `void *`. Sua assinatura é:
+`void *memcpy(void *dest, void *src, size_t n);`
+
+Graças ao `void *`, posso usar a mesma função para copiar coisas totalmente diferentes:
+```c
+// Copiando uma String
+memcpy(t, s, 7); 
+
+// Copiando um Array de Inteiros
+int a[] = {11, 22, 33};
+int b[3];
+memcpy(b, a, 3 * sizeof(int)); // Precisamos especificar o total de BYTES
+```
+
+Se não tivéssemos o `void *`, precisaríamos de uma versão da função para cada tipo (`memcpy_int`, `memcpy_float`, etc.).
+
+---
+
+#### ⚠️ As Regras de Ouro (e Limitações):
+
+Com grandes poderes vêm grandes restrições. Como o compilador não sabe o tamanho do que está sendo apontado por um `void *`, **NÃO PODEMOS**:
+
+1. Fazer aritmética de ponteiros (`p++` ou `p + 1`).
+
+2. Desreferenciar (`*p`).
+
+3. Usar notação de array (`p[i]`).
+
+4. Usar o operador de seta (`p->campo`).
+
+**A Solução**: Antes de usar o dado, você deve convertê-lo (cast) para um tipo específico.
+
+```c
+char a = 'X';
+void *p = &a;   // Ok: p aponta para 'X'
+// printf("%c", *p); // ERRO!
+char *q = p;    // Ok: Convertendo para char*
+printf("%c", *q); // Funciona!
+```
+---
+
+#### 🏗️ Criando minha própria versão de `memcpy`:
+Para entender a lógica, aqui está uma versão simples que converte `void *` em `char *` para manipular a memória byte a byte:
+
+```c
+void *my_memcpy(void *dest, void *src, int byte_count) {
+    char *s = src, *d = dest; // Conversão para char* (1 byte)
+    
+    while (byte_count--) {
+        *d++ = *s++; // Copia byte por byte
+    }
+    return dest;
+}
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> O `void *` é a base para o que chamaríamos de "polimorfismo" em C. Ao usar o `qsort()`, por exemplo, a função não precisa saber se está ordenando números ou estruturas complexas, ela apenas move blocos de bytes baseando-se no resultado de uma função de comparação que é fornecida.
+
+</details>
+
+
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 12: Alocação Manual de Memória</b></summary>
+
+---
+
+[Codigos do dia 12 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012)
+
+---
+
 
 
 ---
