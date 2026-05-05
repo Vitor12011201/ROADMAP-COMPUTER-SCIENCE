@@ -4672,6 +4672,54 @@ void *my_memcpy(void *dest, void *src, int byte_count) {
 
 ---
 
+<details>
+ <summary><b>🧠 Introdução - Alocação Manual de Memória (Seção 12.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 12.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-0)-INTRODUCAO-ALOCACAO-MANUAL-DE-MEMORIA)
+
+---
+
+A alocação manual é o que separa o C de linguagens como Python ou Java. Em outras linguagens, o sistema decide quando criar e destruir dados (via *Garbage Collection*). No C, se tem o controle total: você pede a memória e você a devolve.
+
+---
+
+#### 🏛️ Stack vs. Heap: Onde os dados moram?
+
+Embora a especificação técnica do C não use esses termos, todo desenvolvedor precisa conhecer essa distinção:
+
+*   **The Stack (Pilha):** Onde vivem as suas variáveis locais automáticas. Elas são criadas quando você entra em um bloco `{}` e destruídas automaticamente quando você sai.
+*   **The Heap (Monte):** Um grande reservatório de memória que você pode usar para dados que precisam sobreviver além do escopo de uma única função. É aqui que a alocação manual acontece.
+
+---
+
+#### 🛠️ O Poder e a Responsabilidade:
+
+Quando se aloca memória manualmente, o C reserva um número específico de bytes para você. Essa memória **permanecerá ocupada** até que você diga explicitamente ao sistema para liberá-la.
+
+*   **Memory Leaks (Vazamentos de Memória):** Se esquecer de liberar a memória que pediu, o programa continuará reservando esse espaço até fechar. Em sistemas que rodam por muito tempo (como servidores ou firmware), isso pode esgotar a RAM e causar um crash no sistema.
+*   **A Regra de Ouro:** Se a memoria foi alocada manualmente, você **tem** que liberar manualmente.
+
+---
+
+#### 📦 Ferramentas Necessárias
+
+Para gerenciar o Heap, utilizaremos funções da biblioteca padrão:
+
+*   `<stdlib.h>`: Contém as funções de alocação e liberação.
+*   `sizeof`: Essencial para saber exatamente quantos bytes pedir ao sistema, garantindo portabilidade entre diferentes arquiteturas.
+
+---
+
+> 💡 **Insight do Desenvolvedor:**
+> Alocação manual é vital quando não sabemos o tamanho do dado de antemão (ex: o conteúdo de um arquivo que o usuário vai carregar). Dominar o **Heap** é o passo final para construir aplicações robustas que não "vazam" memória e respeitam os limites do hardware.
+
+</details>
+
+---
+
 
 
 ---

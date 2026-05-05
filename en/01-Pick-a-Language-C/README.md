@@ -4662,6 +4662,54 @@ void *my_memcpy(void *dest, void *src, int byte_count) {
 
 ---
 
+<details>
+ <summary><b>🧠 Introduction - Manual Memory Allocation (Section 12.0)</b></summary>
+<br>
+
+---
+
+[Codes for Section 12.0 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-0)-INTRODUCTION-TO-MANUAL-MEMORY-ALLOCATION)
+
+---
+
+Manual allocation is what sets C apart from languages like Python or Java. In other languages, the system decides when to create and destroy data (via *Garbage Collection*). In C, you have total control: you request the memory, and you return it.
+
+---
+
+#### 🏛️ Stack vs. Heap: Where does the data live?
+
+Although the C technical specification doesn't strictly use these terms, every developer needs to know this distinction:
+
+*   **The Stack:** Where your automatic local variables live. They are created when you enter a `{}` block and destroyed automatically when you exit.
+*   **The Heap:** A large memory reservoir you can use for data that needs to survive beyond the scope of a single function. This is where manual allocation happens.
+
+---
+
+#### 🛠️ Power and Responsibility:
+
+When you allocate memory manually, C reserves a specific number of bytes for you. This memory **will remain occupied** until you explicitly tell the system to release it.
+
+*   **Memory Leaks:** If you forget to free the memory you requested, the program will keep reserving that space until it closes. In long-running systems (like servers or firmware), this can exhaust the RAM and cause a system crash.
+*   **The Golden Rule:** If the memory was manually allocated, you **must** manually free it.
+
+---
+
+#### 📦 Necessary Tools
+
+To manage the Heap, we will use functions from the standard library:
+
+*   `<stdlib.h>`: Contains the allocation and deallocation functions.
+*   `sizeof`: Essential to know exactly how many bytes to request from the system, ensuring portability across different architectures.
+
+---
+
+> 💡 **Developer Insight:**
+> Manual allocation is vital when we don't know the data size beforehand (e.g., the content of a file that a user will load). Mastering the **Heap** is the final step to building robust applications that don't "leak" memory and respect hardware limits.
+
+</details>
+
+---
+
 
 
 ---

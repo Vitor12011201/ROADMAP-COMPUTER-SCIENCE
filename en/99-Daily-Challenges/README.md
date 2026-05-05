@@ -71,6 +71,12 @@ Advanced pointer manipulation focusing on arithmetic, exploring how to navigate 
 * **Competencies:** Use of pointer arithmetic (`p + i`, `p++`), understanding how pointer types influence memory jumps (`sizeof`), iterating over arrays using pointers, and the equivalence between pointers and arrays (`p[i] == *(p + i)`).
 * **Highlights:** Direct memory navigation without using indices, building pointer-based loops (including the use of sentinel values), and developing a deeper understanding of the internal mechanics of arrays in C.
 
+### [11-Manual-Memory-Allocation](./11-Manual_Memory_Allocation(Exercises))
+**What you will find here:**
+An introduction to manual memory management in C, exploring how to allocate, use, and release memory dynamically during program execution.
+* **Skills:** Using `malloc`, `calloc`, `realloc`, and `free` functions; understanding the difference between automatic memory (stack) and dynamic memory (heap); utilizing the `sizeof` operator for safe allocation; and manipulating pointers to access dynamically allocated memory.
+* **Highlights:** Total control over the memory lifecycle, prevention of memory leaks, understanding how data can persist beyond function scope, and building fundamental dynamic structures (the foundation for lists, queues, and trees).
+
 ---
 
 ## 🛠️ Technologies and Tools

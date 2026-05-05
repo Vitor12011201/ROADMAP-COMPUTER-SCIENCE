@@ -65,11 +65,17 @@ Uso do `typedef` para criar aliases (apelidos) de tipos de dados, tornando o có
 * **Competências:** Definição de novos nomes para tipos primitivos e compostos, simplificação de declarações complexas (como ponteiros e structs), melhoria da legibilidade e padronização de tipos no código.
 * **Destaque:** Criação de tipos personalizados (ex: `typedef struct`), redução de complexidade em declarações e construção de bases mais profissionais para projetos maiores.
 
-### [10-Pointers-II-Aritmético](./10-Ponteiros_2_Aritmetico(Exercicios))
+### [10-Ponteiros-II-Aritmético](./10-Ponteiros_2_Aritmetico(Exercicios))
 **O que encontrará aqui:**
 Manipulação avançada de ponteiros com foco em aritmética, explorando como navegar pela memória de forma eficiente e segura.
 * **Competências:** Uso de aritmética de ponteiros (`p + i`, `p++`), compreensão de como o tipo do ponteiro influencia os saltos na memória (`sizeof`), iteração sobre arrays utilizando ponteiros e equivalência entre ponteiros e arrays (`p[i] == *(p + i)`).
 * **Destaque:** Navegação direta na memória sem uso de índices, construção de loops baseados em ponteiros (incluindo uso de valores sentinela) e desenvolvimento de uma compreensão mais profunda do funcionamento interno dos arrays em C.
+
+### [11-Alocacao-Manual-de-Memoria](./11-Alocacao_Manual_de_Memoria(Exercicios))
+**O que encontrará aqui:**
+Introdução ao gerenciamento manual de memória em C, explorando como alocar, utilizar e liberar memória dinamicamente durante a execução do programa.
+* **Competências:** Uso das funções `malloc`, `calloc`, `realloc` e `free`, compreensão da diferença entre memória automática (stack) e memória dinâmica (heap), utilização do operador `sizeof` para alocação segura e manipulação de ponteiros para acessar memória alocada dinamicamente.
+* **Destaque:** Controle total sobre o ciclo de vida da memória, prevenção de vazamentos de memória (*memory leaks*), entendimento de como dados podem persistir além do escopo de funções e construção de estruturas dinâmicas fundamentais (base para listas, filas e árvores).
 
 ---
 
