@@ -4710,6 +4710,64 @@ To manage the Heap, we will use functions from the standard library:
 
 ---
 
+<details>
+ <summary><b>📦 Allocating and Deallocating: malloc() and free() (Section 12.1)</b></summary>
+<br>
+
+---
+
+[Codes for Section 12.1 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-1)-ALLOCATING-AND-DEALLOCATING-MEMORY)
+
+---
+
+The `malloc()` (Memory Allocation) function is the tool we use to reserve a block of memory on the **Heap**. It takes a single argument: the number of bytes you want to allocate.
+
+#### 🛠️ How malloc() works:
+
+1.  **Generic Return:** `malloc()` returns a `void *`. As we learned in the previous chapter, this is great because it allows you to assign the result to any pointer type seamlessly.
+2.  **Using sizeof:** To ensure the code works on any machine (portability), we always use `sizeof` to define how many bytes we need.
+
+```c
+// Allocates space for a single int (usually 4 bytes)
+int *p = malloc(sizeof(int));
+```
+
+---
+
+🧹 The `free()` Function:
+As soon as we are done using the memory, we must call `free()`. You pass it the pointer you received from `malloc()`. This notifies the system that those bytes are free to be used by another part of the program.
+
+- ⚠️ **Danger:** Attempting to access or modify memory after calling `free()` is a severe error called "Use After Free," resulting in undefined behavior and crashes.
+
+📝 **Lifecycle Example:**
+
+```c
+int *p = malloc(sizeof(int)); // 1. Allocate
+if (p == NULL) return 1;      // Good practice: check if allocation failed
+
+*p = 12;                      // 2. Use
+printf("%d\n", *p); 
+
+free(p);                      // 3. Release
+// *p = 3490;                 // ERROR: Memory no longer belongs to you!
+```
+
+---
+
+#### 💡 Syntax Tip: Dynamic `sizeof`:
+A common practice among experienced C developers is to use the dereferenced pointer itself inside `sizeof`. This prevents errors if you **change the variable type later**:
+
+```c
+int *p = malloc(sizeof *p); // 'sizeof *p' is the same as 'sizeof(int)'
+```
+
+> 💡 **Developer Insight:**
+> At first, it seems more laborious than simply declaring `int x;`. But manual allocation is what allows complex projects—like a course sales system or translating long files—to function. With `malloc`, you can decide at runtime how much memory will be needed based on user input or file size, something that local variables (Stack) do not allow flexibly.
+
+</details>
+
+---
+
 
 
 ---

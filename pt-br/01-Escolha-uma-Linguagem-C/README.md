@@ -4720,6 +4720,63 @@ Para gerenciar o Heap, utilizaremos funções da biblioteca padrão:
 
 ---
 
+<details>
+ <summary><b>📦 Alocando e Desalocando: malloc() e free() (Seção 12.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 12.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-1)-ALOCANDO-E-DESALOCANDO-MEMORIA)
+
+---
+
+A função `malloc()` (Memory Allocation) é a ferramenta que usamos para reservar um bloco de memória no **Heap**. Ela aceita um único argumento: o número de bytes que você deseja.
+
+#### 🛠️ Como funciona o malloc():
+
+1.  **Retorno Genérico:** O `malloc()` retorna um `void *`. Como aprendemos no capítulo anterior, isso é ótimo porque permite atribuir o resultado a qualquer tipo de ponteiro sem problemas.
+2.  **Uso do sizeof:** Para garantir que o código funcione em qualquer máquina (portabilidade), sempre usamos `sizeof` para definir quantos bytes precisamos.
+```c
+// Aloca espaço para um único int (geralmente 4 bytes)
+int *p = malloc(sizeof(int));
+```
+
+---
+
+#### 🧹 A Função `free()`:
+Assim que terminamos de usar a memória, devemos chamar `free()`. Você passa para ela o ponteiro que recebeu do `malloc()`. Isso avisa ao sistema que aqueles bytes estão livres para serem usados por outra parte do programa.
+
+- ⚠️ **Perigo:** Tentar acessar ou modificar a memória após dar um `free()` é um erro gravíssimo chamado "Use After Free", resultando em comportamento indefinido e crashes.
+
+📝 **Exemplo de Ciclo de Vida:**
+
+```c
+int *p = malloc(sizeof(int)); // 1. Aloca
+if (p == NULL) return 1;      // Boa prática: verifica se a alocação falhou
+
+*p = 12;                      // 2. Usa
+printf("%d\n", *p); 
+
+free(p);                      // 3. Libera
+// *p = 3490;                 // ERRO: Memória já não te pertence!
+```
+
+---
+
+#### 💡 Dica de Sintaxe: `sizeof` Dinâmico:
+Uma prática muito comum entre desenvolvedores C experientes é usar o próprio ponteiro desreferenciado dentro do `sizeof`. Isso evita erros se você **mudar o tipo da variável depois**:
+
+```c
+int *p = malloc(sizeof *p); // 'sizeof *p' é o mesmo que 'sizeof(int)'
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> No início, parece mais trabalhoso do que simplesmente declarar `int x;`. Mas a alocação manual é o que permite que projetos complexos como sistema de vendas de cursos ou a tradução de arquivos longos funcione. Com `malloc`, pode-se decidir em tempo de execução quanta memória será preciso, baseando-me na entrada do usuário ou no tamanho de um arquivo, algo que as variáveis locais (Stack) não permitem de forma flexível.
+
+</details>
+
+---
+
 
 
 ---
