@@ -4777,6 +4777,53 @@ int *p = malloc(sizeof *p); // 'sizeof *p' é o mesmo que 'sizeof(int)'
 
 ---
 
+<details>
+ <summary><b> 🛡️ Verificação de Erros: O Guardião do NULL (Seção 12.2)</b></summary>
+
+---
+
+[Codigos da Seção 12.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-2)-VERIFICACAO-DE-ERRO)
+
+---
+
+Sempre que solicitamos memória ao sistema, existe a possibilidade de o pedido falhar. Todas as funções de alocação retornam um ponteiro para o bloco de memória **OU** `NULL` caso a alocação seja impossível.
+
+Embora alguns sistemas operacionais modernos (como o Linux) tenham políticas complexas de gerenciamento de memória, a boa prática de engenharia exige que você **sempre** verifique se o retorno foi bem-sucedido antes de tentar usar o ponteiro.
+
+#### 🛠️ O Padrão de Verificação:
+
+O método mais direto é realizar a alocação e, em seguida, testar o ponteiro:
+
+```c
+int *x;
+x = malloc(sizeof(int) * 10); // Tentando alocar um array de 10 ints
+
+if (x == NULL) {
+    printf("Erro crítico: Falha ao alocar memória para 10 inteiros.\n");
+    // Aqui você deve decidir como o programa deve reagir (ex: exit(1))
+}
+```
+
+#### 🏎️ O Padrão "Pro" (Atribuição e Condição):
+Na comunidade C, é extremamente comum **ver a alocação e a verificação condensadas em uma única linha dentro do if**. Isso torna o código mais compacto e garante que a verificação não seja esquecida:
+
+```c
+int *x;
+
+// Atribui o retorno a x e verifica se o resultado é NULL simultaneamente
+if ((x = malloc(sizeof(int) * 10)) == NULL) {
+    fprintf(stderr, "Erro de alocação de memória!\n");
+    exit(1);
+}
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> Em dispositivos embarcados com pouca RAM, falhas de alocação são comuns. Se ignorar o `NULL` e tentar fazer `*x = 10`, o programa vai tentar escrever no endereço zero da memória, resultando em um **crash instantâneo**. Tratar o erro de forma elegante (exibindo uma mensagem ou fechando arquivos antes de sair) é o que torna o software robusto.
+
+</details>
+
+---
+
 
 
 ---

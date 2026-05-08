@@ -4768,6 +4768,53 @@ int *p = malloc(sizeof *p); // 'sizeof *p' is the same as 'sizeof(int)'
 
 ---
 
+<details>
+ <summary><b> 🛡️ Error Checking: The Guardian of NULL (Section 12.2)</b></summary>
+
+---
+
+[Codes for Section 12.2 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-2)-ERROR-CHECKING)
+
+---
+
+Whenever we request memory from the system, there is a possibility that the request will fail. All allocation functions return a pointer to the memory block **OR** `NULL` if the allocation is impossible.
+
+While some modern operating systems (like Linux) have complex memory management policies, good engineering practice requires that you **always** verify if the return was successful before attempting to use the pointer.
+
+#### 🛠️ The Verification Pattern:
+
+The most straightforward method is to perform the allocation and then test the pointer:
+
+```c
+int *x;
+x = malloc(sizeof(int) * 10); // Attempting to allocate an array of 10 ints
+
+if (x == NULL) {
+    printf("Critical Error: Failed to allocate memory for 10 integers.\n");
+    // Here you must decide how the program should react (e.g., exit(1))
+}
+```
+
+#### 🏎️ The "Pro" Pattern (Assignment and Condition):
+In the C community, it is extremely common **to see the allocation and verification condensed into a single line within the if statement**. This makes the code more compact and ensures the verification is not forgotten:
+
+```c
+int *x;
+
+// Assigns the return to x and checks if the result is NULL simultaneously
+if ((x = malloc(sizeof(int) * 10)) == NULL) {
+    fprintf(stderr, "Memory allocation error!\n");
+    exit(1);
+}
+```
+
+>💡 **Developer Insight:**
+> In embedded devices with low RAM, allocation failures are common. If you ignore the `NULL` and try to do `*x = 10`, the program will attempt to write to memory address zero, resulting in an **instant crash**. Handling the error gracefully (displaying a message or closing files before exiting) is what makes the software robust.
+
+</details>
+
+---
+
 
 
 ---
