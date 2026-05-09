@@ -4815,6 +4815,82 @@ if ((x = malloc(sizeof(int) * 10)) == NULL) {
 
 ---
 
+<details>
+<summary><b>📌 Allocating Space for an Array (Section 12.3)</b></summary> 
+<br>
+
+---
+
+[Codes for Section 12.3 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-3)-ALLOCATING-SPACE-FOR-AN-ARRAY)
+
+---
+
+We have already seen how to allocate space for a single element (e.g., `malloc(sizeof(int))`). Now let's **allocate memory for an entire array on the Heap**.
+
+---
+
+#### ©️ Array with `malloc`:
+
+In C, an array is nothing more than a sequence of elements of the same type, stored one after another in a contiguous block of memory.
+Since `malloc()` allows allocating **any number of bytes**, we can simply ask for:
+
+- **Number of bytes** = `sizeof(type) * number_of_elements`
+
+#### 🧠 Practical example: Array of 10 integers
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Allocate space for 10 integers (usually 40 bytes on x86_64 systems)
+    int *p = malloc(sizeof(int) * 10);
+
+    // Assign values: 0, 5, 10, ..., 45
+    for (int i = 0; i < 10; i++)
+        p[i] = i * 5;   // Using array notation
+
+    // Print all
+    for (int i = 0; i < 10; i++)
+        printf("%d\n", p[i]);
+
+    free(p);  // Free the allocated memory
+}
+```
+
+- 🔍 **Note:** `sizeof(char)` is always **1**, so `malloc(3490)` allocates an array of **3490 characters** (a string), but without initialization.
+
+---
+
+#### ⚠️ Initial content is garbage:
+
+Unlike global or static variables, the memory returned by `malloc()` is not initialized; it contains residual values from previous allocations.
+To **zero out the memory**, you can use:
+
+1. `memset(p, 0, size_in_bytes)`
+
+2. Or use `calloc()`, which **returns zeroed memory** directly.
+
+---
+
+#### 📤 Portability tip: Multiply `sizeof *p`:
+Just like for a single element, you can use the dereferenced pointer itself to avoid repeating the type:
+
+```c
+int *p = malloc(10 * sizeof *p);  // Same as malloc(10 * sizeof(int))
+```
+
+- This form is safer for maintenance: if you change `int *p` to `long *p`, the sizeof adjusts automatically.
+
+> 💡 **Developer Insight:**
+> Allocating arrays on the Heap is essential when the size is only known at runtime (e.g., the user types how many numbers they want to store). If you tried to create a variable-length array (VLA) on the Stack with a large size, you could **overflow the stack**. With `malloc`, you are limited only by available RAM.
+
+- Practical tip: Always multiply `sizeof(type)` by the number of elements, it's easy to forget and allocate only 10 bytes instead of 10 integers!
+
+</details>
+
+---
+
 
 
 ---

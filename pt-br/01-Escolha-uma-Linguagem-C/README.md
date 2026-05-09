@@ -4824,6 +4824,83 @@ if ((x = malloc(sizeof(int) * 10)) == NULL) {
 
 ---
 
+<details>
+<summary><b>📌 Alocando Espaço para um Array (Seção 12.3)</b></summary> 
+<br>
+
+---
+
+[Codigos da Seção 12.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-3)-ALOCANDO-ESPACO-PARA-UM-ARRAY)
+
+---
+
+Já vimos como alocar espaço para um único elemento (ex: `malloc(sizeof(int))`). Agora vamos **alocar memória para um array inteiro no Heap**.
+
+---
+
+#### ©️ Array com `malloc':
+
+Em C, um array nada mais é do que uma sequência de elementos do mesmo tipo, armazenados um após o outro em um bloco contíguo de memória.
+Como `malloc()` permite alocar **qualquer quantidade de bytes**, podemos simplesmente pedir:
+
+- **Número de bytes** = `sizeof(tipo) * quantidade_de_elementos`
+
+#### 🧠 Exemplo prático: Array de 10 inteiros
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Aloca espaço para 10 inteiros (geralmente 40 bytes em sistemas x86_64)
+    int *p = malloc(sizeof(int) * 10);
+
+    // Atribui valores: 0, 5, 10, ..., 45
+    for (int i = 0; i < 10; i++)
+        p[i] = i * 5;   // Usando notação de array
+
+    // Imprime todos
+    for (int i = 0; i < 10; i++)
+        printf("%d\n", p[i]);
+
+    free(p);  // Libera a memória alocada
+}
+```
+
+- 🔍 **Observação:** `sizeof(char)` é sempre **1**, então `malloc(3490)` aloca um array de **3490 caracteres** (uma string), mas sem inicialização.
+
+---
+
+#### ⚠️ Conteúdo inicial é lixo (garbage):
+
+Diferente de variáveis globais ou estáticas, a memória retornada por `malloc()` não é inicializada, ela contém valores residuais de alocações anteriores.
+Para **zerar a memória**, você pode usar:
+
+1. `memset(p, 0, tamanho_em_bytes)`
+
+2. Ou usar `calloc()`, que já **retorna a memória zerada**.
+
+---
+
+#### 📤 Dica de portabilidade: `sizeof *p` multiplicado:
+
+Assim como no caso de um único elemento, você pode usar o próprio ponteiro desreferenciado para evitar repetir o tipo:
+
+```c
+int *p = malloc(10 * sizeof *p);  // Mesmo que malloc(10 * sizeof(int))
+```
+
+- Essa forma é mais segura para manutenção: se você mudar `int *p` para `long *p`, o sizeof se ajusta automaticamente.
+
+> 💡 **Insight do Desenvolvedor:**
+> Alocar arrays no Heap é essencial quando o tamanho só é conhecido em tempo de execução (ex: o usuário digita quantos números quer armazenar). Se tentasse criar um array na Stack com tamanho variável (VLA – Variable Length Array), poderia **estourar a pilha para valores grandes**. Com `malloc`, você fica limitado apenas pela memória RAM disponível.
+
+- Dica prática: Sempre multiplique `sizeof(tipo)` pela quantidade, é fácil esquecer e alocar só 10 bytes ao invés de 10 inteiros!
+
+</details>
+
+---
+
 
 
 ---
