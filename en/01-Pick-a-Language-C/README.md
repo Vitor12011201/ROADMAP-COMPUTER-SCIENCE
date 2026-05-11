@@ -4891,6 +4891,77 @@ int *p = malloc(10 * sizeof *p);  // Same as malloc(10 * sizeof(int))
 
 ---
 
+<details>
+<summary><b>🔘 Alternative: calloc() (Section 12.4)</b></summary>
+<br>
+
+---
+
+[Codes for Section 12.3 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-4)-ALTERNATIVE-CALLOC)
+
+---
+
+The `calloc()` function (Contiguous Allocation + zero) is an alternative to `malloc()`, especially useful for **arrays**. It differs in **two main aspects**:
+
+1. It takes **two arguments**: number of elements and size of each element (instead of a single total number of bytes).
+
+2. It **zeroes out the memory** automatically (unlike `malloc()`, which returns garbage).
+
+- Deallocation is still done with `free()`.
+
+---
+
+#### ©️ Direct comparison: `calloc()` vs `malloc() + memset()`
+
+```c
+// calloc: allocates and zeroes 10 integers
+int *p = calloc(10, sizeof(int));
+
+// malloc + memset: same thing, but in two steps
+int *q = malloc(10 * sizeof(int));
+memset(q, 0, 10 * sizeof(int));
+```
+
+- The end result is identical. The difference is that `calloc()` already **delivers zeroed memory out of the box**.
+
+---
+
+#### 🧠 When to use each?
+
+**Use `calloc()` when:**
+
+- You are allocating an array (it naturally fits the two arguments).
+
+- You need the initial values to be zero (e.g., counters, empty strings, structures with null pointers).
+
+**Use `malloc()` (with or without memset) when:**
+
+- You are going to fill the memory immediately, there's no point wasting time zeroing it out for no reason.
+
+- You are allocating a single element (although calloc(1, sizeof(int)) also works, it's less idiomatic).
+
+---
+
+#### ⚠️ Caution:
+Both return `NULL` on failure – always check.
+
+The zeroed content from `calloc()` is guaranteed to have all bits zero, which in C means:
+
+- 0 for integers
+
+- 0.0 for floating point
+
+- `NULL` for pointers (on practically all platforms)
+
+> 💡 Developer Insight:
+> Many people use `calloc()` for safety when the array will be used in contexts where zero is a valid initial value (e.g., sums, accumulators). But in high-performance loops, if you are going to overwrite all elements later, prefer `malloc()` without zeroing – this small saving can make a difference in large programs.
+
+- Practical tip: If you need to zero part of the memory or a non-array type, stick with `memset()`. `calloc()` is great for arrays, but not for more flexible scenarios.
+
+</details>
+
+---
+
 
 
 ---
