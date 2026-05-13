@@ -4972,8 +4972,134 @@ O conteúdo zerado por `calloc()` é garantido como todos os bits zero, o que em
 
 ---
 
+<details>
+<summary><b>📏Alterando o tamanho alocado (Seção 12.5.0 - Seção 12.5.2)</b></summary>
+<br>
+
+---
+
+
+[Codigos das Seções 12.5.0 - Seções 12.5.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-5)-ALTERANDO-O-TAMANHO-ALOCADO)
 
 
 ---
+
+<details>
+<summary><b>📌 Redimensionando Alocação: realloc() (Seção 12.5.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 12.5.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-5)-ALTERANDO-O-TAMANHO-ALOCADO/(SECAO-12-5-0)-REDIMENSIONANDO-ALOCACAO-REALLOC)
+
+---
+
+A função `realloc()` (reallocation) permite aumentar ou diminuir um bloco de memória previamente alocado (por `malloc()` ou `calloc()`). Ela decide se consegue expandir no mesmo lugar ou precisa copiar os dados para um novo local.
+
+#### ©️ Sintaxe básica:
+
+```c
+void *realloc(void *ptr, size_t new_size);
+```
+
+- `ptr`: ponteiro para memória alocada anteriormente (pode ser `NULL`, caso em que `realloc()` age como `malloc()`).
+
+- `new_size`: **novo tamanho em bytes**, não número de elementos!
+
+**Retorno:**
+
+- Ponteiro para o bloco realocado (pode ser o mesmo ou diferente)
+
+- `NULL` em caso de falha (neste caso, a memória original não é liberada)
+
+---
+
+#### ⚠️ Erro comum: esquecer sizeof
+
+```c
+num_floats *= 2;
+np = realloc(p, num_floats);                // ERRADO: faltou bytes
+np = realloc(p, num_floats * sizeof(float)); // CORRETO
+```
+
+- Sempre multiplique pelo tamanho do tipo.
+
+#### 🧠 Exemplo prático: realocando array de 20 floats para 40
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Aloca espaço para 20 floats
+    float *p = malloc(sizeof *p * 20);
+
+    // Preenche 0.0 até 0.95
+    for (int i = 0; i < 20; i++)
+        p[i] = i / 20.0;
+
+    // Redimensiona para 40 elementos
+    float *new_p = realloc(p, sizeof *p * 40);
+
+    if (new_p == NULL) {
+        printf("Erro ao realocar\n");
+        return 1;
+    }
+
+    p = new_p;  // Agora p aponta para o bloco realocado
+
+    // Preenche os novos elementos (índices 20..39)
+    for (int i = 20; i < 40; i++)
+        p[i] = 1.0 + (i - 20) / 20.0;
+
+    // Imprime tudo (0.0 a 2.0)
+    for (int i = 0; i < 40; i++)
+        printf("%f\n", p[i]);
+
+    free(p);  // Libera memória
+}
+```
+
+#### 🔍 Por que usar um ponteiro temporário (`new_p`)?
+Se você fizer `p = realloc(p, novo_tamanho)` e `realloc()` falhar (retornando `NULL`), você perde o ponteiro original `p`, não conseguirá mais liberar ou acessar a memória antiga.
+
+- Boa prática:
+
+```c
+void *tmp = realloc(p, novo_tamanho);
+if (tmp == NULL) {
+    // Tratar erro – p ainda é válido
+} else {
+    p = tmp;
+}
+```
+
+#### 📤 Redimensionamento para menor tamanho
+Se `new_size` for menor que o original, `realloc()` pode simplesmente truncar o bloco. O que sobra é liberado (mas você não precisa chamar `free()` separadamente).
+
+- **Dica prática:** diminuir com `realloc()` é útil para ajustar para o uso exato após descobrir quantos elementos foram realmente necessários.
+
+---
+
+#### ⚠️ Atenção: `realloc()` não limpa a memória extra
+
+- O novo espaço (se o bloco cresceu) não é inicializado – contém lixo.
+
+- Se precisar de zeros, use `memset()` na região nova ou prefira `calloc()` desde o início.
+
+> 💡 **Insight do Desenvolvedor:**
+> `realloc()` é indispensável quando você está lendo dados de tamanho desconhecido (ex: entrada do usuário, arquivo). Comece com um tamanho pequeno, vá realocando à medida que mais dados chegam. Mas cada `realloc()` pode implicar uma cópia de todos os dados – para performance, dobre o tamanho a cada vez (ex: 10 → 20 → 40) para reduzir o número de realocações.
+
+**Dica prática:** Nunca faça `realloc(p, 0)` – isso é equivalente a `free(p)` e retorna `NULL` ou um ponteiro inválido. É ambíguo e não portável. Use `free(p)` explicitamente se quiser liberar. 
+
+</details>
+
+---
+
+
+
+---
+
+</details>
 
 </details>

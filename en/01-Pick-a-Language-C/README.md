@@ -4897,7 +4897,7 @@ int *p = malloc(10 * sizeof *p);  // Same as malloc(10 * sizeof(int))
 
 ---
 
-[Codes for Section 12.3 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-4)-ALTERNATIVE-CALLOC)
+[Codes for Section 12.4 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-4)-ALTERNATIVE-CALLOC)
 
 ---
 
@@ -4962,8 +4962,135 @@ The zeroed content from `calloc()` is guaranteed to have all bits zero, which in
 
 ---
 
+<details>
+<summary><b>📏 Changing the Allocated Size (Section 12.5.0 - Section 12.5.2)</b></summary>
+<br>
+
+---
+
+[Code for Sections 12.5.0 - 12.5.2 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-5)-CHANGING-THE-ALLOCATED-SIZE)
 
 
 ---
+
+<details>
+<summary><b>📌 Resizing Allocation: realloc() (Section 12.5.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 12.5.0 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-5)-CHANGING-THE-ALLOCATED-SIZE/(SECTION-12-5-0)-RESIZING-ALLOCATION-REALLOC)
+
+---
+
+The `realloc()` function (reallocation) allows you to increase or decrease a previously allocated memory block (by `malloc()` or `calloc()`). It decides whether it can expand in place or needs to copy the data to a new location.
+
+#### ©️ Basic syntax:
+
+```c
+void *realloc(void *ptr, size_t new_size);
+```
+
+- `ptr`: pointer to previously allocated memory (can be `NULL`, in which case `realloc()` acts like `malloc()`).
+
+- `new_size`: **new size in bytes**, not number of elements!
+
+**Return value:**
+
+- Pointer to the reallocated block (may be the same or different)
+
+- `NULL` on failure (in this case, the original memory is not freed)
+
+---
+
+#### ⚠️ Common mistake: forgetting sizeof
+
+```c
+num_floats *= 2;
+np = realloc(p, num_floats);                // WRONG: missing bytes
+np = realloc(p, num_floats * sizeof(float)); // CORRECT
+```
+
+- Always multiply by the type size.
+
+#### 🧠 Practical example: reallocating a 20‑float array to 40
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // Allocate space for 20 floats
+    float *p = malloc(sizeof *p * 20);
+
+    // Fill 0.0 through 0.95
+    for (int i = 0; i < 20; i++)
+        p[i] = i / 20.0;
+
+    // Resize to 40 elements
+    float *new_p = realloc(p, sizeof *p * 40);
+
+    if (new_p == NULL) {
+        printf("Reallocation error\n");
+        return 1;
+    }
+
+    p = new_p;  // Now p points to the reallocated block
+
+    // Fill the new elements (indices 20..39)
+    for (int i = 20; i < 40; i++)
+        p[i] = 1.0 + (i - 20) / 20.0;
+
+    // Print everything (0.0 to 2.0)
+    for (int i = 0; i < 40; i++)
+        printf("%f\n", p[i]);
+
+    free(p);  // Free memory
+}
+```
+
+#### 🔍 Why use a temporary pointer (`new_p`)?
+
+If you do `p = realloc(p, new_size)` and `realloc()` fails (returns `NULL`), you lose the original pointer `p`, and you can no longer free or access the old memory.
+
+- Best practice:
+
+```c
+void *tmp = realloc(p, new_size);
+if (tmp == NULL) {
+    // Handle error – p is still valid
+} else {
+    p = tmp;
+}
+```
+
+#### 📤 Resizing to a smaller size
+
+If `new_size` is smaller than the original, `realloc()` can simply truncate the block. The leftover is freed (but you don’t need to call `free()` separately).
+
+- **Practical tip:** shrinking with `realloc()` is useful to adjust to the exact usage after discovering how many elements were actually needed.
+
+---
+
+#### ⚠️ Caution: `realloc()` does not clear the extra memory
+
+- The new space (if the block grew) is not initialized – it contains garbage.
+
+- If you need zeros, use `memset()` on the new region or prefer `calloc()` from the start.
+
+> 💡 **Developer Insight:**
+> `realloc()` is indispensable when you are reading data of unknown size (e.g., user input, file). Start with a small size, reallocate as more data arrives. But each `realloc()` may imply copying all data – for performance, double the size each time (e.g., 10 → 20 → 40) to reduce the number of reallocations.
+
+**Practical tip:** Never do `realloc(p, 0)` – that is equivalent to `free(p)` and returns `NULL` or an invalid pointer. It is ambiguous and not portable. Use `free(p)` explicitly if you want to free.
+
+</details>
+
+---
+
+
+
+---
+
+</details>
 
 </details>
