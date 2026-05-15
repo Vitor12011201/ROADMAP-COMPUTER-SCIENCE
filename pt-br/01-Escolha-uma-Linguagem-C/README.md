@@ -5096,6 +5096,126 @@ Se `new_size` for menor que o original, `realloc()` pode simplesmente truncar o 
 
 ---
 
+<details> 
+<summary><b>📖 Lendo Linhas de Tamanho Arbitrário (Seção 12.5.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 12.5.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-5)-ALTERANDO-O-TAMANHO-ALOCADO/(SECAO-12-5-1)-LENDO-LINHAS-DE-TAMANHO-ARBITRARIO)
+
+---
+
+#### O exemplo da seção 12.5.0 demonstra **dois usos práticos** de `realloc()`:
+
+1. **Crescer um buffer dinamicamente** à medida que mais dados são lidos.
+
+2. **Encolher o buffer** para o tamanho exato após a leitura terminar, economizando memória.
+ 
+O código implementa uma função `readline()` que lê um arquivo caractere por caractere (`fgetc()`) até encontrar uma quebra de linha (`'\n'`) ou o final do arquivo (`EOF`).
+
+---
+
+#### ©️ Estratégia de crescimento: dobrar o tamanho
+
+Em vez de aumentar o buffer de 1 em 1 (o que causaria muitas realocações e cópias), a estratégia comum é **dobrar o tamanho** a cada vez que o buffer fica cheio. Isso minimiza o número de chamadas a `realloc()`.
+
+- Tamanho inicial: 4 bytes (pode ser qualquer valor, mas potência de 2 é comum)
+
+- Quando `offset == bufsize - 1` (um byte reservado para `\0`), dobra-se: `bufsize *= 2`
+
+---
+
+#### 🧠 Fluxo da função `readline()`
+
+```c
+char *readline(FILE *fp)
+```
+
+1. **Aloca buffer inicial** (`malloc(4)`)
+
+2. **Lê caractere por caractere** com `fgetc()`
+
+3. **Se buffer está cheio** (exceto espaço para `'\0'`):
+
+- Dobra `bufsize`
+
+- Tenta `realloc()`
+
+- Se falhar, libera o buffer antigo e retorna `NULL`
+
+4. **Armazena o caractere no buffer**
+
+5. **Ao encontrar** `'\n'` ou `EOF` :
+
+- Se `EOF` e nenhum caractere foi lido → libera e retorna `NULL`
+
+- **Encolhe o buffer** para o tamanho exato (`offset + 1`) com `realloc()` (opcional, se já estiver justo)
+
+6. **Adiciona o terminador nulo** (`'\0'`)
+
+7. **Retorna o ponteiro** (quem chama deve dar `free()`)
+
+---
+
+#### 🔍 Trecho comentado do código:
+
+```c
+// Verifica se está prestes a estourar (reservando 1 byte para '\0')
+if (offset == bufsize - 1) {
+    bufsize *= 2;   // Dobra
+    char *new_buf = realloc(buf, bufsize);
+    if (new_buf == NULL) {
+        free(buf);
+        return NULL;
+    }
+    buf = new_buf;
+}
+buf[offset++] = c;
+```
+
+---
+
+#### 📤 Encolhimento após a leitura:
+
+```c
+// Se o buffer tem espaço sobrando, reduz para o tamanho exato
+if (offset < bufsize - 1) {
+    char *new_buf = realloc(buf, offset + 1); // +1 para '\0'
+    if (new_buf != NULL)
+        buf = new_buf;  // Se falhar, mantém o original (não crítico)
+}
+buf[offset] = '\0';
+```
+
+- **Por que encolher?** Para não desperdiçar memória. Se a linha tem 5 caracteres, o buffer final terá 6 bytes (5 + `'\0'`) em vez de, por exemplo, 16 ou 32.
+
+- **Segurança:** Se `realloc()` falhar no encolhimento, mantém-se o buffer maior – a função ainda funciona corretamente.
+
+---
+
+#### ⚠️ Responsabilidade de quem chama `readline()`
+O ponteiro retornado veio de `malloc()` / `realloc()`.
+**Quem chamou** `readline()` deve chamar `free()` após usar a linha.
+
+```c
+char *line;
+while ((line = readline(fp)) != NULL) {
+printf("%s\n", line);
+free(line);   // ← obrigatório
+}
+```
+
+> 💡 **Insight do Desenvolvedor:**
+> Essa função `readline()` é um exemplo clássico de como `realloc()` é usado em software real (editores de texto, compiladores, processamento de logs). Dobrar o tamanho a cada estouro é uma otimização de tempo exponencial: o número total de cópias é O(n) em vez de O(n²) se crescesse de 1 em 1.
+> O encolhimento final com `realloc()` é opcional, mas útil em programas que guardam muitas linhas na memória (ex: carregar um arquivo inteiro). Cada byte economizado pode fazer diferença.
+
+- **Dica prática:** Se você sabe que a maioria das linhas é curta, comece com um tamanho inicial pequeno (ex: 16 ou 32). Se forem muito longas, comece maior para evitar realocações no início.
+
+</details>
+
+---
+
 
 
 ---
