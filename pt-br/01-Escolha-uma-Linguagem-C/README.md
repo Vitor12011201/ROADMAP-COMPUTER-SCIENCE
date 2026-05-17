@@ -5216,10 +5216,58 @@ free(line);   // ← obrigatório
 
 ---
 
-
+<details>
+<summary><b>📥 realloc() com NULL (Seção 12.5.2)</b></summary>
+<br>
 
 ---
 
+[Codigos da Seção 12.5.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_012/(SECAO-12-5)-ALTERANDO-O-TAMANHO-ALOCADO/(SECAO-12-5-2)-REALLOC-COM-NULL)
+
+---
+
+#### Estas duas linhas são equivalentes:
+
+```c
+char *p = malloc(3490);
+char *p = realloc(NULL, 3490);
+```
+
+- Isso pode ser útil quando você tem um **loop de alocação** e não quer tratar o primeiro `malloc()` como um caso especial.
+
+---
+
+#### ©️ Exemplo - alocação incremental sem `malloc()` inicial:
+
+```c
+int *p = NULL;
+int length = 0;
+
+while (!done) {
+    // Aloca mais 10 inteiros:
+    length += 10;
+    p = realloc(p, sizeof *p * length);
+
+    // Faz coisas incríveis
+    // ...
+}
+```
+
+- Neste exemplo, não precisamos de um `malloc()` inicial, pois `p` começa com `NULL`.
+
+> 💡 **Insight do Desenvolvedor:**
+> `realloc(NULL, tamanho)` funciona exatamente como `malloc(tamanho)`. Isso simplifica loops onde você não sabe antecipadamente se já existe memória alocada. Economiza uma condicional e deixa o código mais limpo.
+
+- **Dica prática:** cuidado ao atribuir o retorno de `realloc()` diretamente ao ponteiro original sem verificar `NULL`, você pode **perder o ponteiro antigo** se a realocação falhar. A vantagem de `realloc(NULL, ...)` é que, se falhar, retorna `NULL` e não há memória anterior para vazar (já que era `NULL`).
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>

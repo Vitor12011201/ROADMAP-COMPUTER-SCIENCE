@@ -5093,7 +5093,7 @@ If `new_size` is smaller than the original, `realloc()` can simply truncate the 
 
 ---
 
-[Code for Section 12.5.0 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-5)-CHANGING-THE-ALLOCATED-SIZE/(SECTION-12-5-1)-READING-LINES-OF-ARBITRARY-SIZE)
+[Code for Section 12.5.1 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-5)-CHANGING-THE-ALLOCATED-SIZE/(SECTION-12-5-1)-READING-LINES-OF-ARBITRARY-SIZE)
 
 ---
 
@@ -5203,10 +5203,58 @@ while ((line = readline(fp)) != NULL) {
 
 ---
 
-
+<details>
+<summary><b>📥 realloc() with NULL (Section 12.5.2)</b></summary>
+<br>
 
 ---
 
+[Code for Section 12.5.2 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-5)-CHANGING-THE-ALLOCATED-SIZE/(SECTION-12-5-2)-REALLOC-WITH-NULL)
+
+---
+
+#### These two lines are equivalent:
+
+```c
+char *p = malloc(3490);
+char *p = realloc(NULL, 3490);
+```
+
+- This can be useful when you have an **allocation loop** and don’t want to treat the first `malloc()` as a special case.
+
+---
+
+#### ©️ Example - incremental allocation without an initial malloc():
+
+```c
+int *p = NULL;
+int length = 0;
+
+while (!done) {
+    // Allocate 10 more integers:
+    length += 10;
+    p = realloc(p, sizeof *p * length);
+
+    // Do amazing things
+    // ...
+}
+```
+
+- In this example, we don't need an initial `malloc()` because `p` starts as `NULL`.
+
+> 💡 **Developer Insight:**
+> `realloc(NULL, size)` works exactly like `malloc(size)`. This simplifies loops where you don’t know in advance whether memory has already been allocated. It saves a conditional and makes the code cleaner.
+
+- **Practical tip:** be careful when assigning the return of `realloc()` directly to the original pointer without checking for `NULL`; you can lose the old pointer if the reallocation fails. The advantage of `realloc(NULL, ...)` is that if it fails, it returns `NULL` and there is no previous memory to leak (since it was `NULL`).
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>
