@@ -5253,6 +5253,88 @@ while (!done) {
 
 ---
 
+<details>
+<summary><b>🧵 Aligned Allocations (Section 12.6)</b></summary>
+<br>
+
+---
+
+[Code for Section 12.6 can be found here](./CODE_BY_DAY/DAY_012/(SECTION-12-6)-ALIGNED-ALLOCATIONS)
+
+---
+
+There is a concept called **memory alignment**, which has to do with the **memory address** (pointer value) being a multiple of a certain number.
+
+- For example, a system might require that 16-bit values start at addresses that are multiples of 2. Or that 64-bit values start at addresses that are multiples of 2, 4, or 8. It depends on the CPU.
+- Some systems require this type of alignment for fast memory access, or even for access to work at all.
+
+#### ©️ Alignment guaranteed by malloc() / calloc() / realloc()
+If you use `malloc()`, `calloc()`, or `realloc()`, C will return a memory block that is properly aligned for any data type (even `structs`). **It works in all cases**.
+
+---
+
+#### 🧠 When would you need `aligned_alloc()`?
+There may be times when you know that some data can be aligned to a smaller boundary, or needs to be aligned to a larger boundary for some reason. This is more common in programming for **embedded systems**.
+
+In these cases, you can specify an alignment with `aligned_alloc()`.
+
+- The alignment must be a power of two greater than zero: 2, 4, 8, 16, etc.
+
+- The number of bytes allocated must be a multiple of the alignment (though this may change).
+
+#### 📤 Example: allocating on a 64-byte boundary
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void) {
+    // Allocates 256 bytes aligned on a 64-byte boundary (256 == 64 * 4)
+    char *p = aligned_alloc(64, 256);
+
+    strcpy(p, "Hello, world!");
+    printf("%s\n", p);
+
+    free(p);
+}
+```
+
+---
+
+#### ⚠️ `realloc()` and `aligned_alloc()`
+`realloc()` **has no alignment guarantees**. If you need to reallocate aligned memory, you'll have to do it the "hard way" with `memcpy()`.
+
+Below is a non-standard `aligned_realloc()` function, in case you need it:
+
+```c
+void *aligned_realloc(void *ptr, size_t old_size, size_t alignment, size_t size)
+{
+    char *new_ptr = aligned_alloc(alignment, size);
+
+    if (new_ptr == NULL)
+        return NULL;
+
+    size_t copy_size = old_size < size ? old_size : size;  // take the smaller one
+
+    if (ptr != NULL)
+        memcpy(new_ptr, ptr, copy_size);
+
+    free(ptr);
+
+    return new_ptr;
+}
+```
+
+> 💡 **Developer Insight:**
+> This `aligned_realloc()` always copies the data, which takes time, whereas the real `realloc()` avoids copying when possible. Therefore, it is **inefficient**. Avoid needing to reallocate data with custom alignment.
+
+- **Practical tip:** If you need specific alignment, allocate the final size all at once, rather than reallocating later.
+
+</details>
+
+---
+
 
 
 ---
