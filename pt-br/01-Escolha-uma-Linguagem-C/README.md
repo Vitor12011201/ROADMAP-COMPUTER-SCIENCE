@@ -5346,6 +5346,43 @@ void *aligned_realloc(void *ptr, size_t old_size, size_t alignment, size_t size)
 
 </details>
 
+
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 13: Escopo</b></summary>
+
+---
+
+[Codigos do dia 13 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013)
+
+---
+
+<details>
+ <summary><b>🌐 Introdução - Escopo (Seção 13.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 13.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-0)-INDRODUCAO-ESCOPO)
+
+---
+
+No C, o escopo é delimitado principalmente por blocos de código, funções e arquivos:
+
+* **Escopo de Bloco (Local):** Variáveis que nascem e morrem dentro de chaves `{}`.
+* **Escopo de Arquivo (Global):** Variáveis declaradas fora de qualquer função, visíveis por todo o arquivo (e potencialmente por outros arquivos do projeto).
+* **Escopo de Função:** Regras específicas para parâmetros de funções.
+
+> 💡 **Insight de Estudo:**
+> Controlar o escopo de forma rígida é uma das melhores práticas de segurança em C. Quanto menor e mais restrito for o escopo de uma variável, menos pontos de falha o código terá, facilitando o *debugging* e evitando o uso acidental de dados incorretos.
+
+
+</details>
+
 ---
 
 

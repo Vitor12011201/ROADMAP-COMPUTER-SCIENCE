@@ -5333,6 +5333,40 @@ void *aligned_realloc(void *ptr, size_t old_size, size_t alignment, size_t size)
 
 </details>
 
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 13: Scope</b></summary>
+
+---
+
+[Day 13 code can be found here](./CODE_BY_DAY/DAY_013)
+
+---
+
+<details>
+ <summary><b>🌐 Introduction - Scope (Section 13.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 13.0 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-0)-INTRODUCTION-SCOPE)
+
+---
+
+In C, scope is primarily delimited by code blocks, functions, and files:
+
+* **Block Scope (Local):** Variables that are born and die within curly braces `{}`.
+* **File Scope (Global):** Variables declared outside any function, visible throughout the entire file (and potentially across other files in the project).
+* **Function Scope:** Specific rules for function parameters.
+
+> 💡 **Study Insight:**
+> Strictly controlling scope is one of the best security practices in C. The smaller and more restricted the scope of a variable, the fewer failure points the code will have, making debugging easier and preventing accidental use of incorrect data.
+
+</details>
+
 ---
 
 
