@@ -77,6 +77,12 @@ Introdução ao gerenciamento manual de memória em C, explorando como alocar, u
 * **Competências:** Uso das funções `malloc`, `calloc`, `realloc` e `free`, compreensão da diferença entre memória automática (stack) e memória dinâmica (heap), utilização do operador `sizeof` para alocação segura e manipulação de ponteiros para acessar memória alocada dinamicamente.
 * **Destaque:** Controle total sobre o ciclo de vida da memória, prevenção de vazamentos de memória (*memory leaks*), entendimento de como dados podem persistir além do escopo de funções e construção de estruturas dinâmicas fundamentais (base para listas, filas e árvores).
 
+### [12-Escopo](./12-Escopo(Exercicios))
+**O que encontrará aqui:**
+Estudos e exercícios sobre escopo em C, entendendo como variáveis, funções e blocos de código possuem diferentes níveis de visibilidade e tempo de vida dentro de um programa.
+* **Competências:** Compreensão de escopo local e global, diferença entre variáveis automáticas e `static`, utilização correta de variáveis dentro de blocos `{}`, entendimento sobre tempo de vida (*lifetime*) e visibilidade (*scope*) de dados, além de boas práticas para evitar conflitos e efeitos colaterais inesperados.
+* **Destaque:** Entendimento profundo de como o compilador organiza variáveis na memória, como funções isolam dados internamente e como controlar o acesso a informações dentro do programa, uma base essencial para escrever códigos mais seguros, organizados e previsíveis.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

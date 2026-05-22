@@ -77,6 +77,12 @@ An introduction to manual memory management in C, exploring how to allocate, use
 * **Skills:** Using `malloc`, `calloc`, `realloc`, and `free` functions; understanding the difference between automatic memory (stack) and dynamic memory (heap); utilizing the `sizeof` operator for safe allocation; and manipulating pointers to access dynamically allocated memory.
 * **Highlights:** Total control over the memory lifecycle, prevention of memory leaks, understanding how data can persist beyond function scope, and building fundamental dynamic structures (the foundation for lists, queues, and trees).
 
+### [12-Scope](./12-Scope(Exercises))
+**What you will find here:**
+Studies and exercises on scope in C, understanding how variables, functions, and code blocks have different levels of visibility and lifetime within a program.
+* **Skills:** Understanding local and global scope, difference between automatic and `static` variables, correct usage of variables within `{}` blocks, understanding data lifetime and scope, as well as best practices to avoid conflicts and unexpected side effects.
+* **Highlight:** Deep understanding of how the compiler organizes variables in memory, how functions isolate data internally, and how to control access to information within the program – an essential foundation for writing safer, more organized, and predictable code.
+
 ---
 
 ## 🛠️ Technologies and Tools
