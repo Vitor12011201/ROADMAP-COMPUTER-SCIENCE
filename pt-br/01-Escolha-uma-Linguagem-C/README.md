@@ -5385,8 +5385,69 @@ No C, o escopo é delimitado principalmente por blocos de código, funções e a
 
 ---
 
+<details>
+<summary><b>📦 Escopo de Bloco (Seção 13.1.0 - 13.1.2)</b></summary>
+
+---
+
+[Codigos da Seções 13.1.0 - 13.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-1)-ESCOPO-DE-BLOCO)
+
+---
+
+<details>
+<summary><b> 🧱 Escopo de Bloco - Block Scope (Seção 13.1.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 13.1.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-1)-ESCOPO-DE-BLOCO/(SECAO-13-1-0)-ESCOPO-DE-BLOCO-BLOCK-SCOPE)
+
+---
+
+Este é o escopo onde reside a esmagadora maioria das variáveis que você vai declarar. Ele engloba o que outras linguagens costumam chamar de "escopo de função", ou seja, as variáveis locais declaradas dentro de uma função.
+
+#### 📜 A Regra Básica:
+
+Se você declarou uma variável dentro de um bloco delimitado por chaves `{ }`, o escopo dessa variável está estritamente restrito a esse bloco.
+
+* **Blocos Aninhados (Nested Blocks):** Se houver um bloco dentro de outro bloco, as variáveis declaradas no bloco interno são locais apenas para ele. O bloco externo não consegue "enxergar" o que está lá dentro.
+* **Fim da Linha:** Assim que a execução do programa sai do bloco, o escopo da variável termina. Você pode considerar que o valor dela foi direto para o "limbo dos bits". Tentar acessá-la causará um erro de compilação.
+
+---
+
+#### 🧪 Experimento Prático com Escopos Aninhados:
+
+Veja como o compilador se comporta ao lidar com variáveis em níveis diferentes de isolamento:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a = 12; // Local ao bloco externo, mas visível no bloco interno
+
+    if (a == 12) {
+        int b = 99; // Local APENAS ao bloco interno, invisível no externo
+        
+        printf("%d %d\n", a, b); // OK: Imprime "12 99"
+    }
+
+    printf("%d\n", a); // OK: Ainda estamos dentro do escopo de 'a'
+    
+    // printf("%d\n", b); // ILEGAL: Erro de compilação! 'b' já morreu.
+}
+```
+
+>💡 **Insight de Estudo:**
+> O escopo de bloco está diretamente ligado ao conceito de `Stack (Pilha)` que vimos na alocação de memória. Quando o programa entra no `if`, ele reserva espaço para `b` no **topo da pilha**. Assim que o `if` fecha, esse espaço é "desempilhado" automaticamente. Entender isso limpa qualquer confusão: o escopo na sintaxe é apenas o reflexo do comportamento da memória física.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>

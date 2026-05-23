@@ -5369,8 +5369,69 @@ In C, scope is primarily delimited by code blocks, functions, and files:
 
 ---
 
+<details>
+<summary><b>📦 Block Scope (Section 13.1.0 - 13.1.2)</b></summary>
+
+---
+
+[Code for Sections 13.1.0 - 13.1.2 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-1)-BLOCK-SCOPE)
+
+---
+
+<details>
+<summary><b> 🧱 Block Scope (Section 13.1.0)</b></summary>
+<br>
+
+---
+
+[Code for Section 13.1.0 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-1)-BLOCK-SCOPE/(SECTION-13-1-0)-BLOCKS-SCOPE)
+
+---
+
+This is the scope where the vast majority of variables you declare reside. It encompasses what other languages often call "function scope", i.e., local variables declared inside a function.
+
+#### 📜 The Basic Rule:
+
+If you declared a variable inside a block delimited by curly braces `{ }`, the scope of that variable is strictly restricted to that block.
+
+* **Nested Blocks:** If there is a block inside another block, variables declared in the inner block are local only to that block. The outer block cannot "see" what is inside.
+* **End of the Line:** As soon as program execution leaves the block, the variable's scope ends. You can consider its value as having gone to the "bit limbo". Trying to access it will cause a compilation error.
+
+---
+
+#### 🧪 Practical Experiment with Nested Scopes:
+
+See how the compiler behaves when dealing with variables at different isolation levels:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a = 12; // Local to the outer block, but visible in the inner block
+
+    if (a == 12) {
+        int b = 99; // Local ONLY to the inner block, invisible to the outer
+        
+        printf("%d %d\n", a, b); // OK: Prints "12 99"
+    }
+
+    printf("%d\n", a); // OK: We are still within the scope of 'a'
+    
+    // printf("%d\n", b); // ILLEGAL: Compilation error! 'b' is already dead.
+}
+```
+
+> 💡 **Study Insight:**
+> Block scope is directly linked to the `Stack` concept we saw in memory allocation. When the program enters the `if`, it reserves space for `b` on **top of the stack**. As soon as the `if` closes, that space is automatically "popped". Understanding this clears up any confusion: scope in syntax is merely a reflection of physical memory behavior.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
