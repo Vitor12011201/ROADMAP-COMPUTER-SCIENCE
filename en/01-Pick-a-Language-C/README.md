@@ -5428,6 +5428,46 @@ int main(void) {
 
 ---
 
+<details>
+ <summary><b>📍 Where to Define Variables (Section 13.1.1)</b></summary>
+<br>
+
+---
+
+[Code for Section 13.1.1 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-1)-BLOCK-SCOPE/(SECTION-13-1-1)-WHERE-TO-DEFINE-VARIABLES)
+
+---
+
+Another interesting fact about block scope is that you can define variables **anywhere** inside it. They will inherit the scope of that block, but with a mandatory condition: they cannot be used *before* their definition line.
+
+#### 🛠️ Practical Example:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i = 0;
+    printf("%d\n", i);     // OK: Prints "0"
+
+    // printf("%d\n", j);  // ILLEGAL: Cannot use 'j' before defining it!
+
+    int j = 5;
+    printf("%d %d\n", i, j);   // OK: Prints "0 5"
+}
+```
+
+#### ⏳ Historical Context: Old C vs. C99:
+If you come across legacy C code or read books based on the original ANSI C standard, you will notice that all variables were mandatory declared at the **top of the block** (right after the opening brace `{`).
+
+Starting with the **C99** standard, this restriction was lifted. Now you can declare variables on demand, exactly at the moment and place where they will be used for the first time, which brings C's readability closer to more modern languages.
+
+> 💡 **Study Insight:**
+> This flexibility introduced by C99 drastically improves code maintainability. Declaring variables "on demand" prevents the top of a function from becoming polluted with variables that will only be used dozens of lines below.
+
+</details>
+
+---
+
 
 
 ---

@@ -5444,6 +5444,46 @@ int main(void) {
 
 ---
 
+<details>
+ <summary><b>📍 Onde Definir Variáveis (Seção 13.1.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 13.1.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-1)-ESCOPO-DE-BLOCO/(SECAO-13-1-1)-ONDE-DEFINIR-VARIAVEIS)
+
+---
+
+Outro fato interessante sobre o escopo de bloco é que você pode definir variáveis em **qualquer lugar** dentro dele. Elas herdarão o escopo daquele bloco, mas com uma condição obrigatória: elas não podem ser utilizadas *antes* de sua linha de definição.
+
+#### 🛠️ Exemplo Prático:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i = 0;
+    printf("%d\n", i);     // OK: Imprime "0"
+
+    // printf("%d\n", j);  // ILEGAL: Não dá para usar 'j' antes de defini-lo!
+
+    int j = 5;
+    printf("%d %d\n", i, j);   // OK: Imprime "0 5"
+}
+```
+
+#### ⏳ Contexto Histórico: O C Antigo vs. C99:
+Se você encontrar algum código C legado ou ler livros baseados no padrão ANSI C original, vai notar que todas as variáveis eram declaradas obrigatoriamente **no topo do bloco** (logo após a abertura da chave `{`).
+
+A partir do padrão **C99**, essa restrição foi derrubada. Agora você pode declarar variáveis sob demanda, exatamente no momento e local onde serão usadas pela primeira vez, o que aproxima a legibilidade do C de linguagens mais modernas.
+
+> 💡 **Insight de Estudo:**
+> Essa flexibilidade introduzida pelo C99 melhora drasticamente a manutenção do código. Declarar variáveis "sob demanda" evita que o topo de uma função fique poluído com variáveis que só serão utilizadas dezenas de linhas abaixo.
+
+</details>
+
+---
+
 
 
 ---

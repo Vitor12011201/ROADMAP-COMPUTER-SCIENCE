@@ -1,12 +1,5 @@
-/*
-Objetivo:
-Demonstrar na prática os conceitos de:
-- Escopo local
-- Escopo global
-- Variáveis static
-- Tempo de vida das variáveis
-
-O programa:
+/* Objetivo: Demonstrar na prática os conceitos de Escopo local, Escopo global, Variáveis static, Tempo de vida das variáveis
+Crie um programa que:
 1. Possui uma variável global.
 2. Cria uma função com variável local.
 3. Usa uma variável static para manter valor entre chamadas.
@@ -15,15 +8,12 @@ O programa:
 
 #include <stdio.h>
 
-/* Variável global */
 int contadorGlobal = 0;
 
 void incrementar(void)
 {
-    /* Variável local */
     int contadorLocal = 0;
 
-    /* Variável static */
     static int contadorStatic = 0;
 
     contadorGlobal++;
