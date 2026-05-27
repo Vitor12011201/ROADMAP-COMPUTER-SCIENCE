@@ -5468,10 +5468,55 @@ Starting with the **C99** standard, this restriction was lifted. Now you can dec
 
 ---
 
+<details>
+ <summary><b>🙈 Variable Shadowing (Section 13.1.2)</b></summary>
+
+---
+
+[Code for Section 13.1.2 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-1)-BLOCK-SCOPE/(SECTION-13-1-2)-VARIABLE-SHADOWING)
+
+---
+
+If you declare a variable with the same name as a variable from an outer scope, the **inner scope variable takes precedence** while the program is executing inside that block. In other words, the inner variable "hides" (or shadows) the outer variable for its entire lifetime.
+
+This concept is also widely known in programming as *Variable Shadowing*.
+
+#### 🧪 Practical Example:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i = 10; // Outer scope 'i'
+
+    {
+        // An isolated block starts here
+        int i = 20; // Inner scope 'i' (shadows the outer 'i')
+        
+        printf("%d\n", i);  // Prints the inner 'i': 20
+    } // The inner 'i' is destroyed here
+
+    printf("%d\n", i);  // Prints the outer 'i': 10 (it becomes visible again)
+}
+```
+
+#### 🧱 Independent Blocks:
+You may have noticed that in the example above, a block of curly braces `{}` was opened directly in the code, not attached to an `if`, `for`, `while`, or function signature.
+
+This is **perfectly legal in C**. Although it is rare to see in everyday code, some developers use independent blocks to temporarily group local variables needed for a quick, isolated calculation. This ensures that the memory for those variables is released from the stack immediately after the closing brace, optimizing resource usage.
+
+> 💡 **Study Insight:**
+> Variable shadowing is a logical compiler behavior, but it requires extreme care in practice. Hiding an outer variable with the same name can cause confusion when reading the code and mask hard-to-track bugs (such as modifying the wrong variable thinking it was the other one).
+
+</details>
+
+</details>
+
+---
+
 
 
 ---
 
 </details>
 
-</details>

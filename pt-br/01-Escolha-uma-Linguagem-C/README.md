@@ -5484,10 +5484,58 @@ A partir do padrão **C99**, essa restrição foi derrubada. Agora você pode de
 
 ---
 
-
+<details>
+ <summary><b>🙈 Ocultação de Variáveis (Seção 13.1.2)</b></summary>
 
 ---
 
+[Codigos da Seção 13.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-1)-ESCOPO-DE-BLOCO/(SECAO-13-1-2)-OCULTACAO-DE-VARIAVEIS)
+
+---
+
+Se você declarar uma variável com o mesmo nome de uma variável em um escopo externo, a variável do **escopo interno terá precedência** enquanto o programa estiver executando dentro daquele bloco. Em outras palavras, a variável interna "esconde" (ou faz sombra sobre) a variável externa durante todo o seu tempo de vida.
+
+Este conceito também é amplamente conhecido na programação como *Variable Shadowing*.
+
+
+
+#### 🧪 Exemplo Prático:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int i = 10; // 'i' do escopo externo
+
+    {
+        // Um bloco isolado começa aqui
+        int i = 20; // 'i' do escopo interno (oculta o 'i' externo)
+        
+        printf("%d\n", i);  // Imprime o 'i' interno: 20
+    } // O 'i' interno é destruído aqui
+
+    printf("%d\n", i);  // Imprime o 'i' externo: 10 (ele volta a ficar visível)
+}
+```
+
+#### 🧱 Blocos Independentes:
+
+Você deve ter reparado que no exemplo acima foi aberto um bloco de chaves `{}` diretamente no código, sem estar atrelado a um `if`, `for`, `while` ou assinatura de função.
+
+Isso é **perfeitamente legal em C**. Embora seja raro de se ver no dia a dia, alguns desenvolvedores utilizam blocos independentes para agrupar temporariamente variáveis locais necessárias para um cálculo rápido e isolado. Isso garante que a memória dessas variáveis seja liberada da Stack imediatamente após o fechamento da chave, otimizando o uso dos recursos.
+
+
+> 💡 **Insight de Estudo:**
+> A ocultação de variáveis é um comportamento lógico do compilador, mas que exige extremo cuidado na prática. Esconder uma variável externa de mesmo nome pode gerar confusão na leitura do código e mascarar bugs difíceis de rastrear (como alterar a variável errada achando que era a outra).
+
 </details>
+
+</details>
+
+---
+
+
+
+---
 
 </details>
