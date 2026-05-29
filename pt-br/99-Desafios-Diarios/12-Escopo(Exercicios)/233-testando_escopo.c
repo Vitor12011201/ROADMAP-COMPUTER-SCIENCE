@@ -1,16 +1,15 @@
-/*
-Pergunta:
+/* Pergunta:
 Qual será a saída do programa?*/
 
-#include <stdio.h> m
+#include <stdio.h>
 
-int numero = 100; // variável global
+int numero = 100;
 
 void teste() {
-    int numero = 50; // variável local da função
+    int numero = 50;
 
     {
-        int numero = 10; // variável local do bloco
+        int numero = 10;
         printf("Dentro do bloco: %d\n", numero);
     }
 
