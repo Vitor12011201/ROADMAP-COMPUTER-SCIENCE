@@ -5514,6 +5514,53 @@ This is **perfectly legal in C**. Although it is rare to see in everyday code, s
 
 ---
 
+<details>
+ <summary><b>🌍 File Scope - Global Variables (13.2)</b></summary>
+<br>
+
+---
+
+[Code for Section 13.2 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-2)-FILE-SCOPE)
+
+---
+
+If you define a variable outside any block or function, it gets **file scope**. This means it becomes visible and shared by all functions in that file that come *after* its declaration.
+
+This is the direct equivalent to what most programming languages call **global variables**.
+
+#### 🛠️ Sharing Example
+
+```c
+#include <stdio.h>
+
+int shared = 10;    // File scope! Visible to everything below this line.
+
+void func1(void) {
+    shared += 100;  // Modifies the global variable (now shared = 110)
+}
+
+void func2(void) {
+    printf("%d\n", shared);  // Accesses the same variable and prints "110"
+}
+
+int main(void) {
+    func1();
+    func2();
+}
+```
+
+#### ⚠️ The Top-Down Reading Rule:
+The C compiler processes your code strictly from top to bottom. If the variable `shared` were declared at the end of the file (after `main`, `func1`, or `func2`), the **code would not compile**. The declaration must always exist in the code before its first use.
+
+- Note: If there is a local variable named `shared` inside one of the functions, the "Variable Shadowing" rule from the previous topic comes into play, and the local one will temporarily hide the global.
+
+> 💡 **Study Insight:**
+> In structured programming, excessive use of global variables is considered a bad practice because it makes bug tracking and data flow very difficult to control (any function can change the system state without warning). However, exploring low-level environments and embedded systems (such as ARM-based firmwares), I've noticed that sometimes they are necessary.
+
+</details>
+
+---
+
 
 
 ---

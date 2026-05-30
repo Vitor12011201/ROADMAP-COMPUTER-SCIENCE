@@ -5486,6 +5486,7 @@ A partir do padrão **C99**, essa restrição foi derrubada. Agora você pode de
 
 <details>
  <summary><b>🙈 Ocultação de Variáveis (Seção 13.1.2)</b></summary>
+<br>
 
 ---
 
@@ -5529,6 +5530,53 @@ Isso é **perfeitamente legal em C**. Embora seja raro de se ver no dia a dia, a
 > A ocultação de variáveis é um comportamento lógico do compilador, mas que exige extremo cuidado na prática. Esconder uma variável externa de mesmo nome pode gerar confusão na leitura do código e mascarar bugs difíceis de rastrear (como alterar a variável errada achando que era a outra).
 
 </details>
+
+</details>
+
+---
+
+<details>
+ <summary><b>🌍 Escopo de Arquivo - Variaveis Globais(13.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 13.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-2)-ESCOPO-DE-ARQUIVO)
+
+---
+
+Se você definir uma variável fora de qualquer bloco ou função, ela ganha o **escopo de arquivo**. Isso significa que ela se torna visível e compartilhada por todas as funções daquele arquivo que vierem *abaixo* da sua declaração.
+
+Isso é o equivalente direto ao que a maioria das linguagens de programação chama de **variáveis globais**.
+
+#### 🛠️ Exemplo de Compartilhamento
+
+```c
+#include <stdio.h>
+
+int shared = 10;    // Escopo de arquivo! Visível para tudo abaixo desta linha.
+
+void func1(void) {
+    shared += 100;  // Modifica a variável global (agora shared vale 110)
+}
+
+void func2(void) {
+    printf("%d\n", shared);  // Acessa a mesma variável e imprime "110"
+}
+
+int main(void) {
+    func1();
+    func2();
+}
+```
+
+#### ⚠️ A Regra da **Leitura Top-Down**:
+O compilador C processa o seu código rigorosamente de cima para baixo. Se a variável `shared` fosse declarada no final do arquivo (depois de `main`, `func1` ou `func2`), o **código não compilaria**. A declaração sempre deve existir no código antes do seu primeiro uso.
+
+- Nota: Se houver uma variável local com o nome `shared` dentro de uma das funções, a regra de "Ocultação de Variáveis" do tópico anterior entra em ação, e a local esconderá a global temporariamente).
+
+> 💡 **Insight de Estudo:**
+> Na programação estruturada, o uso excessivo de variáveis globais é considerado uma má prática, pois torna o rastreamento de bugs e o fluxo de dados muito difíceis de controlar (qualquer função pode alterar o estado do sistema sem aviso). No entanto, explorando ambientes de baixo nível e sistemas embarcados (como os firmwares baseados em ARM), percebi que às vezes elas são necessárias.
 
 </details>
 
