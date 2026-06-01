@@ -5582,6 +5582,57 @@ O compilador C processa o seu código rigorosamente de cima para baixo. Se a var
 
 ---
 
+<details>
+ <summary><b>🔁 Escopo de Loops for (Seção 13.3)</b></summary>
+
+---
+
+[Codigos da Seção 13.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_013/(SECAO-13-3)-ESCOPO-DE-LOOPS-FOR)
+
+---
+
+A especificação do C11 não dá um nome oficial e específico para este escopo, mas ele se refere a uma situação muito comum que já utilizamos bastante: quando declaramos uma variável diretamente dentro da primeira cláusula (a inicialização) de um loop `for`.
+
+#### 📜 A Regra de Visibilidade do Loop:
+
+A variável declarada na inicialização do `for` nasce no exato momento em que o loop começa e o seu tempo de vida dura estritamente até que o loop termine. Ela não existe antes e deixa de existir imediatamente depois.
+
+```c
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i); // OK: 'i' está no escopo do loop
+}
+
+// printf("%d\n", i);  // ILEGAL: 'i' está fora de escopo e não existe mais!
+```
+
+Se o corpo do loop for delimitado por um bloco de chaves `{ }`, as variáveis definidas na inicialização do `for` continuam visíveis e acessíveis dentro desse escopo interno... a menos que a regra de ocultação entre em ação
+
+---
+
+#### 🙈 Ocultação Extrema no Corpo do Loop
+Seguindo a lógica de **Variable Shadowing** que estudamos na seção anterior, é tecnicamente possível declarar outra variável com o mesmo nome dentro do bloco interno do loop. Este exemplo abaixo, por mais confuso que pareça, é perfeitamente legal e imprime 999 cinco vezes:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    for (int i = 0; i < 5; i++) {
+        int i = 999;  // Oculta completamente o 'i' que controla o loop!
+        printf("%d\n", i); // Imprime 999
+    }
+}
+```
+
+Mesmo que o `i` interno seja modificado ou fixado em `999`, o `i` da inicialização do loop continua controlando o incremento (`i++`) e o teste de condição (`i < 5`) em segundo plano, garantindo que o loop rode exatamente 5 vezes.
+
+
+>💡 **Insight de Estudo:**
+> Poder declarar variáveis como `int i = 0` dentro do próprio `for` foi uma das grandes evoluções do C moderno (padrão C99 em diante). Antigamente, éramos obrigados a declarar o `int i` no topo da função, deixando a variável viva mesmo depois do loop terminar. Limitar o escopo do índice ao loop é uma excelente prática de código limpo: se a variável só serve para contar as iterações daquele loop, ela deve morrer junto com ele, mantendo a Stack limpa e livre de efeitos colaterais.
+
+</details>
+
+---
+
 
 
 ---

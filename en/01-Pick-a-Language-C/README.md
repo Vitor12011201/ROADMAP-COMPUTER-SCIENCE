@@ -5561,6 +5561,57 @@ The C compiler processes your code strictly from top to bottom. If the variable 
 
 ---
 
+<details>
+ <summary><b>🔁 Scope of for Loops (Section 13.3)</b></summary>
+
+---
+
+[Code for Section 13.3 can be found here](./CODE_BY_DAY/DAY_013/(SECTION-13-3)-SCOPE-OF-FOR-LOOPS)
+
+---
+
+The C11 specification does not give an official specific name to this scope, but it refers to a very common situation we have already used a lot: when we declare a variable directly inside the first clause (the initialization) of a `for` loop.
+
+#### 📜 The Loop Visibility Rule:
+
+The variable declared in the `for` initialization is born at the exact moment the loop starts and its lifetime lasts strictly until the loop ends. It does not exist before and ceases to exist immediately after.
+
+```c
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i); // OK: 'i' is within the loop's scope
+}
+
+// printf("%d\n", i);  // ILLEGAL: 'i' is out of scope and no longer exists!
+```
+
+If the loop body is delimited by a block of curly braces `{ }`, variables defined in the `for` initialization remain visible and accessible inside that inner scope... unless the shadowing rule comes into play.
+
+---
+
+#### 🙈 Extreme Shadowing Inside the Loop Body
+Following the **Variable Shadowing** logic we studied in the previous section, it is technically possible to declare another variable with the same name inside the loop's inner block. This example, as confusing as it may seem, is perfectly legal and prints 999 five times:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    for (int i = 0; i < 5; i++) {
+        int i = 999;  // Completely shadows the 'i' that controls the loop!
+        printf("%d\n", i); // Prints 999
+    }
+}
+```
+
+Even if the inner `i` is modified or fixed to `999`, the `i` from the loop initialization continues to control the increment (`i++`) and the condition test (`i < 5`) in the background, ensuring the loop runs exactly 5 times.
+
+
+>💡 **Study Insight:**
+> Being able to declare variables like `int i = 0` inside the `for` loop itself was one of the great evolutions of modern C (C99 standard onwards). In the past, we were forced to declare `int i` at the top of the function, leaving the variable alive even after the loop finished. Limiting the scope of the index to the loop is an excellent clean code practice: if the variable is only used to count the iterations of that loop, it should die along with it, keeping the stack clean and free of side effects.
+
+</details>
+
+---
+
 
 
 ---
