@@ -5612,7 +5612,21 @@ Even if the inner `i` is modified or fixed to `999`, the `i` from the loop initi
 
 ---
 
+<details>
+ <summary><b>🏷️ A Note on Function Scope (Section 13.4)</b></summary>
 
+The C specification formally mentions **Function Scope**, but it is used *exclusively* for **labels** (branch targets), a feature we have not yet discussed in the guide.
+
+Contrary to what the name might suggest to those coming from other modern languages, normal variables declared inside a function belong to *Block Scope* (seen in section 13.1) and not to function scope.
+
+More details about *labels* and how they work will be left for another chapter!
+
+---
+
+> 💡 Study Insight:
+> To give a little preview: in C, *labels* are identifiers used together with the `goto` statement to jump from one line of code to another. The specification defines that a label is visible **anywhere** inside that specific function, completely ignoring the barriers of curly braces `{}` (inner blocks). That is why it has function scope. Since the use of `goto` is strongly discouraged in modern programming for generating so-called "spaghetti code", this scope ends up being a technical curiosity that we rarely need to manipulate in everyday practice.
+
+</details>
 
 ---
 

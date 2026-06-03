@@ -5584,6 +5584,7 @@ O compilador C processa o seu código rigorosamente de cima para baixo. Se a var
 
 <details>
  <summary><b>🔁 Escopo de Loops for (Seção 13.3)</b></summary>
+<br>
 
 ---
 
@@ -5633,7 +5634,21 @@ Mesmo que o `i` interno seja modificado ou fixado em `999`, o `i` da inicializa�
 
 ---
 
+<details>
+ <summary><b>🏷️ Uma Nota sobre o Escopo de Função (Seção 13.4)</b></summary>
 
+A especificação do C menciona formalmente o **Escopo de Função**, mas ele é utilizado *exclusivamente* para **labels** (rótulos de desvio), um recurso que ainda não discutimos no guia.
+
+Ao contrário do que o nome pode sugerir para quem vem de outras linguagens modernas, as variáveis normais declaradas dentro de uma função pertencem ao *Escopo de Bloco* (visto na seção 13.1) e não ao escopo de função.
+
+Mais detalhes sobre os *labels* e como eles funcionam ficarão para outro capitulo!
+
+---
+
+> 💡 Insight de Estudo:
+> Para adiantar um pouco do mistério: em C, os *labels* são identificadores usados junto com o comando `goto` para saltar de uma linha de código para outra. A especificação define que um rótulo é visível em **qualquer lugar** dentro daquela função específica, ignorando completamente as barreiras das chaves `{}` (blocos internos). Por isso, ele tem escopo de função. Como o uso de `goto` é fortemente desencorajado na programação moderna por gerar o chamado "código espaguete", esse escopo acaba sendo uma curiosidade técnica que raramente precisamos manipular no dia a dia.
+
+</details>
 
 ---
 
