@@ -5628,6 +5628,43 @@ More details about *labels* and how they work will be left for another chapter!
 
 </details>
 
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Day 14: Types Part II: Many More Types!</b></summary>
+
+---
+
+[Day 14 code can be found here](./CODE_BY_DAY/DAY_014)
+
+---
+
+<details>
+ <summary><b>🗂️ Introduction - Types Part II (Section 14.0)</b></summary>
+<br>
+
+---
+
+[Section 14.0 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-0)-INTRODUCTION-TYPES-PART-II)
+
+---
+
+So far, we have worked extensively with C's fundamental data types, such as `char`, `int`, and `float`. They cover most everyday needs, but C offers a much broader arsenal in its type system to handle specific scenarios of optimization, precision, and memory organization.
+
+In this chapter, we will take the next step to explore size modifiers, sign management (`signed`/`unsigned`), custom types, and other tools that elevate the programmer's control over the hardware.
+
+> 💡 **Study Insight:**
+> Understanding C's type system in depth is the key to writing high-performance code. In embedded systems, drivers, or network buffer manipulation, every bit counts. Knowing exactly when to use a specific size type or control whether it accepts negative values avoids memory waste and ensures that data is processed exactly as the processor architecture expects.
+
+</details>
+
+---
+
+
+
 ---
 
 </details>

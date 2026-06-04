@@ -5650,6 +5650,43 @@ Mais detalhes sobre os *labels* e como eles funcionam ficarão para outro capitu
 
 </details>
 
+</details>
+
+---
+
+<details>
+  <summary><b>🔹 Dia 14: Tipos Parte II: Muito Mais Tipos!</b></summary>
+
+---
+
+[Codigos do dia 14 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014)
+
+---
+
+<details>
+ <summary><b>🗂️ Introdução - Tipos Parte II (Seção 14.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-0)-INTRODUCAO-TIPOS-PARTE-II)
+
+---
+
+Até agora, trabalhamos bastante com os tipos de dados fundamentais do C, como `char`, `int` e `float`. Eles cobrem a maior parte das necessidades cotidianas, mas o C oferece um arsenal muito mais amplo no seu sistema de tipagem para lidar com cenários específicos de otimização, precisão e organização de memória.
+
+Neste capítulo, daremos o próximo passo para explorar modificadores de tamanho, gerenciamento de sinal (`signed`/`unsigned`), tipos customizados e outras ferramentas que elevam o controle do programador sobre o hardware.
+
+
+> 💡 **Insight de Estudo:**
+> Entender a fundo o sistema de tipos do C é o diferencial para escrever código de alta performance. Em sistemas embarcados, drivers ou manipulação de buffers de rede, cada bit conta. Saber exatamente quando usar um tipo de tamanho específico ou controlar se ele aceita valores negativos evita desperdício de memória e garante que os dados sejam processados exatamente como a arquitetura do processador espera.
+
+</details>
+
+---
+
+
+
 ---
 
 </details>
