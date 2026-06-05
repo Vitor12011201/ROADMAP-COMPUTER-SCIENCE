@@ -83,6 +83,12 @@ Estudos e exercícios sobre escopo em C, entendendo como variáveis, funções e
 * **Competências:** Compreensão de escopo local e global, diferença entre variáveis automáticas e `static`, utilização correta de variáveis dentro de blocos `{}`, entendimento sobre tempo de vida (*lifetime*) e visibilidade (*scope*) de dados, além de boas práticas para evitar conflitos e efeitos colaterais inesperados.
 * **Destaque:** Entendimento profundo de como o compilador organiza variáveis na memória, como funções isolam dados internamente e como controlar o acesso a informações dentro do programa, uma base essencial para escrever códigos mais seguros, organizados e previsíveis.
 
+### [13-Tipos-de-Variáveis-Parte-2](./13-Tipos_Parte_2(Exercicios))
+**O que encontrará aqui:**
+Estudos e exercícios sobre tipos inteiros avançados da linguagem C, explorando modificadores de sinal (`signed` e `unsigned`) e tipos capazes de armazenar quantidades maiores de dados, como `long long` e `unsigned long long`.
+* **Competências:** Compreensão das diferenças entre números com sinal e sem sinal, utilização correta dos tipos `signed char`, `unsigned char`, `unsigned short`, `unsigned int`, `unsigned long`, `long long` e `unsigned long long`, análise dos limites de armazenamento de cada tipo, escolha adequada de variáveis para diferentes cenários e otimização do uso da memória.
+* **Destaque:** Entendimento aprofundado de como os números são representados internamente pelo computador, como o tamanho e o sinal de uma variável afetam a faixa de valores que ela pode armazenar e como essas características impactam diretamente a eficiência, segurança e previsibilidade de programas em C.
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas
