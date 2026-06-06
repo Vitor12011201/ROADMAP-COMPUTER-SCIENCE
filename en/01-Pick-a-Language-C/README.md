@@ -5663,6 +5663,60 @@ In this chapter, we will take the next step to explore size modifiers, sign mana
 
 ---
 
+<details>
+ <summary><b>🔢 Signed and Unsigned Integers (Section 14.1)</b></summary>
+<br>
+
+---
+
+[Section 14.1 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-1)-SIGNED-AND-UNSIGNED-INTEGERS)
+
+---
+
+So far, we have used `int` as a *signed* type, which means it can store both negative and positive values. But C also has *unsigned* integer types, which are specifically designed to store only positive numbers (and zero).
+
+These types are defined using the `unsigned` keyword before the type:
+
+```c
+int a;           // signed
+signed int a;    // signed (explicitly)
+signed a;        // signed (a rare short form for "int")
+
+unsigned int b;  // unsigned
+unsigned c;      // unsigned (standard short form for "unsigned int")
+```
+
+#### ❓ Why give up negative numbers?
+- Why would you voluntarily decide that a variable should only accept positive numbers?
+  The answer is simple: you gain the ability to **store much larger positive numbers in an `unsigned` variable** than in a `signed` one.
+
+---
+
+#### 🧠 How does this work under the hood?
+Integers are internally represented by a **fixed number of bits**.
+Each permutation of bits (zeros and ones) represents a unique number. The compiler needs to decide how to divide these available combinations:
+
+- **Signed:** We use half of the bit combinations to represent **negative numbers and the other half for positive numbers**. The most significant bit (the leftmost) is usually reserved to indicate whether the number is positive (0) or negative (1) using the **Two's Complement** system.
+
+- **Unsigned:** We completely ignore negative numbers. All possible bit combinations are used to **represent positive numbers**.
+
+---
+
+#### 📊 Limit Comparison (Example on 64-bit)
+
+When using the **Two's Complement** representation system, signed types reserve one bit to indicate whether the number is positive or negative. Unsigned types, on the other hand, use all bits to represent positive values.
+
+| Type | Minimum Value | Maximum Value |
+|--------|----------------------------|-----------------------------|
+| `int` | -9,223,372,036,854,775,808 | 9,223,372,036,854,775,807 |
+| `unsigned int` | 0 | 18,446,744,073,709,551,615 |
+
+- Notice that the maximum positive value of `unsigned int` is practically **double the positive limit** of a regular `int`.
+
+</details>
+
+---
+
 
 
 ---

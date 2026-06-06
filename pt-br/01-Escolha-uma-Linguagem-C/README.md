@@ -5685,6 +5685,60 @@ Neste capítulo, daremos o próximo passo para explorar modificadores de tamanho
 
 ---
 
+<details>
+ <summary><b>🔢 Inteiros com Sinal e Sem Sinal - Signed e Unsigned (Seção 14.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-1)-INTEIROS-COM-SINAL-E-SEM-SINAL)
+
+---
+
+Até agora, usamos o `int` como um tipo *signed* (com sinal), o que significa que ele pode armazenar valores tanto negativos quanto positivos. Mas o C também possui tipos inteiros *unsigned* (sem sinal), que são projetados especificamente para armazenar apenas números positivos (e o zero).
+
+Esses tipos são definidos utilizando a palavra-chave `unsigned` antes do tipo:
+
+```c
+int a;           // signed (com sinal)
+signed int a;    // signed (explicitamente com sinal)
+signed a;        // signed (uma forma curta rara para "int")
+
+unsigned int b;  // unsigned (sem sinal)
+unsigned c;      // unsigned (forma curta padrão para "unsigned int")
+```
+
+#### ❓ Por que abrir mão dos números negativos?
+- Por que você decidiria voluntariamente que uma variável só deve aceitar números positivos?
+A resposta é simples: você ganha a capacidade de **armazenar números positivos muito maiores em uma variável** `unsigned` do que em uma `signed`.
+
+---
+
+#### 🧠 Como isso funciona sob o capô?
+Os números inteiros são representados internamente por uma **quantidade fixa de bits**.
+Cada permutação de bits (zeros e uns) representa um número único. O compilador precisa decidir como dividir essas combinações disponíveis:
+
+- **Com sinal (`Signed`):** Usamos metade das combinações de bits para representar **números negativos e a outra metade para os números positivos**. O bit mais significativo (o primeiro da esquerda) geralmente é guardado apenas para indicar se o número é positivo (0) ou negativo (1) usando o sistema de **Complemento de Dois**.
+
+- **Sem sinal (`Unsigned`):** Ignoramos completamente os números negativos. Todas as combinações de bits possíveis são usadas para **representar números positivos**.
+
+---
+
+#### 📊 Comparativo de Limites (Exemplo em 64 bits)
+
+Ao utilizar o sistema de representação **Complemento de Dois (Two's Complement)**, os tipos com sinal (*signed*) reservam um bit para indicar se o número é positivo ou negativo. Já os tipos sem sinal (*unsigned*) utilizam todos os bits para representar valores positivos.
+
+| Tipo | Valor Mínimo | Valor Máximo |
+|--------|----------------------------|-----------------------------|
+| `int` | -9.223.372.036.854.775.808 | 9.223.372.036.854.775.807 |
+| `unsigned int` | 0 | 18.446.744.073.709.551.615 |
+
+- Repare que o maior valor positivo do `unsigned int` é praticamente o **dobro do limite positivo** do `int` comum.
+
+</details>
+
+---
+
 
 
 ---
