@@ -5739,6 +5739,93 @@ Ao utilizar o sistema de representação **Complemento de Dois (Two's Complement
 
 ---
 
+<details>
+<summary><b>🔤 Tipos de Caracteres (Seção 14.2) </b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-2)-TIPOS-DE-CARACTERES)
+
+---
+
+Você provavelmente já está acostumado a usar o `char` para armazenar um único caractere:
+
+```c
+char c = 'B';
+printf("%c\n", c);  // Imprime "B"
+```
+
+Mas aqui está o grande segredo: sob o capô, ele é rigorosamente um número inteiro. Se mudarmos o especificador de formato de `%c` para `%d`, o C nos revela a verdade:
+
+```c
+char c = 'B';
+printf("%d\n", c);  // Imprime 66 (!!)
+```
+
+- O `char` é apenas um inteiro bem pequeno que ocupa exatamente **1 byte** de espaço na memória (`sizeof(char) == 1`).
+
+---
+
+#### 💾 O que é um "Byte" para o C?
+A especificação do C garante que um `char` tem 1 byte, mas o C11 (§3.6¶3) deixa um aviso curioso: "Um byte é composto por uma sequência contígua de bits, cujo número é definido pela implementação".
+Embora hoje em dia um byte ser igual a 8 bits seja uma verdade universal, o C manteve essa definição aberta porque, antigamente, algumas máquinas tinham arquiteturas exóticas onde um byte podia ter 9, 12 ou mais bits. No entanto, em praticamente qualquer hardware moderno que você venha a programar, **1 byte = 8 bits**.
+
+---
+
+#### 🌗 O Dilema do Sinal: Signed vs Unsigned char
+Antes de definirmos os limites numéricos de um `char`, há um detalhe importante: o padrão da linguagem não define se um `char` simples tem sinal ou não. Isso fica a critério do compilador. Se o seu código depender estritamente de sinais matemáticas, você deve especificar:
+
+```c
+char a;           // Pode ter sinal ou não (depende do compilador)
+signed char b;    // Garantidamente COM sinal
+unsigned char c;  // Garantidamente SEM sinal
+```
+
+Assumindo a arquitetura padrão de 8 bits e a representação por Complemento de Dois, estes são os limites reais:
+
+| Tipo          | Valor Mínimo | Valor Máximo |
+|---------------|-------------:|-------------:|
+| signed char   | -128         | 127          |
+| unsigned char | 0            | 255          |
+
+
+---
+
+#### 🧮 Fazendo Matemática com Letras:
+Como um `char` é apenas um número, você pode realizar operações aritméticas com ele normalmente (desde que o resultado permaneça dentro dos limites do tipo):
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char a = 10, b = 20;
+    printf("%d\n", a + b);  // Imprime 30!
+```
+
+- E como os caracteres literais entre aspas simples (como `'B'`) ganham um valor numérico?
+**Resposta:** O compilador converte automaticamente a letra para o seu respectivo valor mapeado na tabela de caracteres do sistema executável.
+
+Como quase todos os sistemas modernos utilizam o **ASCII** (ou o **Unicode**, que o engloba), as letras básicas, números de 0 a 9 e pontuações sempre retornarão seus valores ASCII padronizados.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char a = 10;
+    char b = 'B';  // O valor numérico de 'B' no ASCII é 66
+    
+    printf("%d\n", a + b);  // Imprime 76! (10 + 66)
+}
+```
+
+> 💡 **Insight de Estudo:**
+Esse entendimento é crucial para quem trabalha perto do hardware. Em C, quando queremos manipular dados binários puros vindos de um arquivo, de um pacote de rede ou de um driver de Bluetooth, quase nunca usamos ponteiros genéricos para números; nós usamos ponteiros de `unsigned char` (ou `uint8_t`).
+
+</details>
+
+---
+
 
 
 ---
