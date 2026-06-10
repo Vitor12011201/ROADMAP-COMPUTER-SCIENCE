@@ -5804,6 +5804,107 @@ char b = 'B';  // The numeric value of 'B' in ASCII is 66
 
 ---
 
+<details>
+<summary><b> 📏 More Integer Types: short, long, long long (Section 14.3)</b></summary>
+<br>
+
+---
+
+[Section 14.3 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-3)-MORE-INTEGER-TYPES)
+
+---
+
+So far, we have focused on `char` and `int`, along with their `unsigned` variations. We have also seen that `char` is just a smaller integer. However, C offers a wider range of integer types, divided by their bit storage capacities.
+
+The additional types are `short int`, `long int`, and `long long int`. In practice, C developers often omit the `int` keyword when declaring them, and the compiler accepts it perfectly:
+
+```c
+// These two lines are identical:
+long long int x;
+long long x;
+
+// And so are these:
+short int y;
+short y;
+```
+
+- To ensure your code's portability, **never try to guess or hardcode the maximum limits of these types**. The `<limits.h>` library defines macros with the exact limits of the architecture you are compiling for.
+
+---
+
+#### 📋 1. Minimum Limits Guaranteed by the Specification
+The table below shows the minimum size in bytes and value ranges that the C specification portably guarantees on **any system**. Your machine likely has larger limits, but these are the universal minimums:
+
+| Type                 | Minimum Bytes | Minimum Value                | Maximum Value                |
+|----------------------|---------------|-----------------------------|-----------------------------|
+| `char`               | 1             | -128 or 0                   | 127 or 255                  |
+| `signed char`        | 1             | -128                        | 127                         |
+| `short`              | 2             | -32,768                     | 32,767                      |
+| `int`                | 2             | -32,768                     | 32,767                      |
+| `long`               | 4             | -2,147,483,648              | 2,147,483,647               |
+| `long long`          | 8             | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807   |
+| `unsigned char`      | 1             | 0                           | 255                         |
+| `unsigned short`     | 2             | 0                           | 65,535                      |
+| `unsigned int`       | 2             | 0                           | 65,535                      |
+| `unsigned long`      | 4             | 0                           | 4,294,967,295               |
+| `unsigned long long` | 8             | 0                           | 18,446,744,073,709,551,615  |
+
+> **Note:** These are the minimum limits guaranteed by the C language specification. On modern (64‑bit) architectures, the actual sizes of some types may be larger.
+
+---
+
+#### 💻 2. Reality on a Modern System (64‑bit, Two's Complement)
+
+Modern operating systems and processors often considerably expand the minimum limits required by the C language specification. The table below presents the sizes and value ranges found on modern 64‑bit architectures.
+
+| Type                 | Actual Bytes | Minimum Value                | Maximum Value                |
+|----------------------|-------------|-----------------------------|-----------------------------|
+| `char`               | 1           | -128                        | 127                         |
+| `signed char`        | 1           | -128                        | 127                         |
+| `short`              | 2           | -32,768                     | 32,767                      |
+| `int`                | 4           | -2,147,483,648              | 2,147,483,647               |
+| `long`               | 8           | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807   |
+| `long long`          | 8           | -9,223,372,036,854,775,808  | 9,223,372,036,854,775,807   |
+| `unsigned char`      | 1           | 0                           | 255                         |
+| `unsigned short`     | 2           | 0                           | 65,535                      |
+| `unsigned int`       | 4           | 0                           | 4,294,967,295               |
+| `unsigned long`      | 8           | 0                           | 18,446,744,073,709,551,615  |
+| `unsigned long long` | 8           | 0                           | 18,446,744,073,709,551,615  |
+
+> **Note:** The values above are common on modern 64‑bit systems based on the LP64 model (such as most Linux distributions and macOS). On 64‑bit Windows systems (LLP64 model), the `long` type typically has 4 bytes instead of 8.
+
+---
+
+#### 3. 🛡️ Macro Mappings in `<limits.h>`
+
+To write truly portable code, use the constants defined by the standard `<limits.h>` library. These macros allow you to query integer type limits without depending on the architecture or compiler used.
+
+| Type                 | Minimum Macro | Maximum Macro |
+|----------------------|---------------|----------------|
+| `char`               | `CHAR_MIN`    | `CHAR_MAX`     |
+| `signed char`        | `SCHAR_MIN`   | `SCHAR_MAX`    |
+| `short`              | `SHRT_MIN`    | `SHRT_MAX`     |
+| `int`                | `INT_MIN`     | `INT_MAX`      |
+| `long`               | `LONG_MIN`    | `LONG_MAX`     |
+| `long long`          | `LLONG_MIN`   | `LLONG_MAX`    |
+| `unsigned char`      | `0`           | `UCHAR_MAX`    |
+| `unsigned short`     | `0`           | `USHRT_MAX`    |
+| `unsigned int`       | `0`           | `UINT_MAX`     |
+| `unsigned long`      | `0`           | `ULONG_MAX`    |
+| `unsigned long long` | `0`           | `ULLONG_MAX`   |
+
+- **Compiler trick:** Because `unsigned` variants are never negative, they don't need minimum macros (they are always `0`).
+
+- **Discovering char behavior:** If you need to programmatically find out whether your compiler treats plain `char` as `signed` or `unsigned`, just test: `if (CHAR_MAX == UCHAR_MAX)`. If true, it is treated as unsigned.
+
+> 💡 **Study Insight:**
+> Looking at these tables makes it clear why assuming fixed sizes for types causes serious failures when porting software between different hardware. An `int` might be **4 bytes** on your main computer, but drop to **2 bytes** if you compile the same code for a microcontroller or simpler embedded processor.
+> Making good use of `<limits.h>` and appropriate typing (such as choosing `short` when you know the number will never exceed 30,000) saves precious stack and heap space, ensuring stability and performance whether running on a robust server or a tiny embedded device.
+
+</details>
+
+---
+
 
 
 ---

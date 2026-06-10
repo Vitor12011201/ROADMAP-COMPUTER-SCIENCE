@@ -5826,6 +5826,108 @@ Esse entendimento é crucial para quem trabalha perto do hardware. Em C, quando 
 
 ---
 
+<details>
+<summary><b> 📏 Mais Tipos Inteiros: short, long, long long (Seção 14.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-3)-MAIS-TIPOS-INTEIROS)
+
+---
+
+Até agora, focamos em `char` e `int`, além de suas variações `unsigned`. Vimos também que o `char` é apenas um inteiro menor. No entanto, o C oferece uma gama maior de tipos inteiros, divididos por suas capacidades de armazenamento de bits.
+
+Os tipos adicionais são `short int`, `long int` e `long long int`. Na prática, os desenvolvedores C costumam omitir a palavra `int` ao declará-los, e o compilador aceita perfeitamente:
+
+```c
+// Estas duas linhas são idênticas:
+long long int x;
+long long x;
+
+// E estas também:
+short int y;
+short y;
+```
+
+- Para garantir a portabilidade do seu código, **nunca tente adivinhar ou fixar no código os limites máximos desses tipos**. A biblioteca `<limits.h>` define macros com os limites exatos da arquitetura para a qual você está compilando.
+
+---
+
+#### 📋 1. Limites Mínimos Garantidos pela Especificação
+A tabela abaixo mostra o tamanho mínimo em bytes e as faixas de valores que a especificação do C garante de forma portátil em **qualquer sistema**. A sua máquina provavelmente possui limites maiores, mas estes são os mínimos universais:
+
+| Tipo                 | Bytes Mínimos | Valor Mínimo                | Valor Máximo                |
+|----------------------|---------------|-----------------------------|-----------------------------|
+| `char`               | 1             | -128 ou 0                   | 127 ou 255                  |
+| `signed char`        | 1             | -128                        | 127                         |
+| `short`              | 2             | -32.768                     | 32.767                      |
+| `int`                | 2             | -32.768                     | 32.767                      |
+| `long`               | 4             | -2.147.483.648              | 2.147.483.647               |
+| `long long`          | 8             | -9.223.372.036.854.775.808  | 9.223.372.036.854.775.807   |
+| `unsigned char`      | 1             | 0                           | 255                         |
+| `unsigned short`     | 2             | 0                           | 65.535                      |
+| `unsigned int`       | 2             | 0                           | 65.535                      |
+| `unsigned long`      | 4             | 0                           | 4.294.967.295               |
+| `unsigned long long` | 8             | 0                           | 18.446.744.073.709.551.615  |
+
+> **Observação:** Esses são os limites mínimos garantidos pela especificação da linguagem C. Em arquiteturas modernas (64 bits), os tamanhos reais de alguns tipos podem ser maiores.
+
+---
+
+#### 💻 2. Realidade de um Sistema Moderno (64 bits, Complemento de Dois)
+
+Os sistemas operacionais e processadores modernos costumam expandir consideravelmente os limites mínimos exigidos pela especificação da linguagem C. A tabela abaixo apresenta os tamanhos e intervalos de valores encontrados em arquiteturas modernas de 64 bits.
+
+| Tipo                 | Bytes Reais | Valor Mínimo                | Valor Máximo                |
+|----------------------|-------------|-----------------------------|-----------------------------|
+| `char`               | 1           | -128                        | 127                         |
+| `signed char`        | 1           | -128                        | 127                         |
+| `short`              | 2           | -32.768                     | 32.767                      |
+| `int`                | 4           | -2.147.483.648              | 2.147.483.647               |
+| `long`               | 8           | -9.223.372.036.854.775.808  | 9.223.372.036.854.775.807   |
+| `long long`          | 8           | -9.223.372.036.854.775.808  | 9.223.372.036.854.775.807   |
+| `unsigned char`      | 1           | 0                           | 255                         |
+| `unsigned short`     | 2           | 0                           | 65.535                      |
+| `unsigned int`       | 4           | 0                           | 4.294.967.295               |
+| `unsigned long`      | 8           | 0                           | 18.446.744.073.709.551.615  |
+| `unsigned long long` | 8           | 0                           | 18.446.744.073.709.551.615  |
+
+> **Observação:** Os valores acima são comuns em sistemas modernos de 64 bits baseados no modelo LP64 (como a maioria das distribuições Linux e macOS). Em sistemas Windows 64 bits (modelo LLP64), o tipo `long` normalmente possui 4 bytes em vez de 8.
+
+---
+
+#### 3. 🛡️ Mapeamento de Macros em `<limits.h>`
+
+Para escrever códigos verdadeiramente portáveis, utilize as constantes definidas pela biblioteca padrão `<limits.h>`. Essas macros permitem consultar os limites dos tipos inteiros sem depender da arquitetura ou do compilador utilizado.
+
+| Tipo                 | Macro de Mínimo | Macro de Máximo |
+|----------------------|-----------------|-----------------|
+| `char`               | `CHAR_MIN`      | `CHAR_MAX`      |
+| `signed char`        | `SCHAR_MIN`     | `SCHAR_MAX`     |
+| `short`              | `SHRT_MIN`      | `SHRT_MAX`      |
+| `int`                | `INT_MIN`       | `INT_MAX`       |
+| `long`               | `LONG_MIN`      | `LONG_MAX`      |
+| `long long`          | `LLONG_MIN`     | `LLONG_MAX`     |
+| `unsigned char`      | `0`             | `UCHAR_MAX`     |
+| `unsigned short`     | `0`             | `USHRT_MAX`     |
+| `unsigned int`       | `0`             | `UINT_MAX`      |
+| `unsigned long`      | `0`             | `ULONG_MAX`     |
+| `unsigned long long` | `0`             | `ULLONG_MAX`    |
+
+- **Truque de Compilador:** Como as variantes `unsigned` nunca são negativas, elas não precisam de macros de mínimo (são sempre `0`).
+
+- **Descobrindo o comportamento do char:** Se você precisar descobrir programaticamente se o seu compilador trata o `char` padrão como `signed ou unsigned`, basta fazer o teste lógico: `if (CHAR_MAX == UCHAR_MAX)`. Se for verdadeiro, ele é tratado como sem sinal.
+
+
+> 💡 **Insight de Estudo:**
+> Olhar para essas tabelas deixa claro por que assumir tamanhos fixos de tipos gera falhas graves ao portar softwares entre diferentes hardwares. Um `int` pode ter **4 bytes** no seu computador principal, mas cair para **2 bytes** se você compilar o mesmo código para um microcontrolador ou processador embarcado mais simples.
+> Fazer bom uso do `<limits.h>` e das tipagens adequadas (como escolher `short` quando sabemos que o número nunca passará de 30.000) economiza espaço precioso na Stack e no Heap, garantindo estabilidade e performance seja rodando em um servidor robusto
+
+</details>
+
+---
+
 
 
 ---
