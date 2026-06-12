@@ -5928,8 +5928,90 @@ Para escrever códigos verdadeiramente portáveis, utilize as constantes definid
 
 ---
 
+<details>
+<summary><b>🛟 Mais Float (Seção 14.4.0 - 14.4.2)</b></summary>
+
+---
+
+[Codigos da Seções 14.4.0 - 14.4.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-4)-MAIS-FLOAT)
+
+---
+
+<details>
+<summary><b> 浮 Mais Floats: double e long double (Seção 14.4.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.4.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-4)-MAIS-FLOAT/(SECAO-14-4-0)-MAIS-FLOATS-DOUBLE-E-LONG-DOUBLE)
+
+---
+
+Se formos olhar friamente o que a especificação oficial do C (§5.2.4.2.2¶1-2) diz sobre números de ponto flutuante, encontramos este modelo matemático para definir qualquer número real ($x$):
+
+$$x = s \cdot b^e \sum_{k=1}^{p} f_k \cdot b^{-k}, \quad e_{min} \le e \le e_{max}$$
+
+| Parâmetro | Definição |
+| :--- | :--- |
+| $s$ | Sinal ($\pm 1$) |
+| $b$ | Base ou *radix* da representação do expoente (um inteiro $> 1$) |
+| $e$ | Expoente (um inteiro entre um $e_{min}$ e um $e_{max}$) |
+| $p$ | Precisão (o número de dígitos na base $b$ no significando) |
+| $f_k$ | Inteiros não-negativos menores que $b$ (os dígitos do significando) |
+
+Pronto, a teoria formal está entregue. **Agora vamos dar um passo atrás e ver como isso funciona na prática.**
+
+---
+
+### 🧠 A Anatomia de um Float (Padrão IEEE-754)
+
+Na esmagadora maioria das arquiteturas modernas, os números de ponto flutuante são codificados usando uma sequência específica de bits chamada **padrão IEEE-754**.
+
+Por baixo dos panos, o número é quebrado essencialmente em duas partes principais:
+1.  **Significando (Significand ou Mantissa):** É a parte numérica bruta, os dígitos significativos em si.
+2.  **Expoente (Exponent):** É a potência pela qual os dígitos serão multiplicados. Um expoente negativo move a vírgula para a esquerda (diminuindo o número), e um positivo move para a direita.
+
+Para entender de forma simples em base 10 (decimal), imagine fixar o significando em `12345` e apenas variar o expoente:
+
+* $12345 \times 10^{-3} = 12.345$
+* $12345 \times 10^{4} = 123450000$
+* $12345 \times 10^{0} = 12345$
+
+> 💻 **No Computador:** Como computadores operam em binário, a base ($b$) do expoente na sua máquina quase certamente será **2**, e não 10. Você pode checar isso verificando o valor da macro `FLT_RADIX` incluída na biblioteca `<float.h>`.
 
 
 ---
+
+### 🛡️ O Limite da Precisão e os Tipos Maiores
+
+Como temos uma quantidade finita de bits na memória, existe um número limitado de combinações de bits disponíveis. Isso significa que **nem todos os números reais podem ser representados com precisão perfeita**. Apenas uma quantidade específica de dígitos decimais significativos será armazenada com exatidão.
+
+Se você precisar de mais precisão para evitar erros de arredondamento, a solução é expandir o tamanho do tipo de dado. O C oferece três opções principais:
+
+| Tipo | Tamanho Comum (`sizeof`) | Proposta |
+| :--- | :---: | :--- |
+| `float` | 4 bytes | Precisão simples. |
+| `double` | 8 bytes | Precisão dupla (o padrão mais recomendado para cálculos reais). |
+| `long double` | 16 bytes* | Precisão estendida (não tem relação com o `long int`, exceto no nome). |
+
+- Nota: O tamanho do `long double` depende estritamente do sistema. Na máquina de 64 bits, ele ocupa 16 bytes para entregar o máximo de precisão que o hardware consegue extrair.
+
+Para nos ajudar a descobrir os limites exatos e quantos dígitos de precisão cada tipo consegue manter de forma confiável antes de começar a "chutar" valores, o C nos fornece uma série de macros na biblioteca `<float.h>`.
+
+---
+
+#### 💡 Insight de Estudo:
+Em computação gráfica, simulações de física e até no cálculo de taxas de quadros (FPS) ou latência de rede para soluções de streaming, a escolha entre `float` e `double` é um cabo de guerra entre performance e precisão.
+A GPU do seu computador ou os registradores processam múltiplos `float` de 4 bytes muito mais rápido de uma vez só (via instruções SIMD) do que fariam com `double`. Por isso, na indústria de jogos e streaming em tempo real, usa-se `float` para quase tudo, deixando o `double` (ou `long double`) estritamente para cenários onde erros acumulados de arredondamento seriam fatais, como cálculos astronômicos, criptografia ou sistemas financeiros.
+
+</details>
+
+---
+
+
+
+---
+
+</details>
 
 </details>

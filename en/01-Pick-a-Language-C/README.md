@@ -5905,9 +5905,90 @@ To write truly portable code, use the constants defined by the standard `<limits
 
 ---
 
+<details>
+<summary><b>🛟 More Float (Section 14.4.0 - 14.4.2)</b></summary>
+
+---
+
+[Code for Sections 14.4.0 - 14.4.2 can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-4)-MORE-FLOAT)
+
+---
+
+<details>
+<summary><b> 浮 More Floats: double and long double (Section 14.4.0)</b></summary>
+<br>
+
+---
+
+[Section 14.4.0 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-4)-MORE-FLOAT/(SECTION-14-4-0)-MORE-FLOATS-DOUBLE-AND-LONG-DOUBLE)
+
+---
+
+If we look coldly at what the official C specification (§5.2.4.2.2¶1-2) says about floating-point numbers, we find this mathematical model to define any real number ($x$):
+
+$$x = s \cdot b^e \sum_{k=1}^{p} f_k \cdot b^{-k}, \quad e_{min} \le e \le e_{max}$$
+
+| Parameter | Definition |
+| :--- | :--- |
+| $s$ | Sign ($\pm 1$) |
+| $b$ | Base or *radix* of the exponent representation (an integer $> 1$) |
+| $e$ | Exponent (an integer between $e_{min}$ and $e_{max}$) |
+| $p$ | Precision (the number of digits in base $b$ in the significand) |
+| $f_k$ | Non‑negative integers less than $b$ (the digits of the significand) |
+
+Alright, the formal theory is delivered. **Now let's step back and see how this works in practice.**
+
+---
+
+### 🧠 The Anatomy of a Float (IEEE-754 Standard)
+
+In the vast majority of modern architectures, floating-point numbers are encoded using a specific sequence of bits called the **IEEE-754 standard**.
+
+Under the hood, the number is essentially broken into two main parts:
+1.  **Significand (or Mantissa):** This is the raw numeric part, the significant digits themselves.
+2.  **Exponent:** This is the power by which the digits will be multiplied. A negative exponent moves the decimal point to the left (making the number smaller), and a positive one moves it to the right.
+
+To understand it simply in base 10 (decimal), imagine fixing the significand to `12345` and just varying the exponent:
+
+* $12345 \times 10^{-3} = 12.345$
+* $12345 \times 10^{4} = 123450000$
+* $12345 \times 10^{0} = 12345$
+
+> 💻 **On the Computer:** Since computers operate in binary, the exponent base ($b$) on your machine will almost certainly be **2**, not 10. You can check this by inspecting the value of the `FLT_RADIX` macro defined in the `<float.h>` header.
+
+---
+
+### 🛡️ The Precision Limit and the Larger Types
+
+Because we have a finite number of bits in memory, there is a limited number of available bit combinations. This means that **not every real number can be represented with perfect precision**. Only a specific number of significant decimal digits will be stored exactly.
+
+If you need more precision to avoid rounding errors, the solution is to expand the size of the data type. C offers three main options:
+
+| Type | Common Size (`sizeof`) | Purpose |
+| :--- | :---: | :--- |
+| `float` | 4 bytes | Single precision. |
+| `double` | 8 bytes | Double precision (the most recommended default for real calculations). |
+| `long double` | 16 bytes* | Extended precision (unrelated to `long int`, except in name). |
+
+- Note: The size of `long double` strictly depends on the system. On a 64‑bit machine, it typically occupies 16 bytes to deliver the maximum precision the hardware can extract.
+
+To help us discover the exact limits and how many digits of precision each type can reliably maintain before it starts “guessing” values, C provides a series of macros in the `<float.h>` header.
+
+---
+
+#### 💡 Study Insight:
+In computer graphics, physics simulations, and even frame‑rate (FPS) or network latency calculations for streaming solutions, the choice between `float` and `double` is a tug‑of‑war between performance and precision.
+Your computer’s GPU or its registers process multiple 4‑byte `float`s at once (via SIMD instructions) much faster than they would with `double`. That is why, in the game and real‑time streaming industry, `float` is used for almost everything, leaving `double` (or `long double`) strictly for scenarios where accumulated rounding errors would be fatal, such as astronomical calculations, cryptography, or financial systems.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
 
