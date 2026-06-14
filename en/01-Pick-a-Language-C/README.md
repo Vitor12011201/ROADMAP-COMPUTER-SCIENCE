@@ -5984,6 +5984,80 @@ Your computer’s GPU or its registers process multiple 4‑byte `float`s at onc
 
 ---
 
+<details>
+ <summary><b>🔢 How Many Decimal Digits Can We Store? (Section 14.4.1)</b></summary>
+<br>
+
+---
+
+[Section 14.4.1 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-4)-MORE-FLOAT/(SECTION-14-4-0)-MORE-FLOATS-DOUBLE-AND-LONG-DOUBLE/(SECTION-14-4-1)-HOW-MANY-DECIMAL-DIGITS-CAN-WE-STORE)
+
+---
+
+The million-dollar question is: *"How many significant decimal digits can I store in a given floating-point type to guarantee that when I print it back, I get exactly the same number?"*
+
+The safe and portable answer is not guessed: it is provided by specific macros from the `<float.h>` header. They dictate the number of decimal digits you can store with the absolute certainty that there will be no loss of precision:
+
+| Type | Digit Macro | Minimum Guaranteed by the Specification |
+| :--- | :--- | :---: |
+| `float` | `FLT_DIG` | 6 digits |
+| `double` | `DBL_DIG` | 10 digits (commonly 15-17 in practice) |
+| `long double` | `LDBL_DIG` | 10 digits (commonly 18+ in practice) |
+
+`FLT_DIG` equals **6**. This means that if you store and print a number with up to 6 significant digits in a `float`, the result will be 100% faithful.
+
+Can it work with more? Yes, some numbers get lucky. But the guarantee dies at the sixth digit. Here is a test pattern progressively increasing the digits in a `float`:
+
+```text
+0.12345       - Ok
+0.123456      - Ok
+0.1234567     - Ok
+0.12345678    - Oops, something went wrong down here!
+0.123456791   <-- Precision broke and the computer started guessing values
+0.1234567910
+```
+
+---
+
+#### 🧪 Practical Demonstration: The Accumulated Error
+In the code below, we define two floats with numbers that each have 6 significant digits (within the safe limit of `FLT_DIG`). In isolation, they are stored perfectly. However, when we add them, the result would be a number with 12 significant digits.
+
+Since this exceeds the float's limit, see what happens when we print:
+
+```c
+#include <stdio.h>
+#include <float.h>
+
+int main(void) {
+    // Both numbers have 6 significant digits, so they fit perfectly in float:
+    float f = 3.14159f;
+    float g = 0.00000265358f;
+
+    printf("%.5f\n", f);   // 3.14159       -- Correct!
+    printf("%.11f\n", g);  // 0.00000265358 -- Correct!
+
+    // Now, we add them
+    f += g;                // The actual value of 'f' should be 3.14159265358
+    
+    printf("%.11f\n", f);  // 3.14159274101 -- WRONG! The computer started inventing from the 7th digit onward.
+}
+```
+
+⚠️ **Syntax Note:** Did you notice the `f` character glued at the end of the numeric constants (like 3.14159f)? In C, any number with a decimal point is treated as a double by default. Adding the `f` suffix explicitly tells the compiler: "Hey, treat this as a plain 4-byte float".
+
+**The golden rule is simple:** if you keep your data within the FLT_DIG limit, you are safe. Sometimes you might get an extra digit or two as a bonus, but don't rely on luck in production code.
+
+And that's the story of `FLT_DIG`. The end.
+
+...Or is it not?
+
+>💡 Study Insight:
+> This precision loss phenomenon is the terror of physics simulation systems and game engines. If you calculate a character's position on a huge map using only float, as they move away from the zero point (origin), the number before the decimal point grows (e.g., 100000.0). Since the total significant digits are fixed at around 6 or 7, you start losing precision in the decimal places (after the dot). In practice, this causes a classic bug where the character or camera starts shaking (jittering) bizarrely on very large maps. That's why massive map coordinates often migrate to double (DBL_DIG), resetting the error accumulation.
+
+</details>
+
+---
+
 
 
 ---

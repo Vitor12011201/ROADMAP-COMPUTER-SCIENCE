@@ -6006,6 +6006,82 @@ A GPU do seu computador ou os registradores processam múltiplos `float` de 4 by
 
 </details>
 
+
+
+---
+
+<details>
+ <summary><b>🔢 Quantos Dígitos Decimais Podemos Armazenar? (Seção 14.4.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.4.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-4)-MAIS-FLOAT/(SECAO-14-4-1)-QUANTOS-DIGITOS-DECIMAIS-PODEMOS-ARMAZENAR)
+
+---
+
+A pergunta de um milhão de dólares é: *"Quantos dígitos decimais significativos eu posso armazenar em um determinado tipo de ponto flutuante para garantir que, ao imprimi-lo, eu receba exatamente o mesmo número de volta?"*
+
+A resposta segura e portátil não é adivinhada: ela é fornecida por macros específicas da biblioteca `<float.h>`. Elas ditam a quantidade de dígitos decimais que você pode armazenar com a certeza absoluta de que não haverá perda de precisão:
+
+| Tipo | Macro de Dígitos | Mínimo Garantido pela Especificação |
+| :--- | :--- | :---: |
+| `float` | `FLT_DIG` | 6 dígitos |
+| `double` | `DBL_DIG` | 10 dígitos (comumente 15-17 na prática) |
+| `long double` | `LDBL_DIG` | 10 dígitos (comumente 18+ na prática) |
+
+`FLT_DIG` vale **6**. Isso significa que se você armazenar e imprimir um número com até 6 dígitos significativos em um `float`, o resultado será 100% fiel.
+
+Pode ser que funcione com mais? Sim, alguns números dão sorte. Mas a garantia morre no sexto dígito. Veja este padrão de teste aumentando progressivamente os dígitos em um `float`:
+
+```text
+0.12345       - Ok
+0.123456      - Ok
+0.1234567     - Ok
+0.12345678    - Opa, algo deu errado aqui embaixo!
+0.123456791   <-- A precisão quebrou e o computador começou a chutar valores
+0.1234567910
+```
+
+---
+
+#### 🧪 Demonstração Prática: O Erro Acumulado
+No código abaixo, definimos dois float com números que possuem 6 dígitos significativos cada (dentro do limite seguro de `FLT_DIG`). Isolados, eles são armazenados perfeitamente. No entanto, quando os somamos, o resultado geraria um número com 12 dígitos significativos.
+
+Como isso estoura o limite do float, veja o que acontece ao imprimir:
+
+```c
+#include <stdio.h>
+#include <float.h>
+
+int main(void) {
+// Ambos os números têm 6 dígitos significativos, então entram perfeitamente no float:
+float f = 3.14159f;
+float g = 0.00000265358f;
+
+    printf("%.5f\n", f);   // 3.14159       -- Correto!
+    printf("%.11f\n", g);  // 0.00000265358 -- Correto!
+
+    // Agora, somamos os dois
+    f += g;                // O valor real de 'f' deveria ser 3.14159265358
+    
+    printf("%.11f\n", f);  // 3.14159274101 -- ERRADO! O computador começou a inventar a partir do 7º dígito.
+}
+```
+
+⚠️ **Nota de Sintaxe:** Você reparou no caractere `f` colado no final das constantes numéricas (como 3.14159f)? Em C, qualquer número com ponto decimal é tratado por padrão como um double. Adicionar o sufixo `f` avisa explicitamente ao compilador: "Ei, trate isso aqui como um float comum de 4 bytes".
+
+**regra de ouro é simples:** se você mantiver seus dados até o limite de FLT_DIG, você está seguro. Às vezes você consegue pescar um ou dois dígitos a mais de bônus, mas não conte com a sorte no código de produção.
+
+E essa é a história do `FLT_DIG`. Fim.
+
+...Ou será que não?
+
+> 💡 Insight de Estudo:
+> Esse fenômeno de perda de precisão é o terror de sistemas de simulação de física e engines de jogos. Se você calcula a posição de um personagem em um mapa imenso usando apenas float, à medida que ele se afasta do ponto zero (origem), o número antes da vírgula cresce (ex: 100000.0). Como os dígitos significativos totais são fixos em cerca de 6 ou 7, você começa a perder precisão nas casas decimais (depois do ponto). Na prática, isso causa um bug clássico onde o personagem ou a câmera começam a tremer (jittering) de forma bizarra em mapas muito grandes. É por isso que coordenadas de mapas massivos costumam migrar para double (DBL_DIG), resetando o acúmulo de erros.
+
+</details>
+
 ---
 
 
