@@ -6058,6 +6058,78 @@ And that's the story of `FLT_DIG`. The end.
 
 ---
 
+<details>
+ <summary><b>🔄 14.4.2 Converting to Decimal and Back (Section 14.4.2)</b></summary>
+
+---
+
+[Section 14.4.1 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-4)-MORE-FLOAT/(SECTION-14-4-2)-CONVERTING-TO-DECIMAL-AND-BACK)
+
+---
+
+Storing a base‑10 number inside a floating‑point variable and retrieving it on screen is only half the story.
+
+The truth is that floating‑point numbers can internally encode values that would require *many more* decimal digits to be printed completely. The problem is that your "perfect" decimal number may simply not align with any of those mappable values.
+
+#### 🕳️ The Concept of Gaps
+
+As we move from one floating‑point number to the next immediately larger one in memory, **there is an empty space (a gap)** between them. If you try to encode a decimal number that falls exactly inside that gap, the compiler will round it to the nearest floating‑point number. It is because of this approximation that we can only trust `FLT_DIG` digits for general data input.
+
+But what if we want to go the other way? If we take a native floating‑point value and want to convert it to text (base 10) without losing a single bit of the original value, how many digits do we need?
+
+To guarantee that all the original base‑2 bits are preserved in base 10 (allowing you to read the text back and recover the identical binary value), we need safety‑limit macros with larger values:
+
+| Macro | Description |
+| :--- | :--- |
+| `FLT_DECIMAL_DIG` | Number of decimal digits needed to preserve a `float`. |
+| `DBL_DECIMAL_DIG` | Number of decimal digits needed to preserve a `double`. |
+| `LDBL_DECIMAL_DIG` | Number of decimal digits needed to preserve a `long double`. |
+| `DECIMAL_DIG` | Same as the widest encoding available (usually `LDBL_DECIMAL_DIG`). |
+
+---
+
+### 🧪 The Mystery of the 17 Digits (Practical Example)
+
+Imagine a system where `DBL_DIG` is **15** (the safe limit for reading decimal constants), but `DBL_DECIMAL_DIG` is **17** (the digits needed not to lose a `double`'s bits).
+
+If we try to add a very small number to another, exceeding the 15‑digit limit, see the bizarre behavior that happens:
+
+```text
+x = 0.123456789012345   (15 exact digits - printed with 17 places becomes: 0.12345678901234500)
+y = 0.0000000000000006  (1 exact digit - printed with 17 places becomes: 0.00000000000000060)
+```
+
+- The theoretical mathematical sum should be `0.1234567890123456`. But because it goes beyond the traditional precision limit (`DBL_DIG`), the result printed with 17 places will be:
+
+```text
+x + y = 0.12345678901234559  <-- Ended in 59 instead of 60!
+```
+
+At first glance, this seems like a pure rounding error. But here is the twist: this weird number that ended in `59` is exactly representable in the machine's binary memory!
+
+If we take that 17‑digit value and assign it directly to a new `double z`:
+
+```c
+double z = 0.12345678901234559;
+printf("%.17f\n", z); // Prints exactly: 0.12345678901234559
+```
+
+The value returns with all 17 digits perfect! If we had truncated `z` to only 15 digits (`DBL_DIG`), we would have lost the state information of that specific binary bit pattern. That is why, to reconstruct the identical bits of a `double` from a string, we need 17 digits (`DBL_DECIMAL_DIG`).
+
+---
+
+#### 📐 Summary:
+**For displaying data to users or doing common calculations:** Never exceed `FLT_DIG` or `DBL_DIG`. Otherwise, base‑2 rounding artifacts will pollute your numbers.
+
+**For serialization (Round‑Tripping):** If you are going to save the state of a floating‑point variable to a text file, config file, or JSON, and later need to read that file while keeping the identical bits in memory, use `FLT_DECIMAL_DIG` or `DBL_DECIMAL_DIG`.
+
+> 💡 **Study Insight:**
+This concept defines the difference between human display and state persistence. In networking tools or performance monitoring (such as capturing GPU framebuffer render times), if you need to save those times to a text‑formatted log file for later analysis by another program, saving only with %f or limiting to a few decimal places will destroy the actual precision bits of the collected time. Using the _DECIMAL_DIG macros ensures a perfect round‑trip between text and binary, which is essential for reliable low‑level telemetry.
+
+</details>
+
+---
+
 
 
 ---
