@@ -6086,6 +6086,7 @@ E essa é a história do `FLT_DIG`. Fim.
 
 <details>
  <summary><b>🔄 14.4.2 Convertendo para Decimal e Voltando (Seção 14.4.2)</b></summary>
+<br>
 
 ---
 
@@ -6155,6 +6156,28 @@ O valor retorna com todos os 17 dígitos perfeitos! Se tivéssemos truncado `z` 
 
 </details>
 
+</details>
+
+---
+
+<details>
+ <summary><b>🔢 Tipos Numéricos Constantes (14.5)</b></summary>
+<br>
+
+Quando você escreve um número literal (uma constante) diretamente no seu código, como `1234` ou `0xFF`, esse valor não é um elemento "abstrato" para o compilador, ele possui um tipo de dado estrito e ocupa espaço na memória de acordo com as regras da linguagem.
+
+Mas como o C decide, por padrão, qual tipo atribuir a uma constante? E mais importante: como podemos intervir e forçar o compilador a escolher um tipo específico para aquele número?
+
+Nos proximos capitulos, veremos as regras de decisão automática do compilador e o uso de sufixos (como `L`, `U`, `LL`) para controlar a tipagem de literais.
+
+---
+
+> 💡 **Insight de Estudo:**
+> Dominar a tipagem de constantes é vital para evitar bugs silenciosos de *overflow* e *truncamento* em operações aritméticas. Por exemplo, se você fizer uma multiplicação de duas constantes inteiras cujo resultado passe de 2 bilhões, o C vai tentar processar a matemática usando o tipo padrão (`int`). Mesmo que você salve o resultado final em uma variável do tipo `long long`, o cálculo intermediário vai estourar e gerar lixo antes de ser atribuído.
+> Saber forçar uma constante a ser `unsigned` (`1234U`) ou `long long` (`1234LL`) garante que o compilador use os registradores do tamanho correto desde o primeiro ciclo de instrução, algo indispensável ao lidar com máscaras de bits (*bitmasks*) e registradores de hardware.
+
+</details>
+
 ---
 
 
@@ -6163,4 +6186,3 @@ O valor retorna com todos os 17 dígitos perfeitos! Se tivéssemos truncado `z` 
 
 </details>
 
-</details>

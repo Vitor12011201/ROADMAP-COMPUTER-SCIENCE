@@ -6128,6 +6128,28 @@ This concept defines the difference between human display and state persistence.
 
 </details>
 
+</details>
+
+---
+
+<details>
+ <summary><b>🔢 Numeric Constant Types (14.5)</b></summary>
+<br>
+
+When you write a numeric literal (a constant) directly in your code, such as `1234` or `0xFF`, this value is not an "abstract" element for the compiler; it has a strict data type and occupies space in memory according to the language's rules.
+
+But how does C decide, by default, which type to assign to a constant? And more importantly: how can we intervene and force the compiler to choose a specific type for that number?
+
+In the next chapters, we will see the compiler's automatic decision rules and the use of suffixes (such as `L`, `U`, `LL`) to control literal typing.
+
+---
+
+> 💡 **Study Insight:**
+> Mastering constant typing is vital to avoid silent *overflow* and *truncation* bugs in arithmetic operations. For example, if you multiply two integer constants whose result exceeds 2 billion, C will try to process the math using the default type (`int`). Even if you save the final result in a `long long` variable, the intermediate calculation will overflow and generate garbage before being assigned.
+> Knowing how to force a constant to be `unsigned` (`1234U`) or `long long` (`1234LL`) ensures that the compiler uses the correct-sized registers from the very first instruction cycle, something indispensable when dealing with *bitmasks* and hardware registers.
+
+</details>
+
 ---
 
 
@@ -6136,5 +6158,5 @@ This concept defines the difference between human display and state persistence.
 
 </details>
 
-</details>
+
 
