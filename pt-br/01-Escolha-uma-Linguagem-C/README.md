@@ -6161,8 +6161,24 @@ O valor retorna com todos os 17 dígitos perfeitos! Se tivéssemos truncado `z` 
 ---
 
 <details>
- <summary><b>🔢 Tipos Numéricos Constantes (14.5)</b></summary>
+ <summary><b>🔢 Mais: Tipos Numéricos Constantes (Seção 14.5 - 14.5.1)</b></summary>
+
+---
+
+[Codigos da Seções 14.5.0 - 14.5.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-5)-MAIS-TIPOS-NUMERICOS-CONSTANTES)
+
+---
+
+<details>
+<summary><b>🔟 Tipos Numéricos Constantes (Seção 14.5.0)</b></summary>
 <br>
+
+---
+
+[Codigos da Seção 14.5.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-5)-MAIS-TIPOS-NUMERICOS-CONSTANTES/(SECAO-14-5-0)-TIPOS-NUMERICOS-CONSTANTES)
+
+
+---
 
 Quando você escreve um número literal (uma constante) diretamente no seu código, como `1234` ou `0xFF`, esse valor não é um elemento "abstrato" para o compilador, ele possui um tipo de dado estrito e ocupa espaço na memória de acordo com as regras da linguagem.
 
@@ -6176,6 +6192,68 @@ Nos proximos capitulos, veremos as regras de decisão automática do compilador 
 > Dominar a tipagem de constantes é vital para evitar bugs silenciosos de *overflow* e *truncamento* em operações aritméticas. Por exemplo, se você fizer uma multiplicação de duas constantes inteiras cujo resultado passe de 2 bilhões, o C vai tentar processar a matemática usando o tipo padrão (`int`). Mesmo que você salve o resultado final em uma variável do tipo `long long`, o cálculo intermediário vai estourar e gerar lixo antes de ser atribuído.
 > Saber forçar uma constante a ser `unsigned` (`1234U`) ou `long long` (`1234LL`) garante que o compilador use os registradores do tamanho correto desde o primeiro ciclo de instrução, algo indispensável ao lidar com máscaras de bits (*bitmasks*) e registradores de hardware.
 
+
+</details>
+
+---
+
+<details>
+ <summary><b>📑 Hexadecimal e Octal (Seção 14.5.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.5.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-5)-MAIS-TIPOS-NUMERICOS-CONSTANTES/(SECAO-14-5-1)-HEXADECIMAL-E-OCTAL)
+
+---
+
+Além do bom e velho sistema decimal, o C também suporta nativamente constantes escritas em outras bases numéricas.
+
+#### 🏛️ Hexadecimal (Base 16)
+Se você iniciar um número com o prefixo `0x`, o compilador o lerá como um valor hexadecimal. As letras de A a F podem ser maiúsculas ou minúsculas indiferentemente:
+
+```c
+int a = 0x1A2B;   // Hexadecimal
+int b = 0x1a2b;   // O caso das letras não importa
+printf("%x", a);  // Imprime em formato hexadecimal: "1a2b"
+```
+
+---
+
+#### 🌀 Octal (Base 8):
+Se você iniciar um número com apenas um `0` (zero), o C o lerá como um número octal.
+
+```c
+int a = 012;
+printf("%o\n", a);  // Imprime em formato octal: "12"
+```
+
+#### ⚠️ A Armadilha do Octal para Iniciantes:
+Isso costuma gerar bugs terríveis para quem está começando. Às vezes, o programador tenta alinhar visualmente uma lista de números decimais adicionando zeros à esquerda para ficar "bonitinho" no editor de código. Ao fazer isso, você muda involuntariamente a base do número!
+
+```c
+int x = 11111;  // Decimal 11111
+int y = 00111;  // Vira Decimal 73 (Octal 111)
+int z = 01111;  // Vira Decimal 585 (Octal 1111)
+```
+
+---
+
+#### 💾 Uma Nota sobre o Sistema Binário (Base 2):
+Embora não faça parte do padrão C estrito clássico, uma extensão não-oficial amplamente adotada por quase todos os compiladores modernos (como o GCC e o Clang) permite que você represente números diretamente em binário usando o prefixo `0b`:
+
+```c
+int x = 0b101010;    // Binário 101010
+printf("%d\n", x);   // Imprime 42 em decimal
+```
+
+- **Curiosidade do `printf()`:** Ao contrário do Hexadecimal (`%x`) e do Octal (`%o`), não existe um especificador de formato padrão no `printf()` para imprimir um número formatado em binário na tela. Se você precisar exibir os bits de uma variável, terá que criar uma função customizada para extrair e imprimir um bit de cada vez usando operadores de bits (bitwise).
+
+
+> 💡 **Insight de Estudo:**
+> Para quem trabalha com mapeamento de memória, drivers de dispositivos ou firmware customizado, a base decimal é praticamente inútil no dia a dia. Nós pensamos e escrevemos em Hexadecimal e Binário.
+> Cada dígito hexadecimal mapeia perfeitamente para exatamente 4 bits (um nibble). Por exemplo, ver o endereço `0x3F` torna imediatamente óbvio para o desenvolvedor de baixo nível que os bits ativos ali são `0011 1111`. Tentar adivinhar a mesma máscara olhando para o decimal `63` exige ginástica mental. Dominar esses prefixos (`0x` e `0b`) permite escrever máscaras de bits (bitmasks) limpas e ler manuais de registradores de hardware com muito mais naturalidade.
+
 </details>
 
 ---
@@ -6183,6 +6261,8 @@ Nos proximos capitulos, veremos as regras de decisão automática do compilador 
 
 
 ---
+
+</details>
 
 </details>
 

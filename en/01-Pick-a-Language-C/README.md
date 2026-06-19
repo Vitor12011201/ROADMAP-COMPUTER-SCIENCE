@@ -6131,10 +6131,24 @@ This concept defines the difference between human display and state persistence.
 </details>
 
 ---
+<details>
+ <summary><b>🔢 More: Numeric Constant Types (Section 14.5 - 14.5.1)</b></summary>
+
+---
+
+[Code for Sections 14.5.0 - 14.5.1 can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-5)-MORE-NUMERIC-CONSTANT-TYPES)
+
+---
 
 <details>
- <summary><b>🔢 Numeric Constant Types (14.5)</b></summary>
+<summary><b>🔟 Numeric Constant Types (Section 14.5.0)</b></summary>
 <br>
+
+---
+
+[Section 14.5.0 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-5)-MORE-NUMERIC-CONSTANT-TYPES/(SECTION-14-5-0)-NUMERIC-CONSTANT-TYPES)
+
+---
 
 When you write a numeric literal (a constant) directly in your code, such as `1234` or `0xFF`, this value is not an "abstract" element for the compiler; it has a strict data type and occupies space in memory according to the language's rules.
 
@@ -6152,9 +6166,72 @@ In the next chapters, we will see the compiler's automatic decision rules and th
 
 ---
 
+<details>
+ <summary><b>📑 Hexadecimal and Octal (Section 14.5.1)</b></summary>
+<br>
+
+---
+
+[Section 14.5.1 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-5)-MORE-NUMERIC-CONSTANT-TYPES/(SECTION-14-5-1)-HEXADECIMAL-AND-OCTAL)
+
+---
+
+In addition to the good old decimal system, C also natively supports constants written in other numeric bases.
+
+#### 🏛️ Hexadecimal (Base 16)
+If you start a number with the `0x` prefix, the compiler will read it as a hexadecimal value. The letters A through F can be uppercase or lowercase interchangeably:
+
+```c
+int a = 0x1A2B;   // Hexadecimal
+int b = 0x1a2b;   // Letter case doesn't matter
+printf("%x", a);  // Prints in hexadecimal format: "1a2b"
+```
+
+---
+
+#### 🌀 Octal (Base 8):
+If you start a number with just a `0` (zero), C will read it as an octal number.
+
+```c
+int a = 012;
+printf("%o\n", a);  // Prints in octal format: "12"
+```
+
+#### ⚠️ The Octal Trap for Beginners:
+This often causes terrible bugs for those just starting out. Sometimes the programmer tries to visually align a list of decimal numbers by adding leading zeros to make it look "pretty" in the code editor. By doing so, you inadvertently change the number's base!
+
+```c
+int x = 11111;  // Decimal 11111
+int y = 00111;  // Becomes Decimal 73 (Octal 111)
+int z = 01111;  // Becomes Decimal 585 (Octal 1111)
+```
+
+---
+
+#### 💾 A Note on Binary (Base 2):
+Although not part of the strict classic C standard, a widely adopted unofficial extension present in almost all modern compilers (such as GCC and Clang) allows you to represent numbers directly in binary using the `0b` prefix:
+
+```c
+int x = 0b101010;    // Binary 101010
+printf("%d\n", x);   // Prints 42 in decimal
+```
+
+- **`printf()` curiosity:** Unlike Hexadecimal (`%x`) and Octal (`%o`), there is no standard format specifier in `printf()` to print a number formatted in binary on screen. If you need to display the bits of a variable, you will have to create a custom function to extract and print one bit at a time using bitwise operators.
+
+
+> 💡 Study Insight:
+> For those working with memory mapping, device drivers, or custom firmware, the decimal base is practically useless in day-to-day work. We think and write in Hexadecimal and Binary.
+> Each hexadecimal digit maps perfectly to exactly 4 bits (a nibble). For example, seeing the address `0x3F` immediately makes it obvious to the low-level developer that the active bits there are `0011 1111`. Trying to guess the same mask by looking at the decimal `63` requires mental gymnastics. Mastering these prefixes (`0x` and `0b`) allows you to write clean bitmasks and read hardware register manuals much more naturally.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
 
