@@ -6227,6 +6227,72 @@ printf("%d\n", x);   // Prints 42 in decimal
 
 ---
 
+<details>
+ <summary><b>🔢 Integer Constants (Section 14.5.2)</b></summary>
+<br>
+
+---
+
+[Section 14.5.2 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-5)-MORE-NUMERIC-CONSTANT-TYPES/(SECTION-14-5-2)-INTEGER-CONSTANTS)
+
+---
+
+You can force an integer constant to assume a specific type by appending a suffix to the end of the number.
+
+Although most of the time developers omit these suffixes (since the compiler is very good at automatic coercion and ensuring compatibility), there are precision scenarios where they are indispensable.
+
+See how to align types using assignments as an example:
+
+```c
+int                    x = 1234;
+long int               x = 1234L;
+long long int          x = 1234LL;
+
+unsigned int           x = 1234U;
+unsigned long int      x = 1234UL;
+unsigned long long int x = 1234ULL;
+```
+
+- The suffix can be written in either uppercase or lowercase (`l` or `L`, `u` or `U`). Also, the order of `U` and `L` (or `LL`) does not matter: `UL` and `LU` are treated the same way by the compiler.
+
+---
+
+| **Suggested Type**        | **Suffix** |
+| ------------------------ | ---------- |
+| `int`                    | None       |
+| `long int`               | `L`        |
+| `long long int`          | `LL`       |
+| `unsigned int`           | `U`        |
+| `unsigned long int`      | `UL`       |
+| `unsigned long long int` | `ULL`      |
+
+---
+
+#### 🕵️ The Hidden Rule: What happens if I DON'T use a suffix?
+Saying that "the absence of a suffix means int" is a simplification. In reality, C's behavior under the hood is a bit more complex.
+
+When you write something like `int x = 1234;`, what type does the bare number `1234` assume before being stored in `x`?
+
+C will try to fit the value into the smallest type that can represent it, starting with `int` and moving up the size hierarchy. However, the exact list of types the compiler will test depends directly on the base of the number (decimal, hexadecimal, or octal).
+
+The C11 specification (§6.4.4.1¶5) provides an official table detailing this rule. It states: *"The type of an integer constant is the first of the corresponding list in which its value can be represented."*
+
+To understand the table in practice: imagine you write the number `123456789U` in your code. The compiler sees the `U` suffix and consults the corresponding row.
+
+- First, it tests whether the number fits in an `unsigned int`.
+- If it fits, the constant becomes an `unsigned int`.
+- If the number is huge and doesn't fit, it jumps to the next option in the list (`unsigned long int`) and so on. It will always choose the smallest type in the list that prevents the literal from overflowing.
+
+> 💡 **Study Insight:**
+> The greatest practical use of this table is in creating macros via `#define` and in using hexadecimal constants for bitmasks.
+> Notice a crucial detail in the table: **decimal** constants without a suffix *never* test `unsigned` types automatically. On the other hand, **hexadecimal** constants without a suffix (like `0xFFFFFFFF`) test `unsigned` variants as early as the second attempt.
+> If you are writing code on a machine where `int` is 32 bits, writing `4000000000` (4 billion in decimal) will make the compiler treat it automatically as a `long int` (signed). But if you write `0xEE6B2800` (the same value in hexadecimal), the compiler will fit it as an `unsigned int`.
+> Mixing these suffix‑less constants in mathematical operations or loop comparisons can inject invisible bugs of *sign‑extension*, where positive numbers accidentally become negative during type promotion. Explicitly adding the suffix (like `4000000000ULL` or `0xEE6B2800U`) removes any ambiguity and shields your code.
+
+</details>
+
+---
+
 
 
 ---

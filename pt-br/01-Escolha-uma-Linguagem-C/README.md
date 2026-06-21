@@ -6258,6 +6258,73 @@ printf("%d\n", x);   // Imprime 42 em decimal
 
 ---
 
+<details>
+ <summary><b>🔢 Constantes Inteiras (Seção 14.5.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 14.5.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-5)-MAIS-TIPOS-NUMERICOS-CONSTANTES/(SECAO-14-5-2)-CONSTANTES-INTEIRAS)
+
+---
+
+Você pode forçar uma constante inteira a assumir um tipo específico anexando um sufixo ao final do número.
+
+Embora na maior parte do tempo os desenvolvedores omitam esses sufixos (já que o compilador é muito bom em fazer coerções automáticas e garantir a compatibilidade), existem cenários de precisão onde eles são indispensáveis.
+
+Veja como alinhar os tipos usando atribuições como exemplo:
+
+```c
+int                    x = 1234;
+long int               x = 1234L;
+long long int          x = 1234LL;
+
+unsigned int           x = 1234U;
+unsigned long int      x = 1234UL;
+unsigned long long int x = 1234ULL;
+```
+
+- O sufixo pode ser escrito tanto em maiúsculo quanto em minúsculo (l ou L, u ou U). Além disso, a ordem do U e do L (ou LL) não importa: UL e LU são tratados da mesma forma pelo compilador.
+
+---
+
+| **Tipo Sugerido**        | **Sufixo** |
+| ------------------------ | ---------- |
+| `int`                    | Nenhum     |
+| `long int`               | `L`        |
+| `long long int`          | `LL`       |
+| `unsigned int`           | `U`        |
+| `unsigned long int`      | `UL`       |
+| `unsigned long long int` | `ULL`      |
+
+
+---
+
+#### 🕵️ A Regra Oculta: O que acontece se eu NÃO usar sufixo?
+Dizer que "a ausência de sufixo significa int" é uma simplificação. Na realidade, o comportamento do C sob o capô é um pouco mais complexo.
+
+Quando você escreve algo como `int x = 1234;`, que tipo o número puro `1234` assume antes de ser guardado em `x`?
+
+O C tentará encaixar o valor no menor tipo possível que consiga representá-lo, começando pelo `int` e subindo na hierarquia de tamanhos. No entanto, a lista exata de tipos que o compilador vai testar depende diretamente da base do número (decimal, hexadecimal ou octal).
+
+A especificação do C11 (§6.4.4.1¶5) traz uma tabela oficial detalhando essa regra. Ela dita: *"O tipo de uma constante inteira é o primeiro da lista correspondente no qual o seu valor pode ser representado."*
+
+Para entender a tabela na prática: imagine que você escreva o número `123456789U` no código. O compilador vê o sufixo `U` e consulta a linha correspondente.
+
+- Primeiro, ele testa se o número cabe em um `unsigned int`.
+- Se couber, a constante vira um `unsigned int`.
+- Se o número for gigantesco e não couber, ele pula para a próxima opção da lista (`unsigned long int`) e assim por diante. Ele sempre escolherá o menor tipo da lista que impeça o estouro (*overflow*) do literal.
+
+> 💡 **Insight de Estudo:**
+> A maior utilidade prática dessa tabela está na criação de macros via `#define` e no uso de constantes hexadecimais para máscaras de bits (*bitmasks*).
+> Repare em um detalhe crucial da tabela: constantes **decimais** sem sufixo *nunca* testam tipos `unsigned` automaticamente. Já constantes **hexadecimais** sem sufixo (como `0xFFFFFFFF`) testam variantes `unsigned` logo na segunda tentativa.
+> Se você estiver escrevendo um código em uma máquina onde o `int` tem 32 bits, escrever `4000000000` (4 bilhões em decimal) fará o compilador tratá-lo automaticamente como um `long int` (com sinal). Mas se você escrever `0xEE6B2800` (o mesmo valor em hexadecimal), o compilador vai encaixá-lo como um `unsigned int`.
+> Misturar essas constantes sem sufixo em operações matemáticas ou comparações de loops pode injetar bugs invisíveis de *sign-extension* (extensão de sinal), onde números positivos viram negativos por acidente durante a promoção de tipos. Adicionar o sufixo explicitamente (como `4000000000ULL` ou `0xEE6B2800U`) remove qualquer ambiguidade e blinda o seu código.
+
+</details>
+
+---
+
 
 
 ---
