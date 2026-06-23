@@ -6325,11 +6325,113 @@ Para entender a tabela na prática: imagine que você escreva o número `1234567
 
 ---
 
-
+<details>
+ <summary><b>🌊 Constantes de Ponto Flutuante (Seção 14.5.3)</b></summary>
+<br>
 
 ---
 
+[Codigos da Seção 14.5.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_014/(SECAO-14-5)-MAIS-TIPOS-NUMERICOS-CONSTANTES/(SECAO-14-5-3)-CONSTANTES-DE-PONTOS-FLUTUANTES)
+
+---
+
+Você provavelmente pensaria que uma constante de ponto flutuante como `1.23` teria o tipo `float` por padrão, certo?
+
+Surpresa! O C define que qualquer constante de ponto flutuante sem sufixo é, por padrão, do tipo `double`. Parabéns atrasado pelo seu aniversário!
+
+Se você quiser forçar o compilador a tratar o literal explicitamente como outro tipo, você deve usar os seguintes sufixos (que também são case-insensitive, tanto faz maiúsculo ou minúsculo):
+
+| Tipo          | Sufixo    | Exemplo                  |
+| ------------- | --------- | ------------------------ |
+| `float`       | `F` / `f` | `float x = 3.14f;`       |
+| `double`      | Nenhum    | `double x = 3.14;`       |
+| `long double` | `L` / `l` | `long double x = 3.14L;` |
+
+Mas espere aí... nós passamos o guia inteiro escrevendo códigos assim:
+
+```c
+float x = 3.14;
+```
+
+Se o lado esquerdo é um `float` (4 bytes) e o lado direito é um `double` (8 bytes), isso não está errado? Tecnicamente, há uma incompatibilidade, mas o C lida muito bem com conversões numéricas automáticas. O compilador simplesmente trunca o `double` para caber no `float`. Por isso, omitir o sufixo é uma prática extremamente comum entre desenvolvedores, embora colocar o `f` seja mais seguro e evite avisos (warnings) de compilação estrita.
+
+#### 🚀 Notação Científica (Notação E)
+
+Lembra que vimos que um número de ponto flutuante é composto por significando, base e expoente? Existe uma forma padrão de escrever números muito grandes ou muito pequenos usando a notação científica matemática, que assume o formato $x \times 10^y$.
+
+No C, escrevemos isso usando a Notação E. As seguintes representações são equivalentes:
+
+| Notação Científica      | Notação E no C | Valor Real Equivalente |
+| ----------------------- | -------------- | ---------------------- |
+| $1.2345 \times 10^{-3}$ | `1.2345e-3`    | `0.0012345`            |
+| $1.2345 \times 10^{8}$  | `1.2345e+8`    | `123450000`            |
+
+Para exibir um número usando essa formatação diretamente no terminal, utilizamos o especificador de formato `%e` no `printf()`:
+
+```c
+printf("%e\n", 123456.0);  // Imprime: 1.234560e+05
+```
+
+#### 📌 Fatos rápidos sobre a Notação E:
+
+Você não é obrigado a deixar apenas um dígito antes do ponto decimal ao escrever a constante. Você pode fazer algo como `double x = 123.456e+3;` (que resulta em `123456`). No entanto, quando o `printf()` for exibir o número usando `%e`, ele sempre normalizará o valor para que haja apenas um dígito antes do ponto.
+
+O sinal de mais (`+`) no expoente pode ser omitido, pois ele é o padrão: `1.2345e10` é rigorosamente o mesmo que `1.2345e+10`.
+
+Você pode aplicar os sufixos `F` ou `L` normalmente em constantes com notação E: `1.2345e10F` (`float`) ou `1.2345e10L` (`long double`).
+
+#### ⚡ Constantes de Ponto Flutuante em Hexadecimal
+
+Para levar o controle de baixo nível ao extremo, o C também suporta constantes de ponto flutuante hexadecimais!
+
+Eles funcionam de forma parecida com os decimais, começando com o prefixo `0x`, mas com duas regras cruciais:
+
+O expoente deixa de usar a letra `e` e passa a usar a letra `p`.
+
+O expoente não multiplica o número por uma potência de 10, mas sim por uma potência de 2 ($x \times 2^y$).
+
+Veja o exemplo da constante `0xa.1p3`:
+
+`0xa` em hexadecimal é igual a $10$ em decimal.
+
+`.1` em hexadecimal representa a fração $1/16$, que equivale a $0.0625$.
+
+Portanto, o significando bruto é $10.0625$.
+
+O sufixo `p3` significa multiplicá-lo por $2^3$ (ou seja, por 8).
+
+Fazendo a matemática: $10.0625 \times 8 = 80.5$.
+
+Para trabalhar com esses valores no `printf()`, podemos usar `%a` para exibir a notação científica hexadecimal ou `%f` para a formatação decimal tradicional:
+
+```c
+double x = 0xa.1p3;
+printf("%a\n", x);  // Imprime a representação hex: 0x1.42p+6
+printf("%f\n", x);  // Imprime em decimal puro: 80.500000
+```
+
+> 💡 Insight de Estudo:
+>  Por que diabos alguém usaria ponto flutuante em hexadecimal? A resposta é precisão absoluta.
+>  Como vimos na seção anterior, converter um número decimal fracionário (base 10) para binário (base 2) quase sempre gera dízimas e erros de arredondamento (gaps). No entanto, quando você escreve uma constante em hexadecimal (`0x`), cada dígito mapeia perfeitamente para 4 bits exatos.
+>  a notação `p` (potência de 2) garante que o compilador monte o número na memória bit a bit, exatamente como você escreveu, sem passar por nenhum algoritmo de arredondamento decimal intermediário. Isso é amplamente utilizado em bibliotecas matemáticas de altíssima precisão, drivers de áudio digital e na calibração de matrizes de projeção em engines gráficas.
+>  Com isso, finalizamos a anatomia das constantes literais no C! O próximo tópico do livro entra em `Promotions and Conversions` (como o C mistura esses tipos todos em uma mesma conta).
+
+</details>
+
 </details>
 
 </details>
 
+---
+
+<details>
+  <summary><b>🔹Dia 15: Tipos III: Conversões </b></summary>
+
+---
+
+[Codigos do dia 15 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015)
+
+---
+
+
+</details>

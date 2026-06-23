@@ -6293,13 +6293,114 @@ To understand the table in practice: imagine you write the number `123456789U` i
 
 ---
 
+<details>
+ <summary><b>🌊 Floating Point Constants (14.5.3)</b></summary>
+<br>
 
+---
+
+[Section 14.5.3 code can be found here](./CODE_BY_DAY/DAY_014/(SECTION-14-5)-MORE-NUMERIC-CONSTANT-TYPES/(SECTION-14-5-3)-FLOATING-POINT-CONSTANTS)
+
+---
+
+You would probably think that a floating point constant like `1.23` would have the type `float` by default, right?
+
+Surprise! C defines that any floating point constant without a suffix is, by default, of type `double`. Happy belated birthday!
+
+If you want to force the compiler to treat the literal explicitly as another type, you must use the following suffixes (which are also case-insensitive, so uppercase or lowercase does not matter):
+
+| Type          | Suffix    | Example                  |
+| ------------- | --------- | ------------------------ |
+| `float`       | `F` / `f` | `float x = 3.14f;`       |
+| `double`      | None      | `double x = 3.14;`       |
+| `long double` | `L` / `l` | `long double x = 3.14L;` |
+
+But wait... we spent the entire guide writing code like this:
+
+```c
+float x = 3.14;
+```
+
+If the left side is a `float` (4 bytes) and the right side is a `double` (8 bytes), isn't that wrong? Technically, there is a mismatch, but C handles automatic numeric conversions very well. The compiler simply truncates the `double` so it can fit into the `float`. Because of that, omitting the suffix is an extremely common practice among developers, although adding the `f` is safer and avoids warnings in strict compilation.
+
+#### 🚀 Scientific Notation (E Notation)
+
+Remember that we saw that a floating point number is composed of significand, base, and exponent? There is a standard way to write very large or very small numbers using mathematical scientific notation, which assumes the format $x \times 10^y$.
+
+In C, we write this using **E Notation**. The following representations are equivalent:
+
+| Scientific Notation     | E Notation in C | Equivalent Real Value |
+| ----------------------- | --------------- | --------------------- |
+| $1.2345 \times 10^{-3}$ | `1.2345e-3`     | `0.0012345`           |
+| $1.2345 \times 10^{8}$  | `1.2345e+8`     | `123450000`           |
+
+To display a number using this formatting directly in the terminal, we use the `%e` format specifier in `printf()`:
+
+```c
+printf("%e\n", 123456.0);  // Prints: 1.234560e+05
+```
+
+#### 📌 Quick facts about E Notation:
+
+You are not required to leave only one digit before the decimal point when writing the constant. You can do something like `double x = 123.456e+3;` (which results in `123456`). However, when `printf()` displays the number using `%e`, it will always normalize the value so that there is only one digit before the point.
+
+The plus sign (`+`) in the exponent can be omitted, because it is the default: `1.2345e10` is strictly the same as `1.2345e+10`.
+
+You can apply the suffixes `F` or `L` normally to constants with E notation: `1.2345e10F` (`float`) or `1.2345e10L` (`long double`).
+
+#### ⚡ Floating Point Constants in Hexadecimal
+
+To take low-level control to the extreme, C also supports hexadecimal floating point constants!
+
+They work similarly to decimal ones, starting with the prefix `0x`, but with two crucial rules:
+
+The exponent stops using the letter `e` and starts using the letter `p`.
+
+The exponent does not multiply the number by a power of 10, but by a power of 2 ($x \times 2^y$).
+
+See the example of the constant `0xa.1p3`:
+
+`0xa` in hexadecimal is equal to $10$ in decimal.
+
+`.1` in hexadecimal represents the fraction $1/16$, which is equivalent to $0.0625$.
+
+Therefore, the raw significand is $10.0625$.
+
+The suffix `p3` means multiplying it by $2^3$ (that is, by 8).
+
+Doing the math: $10.0625 \times 8 = 80.5$.
+
+To work with these values in `printf()`, we can use `%a` to display hexadecimal scientific notation or `%f` for traditional decimal formatting:
+
+```c
+double x = 0xa.1p3;
+printf("%a\n", x);  // Prints the hex representation: 0x1.42p+6
+printf("%f\n", x);  // Prints in pure decimal: 80.500000
+```
+
+> 💡 Study Insight:
+> Why the hell would anyone use floating point in hexadecimal? The answer is absolute precision.
+> As we saw in the previous section, converting a fractional decimal number (base 10) to binary (base 2) almost always creates repeating fractions and rounding errors (gaps). However, when you write a constant in hexadecimal (`0x`), each digit maps perfectly to 4 exact bits.
+> Using the `p` notation (power of 2) ensures that the compiler builds the number in memory bit by bit, exactly as you wrote it, without going through any intermediate decimal rounding algorithm. This is widely used in extremely high-precision mathematical libraries, digital audio drivers, and in the calibration of projection matrices in graphics engines.
+> With that, we finish the anatomy of literal constants in C! The next topic in the book enters into `Promotions and Conversions` (how C mixes all these types in the same calculation).
+
+</details>
+
+</details>
+
+</details>
+
+---
+
+<details>
+  <summary><b>🔹Day 15: Types III: Conversions</b></summary>
+
+---
+
+[Day 15 code can be found here](./CODE_BY_DAY/DAY_015)
 
 ---
 
 </details>
-
-</details>
-
 
 
