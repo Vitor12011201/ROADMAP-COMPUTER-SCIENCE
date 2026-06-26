@@ -6433,5 +6433,36 @@ printf("%f\n", x);  // Imprime em decimal puro: 80.500000
 
 ---
 
+<details>
+<summary><b>🔄 Tipos III: Conversões (Seção 15.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO 15-0)-CONVERSOES)
+
+---
+
+Neste capítulo, vamos explorar a fundo o mecanismo de conversão de tipos (*type conversion*) na linguagem C. O C oferece diversas maneiras de transformar um tipo de dado em outro, e algumas dessas regras podem ser um pouco contra-intuitivas ou bem diferentes do que você está acostumado a ver em linguagens de alto nível (como JavaScript, Python ou C#).
+
+Antes de aprendermos a forçar essas transformações manualmente, precisamos entender como o compilador gerencia essas conversões de forma automática por baixo dos panos.
+
+As conversões em C dividem-se essencialmente em duas grandes categorias que veremos adiante:
+1. **Conversões Implícitas (Coerção/Promoção):** Acontecem automaticamente quando misturamos tipos diferentes em uma expressão matemática ou atribuição. O compilador ajusta os tamanhos para que a operação seja segura.
+2. **Conversões Explícitas (Casting):** Quando nós, programadores, intervimos diretamente no código para ordenar explicitamente ao compilador: *"mude o tipo desta variável agora"*.
+
+---
+
+> 💡 **Insight de Estudo:**
+> Entender a conversão de tipos é o divisor de águas entre escrever um código C robusto e criar um software cheio de comportamentos indefinidos (*undefined behavior*). Como o C é uma linguagem que dá total liberdade ao programador, o compilador tenta "ajudar" e adivinhar sua intenção quando você mistura dados (como somar um `char` com um `int`, ou dividir um `int` por um `float`).
+> Se você não dominar essas regras de transição automática de bits, acabará enfrentando bugs silenciosos de perda de precisão ou truncamento de dados que não geram nenhum erro de compilação, mas que alteram completamente a lógica do programa em tempo de execução. Em sistemas embarcados ou protocolos de rede, um cast implícito errado pode quebrar o alinhamento de um pacote de dados inteiro.
+
+</details>
+
+---
+
+
+
+---
 
 </details>

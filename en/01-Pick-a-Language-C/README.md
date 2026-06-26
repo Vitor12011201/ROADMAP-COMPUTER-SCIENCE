@@ -6401,6 +6401,38 @@ printf("%f\n", x);  // Prints in pure decimal: 80.500000
 
 ---
 
+<details>
+<summary><b>🔄 Types III: Conversions (Section 15.0)</b></summary>
+<br>
+
+---
+
+[Section 15.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION 15-0)-CONVERSIONS)
+
+---
+
+In this chapter, we will dive deep into the mechanism of type conversion in the C language. C offers several ways to transform one data type into another, and some of these rules can be a bit counter‑intuitive or quite different from what you are used to seeing in high‑level languages (such as JavaScript, Python, or C#).
+
+Before we learn how to force these transformations manually, we need to understand how the compiler handles these conversions automatically behind the scenes.
+
+Conversions in C are essentially divided into two major categories, which we will cover next:
+1. **Implicit Conversions (Coercion/Promotion):** Happen automatically when we mix different types in a mathematical expression or assignment. The compiler adjusts the sizes so that the operation is safe.
+2. **Explicit Conversions (Casting):** When we, as programmers, intervene directly in the code to explicitly order the compiler: *"change the type of this variable now"*.
+
+---
+
+> 💡 **Study Insight:**
+> Understanding type conversion is the dividing line between writing robust C code and creating software full of undefined behavior. Since C is a language that gives full freedom to the programmer, the compiler tries to "help" and guess your intention when you mix data (like adding a `char` to an `int`, or dividing an `int` by a `float`).
+> If you do not master these automatic bit‑transition rules, you will eventually face silent precision loss or data truncation bugs that generate no compilation errors, but completely change the program's logic at runtime. In embedded systems or network protocols, a wrong implicit cast can break the alignment of an entire data packet.
+
+</details>
+
+---
+
+
+
+---
+
 </details>
 
 
