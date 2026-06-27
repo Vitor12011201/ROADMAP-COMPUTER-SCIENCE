@@ -6429,9 +6429,42 @@ Conversions in C are essentially divided into two major categories, which we wil
 
 ---
 
+<details>
+ <summary><b>🧵 String Conversions (Section 15.1.0 - 15.1.2)</b></summary>
+
+---
+
+[Code for Sections 15.1.0 - 15.1.2 can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-1)-STRING-CONVERSIONS)
+
+---
+
+<details>
+<summary><b>🔟 String Conversions - Intro (Section 15.1.0)</b></summary>
+<br>
+
+---
+
+[Section 15.1.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-1)-STRING-CONVERSIONS/(SECTION-15-1-0)-STRING-CONVERSIONS-INTRO)
+
+---
+
+Unlike many modern high‑level languages (where you can simply add a number to a string and the language magically handles the conversion), C **does not** perform string‑to‑number (or vice‑versa) conversions automatically or in a simplified way.
+
+Because C treats strings in a raw manner — merely as arrays of characters (`char`) terminated by `\0` — there is no implicit coercion between text and numeric types. To perform these transformations, we are forced to call specific functions from the standard library to do the dirty work.
+
+> 💡 **Study Insight:**
+> This lack of automatic conversion scares those coming from languages like JavaScript or Python, but it makes perfect sense when we look at the memory architecture. To the processor, an `int` is a pure 4‑byte binary block, while the string `"123"` is four distinct bytes containing the ASCII codes `49`, `50`, `51`, and `0`.
+> There is no direct machine instruction that instantly transforms one into the other. In C, we must explicitly use functions like `atoi()`, `strtol()` (for text → number), or `sprintf()` (for number → text). Documenting these functions in the Roadmap will make it clear how to safely manipulate data coming from text interfaces, configuration files, or network payloads without crashing the program with invalid pointers.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
 
