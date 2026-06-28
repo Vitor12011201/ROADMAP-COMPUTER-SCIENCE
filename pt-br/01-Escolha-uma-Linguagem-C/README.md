@@ -6483,12 +6483,55 @@ As conversões em C dividem-se essencialmente em duas grandes categorias que ver
 
 Ao contrário de muitas linguagens de alto nível modernas (onde você pode simplesmente somar um número a uma string e a linguagem resolve a conversão magicamente), o C **não realiza** conversões de string para número (e vice-versa) de forma automática ou simplificada.
 
-Como o C trata strings de forma crua — apenas como vetores de caracteres (`char`) terminados em `\0` —, não existe uma coerção implícita entre texto e tipos numéricos. Para realizar essas transformações, somos obrigados a chamar funções específicas da biblioteca padrão para fazer o trabalho sujo.
+Como o C trata strings de forma crua, apenas como vetores de caracteres (`char`) terminados em `\0` —, não existe uma coerção implícita entre texto e tipos numéricos. Para realizar essas transformações, somos obrigados a chamar funções específicas da biblioteca padrão para fazer o trabalho sujo.
 
 
 > 💡 **Insight de Estudo:**
 > Essa falta de conversão automática assusta quem vem de linguagens como JavaScript ou Python, mas faz total sentido quando olhamos para a arquitetura da memória. Para o processador, um `int` é um bloco binário puro de 4 bytes, enquanto a string `"123"` são quatro bytes distintos contendo os códigos ASCII `49`, `50`, `51` e `0`.
 > Não existe uma instrução de máquina direta que transforme um no outro instantaneamente. Em C, precisamos explicitamente usar funções como `atoi()`, `strtol()` (para texto -> número) ou `sprintf()` (para número -> texto). Documentar essas funções no Roadmap deixará claro como manipular dados vindos de interfaces de texto, arquivos de configuração ou payloads de rede de forma segura, sem travar o programa com ponteiros inválidos.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔢 Valor Numérico para String (Seção 15.1.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.1.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-1)-CONVERSOES-DE-STRING/(SECAO-15-1-1)-VALOR-NUMERICO-PARA-STRING)
+
+---
+
+Quando queremos converter um número em uma string, temos duas ferramentas principais à disposição: a função `sprintf()` e a sua versão blindada, `snprintf()`.
+
+Elas funcionam de forma praticamente idêntica ao `printf()` que você já conhece, com uma única e crucial diferença: em vez de cuspirem o resultado na tela (saída padrão), elas gravam o resultado formatado dentro de uma string (um buffer de caracteres). Uma vez salvo no buffer, você pode manipular esse texto, transmiti-lo por uma rede ou exibi-lo mais tarde.
+
+Veja um exemplo prático convertendo uma aproximação do valor de $\pi$ em texto:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char s[10];
+    float f = 3.14159;
+
+    // Converte "f" para string e armazena em "s".
+    // O argumento 10 limita a escrita a no máximo 10 caracteres,
+    // garantindo espaço para o terminador nulo ('\0').
+    snprintf(s, 10, "%f", f);
+
+    printf("Valor em string: %s\n", s);  // Imprime: Valor em string: 3.141590
+}
+```
+
+Da mesma forma que usamos `%f` para floats, você pode usar `%d` para inteiros comuns, `%u` para variantes unsigned ou qualquer outro especificador de formato que você já domina.
+
+> 💡 **Insight de Estudo:**
+> Embora o materia mencione a existência do `sprintf()`, a regra de ouro no desenvolvimento C moderno (especialmente se você preza por segurança e estabilidade) é nunca usar `sprintf()`.
+> O `sprintf()` assume ingenuamente que o array de destino é grande o suficiente para conter o texto gerado. Se você tentar converter um número imenso para um buffer pequeno usando `sprintf()`, ele vai estourar o limite do array e sobrescrever a memória adjacente na Stack. Isso causa o infame **Buffer Overflow**, que pode travar o programa com um Segmentation Fault ou abrir brechas críticas de segurança.
+> A função `snprintf()` resolve isso exigindo o tamanho máximo do buffer como segundo parâmetro (sizeof(s) ou 10, no exemplo acima). Se o número convertido precisar de mais espaço do que o buffer possui, ele será truncado com segurança, e o caractere \0 será inserido obrigatoriamente no final, protegendo a integridade da sua memória.
 
 </details>
 

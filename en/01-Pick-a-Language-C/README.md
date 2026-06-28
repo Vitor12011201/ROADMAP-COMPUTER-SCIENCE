@@ -6460,6 +6460,49 @@ Because C treats strings in a raw manner — merely as arrays of characters (`ch
 
 ---
 
+<details>
+<summary><b>🔢 Numeric Value to String (Section 15.1.1)</b></summary>
+<br>
+
+---
+
+[Section 15.1.1 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-1)-STRING-CONVERSIONS/(SECTION-15-1-1)-NUMERIC-VALUE-TO-STRING)
+
+---
+
+When we want to convert a number into a string, we have two main tools at our disposal: the `sprintf()` function and its armored version, `snprintf()`.
+
+They work in practically the same way as the `printf()` you already know, with one crucial difference: instead of spitting the result to the screen (standard output), they write the formatted result into a string (a character buffer). Once saved in the buffer, you can manipulate that text, transmit it over a network, or display it later.
+
+Here is a practical example converting an approximation of the value of $\pi$ into text:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    char s[10];
+    float f = 3.14159;
+
+    // Converts "f" to a string and stores it in "s".
+    // The argument 10 limits writing to at most 10 characters,
+    // ensuring space for the null terminator ('\0').
+    snprintf(s, 10, "%f", f);
+
+    printf("Value as string: %s\n", s);  // Prints: Value as string: 3.141590
+}
+```
+
+Just as we use `%f` for floats, you can use `%d` for plain integers, `%u for unsigned variants, or any other format specifier you already master.
+
+> 💡 **Study Insight:**
+> Although the material mentions the existence of `sprintf()`, the golden rule in modern C development (especially if you value safety and stability) is to never use `sprintf()`.
+> `sprintf()` naively assumes that the destination array is large enough to hold the generated text. If you try to convert a huge number into a small buffer using `sprintf()`, it will exceed the array's limit and overwrite adjacent memory on the stack. This causes the infamous **Buffer Overflow**, which can crash the program with a Segmentation Fault or open critical security holes.
+> The `snprintf()` function solves this by requiring the maximum buffer size as the second parameter (sizeof(s) or 10, in the example above). If the converted number needs more space than the buffer has, it will be safely truncated, and the \0 character will be forcibly inserted at the end, protecting your memory integrity.
+
+</details>
+
+---
+
 
 
 ---
