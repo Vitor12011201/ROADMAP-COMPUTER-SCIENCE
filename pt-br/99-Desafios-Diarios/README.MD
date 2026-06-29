@@ -89,6 +89,14 @@ Estudos e exercícios sobre tipos inteiros avançados da linguagem C, explorando
 * **Competências:** Compreensão das diferenças entre números com sinal e sem sinal, utilização correta dos tipos `signed char`, `unsigned char`, `unsigned short`, `unsigned int`, `unsigned long`, `long long` e `unsigned long long`, análise dos limites de armazenamento de cada tipo, escolha adequada de variáveis para diferentes cenários e otimização do uso da memória.
 * **Destaque:** Entendimento aprofundado de como os números são representados internamente pelo computador, como o tamanho e o sinal de uma variável afetam a faixa de valores que ela pode armazenar e como essas características impactam diretamente a eficiência, segurança e previsibilidade de programas em C.
 
+### [14-Tipos-de-Variáveis-Parte-3-Conversões](./14-Tipos_Parte_3_Conversoes(Exercicios))
+
+**O que encontrará aqui:**
+Estudos e exercícios sobre conversões de tipos na linguagem C, abordando a transformação de valores numéricos em strings, strings em números e conversões entre diferentes tipos numéricos.
+* **Competências:** Uso de funções como `sprintf()` e `snprintf()`, compreensão de conversões explícitas e implícitas, análise de perdas de precisão, truncamentos, estouros de valores, limites de armazenamento e cuidados com buffers e strings em C.
+* **Destaque:** Compreensão de que conversões em C exigem atenção, pois mudanças entre tipos podem alterar valores, perder informações ou gerar comportamentos inesperados. O capítulo reforça a importância de escrever conversões de forma consciente, segura e previsível.
+
+
 ---
 
 ## 🛠️ Tecnologias e Ferramentas

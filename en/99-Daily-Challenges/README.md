@@ -89,6 +89,13 @@ Studies and exercises on advanced integer types in the C language, exploring sig
 * **Skills:** Understanding the differences between signed and unsigned numbers, correct usage of `signed char`, `unsigned char`, `unsigned short`, `unsigned int`, `unsigned long`, `long long`, and `unsigned long long` types, analysis of the storage limits of each type, appropriate variable selection for different scenarios, and memory usage optimization.
 * **Highlight:** Deep understanding of how numbers are internally represented by the computer, how the size and sign of a variable affect the range of values it can store, and how these characteristics directly impact the efficiency, safety, and predictability of C programs.
 
+### [14-Types-of-Variables-Part-3-Conversions](./14-Types-Part-3-Conversions(Exercises))
+
+**What you will find here:**
+Studies and exercises on type conversions in the C language, covering the transformation of numeric values into strings, strings into numbers, and conversions between different numeric types.
+* **Skills:** Use of functions such as `sprintf()` and `snprintf()`, understanding of explicit and implicit conversions, analysis of precision loss, truncations, value overflows, storage limits, and precautions with buffers and strings in C.
+* **Highlight:** Understanding that conversions in C require attention, as changes between types can alter values, lose information, or generate unexpected behavior. This chapter reinforces the importance of writing conversions in a conscious, safe, and predictable manner.
+
 ---
 
 ## 🛠️ Technologies and Tools
