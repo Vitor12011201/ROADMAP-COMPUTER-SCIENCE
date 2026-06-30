@@ -6500,7 +6500,7 @@ Como o C trata strings de forma crua, apenas como vetores de caracteres (`char`)
 
 ---
 
-[Codigos da Seção 15.1.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-1)-CONVERSOES-DE-STRING/(SECAO-15-1-1)-VALOR-NUMERICO-PARA-STRING)
+[Codigos da Seção 15.1.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-1)-CONVERSOES-DE-STRING/(SECAO-15-1-1)-VALOR-NUMERICO-PARA-STRING)
 
 ---
 
@@ -6532,6 +6532,231 @@ Da mesma forma que usamos `%f` para floats, você pode usar `%d` para inteiros c
 > Embora o materia mencione a existência do `sprintf()`, a regra de ouro no desenvolvimento C moderno (especialmente se você preza por segurança e estabilidade) é nunca usar `sprintf()`.
 > O `sprintf()` assume ingenuamente que o array de destino é grande o suficiente para conter o texto gerado. Se você tentar converter um número imenso para um buffer pequeno usando `sprintf()`, ele vai estourar o limite do array e sobrescrever a memória adjacente na Stack. Isso causa o infame **Buffer Overflow**, que pode travar o programa com um Segmentation Fault ou abrir brechas críticas de segurança.
 > A função `snprintf()` resolve isso exigindo o tamanho máximo do buffer como segundo parâmetro (sizeof(s) ou 10, no exemplo acima). Se o número convertido precisar de mais espaço do que o buffer possui, ele será truncado com segurança, e o caractere \0 será inserido obrigatoriamente no final, protegendo a integridade da sua memória.
+
+</details>
+
+---
+
+<details>
+ <summary><b>🧵 String para Valor Numérico (Seção 15.1.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.1.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-1)-CONVERSOES-DE-STRING/(SECAO-15-1-2)-STRING-PARA-VALOR-NUMERICO)
+
+---
+
+Para fazer o caminho inverso, transformar texto em números, existem duas famílias principais de funções na biblioteca padrão do C, ambas residentes em `<stdlib.h>`.
+
+Vamos chamá-las de família **`atoi`** (*a-to-i*) e família **`strtol`** (*stir-to-long*).
+
+---
+
+#### 🛑 1. A Família `atoi` — Conversão Rápida, mas Perigosa
+
+Para conversões diretas e sem frescuras, as funções `atoi` resolvem o problema rapidamente.
+
+Curiosidade: o `"a"` no início dessas funções vem de **ASCII**, ou seja, `atoi` significa *"ASCII to Integer"* — embora hoje em dia focar apenas em ASCII seja um termo meio datado.
+
+| Função | Descrição |
+| --- | --- |
+| `atoi` | Converte string para `int` |
+| `atof` | Converte string para `double` |
+| `atol` | Converte string para `long int` |
+| `atoll` | Converte string para `long long int` |
+
+Veja um exemplo básico convertendo uma string contendo o valor de π para um tipo `double`:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *pi = "3.14159";
+    double f;
+
+    f = atof(pi);
+    printf("%f\n", f); // Imprime: 3.141590
+}
+```
+
+#### ⚠️ O perigo oculto:
+
+Essas funções possuem um mecanismo de tratamento de erros muito ruim.
+Elas não avisam claramente se a conversão deu certo ou errado.
+
+```c
+int x = atoi("o que?"); // "o que?" não é um número!
+```
+
+Em muitos ambientes, isso retorna `0`, mas você não consegue distinguir se o usuário realmente digitou `"0"` ou se a conversão falhou.
+Além disso, se o número convertido não couber no tipo de destino, o comportamento pode ser indefinido.
+
+---
+
+#### 🛡️ 2. A Família `strtol` — Robusta e Customizável
+
+Se você precisa de um código mais seguro, esqueça o `atoi` e adote a família `strtol`.
+
+Além de tratarem erros de forma muito melhor, essas funções permitem converter números em **qualquer base numérica** — decimal, binário, octal, hexadecimal etc. — e cobrem muito mais tipos de dados.
+
+| Função | Descrição |
+| --- | --- |
+| `strtol` | String para `long int` |
+| `strtoll` | String para `long long int` |
+| `strtoul` | String para `unsigned long int` |
+| `strtoull` | String para `unsigned long long int` |
+| `strtof` | String para `float` |
+| `strtod` | String para `double` |
+| `strtold` | String para `long double` |
+
+Essas funções seguem um padrão de uso muito parecido e costumam ser o primeiro contato de muitos programadores com **ponteiros para ponteiros**, como `char **`.
+Mas não entre em pânico: o funcionamento é bem lógico.
+
+---
+
+#### 🔹 Exemplo 1: Conversão Simples — Descartando Erros
+
+Se passarmos `NULL` no segundo parâmetro, avisamos à função que não nos importamos com o ponto onde a conversão parou.
+Também precisamos passar a base numérica no terceiro parâmetro. Neste caso, usamos base `10`, ou seja, decimal.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "3490";
+
+    // Converte a string 's' em base 10 para unsigned long int.
+    // O NULL indica que vamos ignorar onde a conversão parou.
+    unsigned long int x = strtoul(s, NULL, 10);
+
+    printf("%lu\n", x);  // Imprime: 3490
+}
+```
+
+---
+
+**Diferença crucial para o `atoi`:**
+
+Mesmo descartando o erro com `NULL`, se a string fosse totalmente inválida, o `strtoul` não causaria comportamento indefinido por causa disso.
+
+Ele retornaria `0`, mas ainda assim você perderia a chance de saber exatamente onde a conversão falhou.
+
+Por isso, em código mais robusto, o ideal é usar o segundo parâmetro.
+
+---
+
+#### 🔹 Exemplo 2: Convertendo Outras Bases — Binário
+
+Mudar a base é tão simples quanto alterar o último parâmetro.
+Vamos extrair o valor decimal de uma string binária, isto é, uma string escrita em base `2`.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "101010";
+
+    // Convertendo a string 's' na base 2, ou seja, binário.
+    unsigned long int x = strtoul(s, NULL, 2);
+
+    printf("%lu\n", x);  // Imprime: 42
+}
+```
+
+A string `"101010"` em binário representa o número `42` em decimal.
+
+---
+
+### 🕵️ O Mistério do Ponteiro para Ponteiro: `char **`
+
+Para que serve aquele segundo parâmetro que aceita um ponteiro para ponteiro?
+
+Ele serve para a função nos dizer **exatamente onde a conversão parou** dentro da string.
+
+Se passarmos o endereço de um ponteiro de caractere, como `&badchar`, a função vai modificar esse ponteiro para que ele aponte para o primeiro caractere que não conseguiu converter.
+
+---
+
+#### 🔹 Exemplo 3: Detectando o Caractere Inválido
+
+Veja o que acontece se tentarmos converter a string `"34x90"` na base `10`:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "34x90";  // 'x' não é um dígito válido na base 10.
+    char *badchar;
+
+    // Passamos &badchar para capturar onde a conversão parou.
+    unsigned long int x = strtoul(s, &badchar, 10);
+
+    // A função converte o máximo que consegue antes do erro.
+    printf("%lu\n", x);  // Imprime: 34
+
+    // badchar agora aponta para o primeiro caractere inválido dentro de s.
+    printf("Caractere inválido encontrado: %c\n", *badchar);  // Imprime: x
+}
+```
+
+A função conseguiu converter `"34"`.
+
+Quando chegou no caractere `'x'`, ela parou, porque `'x'` não é um dígito válido em base `10`.
+
+Então `badchar` passa a apontar para esse caractere.
+
+---
+
+#### 🔹 Exemplo 4: Validando uma Conversão Perfeita
+
+Se a string for perfeitamente convertida do início ao fim, para onde o `badchar` vai apontar?
+
+Ele vai apontar para o terminador nulo, isto é, `'\0'`, no final da string.
+
+Sabendo disso, podemos criar uma validação mais robusta:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "3490";
+    char *badchar;
+
+    unsigned long int x = strtoul(s, &badchar, 10);
+
+    // Se o caractere onde a conversão parou for '\0',
+    // significa que a string inteira foi convertida.
+    if (*badchar == '\0') {
+        printf("Sucesso total! Valor: %lu\n", x);
+    } else {
+        printf("Conversão parcial ou falha: %lu\n", x);
+        printf("Sujeira encontrada na string: %c\n", *badchar);
+    }
+}
+```
+
+### 📐 Resumo da Ópera
+
+As funções no estilo `atoi()` quebram um galho rápido em ambientes controlados ou scripts simples.
+
+Mas as funções no estilo `strtol()` são as verdadeiras donas do pedaço quando você precisa de:
+
+- controle estrito sobre erros;
+- validação de dados de entrada;
+- manipulação de bases numéricas alternativas;
+- mais segurança ao lidar com entradas externas.
+
+---
+
+> 💡 Insight de Estudo
+> Em cenários de infraestrutura e sistemas embarcados — como ler arquivos de configuração de servidores ou interpretar parâmetros passados via terminal em sistemas Linux embarcados — o uso de `strtol` com validação de `badchar` é praticamente obrigatório.
+> Imagine que um usuário digite um parâmetro de configuração incorreto:
 
 </details>
 

@@ -6503,6 +6503,236 @@ Just as we use `%f` for floats, you can use `%d` for plain integers, `%u for uns
 
 ---
 
+<details>
+ <summary><b>🧵 String to Numeric Value (Section 15.1.2)</b></summary>
+<br>
+
+---
+
+[Section 15.1.2 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-1)-STRING-CONVERSIONS/(SECTION-15-1-2)-STRING-TO-NUMERIC-VALUE)
+
+---
+
+To go the opposite way, transforming text into numbers, there are two main families of functions in the C standard library, both residing in `<stdlib.h>`.
+
+Let's call them the **`atoi`** (*a-to-i*) family and the **`strtol`** (*stir-to-long*) family.
+
+---
+
+#### 🛑 1. The `atoi` Family — Fast Conversion, but Dangerous
+
+For straightforward conversions without any frills, the `atoi` functions get the job done quickly.
+
+Fun fact: the `"a"` at the start of these functions stands for **ASCII**, so `atoi` means *"ASCII to Integer"* — though nowadays focusing only on ASCII is a bit of a dated term.
+
+| Function | Description |
+| --- | --- |
+| `atoi` | Converts string to `int` |
+| `atof` | Converts string to `double` |
+| `atol` | Converts string to `long int` |
+| `atoll` | Converts string to `long long int` |
+
+Here is a basic example converting a string containing the value of π to a `double`:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *pi = "3.14159";
+    double f;
+
+    f = atof(pi);
+    printf("%f\n", f); // Prints: 3.141590
+}
+```
+
+⚠️ **The hidden danger:**
+
+These functions have very poor error handling mechanisms.
+
+They do not clearly signal whether the conversion succeeded or failed.
+
+```c
+int x = atoi("what?"); // "what?" is not a number!
+```
+
+In many environments, this returns `0`, but you cannot tell whether the user actually typed `"0"` or if the conversion failed.
+
+Moreover, if the converted number does not fit into the destination type, the behavior is undefined.
+
+---
+
+#### 🛡️ 2. The `strtol` Family — Robust and Customizable
+
+If you need safer code, forget `atoi` and adopt the `strtol` family.
+
+Besides handling errors much better, these functions allow converting numbers in **any numeric base** — decimal, binary, octal, hexadecimal, etc. — and cover a much wider range of data types.
+
+| Function | Description |
+| --- | --- |
+| `strtol` | String to `long int` |
+| `strtoll` | String to `long long int` |
+| `strtoul` | String to `unsigned long int` |
+| `strtoull` | String to `unsigned long long int` |
+| `strtof` | String to `float` |
+| `strtod` | String to `double` |
+| `strtold` | String to `long double` |
+
+These functions follow a very similar usage pattern and are often the first encounter many programmers have with **pointers to pointers**, such as `char **`.
+
+But don't panic: the logic is quite straightforward.
+
+---
+
+#### 🔹 Example 1: Simple Conversion — Discarding Errors
+
+If we pass `NULL` as the second parameter, we tell the function we do not care where the conversion stopped.
+
+We also need to pass the numeric base as the third parameter. In this case, we use base `10`, i.e., decimal.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "3490";
+
+    // Converts the string 's' in base 10 to unsigned long int.
+    // NULL indicates we will ignore where the conversion stopped.
+    unsigned long int x = strtoul(s, NULL, 10);
+
+    printf("%lu\n", x);  // Prints: 3490
+}
+```
+
+**Crucial difference from `atoi`:**
+
+Even when discarding errors with `NULL`, if the string were completely invalid, `strtoul` would not cause undefined behavior because of that.
+
+It would return `0`, but you would still lose the chance to know exactly where the conversion failed.
+
+That is why, in more robust code, it is best to use the second parameter.
+
+---
+
+#### 🔹 Example 2: Converting Other Bases — Binary
+
+Changing the base is as simple as changing the last parameter.
+
+Let's extract the decimal value from a binary string, i.e., a string written in base `2`.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "101010";
+
+    // Converting the string 's' in base 2, i.e., binary.
+    unsigned long int x = strtoul(s, NULL, 2);
+
+    printf("%lu\n", x);  // Prints: 42
+}
+```
+
+The string `"101010"` in binary represents the number `42` in decimal.
+
+---
+
+#### 🕵️ The Mystery of the Pointer to Pointer: `char **`
+
+What is the purpose of that second parameter that accepts a pointer to a pointer?
+
+It allows the function to tell us **exactly where the conversion stopped** within the string.
+
+If we pass the address of a character pointer, like `&badchar`, the function will modify that pointer to point to the first character that could not be converted.
+
+---
+
+#### 🔹 Example 3: Detecting the Invalid Character
+
+See what happens if we try to convert the string `"34x90"` in base `10`:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "34x90";  // 'x' is not a valid digit in base 10.
+    char *badchar;
+
+    // We pass &badchar to capture where the conversion stopped.
+    unsigned long int x = strtoul(s, &badchar, 10);
+
+    // The function converts as much as it can before the error.
+    printf("%lu\n", x);  // Prints: 34
+
+    // badchar now points to the first invalid character inside s.
+    printf("Invalid character found: %c\n", *badchar);  // Prints: x
+}
+```
+
+The function was able to convert `"34"`.
+
+When it reached the character `'x'`, it stopped, because `'x'` is not a valid digit in base `10`.
+
+So `badchar` now points to that character.
+
+---
+
+#### 🔹 Example 4: Validating a Perfect Conversion
+
+If the string is perfectly converted from start to finish, where will `badchar` point?
+
+It will point to the null terminator, i.e., `'\0'`, at the end of the string.
+
+Knowing this, we can create a more robust validation:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    char *s = "3490";
+    char *badchar;
+
+    unsigned long int x = strtoul(s, &badchar, 10);
+
+    // If the character where the conversion stopped is '\0',
+    // it means the entire string was converted.
+    if (*badchar == '\0') {
+        printf("Total success! Value: %lu\n", x);
+    } else {
+        printf("Partial conversion or failure: %lu\n", x);
+        printf("Garbage found in the string: %c\n", *badchar);
+    }
+}
+```
+
+---
+
+#### 📐 Summary
+
+The `atoi()`-style functions are useful for quick work in controlled environments or simple scripts.
+
+But the `strtol()`-style functions are the real champions when you need:
+
+- strict error control;
+- input data validation;
+- handling of alternative numeric bases;
+- more safety when dealing with external input.
+
+---
+
+> 💡 **Study Insight**
+> In infrastructure and embedded systems scenarios — such as reading server configuration files or interpreting command-line parameters in embedded Linux systems — using `strtol` with `badchar` validation is practically mandatory.
+> Imagine that a user types an incorrect configuration parameter:
+
+</details>
+
+---
+
 
 
 ---
