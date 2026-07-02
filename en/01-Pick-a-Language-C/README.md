@@ -6731,13 +6731,91 @@ But the `strtol()`-style functions are the real champions when you need:
 
 </details>
 
----
-
-
+</details>
 
 ---
+
+<details>
+<summary><b>🔤 char Conversions (Section 15.2)</b></summary>
+<br>
+
+---
+
+[Section 15.2 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-2)-CHAR-CONVERSIONS)
+
+---
+
+What if you have a single character that represents a digit, like `'5'`... Is that the same as the numeric value `5`?
+
+Let's test this in code:
+
+```c
+printf("%d %d\n", 5, '5');
+```
+
+On a modern system (like those based on UTF-8 or ASCII), this will print:
+
+```txt
+5 53
+```
+
+As you can see, the answer is **no**.
+
+- But where did that `53` come from?
+
+That is the code point (the numeric code in the ASCII/UTF‑8 table) that represents the visual symbol for the **character '5'**.
+
+---
+
+- So, how do we convert the character `'5'` (whose internal value is 53) into the actual numeric value `5`?
+
+We use a classic and extremely elegant trick! The C Language Standard explicitly guarantees that the numeric characters from 0 to 9 have sequential and mandatory codes in this exact order:
+
+```txt
+0  1  2  3  4  5  6  7  8  9
+```
+
+- Think for a moment: how can we use this guarantee to our advantage?
+
+Looking at the characters and their respective numeric values in the ASCII/UTF‑8 table, we have the following mapping:
+
+| Character | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Internal Value (ASCII) | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 |
+
+Notice that the character `'5'` is worth `53`, and the character `'0'` is worth `48`.
+
+Since the sequence is perfectly linear, just subtract the character `'0'` from any digit character to get its actual numeric value:
+
+```c
+char c = '6';
+int x = c;       // x receives 54 (the ASCII code for the character '6')
+int y = c - '0'; // y receives 6 (54 - 48), exactly the numeric value we wanted!
+```
+
+And the reverse path works the same way! If you have an integer from 0 to 9 and want to turn it into the corresponding character, just add the character `'0'`:
+
+```c
+int x = 6;
+char c = x + '0';  // c receives the value 54
+
+printf("%d\n", c);  // Prints 54 (using %d to see the raw numeric value)
+printf("%c\n", c);  // Prints 6  (using %c to see the formatted character)
+```
+
+- You may even find this a somewhat bizarre or archaic way to perform a type conversion. And by today's high‑level language standards, it certainly is. But back in the old days, when computers were almost made of wood, this was the ultra‑optimized method to make that magic happen. Since the mechanism works perfectly and wastes no processing cycles, C never needed to "fix" it.
+
+> 💡 Study Insight:
+> This trick of subtracting or adding `'0'` is not just a historical curiosity; it is the foundation of how low‑level functions (like the very `atoi` we saw before) are implemented under the hood.
+> When you need to process a string character by character (for example, when manually parsing a custom data packet coming from a serial port or network socket), doing `pointer[i] - '0'` avoids the need to allocate temporary memory or call heavy standard library functions to convert simple numbers. It is a direct arithmetic operation between bytes in the CPU register: fast, clean, and with zero dynamic memory consumption.
 
 </details>
+
+---
+
+
+
+---
 
 </details>
 

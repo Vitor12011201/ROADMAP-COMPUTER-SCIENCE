@@ -6439,7 +6439,7 @@ printf("%f\n", x);  // Imprime em decimal puro: 80.500000
 
 ---
 
-[Codigos da Seção 15.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO 15-0)-CONVERSOES)
+[Codigos da Seção 15.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-0)-CONVERSOES)
 
 ---
 
@@ -6741,7 +6741,7 @@ int main(void) {
 }
 ```
 
-### 📐 Resumo da Ópera
+#### 📐 Resumo da Ópera
 
 As funções no estilo `atoi()` quebram um galho rápido em ambientes controlados ou scripts simples.
 
@@ -6760,13 +6760,92 @@ Mas as funções no estilo `strtol()` são as verdadeiras donas do pedaço quand
 
 </details>
 
----
-
-
+</details>
 
 ---
+
+<details>
+<summary><b>🔤 Conversões de char (Seção 15.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-2)-CONVERSOES-DE-CHAR)
+
+---
+
+E se você tiver um único caractere que representa um dígito, como `'5'`... Isso é a mesma coisa que o valor numérico `5`?
+
+Vamos testar isso no código:
+
+```c
+printf("%d %d\n", 5, '5');
+```
+
+Em um sistema moderno (como os baseados em UTF-8 ou ASCII), isso vai imprimir:
+
+```txt
+5 53
+```
+
+Como você pode ver, a resposta é **não**.
+
+- Mas de onde veio esse `53`?
+
+  Esse é o code point (o código numérico na tabela ASCII/UTF-8) que representa o símbolo visual do **caractere '5'**
+
+---
+
+- Então, como fazemos para converter o caractere `'5'` (cujo valor interno é 53) no valor numérico real `5`?
+
+  Usamos um truque clássico e extremamente elegante! O Padrão da Linguagem C garante expressamente que os caracteres numéricos de 0 a 9 possuem códigos sequenciais e obrigatórios nesta exata ordem:
+
+```txt
+0  1  2  3  4  5  6  7  8  9
+```
+
+- Pense por um segundo: como podemos usar essa garantia a nosso favor?
+
+Olhando para os caracteres e seus respectivos valores numéricos na tabela ASCII/UTF-8, temos o seguinte mapeamento:
+
+| Caractere | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Valor Interno (ASCII) | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 |
+
+
+Repare que o caractere `'5'` vale `53`, e o caractere `'0'` vale `48`.
+
+Como a sequência é perfeitamente linear, basta subtrair o caractere `'0'` de qualquer caractere de dígito para obter o seu valor numérico real:
+
+```c
+char c = '6';
+int x = c;       // x recebe 54 (o código ASCII do caractere '6')
+int y = c - '0'; // y recebe 6 (54 - 48), exatamente o valor numérico que queríamos!
+```
+
+E o caminho inverso funciona exatamente da mesma forma! Se você tem um número inteiro de 0 a 9 e quer transformá-lo no caractere correspondente, basta somar o caractere `'0'`:
+
+```c
+int x = 6;
+char c = x + '0';  // c recebe o valor 54
+
+printf("%d\n", c);  // Imprime 54 (usando %d para ver o valor numérico bruto)
+printf("%c\n", c);  // Imprime 6  (usando %c para ver o caractere formatado)
+```
+
+- Você pode até achar essa uma forma meio bizarra ou arcaica de realizar uma conversão de tipos. E, para os padrões de linguagens de alto nível de hoje, certamente é. Mas nos velhos tempos, quando os computadores eram quase feitos de madeira, esse era o método ultra-otimizado para fazer essa mágica acontecer. Como o mecanismo funciona perfeitamente e não gasta ciclos de processamento à toa, o C nunca precisou "consertar" isso.
+
+>💡 **Insight de Estudo:**
+> Esse truque de subtrair ou somar `'0'` não é apenas uma curiosidade histórica; ele é a base de como funções de baixo nível (como o próprio `atoi` que vimos antes) são implementadas na unha.
+> Quando você precisa processar uma string caractere por caractere (por exemplo, ao fazer o parsing manual de um pacote de dados customizado vindo de uma porta serial ou socket de rede), fazer `ponteiro[i] - '0'` evita que você precise alocar memória temporária ou chamar funções pesadas da biblioteca padrão para converter números simples. É uma operação aritmética direta entre bytes no registrador da CPU: rápida, limpa e com consumo zero de memória dinâmica.
 
 </details>
+
+---
+
+
+
+---
 
 </details>
 
