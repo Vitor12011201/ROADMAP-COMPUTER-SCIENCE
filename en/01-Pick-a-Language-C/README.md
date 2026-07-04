@@ -6813,10 +6813,77 @@ printf("%c\n", c);  // Prints 6  (using %c to see the formatted character)
 
 ---
 
+<details>
+ <summary><b>🔢 Numeric Conversions (Section 15.3.0 - 15.3.3)</b></summary>
+
+---
+
+[Code for Sections 15.3.0 - 15.3.3 can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-3)-NUMERIC-CONVERSIONS)
+
+---
+
+<details>
+<summary><b>🧪 Boolean (Section 15.3.1)</b></summary>
+<br>
+
+---
+
+[Section 15.3.1 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-3)-NUMERIC-CONVERSIONS/(SECTION-15-3-1)-BOOLEAN)
+
+---
+
+The conversion rules for Boolean types (`_Bool` or `bool`) in C are extremely straightforward and based on the presence or absence of value:
+
+* If you convert the number zero (`0` for integers or `0.0` for floating-point) to Boolean, the result will be strictly **`0`** (`false`).
+* Otherwise, if the value is **absolutely anything other than zero** (whether `1`, `-5`, `0.0001`, or a valid pointer), the conversion result will always be **`1`** (`true`).
+
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Integer-to-Integer Conversions (Section 15.3.2)</b></summary>
+<br>
+
+---
+
+[Section 15.3.2 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-3)-NUMERIC-CONVERSIONS/(SECTION-15-3-2)-INTEGER-TO-INTEGER-CONVERSIONS)
+
+---
+
+When you assign an integer value from one type to another with different limits (for example, trying to put a `long` into a `short`, or an `int` into an `unsigned int`), and the original value **does not fit** in the destination space, C splits the behavior into two strict rules:
+
+#### 🏎️ 1. The Destination is an Unsigned Type (`unsigned`)
+If the destination type is an unsigned integer and the value does not fit in it, C mathematically guarantees that the value will undergo a "car odometer" effect (the infamous *wrap-around*). The value cycles around until it fits within the allowed range.
+
+Technically, the final result will be the original value mapped via modular arithmetic (the remainder of the original value divided by $2^n$, where $n$ is the number of bits in the destination type).
+
+* **Practical Example:** If you try to force the decimal number `258` into an `unsigned char` (which only stores `0` to `255`), the value exceeds the maximum limit, the odometer resets to zero, and it keeps counting. The final stored value will be `2`.
+
+#### ⚠️ 2. The Destination is a Signed Type (`signed`)
+Here the story changes completely. If the destination type is a **signed** integer and the original value does not fit in it, the result is classified by the C standard as **Implementation-Defined Behavior**.
+
+This means the C language does not dictate a universal rule about what should happen. The compiler you are using (whether GCC, Clang, or MSVC) will do something predictable and consistent with your CPU architecture (usually it simply truncates the upper bits in memory, causing a very large positive number to become negative due to Two's Complement representation). However, because it is not a universal rule in the standard, to be absolutely certain of how the final binary will behave, you are required to consult your compiler's documentation.
+
+---
+
+> 💡 **Study Insight:**
+> For those working close to the hardware or optimizing C code, understanding the difference between these two rules is crucial for software portability.
+> The *wrap-around* behavior of `unsigned` types is guaranteed by law in the language standard. Embedded systems developers often deliberately take advantage of this to create hardware tick counters or simple hashes, knowing that when the `unsigned` counter overflows, it will cleanly and safely wrap back to zero without crashing the program.
+> On the other hand, relying on overflow or truncated conversion of `signed` types is flirting with danger. Because the behavior depends on the compiler and processor architecture, code that works perfectly when compiled with GCC on an x86_64 architecture can break and generate completely bizarre calculations if ported and compiled for an ARM chip using a different compiler. Whenever you need to downsize a signed variable, explicitly mask the bits or manually validate the limits before the assignment.
+
+</details>
+
+---
+
 
 
 ---
 
 </details>
+
+</details>
+
+
 
 

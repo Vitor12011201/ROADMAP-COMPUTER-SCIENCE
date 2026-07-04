@@ -6843,9 +6843,75 @@ printf("%c\n", c);  // Imprime 6  (usando %c para ver o caractere formatado)
 
 ---
 
+<details>
+ <summary><b>🔢 Conversões Numéricas (Seção 15.3.0 - 15.3.3)</b></summary>
+
+---
+
+[Codigos da Seções 15.3.0 - 15.3.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-3)-CONVERSOES-NUMERICAS)
+
+---
+
+<details>
+<summary><b>🧪 Booleano (Seção 15.3.1)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.3.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-3)-CONVERSOES-NUMERICAS/(SECAO-15-3-1)-BOOLEANO)
+
+---
+
+
+As regras de conversão para tipos booleanos (`_Bool` ou `bool`) em C são extremamente diretas e baseadas na presença ou ausência de valor:
+
+* Se você converter o número zero (`0` para inteiros ou `0.0` para ponto flutuante) para booleano, o resultado será estritamente **`0`** (`false`).
+* Caso contrário, se o valor for **absolutamente qualquer coisa diferente de zero** (seja `1`, `-5`, `0.0001` ou um ponteiro válido), o resultado da conversão será sempre **`1`** (`true`).
+
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Conversões de Inteiro para Inteiro (Seção 15.3.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.3.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-3)-CONVERSOES-NUMERICAS/(SECAO-15-3-2)-CONVERSOES-DE-INTEIRO-PARA-INTEIRO)
+
+---
+
+Quando você atribui um valor inteiro de um tipo para outro com limites diferentes (por exemplo, tentar colocar um `long` dentro de um `short`, ou um `int` dentro de um `unsigned int`), e o valor original **não cabe** no espaço de destino, o C divide o comportamento em duas regras estritas:
+
+#### 🏎️ 1. O Destino é um Tipo Sem Sinal (`unsigned`)
+Se o tipo de destino for um inteiro não assinado e o valor não couber nele, o C garante matematicamente que o valor sofrerá um efeito de "odômetro de carro" (o infame *wrap-around*). O valor dá a volta ciclicamente até se encaixar no intervalo permitido.
+
+Tecnicamente, o resultado final será o valor original mapeado via aritmética modular (o resto da divisão do valor original por $2^n$, onde $n$ é o número de bits do tipo de destino).
+
+* **Exemplo Prático:** Se você tentar forçar o número decimal `258` para dentro de um `unsigned char` (que só armazena de `0` a `255`), o valor estoura o limite máximo, o odômetro zera e continua contando. O resultado final armazenado será `2`.
+
+#### ⚠️ 2. O Destino é um Tipo Com Sinal (`signed`)
+Aqui a história muda completamente. Se o tipo de destino for um inteiro **com sinal** e o valor original não couber nele, o resultado é classificado pelo padrão C como **Definido pela Implementação (Implementation-Defined Behavior)**.
+
+Isso significa que a linguagem C não dita uma regra universal sobre o que deve acontecer. O compilador que você está usando (seja o GCC, Clang ou MSVC) fará algo previsível e consistente com a arquitetura da sua CPU (geralmente ele apenas trunca os bits superiores na memória, fazendo com que um número positivo muito grande vire um número negativo devido à representação em Complemento de Dois). No entanto, por não ser uma regra universal do padrão, para ter certeza absoluta de como o binário final vai se comportar, você é obrigado a consultar o manual de documentação do seu compilador.
+
+---
+
+> 💡 **Insight de Estudo:**
+> Para quem trabalha perto do hardware ou otimizando código em C, entender a diferença dessas duas regras é crucial para a portabilidade do software.
+> O comportamento de *wrap-around* dos tipos `unsigned` é garantido por lei pelo padrão da linguagem. Desenvolvedores de sistemas embarcados frequentemente se aproveitam disso de propósito para criar cronômetros de passos (*ticks* de hardware) ou hashes simples, sabendo que quando o contador `unsigned` estourar, ele voltará para zero de forma limpa e segura, sem quebrar o programa.
+> Por outro lado, depender do estouro ou da conversão truncada de tipos `signed` é flertar com o perigo. Como o comportamento depende do compilador e da arquitetura do processador, um código que funciona perfeitamente compilado no GCC para uma arquitetura x86_64 pode quebrar e gerar cálculos completamente bizarros se for portado e compilado para um chip ARM usando outro compilador. Sempre que precisar reduzir o tamanho de uma variável com sinal, faça uma máscara de bits explícita ou valide os limites manualmente antes da atribuição.
+
+</details>
+
+---
+
 
 
 ---
+
+</details>
 
 </details>
 
