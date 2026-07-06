@@ -6907,6 +6907,45 @@ Isso significa que a linguagem C não dita uma regra universal sobre o que deve 
 
 ---
 
+<details>
+<summary><b>🧾 Conversões entre Inteiros e Ponto Flutuante (Seção 15.3.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.3.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-3)-CONVERSOES-NUMERICAS/(SECAO-15-3-3)-CONVERSOES-ENTRE-INTEIROS-E-PONTO-FLUTUANTES)
+
+---
+
+As regras de transição quando misturamos números inteiros com números quebrados (ponto flutuante) seguem uma lógica de "melhor esforço", mas escondem perigos fatais de travamento de código.
+
+---
+
+#### 🪓 1. De Ponto Flutuante para Inteiro (`float`/`double` ➔ `int`)
+Se você converter um tipo de ponto flutuante para qualquer tipo inteiro, a parte fracionária é descartada sumariamente com total preconceito. Não existe arredondamento automático para cima ou para baixo; o C simplesmente passa o machado nas casas decimais (operação de truncamento).
+
+- `3.14` vira `3`
+- `2.99999` vira `2`
+- `-5.67` vira `-5`
+
+⚠️ **A Armadilha do Comportamento Indefinido:**
+Se o número de ponto flutuante que você está tentando converter for grande demais para caber dentro do tipo inteiro de destino, o resultado é **Comportamento Indefinido** (Undefined Behavior). Tentar enfiar `3000000000.0` (3 bilhões) dentro de um `short int` (que só vai até 32.767) fará o seu programa gerar lixo bizarro ou quebrar na hora. Sempre verifique os limites antes de fazer esse tipo de corte.
+
+---
+
+#### 🎯 2. De Inteiro/Ponto Flutuante para Ponto Flutuante (➔ `float`/`double`)
+Ao fazer o caminho inverso, ou ao converter um ponto flutuante menor para um maior (como `int` para `float`, ou `float` para `double`), a linguagem C faz um compromisso de melhor esforço para encontrar a representação em ponto flutuante mais próxima possível do valor original.
+
+Como os floats usam potências de base 2 por baixo dos panos, nem sempre o encaixe é 100% perfeito, mas o compilador vai aproximar o máximo que os bits permitirem. No entanto, a regra do perigo continua valendo: se o valor original for tão ridiculamente colossal que não consiga ser representado pelo tipo de destino de forma alguma, você cai novamente em Comportamento Indefinido.
+
+> 💡 **Insight de Estudo:**
+> Um tipo int comum de 32 bits consegue representar o número 2147483647 de forma perfeitamente exata, bit a bit. Já o tipo float (também de 32 bits) precisa usar parte do seu espaço para guardar o expoente da notação científica, sobrando apenas 24 bits para a mantissa (o número real).
+> Se você converter aquele int máximo para float, o número vai "caber" (o compilador não vai gerar comportamento indefinido porque o expoente do float aguenta números gigantescos), mas os dígitos finais serão arredondados e perdidos por falta de espaço na mantissa. Se o seu código depende de IDs exatos, contadores de pacotes precisos ou endereçamento de memória bit a bit, fazer uma conversão implícita para float vai corromper os seus dados silenciosamente. Se precisar de ponto flutuante para números inteiros massivos, prefira sempre o double (64 bits).
+
+</details>
+
+---
+
 
 
 ---
