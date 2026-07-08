@@ -6913,6 +6913,33 @@ Because floats use powers of base 2 under the hood, the fit is not always 100% p
 
 </details>
 
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Implicit Conversions (Section 15.4.0 - 15.4.3)</b></summary>
+
+---
+
+[Section 15.4.0 - 15.4.3 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS)
+
+---
+
+<details>
+<summary><b>🧪 Implicit Conversion (Section 15.4.0)</b></summary>
+<br>
+
+---
+
+[Section 15.4.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS/(SECTION-15-4-0)-IMPLICIT-CONVERSION)
+
+---
+
+Implicit conversions are those that the compiler executes automatically for you, without the need for any special operator or intervention, whenever you mix different types in an expression or assignment.
+
+</details>
+
 ---
 
 
@@ -6922,6 +6949,8 @@ Because floats use powers of base 2 under the hood, the fit is not always 100% p
 </details>
 
 </details>
+
+
 
 
 

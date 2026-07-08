@@ -6944,6 +6944,33 @@ Como os floats usam potências de base 2 por baixo dos panos, nem sempre o encai
 
 </details>
 
+</details>
+
+---
+
+<details>
+<summary><b>🔄 Conversões Implícitas (Seção 15.4.0 - 15.4.3)</b></summary>
+
+---
+
+[Codigos da Seções 15.4.0 - 15.4.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS)
+
+---
+
+<details>
+<summary><b>🧪 Conversão Implícita (Seção 15.4.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.4.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS/(SECAO-15-4-0)-CONVERSAO-IMPLICITA)
+
+---
+
+As conversões implícitas são aquelas que o compilador executa automaticamente por você, sem a necessidade de qualquer intervenção ou operador especial, sempre que você mistura tipos diferentes em uma expressão ou atribuição.
+
+</details>
+
 ---
 
 
