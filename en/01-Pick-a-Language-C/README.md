@@ -6942,6 +6942,50 @@ Implicit conversions are those that the compiler executes automatically for you,
 
 ---
 
+<details>
+<summary><b>🔄 The Usual Arithmetic Conversions (Section 15.4.2)</b></summary>
+<br>
+
+---
+
+[Section 15.4.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS/(SECTION-15-4-1)-THE-USUAL-ARITHMETIC-CONVERSIONS)
+
+---
+
+These are the automatic conversions that C quietly performs when you run arithmetic operations that mix different numeric types. (By the way, this is exactly the official name given by the language standard in C11 §6.3.1.8). It is worth noting that in this section we are talking exclusively about numeric types; conversions involving strings come later.
+
+These rules are meant to answer that classic doubt when we mix things in code:
+
+```c
+int x = 3 + 1.2;   // Mixing int and double
+// The mathematical result 4.2 is converted to int
+// The value 4 is what actually gets stored in x
+
+float y = 12 * 2;  // Mixing float and int
+// The number 24 is converted to float
+// The value 24.0 is stored in y
+```
+
+Do they become `int`? Do they become `float`? How does the compiler decide? Here are the steps simplified and translated for human consumption:
+
+1. **If there is floating point in the expression:** If at least one of the elements involved in the operation is of a floating‑point type (`float`, `double`, or `long double`), C will automatically convert all the other elements to that same floating‑point type. The leveling is always done to the "widest" type in the expression.
+
+2. **If only integer types are present:** If both sides are integers of different sizes, the compiler first applies the Integer Promotions (which we saw in the previous section) to each of them. Then it promotes the smaller type to match the size of the larger type that can hold the common value. In some mixing scenarios, this may even turn a signed type into an unsigned type.
+
+If you have a morbid curiosity for the grittier, more mathematical details of this machinery, feel free to open the C11 §6.3.1.8 specification. But let's face it, you probably have more fun things to do with your free time.
+
+As a general survival rule, keep this in mind: integer types always "lose" and are promoted to floating point if there is a `float` or `double` nearby in the expression, and the compiler does its best to ensure that mixing different integers does not cause an overflow.
+
+Finally, when converting one floating‑point type to another (e.g., squeezing a `double` into a `float`), the compiler will try to make an exact conversion. If the bits do not allow a perfect fit, it will use the best possible approximation. Now, if the original number is so colossally large that it absolutely cannot fit into the destination type… boom: you fall into Undefined Behavior, and the program may act completely unpredictably.
+
+> 💡 **Study Insight:**
+> One of the biggest dangers of the Usual Arithmetic Conversions happens totally silently in divisions.
+> Consider the following calculation: `float result = 5 / 2;`. You might expect `result` to receive `2.5`. However, because `5` and `2` are plain integer constants (no suffix and no decimal point), C applies integer arithmetic before looking at the destination variable's type. The division of 5 by 2 yields the integer 2. Only later, when assigning the value to the `float result`, does 2 become 2.0.
+
+</details>
+
+---
+
 
 
 ---

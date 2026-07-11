@@ -6973,6 +6973,50 @@ As conversões implícitas são aquelas que o compilador executa automaticamente
 
 ---
 
+<details>
+<summary><b>🔄 As Conversões Aritméticas Usuais (Seção 15.4.2)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.4.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS/(SECAO-15-4-1)-AS-CONVENSOES-ARITMETICAS-USUAIS)
+
+---
+
+Essas são as conversões automáticas que o C realiza discretamente quando você executa operações aritméticas misturando tipos numéricos diferentes. (A propósito, esse é exatamente o nome oficial dado pelo padrão da linguagem no C11 §6.3.1.8). Vale destacar que, nesta seção, estamos falando única e exclusivamente de tipos numéricos; conversões envolvendo strings ficam para depois.
+
+Essas regras servem para responder àquela clássica dúvida de quando misturamos coisas no código:
+
+```c
+int x = 3 + 1.2;   // Misturando int e double
+// O resultado matemático 4.2 é convertido para int
+// O valor 4 é o que realmente é guardado em x
+
+float y = 12 * 2;  // Misturando float e int
+// O número 24 é convertido para float
+// O valor 24.0 é armazenado em y
+```
+
+Eles viram `int`? Viram `float`? Como o compilador decide? Aqui estão os passos simplificados e traduzidos para consumo humano:
+
+1. **Se houver ponto flutuante na expressão:** Se pelo menos um dos elementos envolvidos na operação for de um tipo de ponto flutuante (`float`, `double` ou `long double`), o C converterá automaticamente todos os outros elementos para esse mesmo tipo de ponto flutuante. O nivelamento é feito sempre pelo tipo mais "largo" da expressão.
+
+2. **Se forem apenas tipos inteiros:** Se ambos os lados forem inteiros de tamanhos diferentes, o compilador primeiro aplica as Promoções Inteiras (que vimos na seção anterior) em cada um deles. Em seguida, ele promove o menor tipo para que fique do mesmo tamanho do maior tipo capaz de comportar o valor comum. Em alguns cenários de mistura, isso pode inclusive transformar um tipo com sinal (`signed`) em um tipo sem sinal (`unsigned`).
+
+Se você tiver uma curiosidade mórbida pelos detalhes mais sórdidos e matemáticos dessa engrenagem, sinta-se livre para abrir a especificação do C11 §6.3.1.8. Mas, convenhamos, você provavelmente tem coisas mais divertidas para fazer com o seu tempo livre.
+
+Como regra geral de sobrevivência, guarde o seguinte: os tipos inteiros sempre "perdem" e são promovidos para ponto flutuante se houver um `float` ou `double` por perto na conta, e o compilador faz o melhor que pode para garantir que a mistura de inteiros diferentes não cause um estouro (overflow).
+
+Por fim, ao converter um tipo de ponto flutuante para outro (como espremer um double dentro de um float), o compilador tentará fazer uma conversão exata. Se os bits não permitirem um encaixe perfeito, ele usará a melhor aproximação possível. Agora, se o número original for colossamente grande a ponto de não caber de jeito nenhum no tipo de destino... boom: você cai em Comportamento Indefinido (Undefined Behavior) e o programa pode agir de forma totalmente imprevisível.
+
+>💡 **Insight de Estudo:**
+> Um dos maiores perigos das Conversões Aritméticas Usuais acontece de forma totalmente silenciosa em divisões.
+> Considere o seguinte cálculo: float resultado = 5 / 2;. Você poderia esperar que resultado receba 2.5. No entanto, como 5 e 2 são constantes inteiras puras (sem sufixo e sem ponto), o C aplica a aritmética de inteiros antes de olhar para o tipo da variável de destino. A divisão de 5 por 2 resulta no inteiro 2. Só depois, na hora de atribuir o valor ao float resultado, é que o 2 vira 2.0.
+
+</details>
+
+---
+
 
 
 ---
