@@ -6979,7 +6979,7 @@ As conversões implícitas são aquelas que o compilador executa automaticamente
 
 ---
 
-[Codigos da Seção 15.4.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS/(SECAO-15-4-1)-AS-CONVENSOES-ARITMETICAS-USUAIS)
+[Codigos da Seção 15.4.2 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS/(SECAO-15-4-1)-AS-CONVENSOES-ARITMETICAS-USUAIS)
 
 ---
 
@@ -7012,6 +7012,35 @@ Por fim, ao converter um tipo de ponto flutuante para outro (como espremer um do
 >💡 **Insight de Estudo:**
 > Um dos maiores perigos das Conversões Aritméticas Usuais acontece de forma totalmente silenciosa em divisões.
 > Considere o seguinte cálculo: float resultado = 5 / 2;. Você poderia esperar que resultado receba 2.5. No entanto, como 5 e 2 são constantes inteiras puras (sem sufixo e sem ponto), o C aplica a aritmética de inteiros antes de olhar para o tipo da variável de destino. A divisão de 5 por 2 resulta no inteiro 2. Só depois, na hora de atribuir o valor ao float resultado, é que o 2 vira 2.0.
+
+</details>
+
+---
+
+<details>
+ <summary><b>🔍 O Tipo void* (15.4.3)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.4.3 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-4)-CONVERSOES-IMPLICITAS/(SECAO-15-4-3)-O-TIPO-VOID)
+
+---
+
+O tipo `void*` é um dos recursos mais fascinantes e poderosos da linguagem C porque ele funciona como um ponteiro universal (ou ponteiro genérico). A grande mágica aqui é que ele pode ser convertido implicitamente, ou seja, automaticamente pelo compilador, de ou para qualquer outro tipo de ponteiro, sem que você precise usar um casting (conversão explícita).
+
+Veja como essa troca de identidades acontece de forma natural no código:
+
+```c
+int x = 10;
+void *p = &x;  // &x é do tipo int*, mas nós o guardamos em um void* sem reclamar
+int *q = p;    // p é void*, mas o C aceita guardá-lo de volta em um int*
+```
+
+Repare que o compilador não gera nenhum aviso (warning) ou erro nessas linhas. O `void*` serve essencialmente como uma folha em branco: ele armazena um endereço de memória puro e bruto, mas opta por "esquecer" temporariamente qual é o tipo de dado que está guardado naquele endereço.
+
+> 💡 **Insight de Estudo:**
+> Essa flexibilidade do `void*` é o alicerce de praticamente toda a gerência de memória dinâmica e estruturas de dados genéricas em C. Quando você chama funções como o `malloc()`, por exemplo, ela precisa alocar memória para você sem ter a menor ideia se você vai guardar ali uma lista de inteiros, uma array de floats ou uma estrutura customizada.
 
 </details>
 

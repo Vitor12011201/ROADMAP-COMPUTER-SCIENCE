@@ -6948,7 +6948,7 @@ Implicit conversions are those that the compiler executes automatically for you,
 
 ---
 
-[Section 15.4.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS/(SECTION-15-4-1)-THE-USUAL-ARITHMETIC-CONVERSIONS)
+[Section 15.4.2 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS/(SECTION-15-4-1)-THE-USUAL-ARITHMETIC-CONVERSIONS)
 
 ---
 
@@ -6981,6 +6981,35 @@ Finally, when converting one floating‑point type to another (e.g., squeezing a
 > 💡 **Study Insight:**
 > One of the biggest dangers of the Usual Arithmetic Conversions happens totally silently in divisions.
 > Consider the following calculation: `float result = 5 / 2;`. You might expect `result` to receive `2.5`. However, because `5` and `2` are plain integer constants (no suffix and no decimal point), C applies integer arithmetic before looking at the destination variable's type. The division of 5 by 2 yields the integer 2. Only later, when assigning the value to the `float result`, does 2 become 2.0.
+
+</details>
+
+---
+
+<details>
+ <summary><b>🔍 The void* Type (15.4.3)</b></summary>
+<br>
+
+---
+
+[Section 15.4.3 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-4)-IMPLICIT-CONVERSIONS/(SECTION-15-4-3)-THE-VOID-TYPE)
+
+---
+
+The `void*` type is one of the most fascinating and powerful features of the C language because it works as a universal pointer (or generic pointer). The great magic here is that it can be implicitly converted, that is, automatically by the compiler, to or from any other pointer type, without requiring you to use a cast (explicit conversion).
+
+See how this identity swap happens naturally in code:
+
+```c
+int x = 10;
+void *p = &x;  // &x is of type int*, but we store it in a void* without complaint
+int *q = p;    // p is void*, but C accepts storing it back into an int*
+```
+
+Notice that the compiler does not generate any warnings or errors on these lines. `void*` essentially acts as a blank slate: it stores a raw, pure memory address, but chooses to temporarily "forget" what type of data is stored at that address.
+
+> 💡 **Study Insight:**
+> This flexibility of `void*` is the foundation of practically all dynamic memory management and generic data structures in C. When you call functions like `malloc()`, for example, it needs to allocate memory for you without having the slightest idea whether you are going to store there a list of integers, an array of floats, or a custom structure.
 
 </details>
 
