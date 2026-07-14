@@ -7044,6 +7044,53 @@ Repare que o compilador não gera nenhum aviso (warning) ou erro nessas linhas. 
 
 </details>
 
+</details>
+
+---
+
+<details>
+ <summary><b>🛠️ Conversões Explícitas (15.5.0 - 15.5.1)</b></summary>
+
+---
+
+[Codigos da Seções 15.5.0 - 15.5.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-5)-CONVERSOES-EXPLICITAS)
+
+---
+
+<details>
+<summary><b>🧪 Conversão Explicita (Seção 15.5.0)</b></summary>
+<br>
+
+---
+
+[Codigos da Seção 15.5.0 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_015/(SECAO-15-5)-CONVERSOES-EXPLICITAS/(SECAO-15-5-0)-CONVERSAO-EXPLICITA)
+
+---
+
+Ao contrário das conversões implícitas que o compilador executa silenciosamente, as **conversões explícitas** são aquelas que você, de forma ativa e intencional, ordena que o compilador realize. Se você não solicitar expressamente, o compilador não moverá um dedo para ajustar os tipos (ou poderá gerar alertas e erros de compilação).
+
+Existem duas maneiras principais de realizar uma conversão explícita em C:
+1. **Por Atribuição:** Quando você atribui o valor de um tipo diretamente a uma variável de outro tipo usando o operador `=`.
+2. **Por Casting (Moldagem):** Quando você usa o operador de *cast* para forçar a conversão de um valor ou de uma expressão inteira naquele exato instante. (Próxima Seção)
+
+---
+
+#### 🔀 1. Conversão por Atribuição
+
+O C permite que você force a conversão simplesmente jogando um valor de um tipo dentro de uma variável de outro tipo. O compilador vai reformatar os bits por baixo dos panos para que caibam no destino, mesmo que isso custe a perda de dados:
+
+```c
+float pi = 3.14159;
+int x;
+
+x = pi;  // Conversão por atribuição: o float pi é convertido e armazenado como int.
+         // x agora vale exatamente 3.
+```
+
+Embora isso funcione, esse método esconde um perigo: o compilador pode gerar um alerta (warning) de perda de precisão, e quem estiver lendo o seu código pode achar que você cometeu um erro de digitação por não ter deixado sua intenção clara no papel.
+
+</details>
+
 ---
 
 
@@ -7053,4 +7100,6 @@ Repare que o compilador não gera nenhum aviso (warning) ou erro nessas linhas. 
 </details>
 
 </details>
+
+
 

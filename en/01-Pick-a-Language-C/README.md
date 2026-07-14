@@ -7013,6 +7013,53 @@ Notice that the compiler does not generate any warnings or errors on these lines
 
 </details>
 
+</details>
+
+---
+
+<details>
+ <summary><b>🛠️ Explicits Conversions (15.5.0 - 15.5.1)</b></summary>
+
+---
+
+[Code for Sections 15.5.0 - 15.5.1 can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-5)-EXPLICITS-CONVERSIONS)
+
+---
+
+<details>
+<summary><b>🧪 Explicit Conversion (Section 15.5.0)</b></summary>
+<br>
+
+---
+
+[Section 15.5.0 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-5)-EXPLICITS-CONVERSIONS/(SECTION-15-5-0)-EXPLICIT-CONVERSION)
+
+---
+
+Unlike the implicit conversions that the compiler performs silently, **explicit conversions** are those that you, actively and intentionally, order the compiler to perform. If you do not explicitly request it, the compiler will not lift a finger to adjust the types (or it may generate warnings and compilation errors).
+
+There are two main ways to perform an explicit conversion in C:
+1. **By Assignment:** When you directly assign a value of one type to a variable of another type using the `=` operator.
+2. **By Casting:** When you use the *cast* operator to force the conversion of a value or an entire expression at that exact moment. (Next Section)
+
+---
+
+#### 🔀 1. Conversion by Assignment
+
+C allows you to force conversion simply by throwing a value of one type into a variable of another type. The compiler will reformat the bits under the hood so that they fit into the destination, even if it costs data loss:
+
+```c
+float pi = 3.14159;
+int x;
+
+x = pi;  // Conversion by assignment: the float pi is converted and stored as int.
+         // x now holds exactly 3.
+```
+
+Although this works, this method hides a danger: the compiler may generate a warning about loss of precision, and whoever is reading your code might think you made a typo because you did not make your intention clear on paper.
+
+</details>
+
 ---
 
 
