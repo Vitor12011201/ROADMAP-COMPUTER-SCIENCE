@@ -7062,14 +7062,107 @@ Although this works, this method hides a danger: the compiler may generate a war
 
 ---
 
-
+<details>
+<summary><b>🎯 The Cast Operator (Section 15.5.1)</b></summary>
+<br>
 
 ---
 
+[Section 15.5.1 code can be found here](./CODE_BY_DAY/DAY_015/(SECTION-15-5)-EXPLICITS-CONVERSIONS/(SECTION-15-5-1)-THE-CAST-OPERATOR)
+
+---
+
+You can explicitly change the type of an expression by placing the new type in parentheses right before it. Although some C developers frown upon this practice when it is not strictly necessary, it is almost certain that you will come across many codes full of *casts* out there.
+
+Let's look at an initial example where we want to convert an `int` to `long` to store it in a `long` variable:
+
+> **Note:** This example is purely didactic and the *cast* here is completely **unnecessary**. The expression `x + 12` would be automatically promoted to `long int` at the moment of assignment to match the wider type of variable `y`.
+
+```c
+int x = 10;
+long int y = (long int)x + 12;
+```
+
+#### 🕵️ Where is Cast Really Useful?
+1. *Dereferencing generic pointers (`void*`)*
+   - It is very common to see casts being used to convert a `void*` into a specific pointer so that its value can finally be accessed (dereferenced). A sorting callback for the classic `qsort()` function from the standard library often exhibits this behavior, since it injects `void*` pointers into the parameters:
+
+```c
+int compar(const void *elem1, const void *elem2) {
+    // Explicitly cast void* to int* and dereference all in the same line
+    if (*((const int*)elem2) > *((const int*)elem1)) return 1;
+    if (*((const int*)elem2) < *((const int*)elem1)) return -1;
+    return 0;
+}
+```
+
+But, let's be honest, you could also write the same logic in a much cleaner and more readable way using only assignments (taking advantage of the fact that C converts `void*` implicitly):
+
+```c
+int compar(const void *elem1, const void *elem2) {
+    const int *e1 = elem1;
+    const int *e2 = elem2;
+    return *e2 - *e1; // The code breathes much better without the visual pollution of casts
+}
+```
+
+2. Printing pointers with `printf()`
+
+- Another classic place where cast shines is to silence compiler warnings when printing memory addresses. The `%p` format specifier is very strict and strictly expects a pointer of type `void*`.
+
+If you do this:
+
+```c
+int x = 3490;
+int *p = &x;
+printf("%p\n", p);
+```
+
+The compiler will shout a warning on your screen:
+`warning: format '%p' expects argument of type 'void *', but argument 2 has type 'int *'`
+
+The fix is to apply a simple, straightforward cast:
+
+```c
+printf("%p\n", (void *)p);
+```
+
+3. Direct inspection of memory blocks
+  - Sometimes you want to explicitly change a pointer's type to access the same memory chunk in a completely different way, without using a `void*` in between.
+
+```c
+long x = 3490;
+long *p = &x;
+unsigned char *c = (unsigned char *)p;
+```
+
+4. Functions from the `<ctype.h>` library
+A third place where cast is often required is when dealing with the character conversion and analysis functions from the standard library (such as `toupper`, `isalpha`, etc.). In certain scenarios, you must cast values with questionable signs to `unsigned char` before passing them as an argument, to avoid undefined behavior during processing.
+
+---
+
+#### ⚖️ Verdict on Cast
+In daily practice, the use of explicit conversions is rarely necessary for basic arithmetic operations. If you find yourself filling your code with `(int)` and `(float)`, there is probably a more elegant way to structure the logic, or maybe you are just making unnecessary casts.
+However, sometimes it is indispensable. The golden rule is: try to avoid it to keep the code lean, but don't be afraid to use it when precision demands.
+
+</details>
+
 </details>
 
 </details>
 
+<details>
+<summary><b>🔹Day 16: Types IV: Qualifiers and Specifiers</b></summary>
+
+---
+
+[Day 16 code can be found here](./)
+
+---
+
+<details>
+ <summary><b>🔄 Types IV: Qualifiers and Specifiers (Section 15.0)</b></summary> 
+<br>
 
 
 
