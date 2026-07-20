@@ -7156,7 +7156,7 @@ However, sometimes it is indispensable. The golden rule is: try to avoid it to k
 
 ---
 
-[Day 16 code can be found here](./)
+[Day 16 code can be found here](./CODE_BY_DAY/DAY_016)
 
 ---
 
@@ -7164,7 +7164,35 @@ However, sometimes it is indispensable. The golden rule is: try to avoid it to k
  <summary><b>🔄 Types IV: Qualifiers and Specifiers (Section 15.0)</b></summary> 
 <br>
 
+---
+
+[Section 16.0 code can be found here](./CODE_BY_DAY/DAY_016/(SECTION-16-0)-QUALIFIERS-AND-SPECIFIERS)
+
+---
+
+Now that we have a few more types in our utility belt, it turns out we can assign them some additional attributes that directly control their behavior.
+
+These special modifiers are known as **type qualifiers** and **storage-class specifiers**.
+
+---
+
+💡 **Study Insight:**
+To understand what is coming, think of it this way: while basic types (like `int`, `float`, `char`) tell the compiler **what** is stored in memory and **what its size is**, qualifiers and specifiers tell the compiler **how** it should manage and optimize that memory.
+
+They are divided into two major practical groups:
+* **Qualifiers** (such as `const`, `volatile`, `restrict`): Dictate strict access rules for the variable. They can either forbid changing a value or warn the compiler not to perform aggressive optimizations because that memory might change unpredictably (widely used in driver programming and embedded systems).
+* **Specifiers** (such as `static`, `extern`, `register`): Change the lifetime and visibility (scope) of the variable. They can make a variable survive past the end of a function or warn the compiler that the true definition of that variable is hidden in another file in the project.
+
+They represent the next level of control over the infrastructure of your C program!
+
+</details>
+
+---
 
 
+
+---
+
+</details>
 
 
