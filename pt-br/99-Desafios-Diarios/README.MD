@@ -96,6 +96,12 @@ Estudos e exercícios sobre conversões de tipos na linguagem C, abordando a tra
 * **Competências:** Uso de funções como `sprintf()` e `snprintf()`, compreensão de conversões explícitas e implícitas, análise de perdas de precisão, truncamentos, estouros de valores, limites de armazenamento e cuidados com buffers e strings em C.
 * **Destaque:** Compreensão de que conversões em C exigem atenção, pois mudanças entre tipos podem alterar valores, perder informações ou gerar comportamentos inesperados. O capítulo reforça a importância de escrever conversões de forma consciente, segura e previsível.
 
+### [15-Tipos-de-Variáveis-Parte-4-Qualificadores-e-Especificadores](./15-Tipos_Parte_4_Qualificadores_Especificadores(Exercicios))
+
+**O que encontrará aqui:**
+Estudos e exercícios sobre qualificadores de tipo e especificadores de armazenamento na linguagem C, explorando como adicionar regras e características especiais às variáveis, ponteiros e funções.
+* **Competências:** Uso do qualificador `const`, criação de variáveis constantes, aplicação de `const` em parâmetros de funções, diferenciação entre ponteiros para valores constantes e ponteiros constantes, combinação de múltiplos níveis de `const` e interpretação de declarações complexas envolvendo ponteiros.
+* **Destaque:** Compreensão das diferenças entre `const int *p`, `int *const p` e `const int *const p`, controle sobre o que pode ou não ser modificado através de um ponteiro e desenvolvimento de códigos mais seguros, previsíveis e resistentes a alterações acidentais.
 
 ---
 

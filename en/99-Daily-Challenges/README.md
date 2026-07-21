@@ -96,6 +96,13 @@ Studies and exercises on type conversions in the C language, covering the transf
 * **Skills:** Use of functions such as `sprintf()` and `snprintf()`, understanding of explicit and implicit conversions, analysis of precision loss, truncations, value overflows, storage limits, and precautions with buffers and strings in C.
 * **Highlight:** Understanding that conversions in C require attention, as changes between types can alter values, lose information, or generate unexpected behavior. This chapter reinforces the importance of writing conversions in a conscious, safe, and predictable manner.
 
+### [15-Types-of-Variables-Part-4-Qualifiers-and-Specifiers](./15-Types-Part-4-Qualifiers-and-Specifiers(Exercises))
+
+**What you will find here:**
+Studies and exercises on type qualifiers and storage specifiers in the C language, exploring how to add special rules and characteristics to variables, pointers, and functions.
+* **Skills:** Use of the `const` qualifier, creation of constant variables, application of `const` in function parameters, differentiation between pointers to constant values and constant pointers, combination of multiple levels of `const`, and interpretation of complex declarations involving pointers.
+* **Highlight:** Understanding the differences between `const int *p`, `int *const p`, and `const int *const p`, control over what can or cannot be modified through a pointer, and development of safer, more predictable code resistant to accidental changes.
+
 ---
 
 ## 🛠️ Technologies and Tools
