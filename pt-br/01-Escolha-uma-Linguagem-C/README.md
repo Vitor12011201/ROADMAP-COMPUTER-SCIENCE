@@ -7212,14 +7212,37 @@ Esses modificadores especiais são conhecidos como **qualificadores de tipo** (*
 
 ---
 
- 💡 **Insight de Estudo:**
-Para entender o que está por vir, pense da seguinte forma: enquanto os tipos básicos (como `int`, `float`, `char`) dizem ao compilador **o que** está guardado na memória e **qual é o seu tamanho**, os qualificadores e especificadores dizem ao compilador **como** ele deve gerenciar e otimizar essa memória.
+> 💡 **Insight de Estudo:**
+> Para entender o que está por vir, pense da seguinte forma: enquanto os tipos básicos (como `int`, `float`, `char`) dizem ao compilador **o que** está guardado na memória e **qual é o seu tamanho**, os qualificadores e especificadores dizem ao compilador **como** ele deve gerenciar e otimizar essa memória.
+> Eles se dividem em dois grandes grupos práticos:
+> * **Qualificadores** (como `const`, `volatile`, `restrict`): Ditam as regras estritas de acesso à variável. Eles podem proibir a alteração de um valor ou avisar o compilador para não fazer otimizações agressivas porque aquela memória pode mudar de forma imprevisível (muito usado em programação de drivers e sistemas embarcados).
+> * **Especificadores** (como `static`, `extern`, `register`): Mudam o tempo de vida (*lifetime*) e a visibilidade (*scope*) da variável. Eles podem fazer uma variável sobreviver ao fim de uma função ou avisar o compilador que a verdadeira definição daquela variável está escondida em outro arquivo do projeto.
+> Eles representam o próximo nível de controle sobre a infraestrutura do seu programa em C!
 
-Eles se dividem em dois grandes grupos práticos:
-* **Qualificadores** (como `const`, `volatile`, `restrict`): Ditam as regras estritas de acesso à variável. Eles podem proibir a alteração de um valor ou avisar o compilador para não fazer otimizações agressivas porque aquela memória pode mudar de forma imprevisível (muito usado em programação de drivers e sistemas embarcados).
-* **Especificadores** (como `static`, `extern`, `register`): Mudam o tempo de vida (*lifetime*) e a visibilidade (*scope*) da variável. Eles podem fazer uma variável sobreviver ao fim de uma função ou avisar o compilador que a verdadeira definição daquela variável está escondida em outro arquivo do projeto.
+</details>
 
-Eles representam o próximo nível de controle sobre a infraestrutura do seu programa em C!
+---
+
+<details>
+<summary><b>🏷️ Qualificadores de Tipo (Seção 16.1)</b></summary>
+<br>
+
+---
+
+
+[Codigos da Seção 16.1 podem ser encontrados aqui](./CODIGO_POR_DIA/DIA_016/(SECAO-16-1)-QUALIFICADORES-DE-TIPOS)
+
+
+---
+
+Os qualificadores de tipo vão permitir que você declare valores constantes (imutáveis) e, além disso, servem para fornecer "dicas" valiosas de otimização que o compilador pode usar para gerar um código de máquina mais eficiente e seguro.
+
+---
+
+> 💡 **Insight de Estudo:**
+> Quando se menciona "dicas de otimização", ele está tocando em um dos pontos mais críticos da linguagem C, especialmente quando descemos para o nível do hardware.
+> Por exemplo, ao marcar uma variável global como `const`, você não está apenas evitando um bug de digitação no futuro; você está ativamente dizendo ao compilador (e ao sistema operacional) que ele pode guardar essa variável em uma seção de memória de **somente-leitura** (como a seção `.rodata` do binário). Se o código tentar gravar ali, o processador gera uma falha de hardware (*Segmentation Fault*) na hora.
+> Por outro lado, existe um qualificador chamado `volatile` (que provavelmente aparecerá nas próximas páginas) que faz exatamente o oposto: ele **proíbe** qualquer otimização. Em cenários de manipulação direta de hardware ou escrita de firmwares para processadores ARM, o valor de um endereço de memória pode ser alterado a qualquer momento por um periférico externo (como um adaptador Bluetooth ou um controlador de rede). O `volatile` avisa o compilador: *"nunca presuma o valor dessa variável fazendo cache dela nos registradores; vá até a memória RAM e leia o valor real toda vez"*.
 
 </details>
 
@@ -7228,6 +7251,5 @@ Eles representam o próximo nível de controle sobre a infraestrutura do seu pro
 
 
 ---
-
 
 </details>

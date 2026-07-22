@@ -7176,14 +7176,35 @@ These special modifiers are known as **type qualifiers** and **storage-class spe
 
 ---
 
-💡 **Study Insight:**
-To understand what is coming, think of it this way: while basic types (like `int`, `float`, `char`) tell the compiler **what** is stored in memory and **what its size is**, qualifiers and specifiers tell the compiler **how** it should manage and optimize that memory.
+> 💡 **Study Insight:**
+> To understand what is coming, think of it this way: while basic types (like `int`, `float`, `char`) tell the compiler **what** is stored in memory and **what its size is**, qualifiers and specifiers tell the compiler **how** it should manage and optimize that memory.
+> They are divided into two major practical groups:
+> * **Qualifiers** (such as `const`, `volatile`, `restrict`): Dictate strict access rules for the variable. They can either forbid changing a value or warn the compiler not to perform aggressive optimizations because that memory might change unpredictably (widely used in driver programming and embedded systems).
+> * **Specifiers** (such as `static`, `extern`, `register`): Change the lifetime and visibility (scope) of the variable. They can make a variable survive past the end of a function or warn the compiler that the true definition of that variable is hidden in another file in the project.
+> They represent the next level of control over the infrastructure of your C program!
 
-They are divided into two major practical groups:
-* **Qualifiers** (such as `const`, `volatile`, `restrict`): Dictate strict access rules for the variable. They can either forbid changing a value or warn the compiler not to perform aggressive optimizations because that memory might change unpredictably (widely used in driver programming and embedded systems).
-* **Specifiers** (such as `static`, `extern`, `register`): Change the lifetime and visibility (scope) of the variable. They can make a variable survive past the end of a function or warn the compiler that the true definition of that variable is hidden in another file in the project.
+</details>
 
-They represent the next level of control over the infrastructure of your C program!
+---
+
+<details>
+<summary><b>🏷️ Type Qualifiers (Section 16.1)</b></summary>
+<br>
+
+---
+
+[Section 16.1 code can be found here](./CODE_BY_DAY/DAY_016/(SECTION-16-1)-TYPE-QUALIFIERS)
+
+---
+
+Type qualifiers will allow you to declare constant (immutable) values and, in addition, serve to provide valuable optimization "hints" that the compiler can use to generate more efficient and safer machine code.
+
+---
+
+> 💡 **Study Insight:**
+> When it mentions "optimization hints", it is touching on one of the most critical points of the C language, especially when we go down to the hardware level.
+> For example, by marking a global variable as `const`, you are not only preventing a future typo bug; you are actively telling the compiler (and the operating system) that it can place that variable in a **read‑only** memory section (such as the `.rodata` section of the binary). If the code tries to write there, the processor triggers a hardware fault (*Segmentation Fault*) on the spot.
+> On the other hand, there is a qualifier called `volatile` (which will probably appear in the coming pages) that does exactly the opposite: it **forbids** any optimization. In scenarios of direct hardware manipulation or firmware writing for ARM processors, the value of a memory address can be changed at any time by an external peripheral (such as a Bluetooth adapter or a network controller). `volatile` warns the compiler: *"never assume the value of this variable by caching it in registers; go to RAM and read the actual value every time"*.
 
 </details>
 
